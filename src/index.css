@@ -1,0 +1,25 @@
+
+@import "tailwindcss";
+
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 10s linear infinite;
+}
+
+.slide-item {
+  flex-shrink: 0;
+  padding: 0 24px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-30%);
+  }
+}
+
+
+

@@ -1,158 +1,119 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Background Images
-import footerBg from "../assets/images/footer1.webp";
-import overlayLogo from "../assets/images/Spay TM Logo.webp";
-
-// Certificate Images
+// Assets
 import pci from "../assets/images/pci-dss-1 (1).png";
 import iso from "../assets/images/iso-cer.png";
-
-// App Store Image
 import appStore from "../assets/images/download-on-the-app-store-flat-badge-logo-png_seeklogo-268334 (1).png";
 
 const Footer = () => {
   return (
-<footer className="relative text-white py-12 overflow-hidden min-h-[250px]">
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{ backgroundImage: `url(${footerBg})` }}
-  ></div>
+    <footer className="relative overflow-hidden text-white">
+      {/* PREMIUM GRADIENT BACKGROUND */}
+      <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(1000px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)]" />
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-[#001a33]/80"></div>
+      {/* CONTENT */}
+      <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
+        {/* TOP SECTION */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14">
+          {/* LEFT CONTENT */}
+          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-14 gap-y-10">
+            <FooterBlock title="Address">
+              316 Laxmi Plaza, Laxmi Industrial Estate,<br />
+              Andheri West, Mumbai 400053.
+            </FooterBlock>
 
-  {/* Spay Watermark Overlay Image */}
-  <div
-    className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-40"
-    style={{ backgroundImage: `url(${overlayLogo})` }}
-  ></div>
-<div className="relative z-10">
-      {/* Footer Content */}
-      <div className="mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
+            <FooterBlock title="Contact">
+              <div className="space-y-2">
+                <p>022-46072193</p>
+                <p>+91 8450007614</p>
+                <a href="mailto:inquiry@spay.live" className={linkClass}>
+                  inquiry@spay.live
+                </a>
+              </div>
+            </FooterBlock>
 
-        {/* Address */}
-        <div>
-          <h5 className="text-xl font-semibold mb-4">Address</h5>
-          <p className="text-sm leading-relaxed">
-            316 Laxmi Plaza, Laxmi Industrial State, Andheri West, Mumbai,
-            Maharashtra, 400053.
-          </p>
-        </div>
+            <FooterBlock title="Services">
+              <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
+              <FooterLink to="/payment-links">Payment Links</FooterLink>
+              <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
+              <FooterLink to="/one-click-checkout">One-Click Checkout</FooterLink>
+            </FooterBlock>
 
-        {/* Contact */}
-        <div>
-          <h5 className="text-xl font-semibold mb-4">Contact Us</h5>
+            <FooterBlock title="Company">
+              <FooterLink to="/about-us">About Us</FooterLink>
+              <FooterLink to="/integration">Integration</FooterLink>
+              <FooterLink to="/contact-us">Contact Us</FooterLink>
+            </FooterBlock>
+          </div>
 
-          <p className="text-sm mb-2">📞 022-46072193</p>
-          <p className="text-sm mb-2">💬 +91 8450007614</p>
-          <p className="text-sm">
-            ✉{" "}
-            <a
-              href="mailto:inquiry@spay.live"
-              className="hover:underline"
-            >
-              inquiry@spay.live
-            </a>
-          </p>
-        </div>
-
-        {/* Services */}
-        <div>
-          <h5 className="text-xl font-semibold mb-4">Our Services</h5>
-          <ul className="space-y-3 text-sm font-medium">
-            <li>
-              <Link to="/payment-gateway" className="hover:underline">
-                Payment Gateway
-              </Link>
-            </li>
-            <li>
-              <Link to="/payment-links" className="hover:underline">
-                Payment Links
-              </Link>
-            </li>
-            <li>
-              <Link to="/upi-autopay" className="hover:underline">
-                UPI AutoPay
-              </Link>
-            </li>
-            <li>
-              <Link to="/one-click-checkout" className="hover:underline">
-                One-Click Checkout
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* General */}
-        <div>
-          <h5 className="text-xl font-semibold mb-4">General</h5>
-          <ul className="space-y-3 text-sm font-medium">
-            <li>
-              <Link to="/about-us" className="hover:underline">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact-us" className="hover:underline">
-                Contact Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/integration" className="hover:underline">
-                Integration
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Legal */}
-        <div>
-          <h5 className="text-xl font-semibold mb-4">Legal</h5>
-          <ul className="space-y-2 text-sm font-medium">
-            <li>
-              <Link to="/privacy-policy" className="hover:underline">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link to="/terms-conditions" className="hover:underline">
-                Terms & Conditions
-              </Link>
-            </li>
-
-            {/* App Store */}
-            <li className="mt-3">
+          {/* RIGHT BRAND / TRUST */}
+          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between gap-10">
+            {/* APP */}
+            <div>
+              <p className="mb-4 text-[13px] uppercase tracking-widest text-white/70">
+                Get the app
+              </p>
               <a
                 href="https://apps.apple.com/in/app/spay-fintech/id6444719057"
                 target="_blank"
                 rel="noreferrer"
+                className="inline-block opacity-95 hover:opacity-100 transition"
               >
-                <img
-                  src={appStore}
-                  alt="Download on App Store"
-                  className="w-[130px] h-[50px]"
-                />
+                <img src={appStore} alt="App Store" className="h-[40px]" />
               </a>
-            </li>
-          </ul>
+            </div>
+
+            {/* TRUST */}
+            <div className="flex items-center gap-6">
+              <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
+              <img src={iso} alt="ISO Certified" className="h-[48px] opacity-90" />
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Certificates */}
-      <div className="max-w-7xl mx-auto px-6 mt-12 flex justify-end items-center gap-4 max-md:justify-center max-md:mt-8">
-        <img src={pci} alt="pci" className="w-[90px] h-[70px] object-contain" />
-        <img src={iso} alt="iso" className="w-[70px] h-[70px] object-contain" />
-      </div>
+        {/* DIVIDER */}
+        <div className="mt-16 border-t border-white/10" />
 
-      {/* Copyright */}
-      <div className="text-center mt-8 text-sm font-medium">
-        © 2024 Spay Fintech. All rights reserved.
-      </div>
+        {/* BOTTOM */}
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[13px] text-white/70">
+            © 2024 Spay Fintech. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-6 text-[13px]">
+            <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
+            <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
+          </div>
+        </div>
       </div>
     </footer>
   );
 };
+
+/* ---------- HELPERS ---------- */
+
+const FooterBlock = ({ title, children }) => (
+  <div>
+    <h5 className="mb-4 text-[13px] font-medium uppercase tracking-widest text-white/80">
+      {title}
+    </h5>
+    <div className="text-[14px] leading-[1.7] text-white space-y-2">
+      {children}
+    </div>
+  </div>
+);
+
+const linkClass =
+  "relative block w-fit text-white transition-opacity duration-300 opacity-90 " +
+  "after:content-[''] after:absolute after:left-1/2 after:-bottom-[3px] " +
+  "after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 " +
+  "hover:opacity-100 hover:after:left-0 hover:after:w-full";
+
+const FooterLink = ({ to, children }) => (
+  <Link to={to} className={linkClass}>
+    {children}
+  </Link>
+);
 
 export default Footer;

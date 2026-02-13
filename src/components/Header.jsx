@@ -3,275 +3,165 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [featuresOpen, setFeaturesOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [features, setFeatures] = useState(false);
+  const [products, setProducts] = useState(false);
 
   return (
-    <header className="bg-white shadow sticky top-0 z-50">
-      <div className=" mx-auto px-6 ">
-        <nav className="flex items-center justify-between py-4 relative">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 py-1">
+        <nav className="flex items-center justify-between h-[72px]">
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0">
-            <img
-              src={logo}
-              alt="Spay Logo"
-              className="h-19 w-auto object-contain"
-            />
+          {/* LOGO */}
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Spay" className="h-12 w-auto" />
           </Link>
 
-          {/* Mobile Toggle Button */}
-          <button
-            className="md:hidden text-gray-800 text-2xl"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            ☰
-          </button>
+          {/* DESKTOP NAV */}
+          <ul className="hidden md:flex items-center gap-7 mx-auto text-[14.5px] font-medium text-gray-700">
 
-          {/* Desktop Nav Links */}
-          <ul className="hidden md:flex items-center gap-8 text-gray-800 font-semibold mx-auto">
+            <NavLink name="Home" link="/" />
+            <NavLink name="About" link="/about-us" />
+            <NavLink name="Integration" link="/integration" />
 
-            <li>
-              <Link to="/" className="hover:text-blue-600 transition">
-                Home
-              </Link>
-            </li>
-
-            {/* Features Dropdown */}
+            {/* FEATURES */}
             <li className="relative">
               <button
-                onClick={() => setFeaturesOpen(!featuresOpen)}
-                className="hover:text-blue-600 transition flex items-center gap-1"
+                onClick={() => {
+                  setFeatures(!features);
+                  setProducts(false);
+                }}
+                className="relative flex items-center gap-1 text-gray-700 hover:text-gray-900 transition group"
               >
-                Features 
-                                <svg
-                  className="w-4 h-4 mt-[2px]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                Features
+                <Chevron open={features} />
+                <Underline />
               </button>
 
-              {featuresOpen && (
-                <ul className="absolute top-10 left-0 bg-white shadow-lg rounded-lg w-52 py-2 z-50">
-                  <li>
-                    <Link
-                      to="/paymentgateway"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setFeaturesOpen(false)}
-                    >
-                      Payment Gateway
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/OneClick"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setFeaturesOpen(false)}
-                    >
-                      One-click Checkout
-                    </Link>
-                  </li>
-                </ul>
+              {features && (
+                <Dropdown>
+                  <DropItem to="/paymentgateway">Payment Gateway</DropItem>
+                  <DropItem to="/OneClick">One-click Checkout</DropItem>
+                </Dropdown>
               )}
             </li>
 
-            <li>
-              <Link to="/about-us" className="hover:text-blue-600 transition">
-                About Us
-              </Link>
-            </li>
-
-            {/* Products Dropdown */}
+            {/* PRODUCTS */}
             <li className="relative">
               <button
-                onClick={() => setProductsOpen(!productsOpen)}
-                className="hover:text-blue-600 transition flex items-center gap-1"
+                onClick={() => {
+                  setProducts(!products);
+                  setFeatures(false);
+                }}
+                className="relative flex items-center gap-1 text-gray-700 hover:text-gray-900 transition group"
               >
                 Products
-                                <svg
-                  className="w-4 h-4 mt-[2px]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <Chevron open={products} />
+                <Underline />
               </button>
 
-              {productsOpen && (
-                <ul className="absolute top-10 left-0 bg-white shadow-lg rounded-lg w-52 py-2 z-50">
-                  <li>
-                    <Link
-                      to="/upi-autopay"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setProductsOpen(false)}
-                    >
-                      UPI
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/payment-links"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setProductsOpen(false)}
-                    >
-                      Payment Link
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/soundbox"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setProductsOpen(false)}
-                    >
-                      SoundBox
-                    </Link>
-                  </li>
-                </ul>
+              {products && (
+                <Dropdown>
+                  <DropItem to="/upi-autopay">UPI</DropItem>
+                  <DropItem to="/payment-links">Payment Links</DropItem>
+                  <DropItem to="/soundbox">SoundBox</DropItem>
+                </Dropdown>
               )}
             </li>
 
-            <li>
-              <Link to="/integration" className="hover:text-blue-600 transition">
-                Integration
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/careers" className="hover:text-blue-600 transition">
-                Careers
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/contact-us" className="hover:text-blue-600 transition">
-                Contact Us
-              </Link>
-            </li>
+            <NavLink name="Careers" link="/careers" />
+            <NavLink name="Contact" link="/contact-us" />
           </ul>
 
-          {/* Sign Up Button */}
+          {/* CTA */}
           <Link
             to="/signup"
-            className="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition font-semibold"
+            className="hidden md:inline-flex text-[14px] font-medium px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-gray-800 transition"
           >
-            Sign Up
+            Sign up
           </Link>
 
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden mt-2 rounded-lg p-4">
-              <ul className="flex flex-col gap-4 text-gray-800 font-semibold">
-
-                <li>
-                  <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                    Home
-                  </Link>
-                </li>
-
-                {/* Mobile Features */}
-                <li>
-                  <button
-                    className="w-full text-left flex justify-between"
-                    onClick={() => setFeaturesOpen(!featuresOpen)}
-                  >
-                    Features <span>⌄</span>
-                  </button>
-
-                  {featuresOpen && (
-                    <ul className="mt-2 ml-4 flex flex-col gap-2 text-gray-700">
-                      <li>
-                        <Link to="/payment-gateway" onClick={() => setIsMenuOpen(false)}>
-                          Payment Gateway
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/one-click-checkout" onClick={() => setIsMenuOpen(false)}>
-                          One-click Checkout
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-
-                <li>
-                  <Link to="/about-us" onClick={() => setIsMenuOpen(false)}>
-                    About Us
-                  </Link>
-                </li>
-
-                {/* Mobile Products */}
-                <li>
-                  <button
-                    className="w-full text-left flex justify-between"
-                    onClick={() => setProductsOpen(!productsOpen)}
-                  >
-                    Products <span>⌄</span>
-                  </button>
-
-                  {productsOpen && (
-                    <ul className="mt-2 ml-4 flex flex-col gap-2 text-gray-700">
-                      <li>
-                        <Link to="/upi-autopay" onClick={() => setIsMenuOpen(false)}>
-                          UPI
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/payment-links" onClick={() => setIsMenuOpen(false)}>
-                          Payment Link
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/soundbox" onClick={() => setIsMenuOpen(false)}>
-                          SoundBox
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-
-                <li>
-                  <Link to="/integration" onClick={() => setIsMenuOpen(false)}>
-                    Integration
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="/careers" onClick={() => setIsMenuOpen(false)}>
-                    Careers
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="/contact-us" onClick={() => setIsMenuOpen(false)}>
-                    Contact Us
-                  </Link>
-                </li>
-
-                {/* Mobile Signup */}
-                <li>
-                  <Link
-                    to="/signup"
-                    className="block text-center bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Sign Up
-                  </Link>
-                </li>
-
-              </ul>
-            </div>
-          )}
+          {/* MOBILE TOGGLE */}
+          <button onClick={() => setMenu(!menu)} className="md:hidden text-xl">
+            ☰
+          </button>
         </nav>
+
+        {/* MOBILE MENU */}
+        {menu && (
+          <div className="md:hidden py-4 border-t border-gray-100">
+            <ul className="flex flex-col gap-4 text-[15px] font-medium text-gray-800">
+              <MobileLink to="/" close={setMenu}>Home</MobileLink>
+              <MobileLink to="/about-us" close={setMenu}>About</MobileLink>
+              <MobileLink to="/integration" close={setMenu}>Integration</MobileLink>
+              <MobileLink to="/careers" close={setMenu}>Careers</MobileLink>
+              <MobileLink to="/contact-us" close={setMenu}>Contact</MobileLink>
+              <MobileLink to="/signup" close={setMenu}>
+                <span className="inline-block mt-2 px-4 py-2 bg-gray-900 text-white rounded-md">
+                  Sign up
+                </span>
+              </MobileLink>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
 };
+
+/* ---------- SMALL COMPONENTS ---------- */
+
+const NavLink = ({ name, link }) => (
+  <li className="relative group">
+    <Link
+      to={link}
+      className="text-gray-700 hover:text-gray-900 transition"
+    >
+      {name}
+    </Link>
+    <Underline />
+  </li>
+);
+
+const Underline = () => (
+  <span className="pointer-events-none absolute left-1/2 -bottom-[6px] h-[1px] w-0 bg-gray-900 transition-all duration-300 group-hover:w-full group-hover:left-0" />
+);
+
+const Dropdown = ({ children }) => (
+  <ul className="absolute top-9 left-0 w-52 bg-white rounded-lg shadow-lg border border-gray-100 py-1 animate-[fadeIn_0.15s_ease-out]">
+    {children}
+  </ul>
+);
+
+const DropItem = ({ to, children }) => (
+  <li>
+    <Link
+      to={to}
+      className="block px-3 py-2 text-[14px] text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition"
+    >
+      {children}
+    </Link>
+  </li>
+);
+
+const Chevron = ({ open }) => (
+  <svg
+    className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
+const MobileLink = ({ to, children, close }) => (
+  <li>
+    <Link to={to} onClick={() => close(false)}>
+      {children}
+    </Link>
+  </li>
+);
 
 export default Header;

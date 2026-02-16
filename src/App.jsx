@@ -11,6 +11,7 @@ import Soundbox from "./Pages/Soundbox";
 
 import Integration from "./Pages/Integration";
 import ContactUs from "./Pages/ContactUs";
+import Career from "./Pages/Career";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path="/soundbox" element={<Soundbox/>} />
           {<Route path="/Contact-us" element={<ContactUs />} />}
           <Route path="/integration" element={<Integration />} />
-          
+          <Route path="/careers" element={<Career/>}/>
         </Route>
       </Routes>
     </>

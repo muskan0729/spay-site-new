@@ -5,6 +5,9 @@ import Layout from "./components/Layout";
 import PaymentGateway from "./Pages/PaymentGateway";
 import OneClick from "./Pages/OneClick";
 import About from "./Pages/About";
+import Upi from "./Pages/Upi";
+import PaymentLinks from "./Pages/PaymentLinks";
+import Soundbox from "./Pages/Soundbox";
 
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
           <Route path="/paymentgateway" element={<PaymentGateway />} />
           <Route path="/OneClick" element={<OneClick />} />
           <Route path="/About-us" element={<About />} />
+           <Route path="/upi-autopay" element={<Upi/>} />
+          <Route path="/payment-links" element={<PaymentLinks/>} />
+          <Route path="/soundbox" element={<Soundbox/>} />
         </Route>
       </Routes>
     </>

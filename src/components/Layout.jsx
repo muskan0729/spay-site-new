@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SocialSidebar from "../components/SocialSidebar";
 
 const Layout = () => {
   return (
@@ -13,8 +14,11 @@ const Layout = () => {
       </main>
 
       <Footer />
-    </div>
-  )
-}
 
-export default Layout
+      {/* Right Side Social Icons */}
+      <SocialSidebar />
+    </div>
+  );
+};
+
+export default Layout;

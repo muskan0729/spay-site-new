@@ -8,7 +8,6 @@ import About from "./Pages/About";
 import Upi from "./Pages/Upi";
 import PaymentLinks from "./Pages/PaymentLinks";
 import Soundbox from "./Pages/Soundbox";
-import ContactUs from "./Pages/ContactUs";
 
 import Integration from "./Pages/Integration";
 import ContactUs from "./Pages/ContactUs";
@@ -27,7 +26,7 @@ function App() {
           <Route path="/soundbox" element={<Soundbox/>} />
           {<Route path="/Contact-us" element={<ContactUs />} />}
           <Route path="/integration" element={<Integration />} />
-          <Route path="contact-us" element={<ContactUs/>}/>
+          
         </Route>
       </Routes>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import contactVideo from "../assets/images/contact.mp4";
+import contactVideo from "../assets/videos/contact-hero.mp4";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaUserTie } from "react-icons/fa";
 
 const inquiryData = [

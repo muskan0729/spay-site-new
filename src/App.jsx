@@ -14,7 +14,7 @@ import PrivacyPolicy from './Pages/PrivacyPolicy';
 import TermsAndConditions from './Pages/TermsAndConditions';
 
 import Integration from "./Pages/Integration";
-// import ContactUs from "./Pages/ContactUs";
+import ContactUs from "./Pages/ContactUs";
 
 function App() {
   return (

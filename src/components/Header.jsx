@@ -1,44 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
-  const [menu, setMenu] = useState(false);
-  const [features, setFeatures] = useState(false);
-  const [products, setProducts] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+
+  const featuresRef = useRef(null);
+  const productsRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (featuresRef.current && !featuresRef.current.contains(event.target)) {
+        setFeaturesOpen(false);
+      }
+      if (productsRef.current && !productsRef.current.contains(event.target)) {
+        setProductsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleFeaturesClick = (e) => {
+    e.preventDefault();
+    setFeaturesOpen(!featuresOpen);
+    setProductsOpen(false);
+  };
+
+  const handleProductsClick = (e) => {
+    e.preventDefault();
+    setProductsOpen(!productsOpen);
+    setFeaturesOpen(false);
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 py-1">
-        <nav className="flex items-center justify-between h-[72px]">
-
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+        background: "#ffffff",
+        borderBottom: "1px solid #f0f0f0",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "72px",
+          }}
+        >
           {/* LOGO */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Spay" className="h-12 w-auto" />
+          <Link to="/">
+            <img src={logo} alt="Spay" style={{ height: "48px" }} />
           </Link>
 
           {/* DESKTOP NAV */}
-          <ul className="hidden md:flex items-center gap-7 mx-auto text-[14.5px] font-medium text-gray-700">
-
-            <NavLink name="Home" link="/" />
-            <NavLink name="About" link="/about-us" />
-            <NavLink name="Integration" link="/integration" />
+          <ul
+            style={{
+              display: "flex",
+              gap: "18px",
+              alignItems: "center",
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <NavItem name="Home" link="/" />
+            <NavItem name="About" link="/about-us" />
+            <NavItem name="Integration" link="/integration" />
 
             {/* FEATURES */}
-            <li className="relative">
-              <button
-                onClick={() => {
-                  setFeatures(!features);
-                  setProducts(false);
+            <li ref={featuresRef} style={{ position: "relative" }}>
+              <Link
+                to="#"
+                onClick={handleFeaturesClick}
+                className="nav-link hover:bg-transparent hover:shadow-none focus:bg-transparent focus:shadow-none active:bg-transparent"
+                style={{
+                  ...navLinkStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
                 }}
-                className="relative flex items-center gap-1 text-gray-700 hover:text-gray-900 transition group"
               >
                 Features
-                <Chevron open={features} />
-                <Underline />
-              </button>
+                <Chevron open={featuresOpen} />
+              </Link>
 
-              {features && (
+              {featuresOpen && (
                 <Dropdown>
                   <DropItem to="/paymentgateway">Payment Gateway</DropItem>
                   <DropItem to="/OneClick">One-click Checkout</DropItem>
@@ -47,20 +108,23 @@ const Header = () => {
             </li>
 
             {/* PRODUCTS */}
-            <li className="relative">
-              <button
-                onClick={() => {
-                  setProducts(!products);
-                  setFeatures(false);
+            <li ref={productsRef} style={{ position: "relative" }}>
+              <Link
+                to="#"
+                onClick={handleProductsClick}
+                className="nav-link hover:bg-transparent hover:shadow-none focus:bg-transparent focus:shadow-none active:bg-transparent"
+                style={{
+                  ...navLinkStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
                 }}
-                className="relative flex items-center gap-1 text-gray-700 hover:text-gray-900 transition group"
               >
                 Products
-                <Chevron open={products} />
-                <Underline />
-              </button>
+                <Chevron open={productsOpen} />
+              </Link>
 
-              {products && (
+              {productsOpen && (
                 <Dropdown>
                   <DropItem to="/upi-autopay">UPI</DropItem>
                   <DropItem to="/payment-links">Payment Links</DropItem>
@@ -69,66 +133,75 @@ const Header = () => {
               )}
             </li>
 
-            <NavLink name="Careers" link="/careers" />
-            <NavLink name="Contact" link="/contact-us" />
+            <NavItem name="Careers" link="/careers" />
+            <NavItem name="Contact" link="/contact-us" />
           </ul>
 
-          {/* CTA */}
+          {/* SIGN UP BUTTON */}
           <Link
-            to="/signup"
-            className="hidden md:inline-flex text-[14px] font-medium px-4 py-2 rounded-md bg-gray-900 text-white hover:bg-gray-800 transition"
+            to="/onboarding-merchant"
+            className="signup-btn hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-800" // Subtle hover for button only
+            style={{
+              background: "#111827",
+              color: "#ffffff",
+              padding: "8px 16px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: 500,
+            }}
           >
             Sign up
           </Link>
-
-          {/* MOBILE TOGGLE */}
-          <button onClick={() => setMenu(!menu)} className="md:hidden text-xl">
-            ☰
-          </button>
         </nav>
-
-        {/* MOBILE MENU */}
-        {menu && (
-          <div className="md:hidden py-4 border-t border-gray-100">
-            <ul className="flex flex-col gap-4 text-[15px] font-medium text-gray-800">
-              <MobileLink to="/" close={setMenu}>Home</MobileLink>
-              <MobileLink to="/about-us" close={setMenu}>About</MobileLink>
-              <MobileLink to="/integration" close={setMenu}>Integration</MobileLink>
-              <MobileLink to="/careers" close={setMenu}>Careers</MobileLink>
-              <MobileLink to="/contact-us" close={setMenu}>Contact</MobileLink>
-              <MobileLink to="/signup" close={setMenu}>
-                <span className="inline-block mt-2 px-4 py-2 bg-gray-900 text-white rounded-md">
-                  Sign up
-                </span>
-              </MobileLink>
-            </ul>
-          </div>
-        )}
       </div>
     </header>
   );
 };
 
-/* ---------- SMALL COMPONENTS ---------- */
+/* ---------- STYLES ---------- */
 
-const NavLink = ({ name, link }) => (
-  <li className="relative group">
+const navLinkStyle = {
+  background: "transparent",
+  border: "none",
+  color: "#000000",
+  fontSize: "14px",
+  fontWeight: 500,
+  cursor: "pointer",
+  textDecoration: "none",
+  padding: "0",
+  margin: "0",
+  lineHeight: "1",
+};
+
+const NavItem = ({ name, link }) => (
+  <li>
     <Link
       to={link}
-      className="text-gray-700 hover:text-gray-900 transition"
+      className="nav-link hover:bg-transparent hover:shadow-none focus:bg-transparent focus:shadow-none active:bg-transparent"
+      style={navLinkStyle}
     >
       {name}
     </Link>
-    <Underline />
   </li>
 );
 
-const Underline = () => (
-  <span className="pointer-events-none absolute left-1/2 -bottom-[6px] h-[1px] w-0 bg-gray-900 transition-all duration-300 group-hover:w-full group-hover:left-0" />
-);
-
 const Dropdown = ({ children }) => (
-  <ul className="absolute top-9 left-0 w-52 bg-white rounded-lg shadow-lg border border-gray-100 py-1 animate-[fadeIn_0.15s_ease-out]">
+  <ul
+    style={{
+      position: "absolute",
+      top: "40px",
+      left: 0,
+      width: "170px",
+      background: "#ffffff",
+      borderRadius: "10px",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+      listStyle: "none",
+      padding: "6px 0",
+      margin: 0,
+      zIndex: 1001,
+    }}
+  >
     {children}
   </ul>
 );
@@ -137,7 +210,14 @@ const DropItem = ({ to, children }) => (
   <li>
     <Link
       to={to}
-      className="block px-3 py-2 text-[14px] text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition"
+      className="dropdown-item hover:bg-transparent hover:shadow-none focus:bg-transparent focus:shadow-none active:bg-transparent"
+      style={{
+        display: "block",
+        padding: "10px 16px",
+        fontSize: "14px",
+        color: "#000000",
+        textDecoration: "none",
+      }}
     >
       {children}
     </Link>
@@ -146,7 +226,12 @@ const DropItem = ({ to, children }) => (
 
 const Chevron = ({ open }) => (
   <svg
-    className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+    style={{
+      width: "14px",
+      height: "14px",
+      transform: open ? "rotate(180deg)" : "rotate(0deg)",
+      transition: "0.3s",
+    }}
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -154,14 +239,6 @@ const Chevron = ({ open }) => (
   >
     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
   </svg>
-);
-
-const MobileLink = ({ to, children, close }) => (
-  <li>
-    <Link to={to} onClick={() => close(false)}>
-      {children}
-    </Link>
-  </li>
 );
 
 export default Header;

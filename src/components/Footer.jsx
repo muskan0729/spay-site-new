@@ -34,10 +34,10 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Services">
-              <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
+              <FooterLink to="/paymentgateway">Payment Gateway</FooterLink>
               <FooterLink to="/payment-links">Payment Links</FooterLink>
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
-              <FooterLink to="/one-click-checkout">One-Click Checkout</FooterLink>
+              <FooterLink to="/OneClick">One-Click Checkout</FooterLink>
             </FooterBlock>
 
             <FooterBlock title="Company">

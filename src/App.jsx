@@ -9,6 +9,8 @@ import Upi from "./Pages/Upi";
 import PaymentLinks from "./Pages/PaymentLinks";
 import Soundbox from "./Pages/Soundbox";
 
+import Integration from "./Pages/Integration";
+import ContactUs from "./Pages/ContactUs";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/upi-autopay" element={<Upi/>} />
           <Route path="/payment-links" element={<PaymentLinks/>} />
           <Route path="/soundbox" element={<Soundbox/>} />
+          {<Route path="/Contact-us" element={<ContactUs />} />}
+          <Route path="/integration" element={<Integration />} />
         </Route>
       </Routes>
     </>

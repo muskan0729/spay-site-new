@@ -26,6 +26,7 @@ function App() {
           <Route path="/soundbox" element={<Soundbox/>} />
           {<Route path="/Contact-us" element={<ContactUs />} />}
           <Route path="/integration" element={<Integration />} />
+          
         </Route>
       </Routes>
     </>

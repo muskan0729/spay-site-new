@@ -69,171 +69,77 @@ const Upi = () => {
       </section>
 
       {/* Section 2: Flipping Cards for Static QR, Dynamic QR, Autopay */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex flex-wrap items-stretch justify-center gap-20">
-          
-          {/* Static QR Code Flipping Card */}
-          <div 
-            className="relative w-64 h-80 cursor-pointer"
-            onClick={() => handleCardClick('static')}
-            onMouseEnter={() => handleCardClick('static')}
-            onMouseLeave={() => handleCardClick('static')}
-          >
-            <div 
-              className={`absolute w-full h-full transition-all duration-500 transform preserve-3d ${flippedCards.static ? 'rotate-y-180' : ''}`}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              {/* Front of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center"
-                style={{ 
-                  backgroundColor: 'white',
-                  backfaceVisibility: 'hidden',
-                  border: '1px solid #e5e7eb'
-                }}
-              >
-                <div style={{ color: '#00008b' }}>
-                  <svg
-                    className="w-24 h-24 mb-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"
-                    fill="currentColor"
-                  >
-                    <path d="M0 80C0 53.5 21.5 32 48 32l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48L0 80zM64 96l0 64 64 0 0-64L64 96zM0 336c0-26.5 21.5-48 48-48l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-96zm64 16l0 64 64 0 0-64-64 0zM304 32l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-96c0-26.5 21.5-48 48-48zm80 64l-64 0 0 64 64 0 0-64zM256 304c0-8.8 7.2-16 16-16l64 0c8.8 0 16 7.2 16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16l0 64c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-160zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"/>
-                  </svg>
-                </div>
-                <span className="text-2xl font-semibold" style={{ color: '#00008b' }}>
-                  Static QR Code
-                </span>
-                
-              </div>
-              
-              {/* Back of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex items-center justify-center text-center"
-                style={{ 
-                  backgroundColor: '#00008b',
-                  backfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)',
-                  color: 'white'
-                }}
-              >
-                <p className="text-lg">
-                  Generate your unique QR codes in seconds and print them for display anywhere.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Dynamic QR Code Flipping Card */}
-          <div 
-            className="relative w-64 h-80 cursor-pointer"
-            onClick={() => handleCardClick('dynamic')}
-            onMouseEnter={() => handleCardClick('dynamic')}
-            onMouseLeave={() => handleCardClick('dynamic')}
-          >
-            <div 
-              className={`absolute w-full h-full transition-all duration-500 transform preserve-3d ${flippedCards.dynamic ? 'rotate-y-180' : ''}`}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              {/* Front of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center"
-                style={{ 
-                  backgroundColor: 'white',
-                  backfaceVisibility: 'hidden',
-                  border: '1px solid #e5e7eb'
-                }}
-              >
-                <div style={{ color: '#00008b' }}>
-                  <svg
-                    className="w-24 h-24 mb-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    fill="currentColor"
-                  >
-                    <path d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l168 0c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-128z"/>
-                  </svg>
-                </div>
-                <span className="text-2xl font-semibold" style={{ color: '#00008b' }}>
-                  Dynamic QR Code
-                </span>
-                
-              </div>
-              
-              {/* Back of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex items-center justify-center text-center"
-                style={{ 
-                  backgroundColor: '#00008b',
-                  backfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)',
-                  color: 'white'
-                }}
-              >
-                <p className="text-lg">
-                  Make a Dynamic QR Code, you can update without needing to print again.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Autopay Flipping Card */}
-          <div 
-            className="relative w-64 h-80 cursor-pointer"
-            onClick={() => handleCardClick('autopay')}
-            onMouseEnter={() => handleCardClick('autopay')}
-            onMouseLeave={() => handleCardClick('autopay')}
-          >
-            <div 
-              className={`absolute w-full h-full transition-all duration-500 transform preserve-3d ${flippedCards.autopay ? 'rotate-y-180' : ''}`}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              {/* Front of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center"
-                style={{ 
-                  backgroundColor: 'white',
-                  backfaceVisibility: 'hidden',
-                  border: '1px solid #e5e7eb'
-                }}
-              >
-                <div style={{ color: '#00008b' }}>
-                  <svg
-                    className="w-24 h-24 mb-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    fill="currentColor"
-                  >
-                    <path d="M64 32C28.7 32 0 60.7 0 96l0 32 576 0 0-32c0-35.3-28.7-64-64-64L64 32zM576 224L0 224 0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-192zM112 352l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"/>
-                  </svg>
-                </div>
-                <span className="text-2xl font-semibold" style={{ color: '#00008b' }}>
-                  Autopay
-                </span>
-                
-              </div>
-              
-              {/* Back of card */}
-              <div 
-                className="absolute w-full h-full backface-hidden rounded-2xl shadow-lg p-6 flex items-center justify-center text-center"
-                style={{ 
-                  backgroundColor: '#00008b',
-                  backfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)',
-                  color: 'white'
-                }}
-              >
-                <p className="text-lg">
-                  UPI Autopay enables secure, instant recurring payments with easy payee management.
-                </p>
-              </div>
-            </div>
-          </div>
-
+     
+<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <div className="grid md:grid-cols-3 gap-8">
+    
+    {/* Static QR Code Card */}
+    <div className="group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      <div className="absolute top-0 left-0 w-2 h-full bg-blue-900"></div>
+      <div className="p-8">
+        <div className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg className="w-12 h-12 text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M0 80C0 53.5 21.5 32 48 32l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48L0 80zM64 96l0 64 64 0 0-64L64 96zM0 336c0-26.5 21.5-48 48-48l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-96zm64 16l0 64 64 0 0-64-64 0zM304 32l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-96c0-26.5 21.5-48 48-48zm80 64l-64 0 0 64 64 0 0-64zM256 304c0-8.8 7.2-16 16-16l64 0c8.8 0 16 7.2 16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16l0 64c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-160zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"/>
+          </svg>
         </div>
-      </section>
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">Static QR Code</h3>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          Generate your unique QR codes in seconds and print them for display anywhere.
+        </p>
+        <div className="mt-6 flex items-center text-blue-900 font-semibold group-hover:translate-x-2 transition-transform">
+          Learn More 
+          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </div>
 
+    {/* Dynamic QR Code Card */}
+    <div className="group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      <div className="absolute top-0 left-0 w-2 h-full bg-blue-900"></div>
+      <div className="p-8">
+        <div className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg className="w-12 h-12 text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+            <path d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l168 0c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-128z"/>
+          </svg>
+        </div>
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">Dynamic QR Code</h3>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          Make a Dynamic QR Code, you can update without needing to print again.
+        </p>
+        <div className="mt-6 flex items-center text-blue-900 font-semibold group-hover:translate-x-2 transition-transform">
+          Learn More 
+          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    {/* Autopay Card */}
+    <div className="group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      <div className="absolute top-0 left-0 w-2 h-full bg-blue-900"></div>
+      <div className="p-8">
+        <div className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg className="w-12 h-12 text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+            <path d="M64 32C28.7 32 0 60.7 0 96l0 32 576 0 0-32c0-35.3-28.7-64-64-64L64 32zM576 224L0 224 0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-192zM112 352l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"/>
+          </svg>
+        </div>
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">Autopay</h3>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          UPI Autopay enables secure, instant recurring payments with easy payee management.
+        </p>
+        <div className="mt-6 flex items-center text-blue-900 font-semibold group-hover:translate-x-2 transition-transform">
+          Learn More 
+          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       {/* Section 3: Discover UPI Payments with Video and Info Cards */}
       <section className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
         {/* Discover UPI Payments Heading */}

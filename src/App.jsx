@@ -21,7 +21,7 @@ function App() {
           <Route path="/paymentgateway" element={<PaymentGateway />} />
           <Route path="/OneClick" element={<OneClick />} />
           <Route path="/About-us" element={<About />} />
-          <Route path="/upi-autopay" element={<Upi/>} />
+           <Route path="/upi-autopay" element={<Upi/>} />
           <Route path="/payment-links" element={<PaymentLinks/>} />
           <Route path="/soundbox" element={<Soundbox/>} />
           {<Route path="/Contact-us" element={<ContactUs />} />}

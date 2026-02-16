@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import PaymentGateway from "./Pages/PaymentGateway";
 import OneClick from "./Pages/OneClick";
 import About from "./Pages/About";
+import ContactUs from "./Pages/ContactUs";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/paymentgateway" element={<PaymentGateway />} />
           <Route path="/OneClick" element={<OneClick />} />
           <Route path="/About-us" element={<About />} />
+          <Route path="contact-us" element={<ContactUs/>}/>
         </Route>
       </Routes>
     </>

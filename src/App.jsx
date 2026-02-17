@@ -14,7 +14,8 @@ import PrivacyPolicy from './Pages/PrivacyPolicy';
 import TermsAndConditions from './Pages/TermsAndConditions';
 
 import Integration from "./Pages/Integration";
-//import ContactUs from "./Pages/ContactUs";
+import ContactUs from "./Pages/ContactUs";
+import Career from "./Pages/Career";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
-
+<Route path="/careers" element={<Career/>}/>
         </Route>
       </Routes>
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import bgImage from "../../assets/images/pgbg8.webp";
+import { FaGlobe, FaSyncAlt, FaChartLine } from "react-icons/fa";
 
 const Section3 = () => {
   const reasons = [

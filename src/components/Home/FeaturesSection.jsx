@@ -1,56 +1,161 @@
 import React from "react";
+import { motion } from "framer-motion";
 import bg2 from "../../assets/images/bg2.webp";
 
 const FeaturesSection = () => {
   const features = [
-    { icon: "fa-business-time", title: "Multi Payment Option Available" },
-    { icon: "fa-credit-card", title: "Domestic And International Card" },
-    { icon: "fa-chalkboard-teacher", title: "Dynamic Control Panel" },
-    { icon: "fa-file-alt", title: "Instant Onboarding" },
-    { icon: "fa-computer", title: "Real-Time Dashboard" },
-    { icon: "fa-file-invoice", title: "Comprehensive Report" },
+    {
+      icon: "fa-business-time",
+      title: "Multi Payment Options",
+      description: "Accept payments via cards, UPI, wallets, net banking & more"
+    },
+    {
+      icon: "fa-credit-card",
+      title: "Global Cards Accepted",
+      description: "Support for domestic and international credit/debit cards with competitive forex rates"
+    },
+    {
+      icon: "fa-chalkboard-teacher",
+      title: "Dynamic Control Panel",
+      description: "Full control over payments, refunds, and settlements from a single dashboard"
+    },
+    {
+      icon: "fa-file-alt",
+      title: "Instant Onboarding",
+      description: "Go live in minutes with our streamlined onboarding process and minimal documentation"
+    },
+    {
+      icon: "fa-computer",
+      title: "Real-Time Dashboard",
+      description: "Monitor transactions and analytics in real-time with customizable views"
+    },
+    {
+      icon: "fa-file-invoice",
+      title: "Comprehensive Reports",
+      description: "Detailed insights with customizable reports and export options"
+    }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <section
-      className="relative w-full min-h-[350px] bg-cover bg-center py-10 bg-gradient-to-b from-black/20 via-black/30 to-black/40"
-      style={{ backgroundImage: `url(${bg2})` }}
-    >
-      {/* overlay like spay.live */}
-      <div className="absolute inset-0 "></div>
+    <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+      {/* Background with overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bg2})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-blue-800/95 to-cyan-700/95" />
+      </div>
 
-      <div className="relative z-10 mt-2 mx-auto px-6">
-        <h2 className="text-center text-white text-4xl font-bold">
-          Features for Your Growth
-        </h2>
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }} />
+      </div>
 
-        <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-8 pt-10 px-20">
+      <div className="relative container mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12 sm:mb-14 md:mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-6 px-4">
+            Enterprise-Grade Features for{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-200 block sm:inline mt-2 sm:mt-0">
+              Your Growth
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Features Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+        >
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-    className="group bg-white/0 border border-white/25 
-             rounded-2xl px-8 py-7 flex flex-col items-center justify-center text-center
-             shadow-lg shadow-cyan-500/40 hover:shadow-[0_0_20px_rgba(12,215,255,0.6)] 
-             hover:border-cyan-300/60 hover:scale-105 transition-all duration-300"
->
-              {/* icon circle */}
-              <div
-                className="w-16 h-16 flex items-center justify-center rounded-full 
-                           bg-white/10 border border-white/30 
-                           group-hover:bg-cyan-400/20 group-hover:border-cyan-300/60
-                           transition duration-300"
-              >
-                <i
-                  className={`fas ${feature.icon} text-white text-3xl group-hover:text-cyan-300`}
-                ></i>
-              </div>
+              variants={itemVariants}
+              className="group relative h-full"
+            >
+              {/* Card with glassmorphism effect - Fixed height for consistency */}
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 
+                            border border-white/20 hover:border-cyan-400/50
+                            transition-all duration-500 hover:scale-105 hover:shadow-2xl
+                            overflow-hidden h-full flex flex-col">
 
-              <h4 className="mt-6 text-white font-semibold text-[17px]">
-                {feature.title}
-              </h4>
-            </div>
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 
+                              opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Icon Container - Responsive sizing */}
+                <div className="relative mb-4 sm:mb-5 md:mb-6">
+                  <div className="absolute inset-0 bg-cyan-500 rounded-xl blur-xl 
+                                opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                                bg-gradient-to-br from-cyan-400 to-blue-500 
+                                rounded-lg sm:rounded-xl flex items-center justify-center
+                                group-hover:scale-110 group-hover:rotate-3 
+                                transition-all duration-500 shadow-lg">
+                    <i className={`fas ${feature.icon} text-white text-xl sm:text-2xl md:text-2xl`} />
+                  </div>
+                </div>
+
+                {/* Content - Flexible height with proper spacing */}
+                <h3 className="text-lg sm:text-xl md:text-xl font-semibold text-white mb-2 sm:mb-3 
+                             group-hover:text-cyan-300 transition-colors line-clamp-2">
+                  {feature.title}
+                </h3>
+                
+                {/* Description with fixed min-height for consistency */}
+                <p className="text-white/70 text-xs sm:text-sm md:text-sm leading-relaxed 
+                            group-hover:text-white/90 transition-colors flex-grow">
+                  {feature.description}
+                </p>
+
+                {/* Decorative Line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r 
+                              from-transparent via-cyan-400 to-transparent 
+                              scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Floating Elements - Responsive positioning and sizing */}
+        <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
+                      bg-cyan-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
+        <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
+                      bg-blue-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-1000" />
       </div>
     </section>
   );

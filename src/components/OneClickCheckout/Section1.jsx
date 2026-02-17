@@ -4,102 +4,109 @@ import benefitImage from "../../assets/images/benefit_occ.webp";
 
 const Section1 = () => {
   return (
-    <div className="w-full">
-      {/* Hero Section */}
-      <div className="relative ">
-  {/* Background Image */}
-  <div
-    className="absolute inset-0 "
-    style={{
-      backgroundImage: `url(${heroBg})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      width:"800px"
-    }}
-  ></div>
+    <div className="w-full bg-white">
+      {/* ===================== Hero Section ===================== */}
+      <section className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
 
-  {/* Overlay for text readability */}
-  {/* <div className="absolute inset-0 bg-"></div> */}
+        {/* Overlay gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/70 via-indigo-950/60 to-transparent" />
 
-  {/* Content */}
-  <div className="relative  mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
-    {/* Left column can be empty or just spacing */}
-    <div className="md:w-1/2"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left side - empty / spacing (you can add logo or illustration later) */}
+            <div className="hidden lg:block" />
 
-    {/* Right Column - Text */}
-    <div className="md:w-1/2 flex flex-col justify-center text-left md:text-left space-y-6 pe-20">
-      <h1 className="text-4xl font-bold text-[#00008b] leading-tight text-center">
-        One-Click Checkout
-      </h1>
-      <p className="text-black text-md text-center leading-loose ">
-        Navigating through multiple forms before reaching{" "}
-        <span className="">
-          the checkout can be frustrating for customers. This lengthy process
-          often leads them to reconsider their purchase. To enhance the
-          shopping experience, implementing a one-click checkout option is
-          essential.
-        </span>
-      </p>
+            {/* Right side - Main content */}
+            <div className="text-white text-center lg:text-left space-y-6 lg:space-y-8 max-w-3xl lg:max-w-none mx-auto lg:mx-0">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+                One-Click Checkout
+                <span className="block text-blue-300 mt-2 sm:mt-4">Frictionless. Fast. Final.</span>
+              </h1>
 
-    </div>
-  </div>
-</div>
+              <p className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed">
+                Long checkout forms frustrate customers and kill conversions.{" "}
+                <span className="font-semibold text-white">
+                  One-Click Checkout
+                </span>{" "}
+                eliminates the hassle — letting returning customers buy in seconds with saved details.
+              </p>
 
+              <div className="pt-4">
+                <button className="px-8 py-4 bg-white text-indigo-900 font-semibold rounded-xl shadow-xl hover:bg-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                  Enable One-Click Today →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Benefits Section */}
-      <section className="py-15 bg-white">
-        <div className=" mx-auto px-4 md:px-8">
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold text-blue-900 mb-4">
+      {/* ===================== Benefits Section ===================== */}
+      <section className="py-16 md:py-20 lg:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Title & Intro */}
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-6">
               Benefits of One-Click Checkout
             </h2>
-            <p className="text-black text-center leading-relaxed max-w-4xl mx-auto">
-              With one-click checkout, customers can complete their purchase
-              without the need for lengthy forms. They simply fill in a few essential
-              details, like contact information and payment options.
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Let customers complete purchases instantly with saved payment details — no repeated form filling, no frustration, just faster conversions.
             </p>
           </div>
 
-          {/* Content Row */}
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            {/* Left Column - Image */}
-            <div className="md:w-1/2 flex justify-center md:justify-end px-20">
-              <div className="rounded-xl shadow-lg overflow-hidden w-full  ">
-                <img
-                  src={benefitImage}
-                  alt="Benefits"
-                  className="w-full h-full object-cover"
-                />
+          {/* Content – Image + Card */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left - Image */}
+            <div className="order-2 lg:order-1 flex justify-center">
+              <div className="relative w-full max-w-lg">
+                <div className="absolute inset-4 bg-blue-500 rounded-3xl opacity-10 blur-2xl" />
+                <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+                  <img
+                    src={benefitImage}
+                    alt="One-Click Checkout Benefits"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Right Column - Advantages List */}
-            <div className="md:w-1/2 flex justify-center md:justify-start">
-              <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 w-full max-w-md space-y-6">
-                <h4 className="text-blue-900 text-2xl font-bold">
-                  Advantages Include:
-                </h4>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3 text-black font-medium leading-relaxed">
-                    <i className="fas fa-check-circle text-green-600 mt-1"></i>
+            {/* Right - Advantages Card */}
+            <div className="order-1 lg:order-2">
+              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-100">
+                <h3 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-6 md:mb-8">
+                  Key Advantages
+                </h3>
 
-                    Secure and expedited checkout
-                  </li>
-                  <li className="flex items-start gap-3 text-black font-medium leading-relaxed">
-<i className="fas fa-check-circle text-green-600 mt-1"></i>
-                    A seamless experience for customers
-                  </li>
-                  <li className="flex items-start gap-3 text-black font-medium leading-relaxed">
-<i className="fas fa-check-circle text-green-600 mt-1"></i>
-                    Reduced chances of cart abandonment
-                  </li>
-                  <li className="flex items-start gap-3 text-black font-medium leading-relaxed">
-<i className="fas fa-check-circle text-green-600 mt-1"></i>
-                    Increased sales potential
-                  </li>
+                <ul className="space-y-5 md:space-y-6">
+                  {[
+                    "Lightning-fast, secure checkout experience",
+                    "Seamless journey — no form fatigue",
+                    "Significantly reduces cart abandonment",
+                    "Higher average order value & repeat purchases",
+                    "Builds customer trust and loyalty",
+                    "Easy to implement with modern SDKs & APIs",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <i className="fas fa-check-circle text-green-500 text-2xl" />
+                      </div>
+                      <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
                 </ul>
+
+                <div className="mt-10">
+                  <button className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    Integrate One-Click Now →
+                  </button>
+                </div>
               </div>
             </div>
           </div>

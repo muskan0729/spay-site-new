@@ -1,0 +1,108 @@
+body {
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+.merchant-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.merchant-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.merchant-card h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 32px;
+  color: #1e293b;
+}
+
+.merchant-card p {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #64748b;
+}
+
+.merchant-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 2px solid #dbeafe;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-wrapper {
+  grid-column: span 2;
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .merchant-form {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-wrapper {
+    grid-column: span 1;
+  }
+}

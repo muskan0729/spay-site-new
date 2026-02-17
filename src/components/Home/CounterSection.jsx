@@ -100,20 +100,20 @@ const CounterSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-20 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
       {/* Top gradient to blend with CardSlider */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-50 to-transparent z-10" />
-      
+      <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-b from-blue-50 to-transparent z-10" />
+
       {/* Beautiful gradient background behind cards */}
       <div className="absolute inset-0">
         {/* Base gradient - adjusted to start from blue-50 */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-purple-50/30" />
-        
-        {/* Animated gradient orbs */}
-        <div className="absolute top-0 -left-20 w-[500px] h-[500px] bg-gradient-to-r from-blue-200/40 to-indigo-200/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl" />
-        
+
+        {/* Animated gradient orbs - responsive sizing */}
+        <div className="absolute top-0 -left-20 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-gradient-to-r from-blue-200/40 to-indigo-200/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 -right-20 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[500px] md:w-[600px] h-[400px] sm:h-[500px] md:h-[600px] bg-gradient-to-r from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl" />
+
         {/* Subtle noise texture */}
         <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay">
           <div className="absolute inset-0" style={{
@@ -131,21 +131,21 @@ const CounterSection = () => {
         }} />
       </div>
 
-      <div className="relative container mx-auto px-4">
+      <div className="relative container mx-auto px-4 sm:px-6">
         {/* Section Header - Minimal */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
             Trusted by{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 block sm:inline mt-2 sm:mt-0">
               Growing Businesses
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full" />
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full" />
         </motion.div>
 
         {/* Counter Cards */}
@@ -153,7 +153,7 @@ const CounterSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10"
         >
           {counters.map((counter, index) => (
             <motion.div
@@ -162,42 +162,36 @@ const CounterSection = () => {
               className="group relative"
             >
               {/* Professional Card Design */}
-              <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl 
+              <div className="relative bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-xl 
                             transition-all duration-300 group-hover:shadow-2xl
-                            border border-white/50 overflow-hidden">
+                            border border-white/50 overflow-hidden h-full">
 
                 {/* Subtle top accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Icon Container */}
-                <div className="relative mb-6 flex justify-center">
-                  <div className="relative w-28 h-28 rounded-full flex items-center justify-center
-                                bg-gradient-to-br from-white to-gray-50 border border-gray-200
-                                group-hover:border-blue-200 transition-all duration-300 shadow-md">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-90" />
-                    <img
-                      src={counter.icon}
-                      alt={counter.title}
-                      className="relative h-20 w-20 object-contain z-10
+                {/* Icon Container - Larger size with responsive adjustments */}
+                <div className="relative mb-4 sm:mb-6 flex justify-center">
+                  <img
+                    src={counter.icon}
+                    alt={counter.title}
+                    className="relative h-24 sm:h-28 md:h-32 w-24 sm:w-28 md:w-32 object-contain z-10
                                transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
+                  />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-center text-lg font-medium text-gray-700 mb-3
-                             group-hover:text-gray-900 transition-colors">
+                <h3 className="text-center text-base sm:text-lg font-medium text-gray-700 mb-2 sm:mb-3
+                             group-hover:text-gray-900 transition-colors px-2">
                   {counter.title}
                 </h3>
 
-                {/* Value */}
+                {/* Value - Responsive font sizes */}
                 <div className="text-center">
-                  <span className="text-4xl md:text-5xl font-bold text-gray-800">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
                     {counter.value}
                   </span>
-                  <span className="text-2xl font-semibold text-gray-500 ml-1">
+                  <span className="text-xl sm:text-2xl font-semibold text-gray-500 ml-1">
                     {counter.suffix}
                   </span>
                 </div>
@@ -205,12 +199,12 @@ const CounterSection = () => {
                 {/* Minimal hover indicator */}
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
                               bg-gradient-to-r from-blue-500 to-indigo-500 
-                              group-hover:w-12 transition-all duration-300" />
+                              group-hover:w-8 sm:group-hover:w-12 transition-all duration-300" />
               </div>
 
               {/* Subtle shadow on hover */}
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 
-                            rounded-3xl blur-xl opacity-0 group-hover:opacity-100 
+                            rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 
                             transition-opacity duration-300 -z-10" />
             </motion.div>
           ))}

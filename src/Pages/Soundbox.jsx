@@ -133,48 +133,48 @@ const Soundbox = () => {
   ];
 
   return (
-    <div className="font-sans overflow-x-hidden" style={{ fontFamily: 'Inter, Lato, sans-serif' }}>
+    <div className="font-sans overflow-x-hidden w-full" style={{ fontFamily: 'Inter, Lato, sans-serif' }}>
 
       {/* Hero Section - Clean White Background with Dark Blue Heading and Black Text */}
-      <div className="relative w-full py-20 sm:py-24 md:py-28 bg-white overflow-hidden">
+      <div className="relative w-full min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-white overflow-hidden flex items-center">
         {/* Subtle background image with very low opacity */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://spay.live/public/images/bg_link2.jpg')" }}
         ></div>
 
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-navy-50 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
+        {/* Decorative elements - responsive sizing */}
+        <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-80 lg:w-96 h-48 sm:h-64 md:h-80 lg:h-96 bg-navy-50 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute bottom-0 left-0 w-48 sm:w-64 md:w-80 lg:w-96 h-48 sm:h-64 md:h-80 lg:h-96 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-10 lg:gap-12">
             {/* Left Column - Dark Blue Heading and Black Text */}
             <div className="w-full lg:w-1/2">
               <motion.div
-                className="max-w-2xl text-center lg:text-left"
+                className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="mb-4 font-bold text-navy-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
+                <h1 className="mb-3 sm:mb-4 font-bold text-navy-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
                   Spay Smart Soundbox
                 </h1>
 
-                <p className="text-xl text-gray-800 leading-relaxed font-normal">
+                <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
                   Instant Voice Alerts for Every Payment Clear, Fast, and Secure. Spay's smart soundbox ensures real-time audio confirmations for UPI, QR, and mobile payments so you never miss a transaction.
                 </p>
               </motion.div>
             </div>
 
-            {/* Right Column */}
+            {/* Right Column - Responsive image */}
             <motion.div
-              className="w-full lg:w-1/2 flex items-center justify-center"
+              className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="relative">
+              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 {/* Navy blue glow */}
                 <div className="absolute inset-0 bg-navy-200/30 rounded-full blur-3xl animate-pulse-slow"></div>
 
@@ -183,7 +183,7 @@ const Soundbox = () => {
                   <img
                     src="https://spay.live/public/images/soundbox.webp"
                     alt="Spay Soundbox"
-                    className="relative z-10 w-full max-w-[450px] h-auto drop-shadow-2xl animate-float-slow"
+                    className="relative z-10 w-full h-auto drop-shadow-2xl animate-float-slow"
                   />
                 </div>
               </div>
@@ -193,34 +193,33 @@ const Soundbox = () => {
       </div>
 
       {/* Features Section - With More Visible Background Image */}
-      <section className="relative overflow-hidden py-20 sm:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative overflow-hidden py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-50 to-white">
         {/* Original background image with increased opacity for better visibility */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('https://spay.live/public/images/bg2.webp')" }}
         ></div>
 
-        {/* Abstract shapes */}
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-navy-100/30 to-transparent rounded-bl-full"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-tr-full"></div>
+        {/* Abstract shapes - responsive */}
+        <div className="absolute top-0 right-0 w-1/2 sm:w-1/3 h-1/2 sm:h-1/3 bg-gradient-to-br from-navy-100/30 to-transparent rounded-bl-full"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 sm:w-1/3 h-1/2 sm:h-1/3 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-tr-full"></div>
 
-        <div className="relative container mx-auto px-4">
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white px-4">
               Why Choose a Payment Soundbox?
             </h2>
           </motion.div>
 
-          {/* Card Grid */}
-          {/* Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+          {/* Card Grid - Fully Responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 max-w-7xl mx-auto px-2 sm:px-0">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -229,41 +228,46 @@ const Soundbox = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8 }}
-                className="feature-card group relative"
+                className="feature-card group relative w-full"
               >
                 {/* Card Design - FIXED: Text will NEVER turn white */}
-                <div className="relative h-full p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                <div className="relative h-full p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
 
                   {/* Very subtle hover effect - doesn't affect text */}
                   <div className="absolute inset-0 bg-navy-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                  {/* Icon with navy gradient background */}
-                  <div className="relative mb-6">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-navy-100 to-navy-200 
-                        p-4 text-navy-900 transform group-hover:scale-110 group-hover:rotate-2 
+                  {/* Icon with navy gradient background - responsive sizing */}
+                  <div className="relative mb-4 sm:mb-5 md:mb-6">
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-navy-100 to-navy-200 
+                        p-3 sm:p-3.5 md:p-4 text-navy-900 transform group-hover:scale-110 group-hover:rotate-2 
                         transition-all duration-500 shadow-lg group-hover:shadow-xl">
-                      {feature.icon}
+                      {React.cloneElement(feature.icon, {
+                        width: "100%",
+                        height: "100%",
+                        className: "w-full h-full text-navy-900"
+                      })}
                     </div>
 
                     {/* Navy decorative dot */}
-                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-navy-500 rounded-full border-2 border-white"></div>
+                    <div className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-navy-500 rounded-full border-2 border-white"></div>
                   </div>
 
                   {/* Title - ALWAYS stays navy blue, never changes color */}
-                  <h3 className="text-xl font-bold text-navy-900 mb-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-navy-900 mb-2 sm:mb-3">
                     {feature.title}
                   </h3>
                 </div>
               </motion.div>
             ))}
-          </div>     </div>
+          </div>
+        </div>
       </section>
 
       {/* Setup Section */}
-      <section className="py-16 sm:py-20 px-4 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-7xl">
 
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-10 lg:gap-12 xl:gap-20">
             {/* Image Section */}
             <motion.div
               className="w-full lg:w-5/12"
@@ -274,10 +278,10 @@ const Soundbox = () => {
             >
               <div className="relative group">
                 {/* Navy decorative elements */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-navy-300 to-blue-300 rounded-3xl opacity-30 group-hover:opacity-50 blur-2xl transition-opacity duration-500"></div>
+                <div className="absolute -inset-2 sm:-inset-3 md:-inset-4 bg-gradient-to-r from-navy-300 to-blue-300 rounded-2xl sm:rounded-3xl opacity-30 group-hover:opacity-50 blur-2xl transition-opacity duration-500"></div>
 
                 {/* Image container */}
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                   <img
                     src="https://spay.live/public/images/SOUNDBOX (2).jpg"
                     alt="Spay Soundbox Setup"
@@ -288,20 +292,20 @@ const Soundbox = () => {
             </motion.div>
 
             {/* Accordion Section */}
-            <div className="w-full lg:w-7/12">
+            <div className="w-full lg:w-7/12 mt-6 lg:mt-0">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="mb-8"
+                className="mb-6 sm:mb-8"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-navy-900">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-900 text-center lg:text-left">
                   Get Started in 4 Simple Steps
                 </h2>
               </motion.div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {accordionItems.map((item, index) => (
                   <motion.div
                     key={index}
@@ -309,31 +313,31 @@ const Soundbox = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="rounded-xl overflow-hidden border border-gray-200 hover:border-navy-300 transition-colors duration-300"
+                    className="rounded-lg sm:rounded-xl overflow-hidden border border-gray-200 hover:border-navy-300 transition-colors duration-300"
                   >
                     <button
                       onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
-                      className={`w-full flex items-center justify-between p-5 sm:p-6 text-left transition-all duration-300 ${openAccordion === index
+                      className={`w-full flex items-center justify-between p-4 sm:p-5 md:p-6 text-left transition-all duration-300 ${openAccordion === index
                         ? 'bg-navy-50'
                         : 'bg-white hover:bg-gray-50'
                         }`}
                     >
-                      <div className="flex items-center gap-4">
-                        {/* Navy number circle */}
+                      <div className="flex items-center gap-3 sm:gap-4 flex-1">
+                        {/* Navy number circle - responsive */}
                         <div className={`
-                          w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg
+                          w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-sm sm:text-base md:text-lg flex-shrink-0
                           ${openAccordion === index
                             ? 'bg-navy-900 text-white shadow-lg'
                             : 'bg-gray-100 text-navy-900'}
                         `}>
                           {index + 1}
                         </div>
-                        <h5 className="text-lg font-semibold text-navy-900">
+                        <h5 className="text-sm sm:text-base md:text-lg font-semibold text-navy-900">
                           {item.title}
                         </h5>
                       </div>
                       <svg
-                        className={`w-6 h-6 text-navy-900 transition-transform duration-300 ${openAccordion === index ? 'rotate-180' : ''
+                        className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-navy-900 transition-transform duration-300 flex-shrink-0 ml-2 ${openAccordion === index ? 'rotate-180' : ''
                           }`}
                         fill="none"
                         stroke="currentColor"
@@ -347,8 +351,8 @@ const Soundbox = () => {
                       className={`transition-all duration-500 overflow-hidden ${openAccordion === index ? 'max-h-96' : 'max-h-0'
                         }`}
                     >
-                      <div className="bg-white p-5 sm:p-6 border-t border-gray-100">
-                        <p className="text-gray-600 leading-relaxed">
+                      <div className="bg-white p-4 sm:p-5 md:p-6 border-t border-gray-100">
+                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                           {item.description}
                         </p>
                       </div>
@@ -363,6 +367,9 @@ const Soundbox = () => {
 
       {/* Google Fonts Link */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+      {/* Responsive Meta Viewport Tag */}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
 
       {/* Custom Animation Keyframes */}
       <style jsx>{`
@@ -411,7 +418,7 @@ const Soundbox = () => {
           perspective: 1000px;
         }
         
-        .rotateY-\[-5deg\] {
+        .rotateY-\\[-5deg\\] {
           transform: rotateY(-5deg);
         }
         
@@ -428,6 +435,14 @@ const Soundbox = () => {
         
         .feature-card {
           cursor: pointer;
+        }
+        
+        /* Responsive container queries */
+        @media (max-width: 640px) {
+          .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
         }
         
         /* Navy blue color definitions */
@@ -485,6 +500,10 @@ const Soundbox = () => {
         .to-navy-700 { --tw-gradient-to: #1a4fff; }
         .to-navy-800 { --tw-gradient-to: #0033cc; }
         .to-navy-900 { --tw-gradient-to: #002080; }
+        
+        /* Responsive utilities */
+        .w-18 { width: 4.5rem; }
+        .h-18 { height: 4.5rem; }
       `}</style>
     </div>
   );

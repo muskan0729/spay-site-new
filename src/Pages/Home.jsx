@@ -1,65 +1,45 @@
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import Carousel from "../components/Home/Carousel";
-
-// import slide1 from "../assets/images/bg3.webp";
-// import slide2 from "../assets/images/freepik.webp";
-// import slide3 from "../assets/images/2slide.webp";
-// import slide4 from "../assets/images/3slide.webp";
 import CardSlider from "../components/Home/CardSlider";
 import CounterSection from "../components/Home/CounterSection";
 import FeaturesSection from "../components/Home/FeaturesSection";
 import DynamicControlPanel from "../components/Home/DynamicControlPanel";
 
-
-
 const Home = () => {
-  //    const slides = [
-  //   {
-  //     image: slide1,
-  //     title: (
-  //       <>
-  //         Accept Payments Seamlessly with <br />
-  //         <span style={{color:"#0cd7ff"}}>Lightning-Fast transactions</span>
-  //       </>
-  //     ),
-  //     align: "top-center",
-  //   },
-  //   {
-  //     image: slide2,
-  //     title: "Boost Your Business with Fast Payments",
-  //     description:
-  //       "Manage all transactions easily and grow your business with Spay payment solutions.",
-  //        align: "left",
-  //   },
-  //   {
-  //     image: slide3,
-  //     title: "Enjoy Safe and Secure Transactions with Our Payment Solutions",
-  //     description:
-  //       "While many payment gateways promise security, Spay goes further by offering 24/7 helpline support. Your issues are our responsibility, ensuring you have the most secure payment experience possible.",
-  //        align: "left",
-  //   },
-  //   {
-  //     image: slide4,
-  //     title: "Enjoy Safe and Secure Transactions with Our Payment Solutions",
-  //     description:
-  //       "While many payment gateways promise security, Spay goes further by offering 24/7 helpline support. Your issues are our responsibility, ensuring you have the most secure payment experience possible.",
-  //        align: "left",
-  //   },    
-  // ];
-  return (
-    <div>
-      <div className="min-w-[1200px]">
-      {/* <Carousel slides={slides} autoPlay={true} interval={2000} /> */}
-            <Carousel  autoPlay={true} interval={2000} />
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-</div>
-          <div className="p-6">
-      <CardSlider />
-    </div>
-      <CounterSection />
-      <FeaturesSection/>
-      <DynamicControlPanel/>
-    </div>
-    
+  return (
+    <>
+      <Helmet>
+        <title>SPay - Secure Payment Gateway for Businesses</title>
+        <meta name="description" content="Accept payments online with SPay's secure payment gateway. Fast, reliable, and trusted by 5000+ businesses. Multi payment options, 99.9% uptime." />
+        <meta name="keywords" content="payment gateway, online payments, secure transactions, business payments" />
+      </Helmet>
+
+      <div className="home-page">
+        {/* Hero Section with Gradient Overlay */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-transparent to-transparent z-10 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+          <Carousel autoPlay={true} interval={5000} />
+        </div>
+
+        {/* Main Content Sections - Seamless Flow */}
+        <div className="space-y-0"> {/* Remove space-y-8/16 */}
+          {/* CardSlider - Now seamlessly connects */}
+          <CardSlider />
+          
+          {/* CounterSection - Directly below */}
+          <CounterSection />
+          
+          <FeaturesSection />
+          <DynamicControlPanel />
+        </div>
+      </div>
+    </>
   );
 };
 

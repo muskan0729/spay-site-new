@@ -25,66 +25,40 @@ const Section2 = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-indigo-800">
-            Scale Your Business Across Multiple Sectors
-          </h2>
-          <p className="mt-4 text-gray-600 text-lg">
-            Showcasing your industry reach with elegance and style.
-          </p>
-        </div>
+    <section className="py-12 sm:py-16 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-10 md:mb-16">
+          Powering Businesses Across Industries
+        </h2>
 
-        {/* Slider */}
-        <div className="relative flex items-center">
-
-          {/* Left Button */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="absolute -left-6 z-10 bg-white shadow-lg p-3 rounded-full disabled:opacity-40"
-          >
-            <FaArrowLeft className="text-indigo-700" />
-          </button>
-
-          {/* Slides Container */}
-          <div className="overflow-hidden w-full">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / 3)}%)`,
-              }}
-            >
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className="w-1/3 flex-shrink-0 p-4"
-                >
-                  <div className="rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition duration-300">
-                    <img
-                      src={slide}
-                      alt={`Slide ${index + 1}`}
-                      className="w-full h-[300px] object-cover"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee gap-6 md:gap-10">
+            {[...slides, ...slides].map((img, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={img}
+                  alt={`Industry ${idx + 1}`}
+                  className="w-full h-40 sm:h-48 md:h-56 lg:h-64 object-cover"
+                />
+              </div>
+            ))}
           </div>
-
-          {/* Right Button */}
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= slides.length - 3}
-            className="absolute -right-6 z-10 bg-white shadow-lg p-3 rounded-full disabled:opacity-40"
-          >
-            <FaArrowRight className="text-indigo-700" />
-          </button>
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 35s linear infinite;
+          display: flex;
+        }
+      `}</style>
     </section>
   );
 };

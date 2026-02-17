@@ -29,7 +29,7 @@ function App() {
            <Route path="/upi-autopay" element={<Upi/>} />
           <Route path="/payment-links" element={<PaymentLinks/>} />
           <Route path="/soundbox" element={<Soundbox/>} />
-          {/* {<Route path="/Contact-us" element={<ContactUs />} />} */}
+          <Route path="/Contact-us" element={<ContactUs />} />
           <Route path="/integration" element={<Integration />} />
           <Route path="/onboarding-merchant" element={<MerchantOnboarding />} />
           <Route path="/login" element={<Login />} />

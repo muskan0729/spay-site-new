@@ -6,67 +6,44 @@ import slide35 from "../../assets/images/slide35.jpg";
 import slide36 from "../../assets/images/slide36.jpg";
 import slide37 from "../../assets/images/slide37.jpg";
 
-// Original slides
 const slides = [slide32, slide33, slide34, slide35, slide36, slide37];
-
-// Duplicate slides for infinite seamless loop
-const repeatedSlides = [...slides, ...slides];
 
 const Section2 = () => {
   return (
-    <section className="pt-20 ">
-      {/* Section Title */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-900">
-          Scale your Business Across multiple Sectors
+    <section className="py-12 sm:py-16 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-10 md:mb-16">
+          Powering Businesses Across Industries
         </h2>
-      </div>
 
-      {/* Slider */}
-      <div className="grid place-items-start min-h-[50vh] ">
-        <div className="w-[90%] max-w-[1200px] overflow-hidden relative mask-[linear-gradient(90deg,transparent_0%,black_15%,black_85%,transparent)]">
-          <ul className="flex gap-4 animate-slide">
-            {repeatedSlides.map((slide, index) => (
-              <li
-                key={index}
-                className="flex-0-0-auto aspect-square h-[250px] md:h-[250px] sm:h-[200px] rounded-lg"
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee gap-6 md:gap-10">
+            {[...slides, ...slides].map((img, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
               >
                 <img
-                  src={slide}
-                  alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
+                  src={img}
+                  alt={`Industry ${idx + 1}`}
+                  className="w-full h-40 sm:h-48 md:h-56 lg:h-64 object-cover"
                 />
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
 
-      {/* Tailwind Custom Animation */}
-      <style>
-        {`
-          @keyframes slideRightToLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Move half width since slides are duplicated */
-          }
-
-          .animate-slide {
-            animation: slideRightToLeft 18s linear infinite; /* slower for smooth effect */
-          }
-
-          @media (max-width: 768px) {
-            li {
-              height: 200px;
-            }
-          }
-
-          @media (max-width: 480px) {
-            li {
-              height: 150px;
-            }
-          }
-        `}
-      </style>
+      <style jsx global>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 35s linear infinite;
+          display: flex;
+        }
+      `}</style>
     </section>
   );
 };

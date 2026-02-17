@@ -2,45 +2,50 @@ import React from "react";
 import bgImage from "../../assets/images/pgbg8.webp";
 
 const Section3 = () => {
+  const reasons = [
+    {
+      icon: "fas fa-chart-pie",
+      title: "Deep Transaction Insights",
+      text: "Get complete visibility into every payment — who, when, how much, and success rate.",
+    },
+    {
+      icon: "fas fa-sync-alt",
+      title: "Real-time Analytics",
+      text: "Monitor performance, detect anomalies, and make decisions instantly.",
+    },
+    {
+      icon: "fas fa-chart-line",
+      title: "Smart Revenue Tools",
+      text: "Detailed breakdowns, trend analysis, and tools to maximize your earnings.",
+    },
+  ];
+
   return (
-    <div
-      className="relative pb-10 min-h-[300px] flex flex-col items-center justify-center bg-center bg-cover "
+    <section 
+      className="relative py-16 md:py-24 bg-cover bg-center"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {/* Overlay */}
-      {/* <div className="absolute inset-0 bg-black/20"></div> */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
 
-      <div className="relative container text-center ">
-        {/* Section Title */}
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-8">
-          Why Spay?
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-12 md:mb-16">
+          Why Businesses Choose Spay
         </h2>
 
-        {/* Description and Features */}
-        <div className=" mx-auto flex flex-col gap-6 px-20  text-center">
-          <p className="text-black font-bold text-lg md:text-xl mb-6">
-            Tired of searching for the "perfect" payment solution? Discover Spay and
-            put an end to your quest. Our diverse range of services is tailored to meet
-            your specific business needs.
-          </p>
-
-          <ul className="list-none flex flex-col gap-4 text-black items-center">
-            <li className="flex items-center justify-center md:justify-start font-semibold">
-              <i className="fas fa-globe me-3 text-blue-600 text-xl"></i>
-              Gain comprehensive insights into payment transactions.
-            </li>
-            <li className="flex items-center justify-center md:justify-start font-semibold">
-              <i className="fas fa-sync-alt me-3 text-blue-600 text-xl"></i>
-              Enjoy real-time analysis and visibility at your fingertips.
-            </li>
-            <li className="flex items-center justify-center md:justify-start font-semibold">
-              <i className="fas fa-chart-line me-3 text-blue-600 text-xl"></i>
-              Access detailed data breakdowns for effective revenue management.
-            </li>
-          </ul>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {reasons.map((item, i) => (
+            <div 
+              key={i}
+              className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8 text-white hover:bg-white/20 transition-all duration-300"
+            >
+              <i className={`${item.icon} text-4xl text-blue-300 mb-5 block`}></i>
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-gray-200 leading-relaxed">{item.text}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -3,44 +3,50 @@ import bgImage from "../../assets/images/pgbg8.webp";
 import { FaGlobe, FaSyncAlt, FaChartLine } from "react-icons/fa";
 
 const Section3 = () => {
+  const reasons = [
+    {
+      icon: "fas fa-chart-pie",
+      title: "Deep Transaction Insights",
+      text: "Get complete visibility into every payment — who, when, how much, and success rate.",
+    },
+    {
+      icon: "fas fa-sync-alt",
+      title: "Real-time Analytics",
+      text: "Monitor performance, detect anomalies, and make decisions instantly.",
+    },
+    {
+      icon: "fas fa-chart-line",
+      title: "Smart Revenue Tools",
+      text: "Detailed breakdowns, trend analysis, and tools to maximize your earnings.",
+    },
+  ];
+
   return (
-    <div
-      className="relative min-h-[400px] flex flex-col items-center justify-center bg-center bg-cover py-24"
+    <section 
+      className="relative py-16 md:py-24 bg-cover bg-center"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
 
-      {/* Content Container */}
-      <div className="relative z-10 container mx-auto px-6 md:px-0 max-w-4xl text-center bg-white/70 rounded-3xl shadow-2xl backdrop-blur-md p-10">
-        {/* Section Title */}
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-8 drop-shadow-sm">
-          Why Spay?
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-12 md:mb-16">
+          Why Businesses Choose Spay
         </h2>
 
-        {/* Description */}
-        <p className="text-gray-900 font-semibold text-lg md:text-xl mb-8 leading-relaxed">
-          Tired of searching for the "perfect" payment solution? Discover Spay and put an end to your quest. 
-          Our diverse range of services is tailored to meet your specific business needs.
-        </p>
-
-        {/* Features List */}
-        <ul className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center">
-          <li className="flex items-start md:items-center gap-3 text-gray-900 font-semibold hover:text-blue-600 transition-colors duration-300">
-            <FaGlobe className="text-blue-600 text-2xl flex-shrink-0" />
-            <span>Gain comprehensive insights into payment transactions.</span>
-          </li>
-          <li className="flex items-start md:items-center gap-3 text-gray-900 font-semibold hover:text-blue-600 transition-colors duration-300">
-            <FaSyncAlt className="text-blue-600 text-2xl flex-shrink-0" />
-            <span>Enjoy real-time analysis and visibility at your fingertips.</span>
-          </li>
-          <li className="flex items-start md:items-center gap-3 text-gray-900 font-semibold hover:text-blue-600 transition-colors duration-300">
-            <FaChartLine className="text-blue-600 text-2xl flex-shrink-0" />
-            <span>Access detailed data breakdowns for effective revenue management.</span>
-          </li>
-        </ul>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {reasons.map((item, i) => (
+            <div 
+              key={i}
+              className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8 text-white hover:bg-white/20 transition-all duration-300"
+            >
+              <i className={`${item.icon} text-4xl text-blue-300 mb-5 block`}></i>
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-gray-200 leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

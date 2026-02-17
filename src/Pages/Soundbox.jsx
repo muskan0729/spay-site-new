@@ -24,20 +24,44 @@ const Soundbox = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Feature data with exact SVGs from original
+  useEffect(() => {
+    const cards = document.querySelectorAll('.feature-card');
+
+    const handleMouseMove = (e) => {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', x + 'px');
+      card.style.setProperty('--mouse-y', y + 'px');
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', handleMouseMove);
+    });
+
+    return () => {
+      cards.forEach(card => {
+        card.removeEventListener('mousemove', handleMouseMove);
+      });
+    };
+  }, []);
+
   const features = [
     {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="64"
-          height="64"
+          width="70"
+          height="70"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-white"
+          className="text-navy-900"
         >
           <path d="M11 5L6 9H2v6h4l5 4V5z" />
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
@@ -46,6 +70,7 @@ const Soundbox = () => {
       ),
       title: "Instant Audio Confirmation",
     },
+
     {
       icon: (
         <svg

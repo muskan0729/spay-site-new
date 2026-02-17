@@ -12,27 +12,27 @@ const FeaturesSection = () => {
     {
       icon: "fa-credit-card",
       title: "Global Cards Accepted",
-      description: "Support for domestic and international credit/debit cards"
+      description: "Support for domestic and international credit/debit cards with competitive forex rates"
     },
     {
       icon: "fa-chalkboard-teacher",
       title: "Dynamic Control Panel",
-      description: "Full control over payments, refunds, and settlements"
+      description: "Full control over payments, refunds, and settlements from a single dashboard"
     },
     {
       icon: "fa-file-alt",
       title: "Instant Onboarding",
-      description: "Go live in minutes with our streamlined onboarding"
+      description: "Go live in minutes with our streamlined onboarding process and minimal documentation"
     },
     {
       icon: "fa-computer",
       title: "Real-Time Dashboard",
-      description: "Monitor transactions and analytics in real-time"
+      description: "Monitor transactions and analytics in real-time with customizable views"
     },
     {
       icon: "fa-file-invoice",
       title: "Comprehensive Reports",
-      description: "Detailed insights with customizable reports"
+      description: "Detailed insights with customizable reports and export options"
     }
   ];
 
@@ -58,7 +58,7 @@ const FeaturesSection = () => {
   };
 
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
       {/* Background with overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -76,23 +76,21 @@ const FeaturesSection = () => {
           }} />
       </div>
 
-      <div className="relative container mx-auto px-4">
+      <div className="relative container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-6 px-4">
             Enterprise-Grade Features for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-200 block sm:inline mt-2 sm:mt-0">
               Your Growth
             </span>
           </h2>
-
         </motion.div>
 
         {/* Features Grid */}
@@ -101,43 +99,46 @@ const FeaturesSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {features.map((feature, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative"
+              className="group relative h-full"
             >
-              {/* Card with glassmorphism effect */}
-              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 
+              {/* Card with glassmorphism effect - Fixed height for consistency */}
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 
                             border border-white/20 hover:border-cyan-400/50
-                            transition-all duration-500 hover:scale-105
-                            overflow-hidden">
+                            transition-all duration-500 hover:scale-105 hover:shadow-2xl
+                            overflow-hidden h-full flex flex-col">
 
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Icon Container */}
-                <div className="relative mb-6">
+                {/* Icon Container - Responsive sizing */}
+                <div className="relative mb-4 sm:mb-5 md:mb-6">
                   <div className="absolute inset-0 bg-cyan-500 rounded-xl blur-xl 
                                 opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-                  <div className="relative w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 
-                                rounded-xl flex items-center justify-center
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                                bg-gradient-to-br from-cyan-400 to-blue-500 
+                                rounded-lg sm:rounded-xl flex items-center justify-center
                                 group-hover:scale-110 group-hover:rotate-3 
                                 transition-all duration-500 shadow-lg">
-                    <i className={`fas ${feature.icon} text-white text-2xl`} />
+                    <i className={`fas ${feature.icon} text-white text-xl sm:text-2xl md:text-2xl`} />
                   </div>
                 </div>
 
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-white mb-3 
-                             group-hover:text-cyan-300 transition-colors">
+                {/* Content - Flexible height with proper spacing */}
+                <h3 className="text-lg sm:text-xl md:text-xl font-semibold text-white mb-2 sm:mb-3 
+                             group-hover:text-cyan-300 transition-colors line-clamp-2">
                   {feature.title}
                 </h3>
-                <p className="text-white/70 text-sm leading-relaxed 
-                            group-hover:text-white/90 transition-colors">
+                
+                {/* Description with fixed min-height for consistency */}
+                <p className="text-white/70 text-xs sm:text-sm md:text-sm leading-relaxed 
+                            group-hover:text-white/90 transition-colors flex-grow">
                   {feature.description}
                 </p>
 
@@ -150,11 +151,11 @@ const FeaturesSection = () => {
           ))}
         </motion.div>
 
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-cyan-500/30 rounded-full 
-                      blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-blue-500/30 rounded-full 
-                      blur-3xl animate-pulse delay-1000" />
+        {/* Floating Elements - Responsive positioning and sizing */}
+        <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
+                      bg-cyan-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
+        <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
+                      bg-blue-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-1000" />
       </div>
     </section>
   );

@@ -9,16 +9,32 @@ const CardSlider = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const logos = [
-    { src: upi, name: "UPI", description: "Instant Payments" },
-    { src: rupay, name: "RuPay", description: "Domestic Cards" },
-    { src: mastercard, name: "Mastercard", description: "Global Acceptance" },
-    { src: visa, name: "Visa", description: "Worldwide" }
+    { src: upi, name: "UPI", description: "Instant Payments", padding: "p-2" },
+    { src: rupay, name: "RuPay", description: "Domestic Cards", padding: "p-1.5" },
+    { src: mastercard, name: "Mastercard", description: "Global Acceptance", padding: "p-1" },
+    { src: visa, name: "Visa", description: "Worldwide", padding: "p-2" }
   ];
+
+  // Function to determine padding based on logo type
+  const getLogoPadding = (logoName) => {
+    switch(logoName) {
+      case "UPI":
+        return "p-3";
+      case "RuPay":
+        return "p-2.5";
+      case "Mastercard":
+        return "p-1.5";
+      case "Visa":
+        return "p-2.5";
+      default:
+        return "p-2";
+    }
+  };
 
   return (
     <div className="relative w-full py-16 overflow-hidden">
       {/* Soft Blue Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-blue-50" />
+      <div className="absolute inset-0 bg-blue" />
       
       {/* Subtle background orbs */}
       <div className="absolute top-20 left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl" />
@@ -38,7 +54,6 @@ const CardSlider = () => {
               Global Payment Networks
             </span>
           </h3>
-        
         </motion.div>
 
         {/* Cards Grid */}
@@ -78,9 +93,9 @@ const CardSlider = () => {
                   transition={{ duration: 0.3 }}
                 />
                 
-                {/* Logo Container - Uniform for all */}
+                {/* Logo Container - Uniform for all with adjusted padding per logo */}
                 <div className="relative mb-4 flex justify-center">
-                  <div className="relative w-20 h-20 rounded-xl flex items-center justify-center
+                  <div className="relative w-24 h-24 rounded-xl flex items-center justify-center
                                 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200">
                     {/* Subtle glow on hover */}
                     <motion.div 
@@ -91,13 +106,21 @@ const CardSlider = () => {
                       }}
                     />
                     
-                    <img
-                      src={logo.src}
-                      alt={logo.name}
-                      className="relative h-12 w-auto object-contain z-10
-                               transition-transform duration-300
-                               group-hover:scale-110"
-                    />
+                    {/* Responsive image container with dynamic padding */}
+                    <div className={`w-full h-full flex items-center justify-center ${getLogoPadding(logo.name)}`}>
+                      <img
+                        src={logo.src}
+                        alt={logo.name}
+                        className="w-full h-full object-contain transition-transform duration-300
+                                 group-hover:scale-110"
+                        style={{
+                          maxHeight: logo.name === "Mastercard" ? "80%" : 
+                                    logo.name === "Visa" ? "85%" : 
+                                    logo.name === "RuPay" ? "90%" : "95%",
+                          filter: logo.name === "Visa" ? "brightness(0.8)" : "none"
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
                 
@@ -131,8 +154,6 @@ const CardSlider = () => {
             </motion.div>
           ))}
         </div>
-
-       
       </div>
     </div>
   );

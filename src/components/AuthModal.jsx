@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import logo from "../assets/images/logo.webp"; // change if needed
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/images/logo.webp";
 
 const AuthModal = ({ isOpen, onClose }) => {
-  // Close on ESC key
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -15,11 +17,21 @@ const AuthModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  const handleSignUp = () => {
+    onClose();
+    navigate("/onboarding-merchant");
+  };
+
+  const handleLogin = () => {
+    onClose();
+    navigate("/login");   // Make sure this route exists in App.jsx
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div
         className="modal-box"
-        onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside
+        onClick={(e) => e.stopPropagation()}
       >
         <span className="modal-close" onClick={onClose}>
           ✕
@@ -34,10 +46,18 @@ const AuthModal = ({ isOpen, onClose }) => {
           sign up to continue.
         </p>
 
-        <button className="modal-btn">Sign Up</button>
+        <button className="modal-btn" onClick={handleSignUp}>
+          Sign Up
+        </button>
 
         <p className="login-text">
-          If already Exist? <span>Login</span>
+          If already Exist?{" "}
+          <span
+            onClick={handleLogin}
+            style={{ cursor: "pointer", color: "#2563eb", fontWeight: "600" }}
+          >
+            Login
+          </span>
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { motion } from "framer-motion";
 import heroBg from "../../assets/images/hero-bg.webp";
 import dcpImage from "../../assets/images/dcp.webp";
@@ -8,52 +8,48 @@ const DynamicControlPanel = () => {
     {
       icon: "fa-credit-card",
       title: "Diverse Payment Options",
-      description: "Experience a single solution for all your transaction needs, whether it's credit cards, debit cards, UPI, wallets, or net banking."
+      description:
+        "Experience a single solution for all your transaction needs, whether it's credit cards, debit cards, UPI, wallets, or net banking."
     },
     {
       icon: "fa-shield-alt",
       title: "Secure Transaction Experience",
-      description: "Enjoy a safe and secure transaction process, enhanced by our thoughtfully designed UI and UX."
+      description:
+        "Enjoy a safe and secure transaction process, enhanced by our thoughtfully designed UI and UX."
     },
     {
       icon: "fa-chart-line",
       title: "High Success Rate",
-      description: "Our platform guarantees a smooth and secure transaction experience with our expertly designed checkout process."
+      description:
+        "Our platform guarantees a smooth and secure transaction experience with our expertly designed checkout process."
     }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 }
-    }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
   };
 
   return (
     <div className="relative py-16 sm:py-20 md:py-24 bg-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0"
+        <div
+          className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, #2563eb 1px, transparent 0)`,
-            backgroundSize: '30px 30px'
-          }} />
+            backgroundSize: "30px 30px"
+          }}
+        />
       </div>
 
       <div className="relative container mx-auto px-4 sm:px-6">
-        {/* Section Header - Responsive */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,11 +79,11 @@ const DynamicControlPanel = () => {
                 key={index}
                 variants={itemVariants}
                 className="group relative flex flex-col sm:flex-row gap-4 sm:gap-5 p-4 sm:p-5 
-                         rounded-xl hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 
-                         transition-all duration-300 cursor-default 
-                         border border-transparent hover:border-cyan-100"
+                           rounded-xl hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 
+                           transition-all duration-300 cursor-default 
+                           border border-transparent hover:border-cyan-100"
               >
-                {/* Icon with gradient background - Consistent hover effects */}
+                {/* Icon with gradient background */}
                 <div className="relative flex-shrink-0 self-start">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 
                                 rounded-xl blur-md opacity-0 group-hover:opacity-50 
@@ -111,7 +107,7 @@ const DynamicControlPanel = () => {
                   </p>
                 </div>
 
-                {/* Hover indicator line - Consistent animation for all cards */}
+                {/* Hover indicator line */}
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 
                               bg-gradient-to-b from-cyan-500 to-blue-500 rounded-r
                               group-hover:h-12 sm:group-hover:h-16 transition-all duration-300" />
@@ -119,7 +115,7 @@ const DynamicControlPanel = () => {
             ))}
           </motion.div>
 
-          {/* Right Column - Image - Container removed */}
+          {/* Right Column - Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -128,7 +124,7 @@ const DynamicControlPanel = () => {
             className="lg:w-1/2 w-full max-w-lg lg:max-w-none mx-auto"
           >
             <div className="relative">
-              {/* Decorative elements - Responsive sizing */}
+              {/* Decorative elements */}
               <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-16 sm:w-20 md:w-24 
                             h-16 sm:h-20 md:h-24 bg-cyan-200 rounded-full blur-xl sm:blur-2xl 
                             opacity-60 animate-pulse" />
@@ -136,13 +132,12 @@ const DynamicControlPanel = () => {
                             h-20 sm:h-24 md:h-32 bg-blue-200 rounded-full blur-xl sm:blur-2xl 
                             opacity-60 animate-pulse delay-700" />
 
-              {/* Main image - No container, just the image with effects */}
+              {/* Main image */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 
                               rounded-xl sm:rounded-2xl blur-xl sm:blur-2xl opacity-20 
                               group-hover:opacity-30 transition-opacity duration-500" />
-                
-                {/* Just the image - no container div */}
+
                 <img
                   src={dcpImage}
                   alt="Dynamic Control Panel"
@@ -151,7 +146,7 @@ const DynamicControlPanel = () => {
                            transition-all duration-700 relative z-10"
                 />
 
-                {/* Floating badges - Responsive positioning and sizing */}
+                {/* Floating badges */}
                 <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 
                               bg-white rounded-lg shadow-lg sm:shadow-xl p-2 sm:p-3 
                               animate-bounce z-20">
@@ -163,7 +158,7 @@ const DynamicControlPanel = () => {
                   <i className="fas fa-chart-pie text-cyan-500 text-base sm:text-xl" />
                 </div>
 
-                {/* Subtle hover effect ring */}
+                {/* Hover effect ring */}
                 <div className="absolute inset-0 rounded-xl sm:rounded-2xl 
                               ring-2 ring-transparent group-hover:ring-cyan-400/50 
                               transition-all duration-500 pointer-events-none z-30" />

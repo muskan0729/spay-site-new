@@ -13,13 +13,14 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(1000px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)]" />
 
       {/* CONTENT */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-8 md:pt-12 lg:pt-20 pb-6 md:pb-8 lg:pb-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/* TOP SECTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 md:gap-y-10 lg:gap-y-14">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14 md:gap-y-0">
           {/* LEFT CONTENT */}
-          <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 lg:gap-x-14 gap-y-4 md:gap-y-6 lg:gap-y-10">
+          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-10">
             <FooterBlock title="Address">
-              316 Laxmi Plaza, Laxmi Industrial Estate,<br />
+              316 Laxmi Plaza, Laxmi Industrial Estate,
+              <br />
               Andheri West, Mumbai 400053.
             </FooterBlock>
 
@@ -48,13 +49,7 @@ const Footer = () => {
           </div>
 
           {/* RIGHT BRAND / TRUST */}
-          <div className="lg:col-span-3 flex flex-col items-start lg:items-end justify-between gap-4 md:gap-6 lg:gap-10">
-            {/* TRUST - Moved first for better mobile visibility */}
-            <div className="flex items-center gap-2 md:gap-4 lg:gap-6 w-full justify-start lg:justify-end mb-4 md:mb-0">
-              <img src={pci} alt="PCI DSS" className="h-[32px] md:h-[40px] lg:h-[48px] opacity-90 flex-shrink-0" />
-              <img src={iso} alt="ISO Certified" className="h-[32px] md:h-[40px] lg:h-[48px] opacity-90 flex-shrink-0" />
-            </div>
-
+          <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
             {/* APP */}
             <div className="w-full lg:w-auto">
               <p className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] uppercase tracking-widest text-white/70">
@@ -66,8 +61,14 @@ const Footer = () => {
                 rel="noreferrer"
                 className="inline-block opacity-95 hover:opacity-100 transition"
               >
-                <img src={appStore} alt="App Store" className="h-[32px] md:h-[36px] lg:h-[40px] w-auto" />
+                <img src={appStore} alt="App Store" className="h-[40px] sm:h-[44px]" />
               </a>
+            </div>
+
+            {/* TRUST */}
+            <div className="flex items-center gap-6 flex-wrap">
+              <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
+              <img src={iso} alt="ISO Certified" className="h-[48px] opacity-90" />
             </div>
           </div>
         </div>
@@ -76,12 +77,12 @@ const Footer = () => {
         <div className="mt-6 md:mt-8 lg:mt-16 border-t border-white/10" />
 
         {/* BOTTOM */}
-        <div className="mt-3 md:mt-4 lg:mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-xs md:text-[13px] text-white/70 order-2 sm:order-1">
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[13px] text-white/70 text-center md:text-left">
             © 2024 Spay Fintech. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-3 md:gap-4 lg:gap-6 text-xs md:text-[13px] order-1 sm:order-2">
+          <div className="flex flex-col md:flex-row items-center md:gap-6 gap-2 text-[13px]">
             <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
             <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
           </div>
@@ -98,9 +99,7 @@ const FooterBlock = ({ title, children }) => (
     <h5 className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] font-medium uppercase tracking-widest text-white/80">
       {title}
     </h5>
-    <div className="text-sm md:text-base leading-5 md:leading-[1.7] text-white space-y-1 md:space-y-2">
-      {children}
-    </div>
+    <div className="text-[14px] leading-[1.7] text-white space-y-2">{children}</div>
   </div>
 );
 

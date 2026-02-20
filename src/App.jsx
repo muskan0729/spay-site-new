@@ -16,6 +16,8 @@ import TermsAndConditions from './Pages/TermsAndConditions';
 import Integration from "./Pages/Integration";
 import ContactUs from "./Pages/ContactUs";
 import Career from "./Pages/Career";
+import ScrollTop from "./components/ScrollTop";
+import SignUp from "./Pages/SignUp";
 
 import AdminLayout from "./admin/layout/AdminLayout";
 import Dashboard from "./admin/pages/Dashboard";
@@ -27,6 +29,7 @@ import Candidates from "./admin/pages/Candidates";
 function App() {
   return (
     <>
+      <ScrollTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -38,7 +41,8 @@ function App() {
           <Route path="/soundbox" element={<Soundbox/>} />
           <Route path="/Contact-us" element={<ContactUs />} />
           <Route path="/integration" element={<Integration />} />
-          <Route path="/onboarding-merchant" element={<MerchantOnboarding />} />
+          {/* <Route path="/onboarding-merchant" element={<MerchantOnboarding />} /> */}
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />

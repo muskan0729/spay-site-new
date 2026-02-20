@@ -25,7 +25,7 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Contact">
-              <div className="space-y-2">
+              <div className="space-y-1 md:space-y-2">
                 <p>022-46072193</p>
                 <p>+91 8450007614</p>
                 <a href="mailto:inquiry@spay.live" className={linkClass}>
@@ -51,8 +51,8 @@ const Footer = () => {
           {/* RIGHT BRAND / TRUST */}
           <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
             {/* APP */}
-            <div>
-              <p className="mb-4 text-[13px] uppercase tracking-widest text-white/70">
+            <div className="w-full lg:w-auto">
+              <p className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] uppercase tracking-widest text-white/70">
                 Get the app
               </p>
               <a
@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
 
         {/* DIVIDER */}
-        <div className="mt-16 border-t border-white/10" />
+        <div className="mt-6 md:mt-8 lg:mt-16 border-t border-white/10" />
 
         {/* BOTTOM */}
         <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -96,7 +96,7 @@ const Footer = () => {
 
 const FooterBlock = ({ title, children }) => (
   <div>
-    <h5 className="mb-4 text-[13px] font-medium uppercase tracking-widest text-white/80">
+    <h5 className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] font-medium uppercase tracking-widest text-white/80">
       {title}
     </h5>
     <div className="text-[14px] leading-[1.7] text-white space-y-2">{children}</div>

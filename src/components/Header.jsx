@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
@@ -11,27 +11,6 @@ const Header = () => {
 
   const featuresRef = useRef(null);
   const productsRef = useRef(null);
-  const menuRef = useRef(null);
-
-  const location = useLocation();
-
-  /* ================= RESET HEADER ON ROUTE CHANGE ================= */
-  useEffect(() => {
-    setMenuOpen(false);
-    setFeaturesOpen(false);
-    setProductsOpen(false);
-  }, [location.pathname]);
-
-  /* ================= MOBILE DETECTION ================= */
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const handleChange = (e) => setIsMobile(e.matches);
-
-    handleChange(mediaQuery);
-    mediaQuery.addListener(handleChange);
-
-    return () => mediaQuery.removeListener(handleChange);
-  }, []);
   const mobileMenuRef = useRef(null);
 
   // Close dropdown when clicking outside
@@ -147,7 +126,6 @@ const Header = () => {
           >
             <NavItem name="Home" link="/" onClick={closeAllMenus} />
             <NavItem name="About" link="/about-us" onClick={closeAllMenus} />
-            <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
 
             {/* FEATURES - Desktop */}
             <li ref={featuresRef} style={{ position: "relative" }}>
@@ -199,16 +177,12 @@ const Header = () => {
                 </Dropdown>
               )}
             </li>
-
-              <NavItem name="Careers" link="/careers" />
-              <NavItem name="Contact" link="/contact-us" />
-              <NavItem name="Dashboard" link="/admin" />
-            </ul>
-          {/* )} */}
+            <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
             <NavItem name="Careers" link="/careers" onClick={closeAllMenus} />
             <NavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
-              <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />    
-          {/* </ul> */}
+            <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />
+
+          </ul>
 
           {/* SIGN UP BUTTON */}
           <Link
@@ -479,20 +453,11 @@ const Header = () => {
 
 /* ---------- STYLES ---------- */
 
-const desktopNavStyle = {
-  display: "flex",
-  gap: "18px",
-  alignItems: "center",
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-};
-
 const navLinkStyle = {
   background: "transparent",
   border: "none",
   color: "#000000",
-  fontSize: "16px",
+  fontSize: "14px",
   fontWeight: 500,
   cursor: "pointer",
   textDecoration: "none",
@@ -554,6 +519,7 @@ const Dropdown = ({ children }) => (
       listStyle: "none",
       padding: "6px 0",
       margin: 0,
+      zIndex: 1001,
     }}
   >
     {children}
@@ -570,9 +536,8 @@ const DropItem = ({ to, onClick, children }) => (
         display: "block",
         padding: "10px 16px",
         fontSize: "14px",
-        color: "#000",
+        color: "#000000",
         textDecoration: "none",
-         whiteSpace: "nowrap",
       }}
       onMouseEnter={(e) => e.currentTarget.style.background = "#f9fafb"}
       onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
@@ -584,8 +549,6 @@ const DropItem = ({ to, onClick, children }) => (
 
 const Chevron = ({ open }) => (
   <svg
-    width="14"
-    height="14"
     style={{
       width: "14px",
       height: "14px",

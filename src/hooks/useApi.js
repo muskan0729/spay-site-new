@@ -2,7 +2,8 @@ import { useState, useCallback } from 'react';
 import axios from 'axios';
 
 // Create axios instance with default config
-const apiClient = axios.create({
+export const apiClient = axios.create({
+  // Use import.meta.env for Vite instead of process.env
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
   timeout: 10000,
   headers: {

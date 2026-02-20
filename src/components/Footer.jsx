@@ -13,13 +13,14 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(1000px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)]" />
 
       {/* CONTENT */}
-      <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/* TOP SECTION */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14 md:gap-y-0">
           {/* LEFT CONTENT */}
-          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-14 gap-y-10">
+          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-10">
             <FooterBlock title="Address">
-              316 Laxmi Plaza, Laxmi Industrial Estate,<br />
+              316 Laxmi Plaza, Laxmi Industrial Estate,
+              <br />
               Andheri West, Mumbai 400053.
             </FooterBlock>
 
@@ -48,7 +49,7 @@ const Footer = () => {
           </div>
 
           {/* RIGHT BRAND / TRUST */}
-          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between gap-10">
+          <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
             {/* APP */}
             <div>
               <p className="mb-4 text-[13px] uppercase tracking-widest text-white/70">
@@ -60,12 +61,12 @@ const Footer = () => {
                 rel="noreferrer"
                 className="inline-block opacity-95 hover:opacity-100 transition"
               >
-                <img src={appStore} alt="App Store" className="h-[40px]" />
+                <img src={appStore} alt="App Store" className="h-[40px] sm:h-[44px]" />
               </a>
             </div>
 
             {/* TRUST */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 flex-wrap">
               <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
               <img src={iso} alt="ISO Certified" className="h-[48px] opacity-90" />
             </div>
@@ -77,11 +78,11 @@ const Footer = () => {
 
         {/* BOTTOM */}
         <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[13px] text-white/70">
+          <p className="text-[13px] text-white/70 text-center md:text-left">
             © 2024 Spay Fintech. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-6 text-[13px]">
+          <div className="flex flex-col md:flex-row items-center md:gap-6 gap-2 text-[13px]">
             <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
             <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
           </div>
@@ -98,9 +99,7 @@ const FooterBlock = ({ title, children }) => (
     <h5 className="mb-4 text-[13px] font-medium uppercase tracking-widest text-white/80">
       {title}
     </h5>
-    <div className="text-[14px] leading-[1.7] text-white space-y-2">
-      {children}
-    </div>
+    <div className="text-[14px] leading-[1.7] text-white space-y-2">{children}</div>
   </div>
 );
 

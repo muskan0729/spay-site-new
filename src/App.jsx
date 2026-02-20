@@ -19,6 +19,13 @@ import Career from "./Pages/Career";
 import ScrollTop from "./components/ScrollTop";
 import SignUp from "./Pages/SignUp";
 
+import AdminLayout from "./admin/layout/AdminLayout";
+import Dashboard from "./admin/pages/Dashboard";
+import Users from "./admin/pages/Users";
+import Positions from "./admin/pages/Positions";
+import Candidates from "./admin/pages/Candidates";
+// import Departments from "./admin/pages/Departments";
+
 function App() {
   return (
     <>
@@ -41,6 +48,15 @@ function App() {
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           <Route path="/careers" element={<Career/>}/>
         </Route>
+
+
+          <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="users" element={<Users />} />
+        <Route path="positions" element={<Positions />} />
+        <Route path="candidates" element={<Candidates />} />
+        {/* <Route path="departments" element={<Departments />} /> */}
+      </Route>
       </Routes>
     </>
   );

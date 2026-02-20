@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { usePost } from "../hooks/usePost";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,16 +12,26 @@ const SignUp = () => {
     businessType: "",
     password: "",
     confirmPassword: "",
+    // Add missing fields
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
   });
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
-  const [apiError, setApiError] = useState("");
+
+  const { 
+    loading: isLoading, 
+    error: apiError, 
+    post: registerUser,
+    reset: resetApiState 
+  } = usePost('/register');
 
   const businessTypes = [
     "Retail",
@@ -58,7 +68,7 @@ const SignUp = () => {
     }
     
     if (apiError) {
-      setApiError("");
+      resetApiState();
     }
   };
 
@@ -124,6 +134,25 @@ const SignUp = () => {
       newErrors.businessType = "Please select your business type";
     }
 
+    // New validations for address fields
+    if (!formData.address.trim()) {
+      newErrors.address = "Address is required";
+    }
+
+    if (!formData.city.trim()) {
+      newErrors.city = "City is required";
+    }
+
+    if (!formData.state.trim()) {
+      newErrors.state = "State is required";
+    }
+
+    if (!formData.pincode.trim()) {
+      newErrors.pincode = "Pincode is required";
+    } else if (!/^\d{6}$/.test(formData.pincode)) {
+      newErrors.pincode = "Please enter a valid 6-digit pincode";
+    }
+
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
@@ -156,45 +185,46 @@ const SignUp = () => {
     setTouched(allFields);
 
     if (validateForm()) {
-      setIsLoading(true);
-      setApiError("");
+      // Transform the data to match backend expectations
+      const apiData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        password_confirmation: formData.confirmPassword, // Add this for Laravel
+        phone: formData.mobile, // Map mobile to phone
+        company_name: formData.businessName, // Map businessName to company_name
+        business_type: formData.businessType, // Map businessType to business_type
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+      };
       
-      try {
-        const { confirmPassword, ...apiData } = formData;
-        const response = await axios.post('/api/register', apiData);
-        
-        if (response.data && response.data.success) {
-          if (response.data.token) {
-            localStorage.setItem('authToken', response.data.token);
-          }
-          if (response.data.user) {
-            localStorage.setItem('userData', JSON.stringify(response.data.user));
-          }
-          navigate("/integration");
-        } else {
-          setApiError(response.data.message || "Registration failed. Please try again.");
+      const response = await registerUser(apiData);
+      
+      if (response.success) {
+        if (response.data?.token) {
+          localStorage.setItem('authToken', response.data.token);
         }
-      } catch (error) {
-        console.error("Signup failed:", error);
-        
-        if (error.response) {
-          setApiError(error.response.data.message || `Error ${error.response.status}: Registration failed`);
-        } else if (error.request) {
-          setApiError("Network error. Please check your connection and try again.");
-        } else {
-          setApiError("An unexpected error occurred. Please try again.");
+        if (response.data?.user) {
+          localStorage.setItem('userData', JSON.stringify(response.data.user));
         }
-      } finally {
-        setIsLoading(false);
+        navigate("/integration");
       }
     }
   };
 
+  // Add this function to display API validation errors
+  const getFieldError = (field) => {
+    if (apiError && typeof apiError === 'object' && apiError.errors) {
+      return apiError.errors[field]?.[0];
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 px-4 sm:py-12 lg:py-16 relative overflow-hidden">
-      {/* Clean Navy Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle Grid */}
         <div className="absolute inset-0" style={{
           backgroundImage: `linear-gradient(to right, #e0e7ff 1px, transparent 1px),
                             linear-gradient(to bottom, #e0e7ff 1px, transparent 1px)`,
@@ -202,19 +232,16 @@ const SignUp = () => {
           opacity: 0.2
         }}></div>
         
-        {/* Soft Gradient Orbs */}
         <div className="absolute top-20 -left-20 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
         <div className="absolute bottom-20 -right-20 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
       </div>
 
       <div className="max-w-2xl mx-auto relative z-10">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
             Create your account
           </h1>
         
-          {/* Progress Steps */}
           <div className="flex justify-center gap-2 mt-6">
             {[1, 2, 3].map((step) => (
               <div
@@ -229,7 +256,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name Field */}
@@ -251,7 +277,7 @@ const SignUp = () => {
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => handleBlur('name')}
                   className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all duration-200 ${
-                    touched.name && errors.name
+                    (touched.name && errors.name) || getFieldError('name')
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'name'
                       ? "border-blue-400 shadow-sm"
@@ -260,8 +286,11 @@ const SignUp = () => {
                   placeholder="John Doe"
                 />
               </div>
-              {touched.name && errors.name && (
+              {(touched.name && errors.name) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.name}</p>
+              )}
+              {getFieldError('name') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('name')}</p>
               )}
             </div>
 
@@ -284,7 +313,7 @@ const SignUp = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => handleBlur('email')}
                   className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all duration-200 ${
-                    touched.email && errors.email
+                    (touched.email && errors.email) || getFieldError('email')
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'email'
                       ? "border-blue-400 shadow-sm"
@@ -293,12 +322,15 @@ const SignUp = () => {
                   placeholder="john@company.com"
                 />
               </div>
-              {touched.email && errors.email && (
+              {(touched.email && errors.email) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.email}</p>
+              )}
+              {getFieldError('email') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('email')}</p>
               )}
             </div>
 
-            {/* Mobile Field */}
+            {/* Mobile/Phone Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Mobile Number <span className="text-blue-500">*</span>
@@ -316,7 +348,7 @@ const SignUp = () => {
                   onBlur={() => handleBlur('mobile')}
                   maxLength="10"
                   className={`flex-1 w-full px-4 py-3 rounded-r-lg border transition-all duration-200 ${
-                    touched.mobile && errors.mobile
+                    (touched.mobile && errors.mobile) || getFieldError('phone')
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'mobile'
                       ? "border-blue-400 shadow-sm"
@@ -325,8 +357,11 @@ const SignUp = () => {
                   placeholder="98765 43210"
                 />
               </div>
-              {touched.mobile && errors.mobile && (
+              {(touched.mobile && errors.mobile) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.mobile}</p>
+              )}
+              {getFieldError('phone') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('phone')}</p>
               )}
             </div>
 
@@ -349,7 +384,7 @@ const SignUp = () => {
                   onFocus={() => setFocusedField('businessName')}
                   onBlur={() => handleBlur('businessName')}
                   className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all duration-200 ${
-                    touched.businessName && errors.businessName
+                    (touched.businessName && errors.businessName) || getFieldError('company_name')
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'businessName'
                       ? "border-blue-400 shadow-sm"
@@ -358,8 +393,11 @@ const SignUp = () => {
                   placeholder="Your Business Name"
                 />
               </div>
-              {touched.businessName && errors.businessName && (
+              {(touched.businessName && errors.businessName) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.businessName}</p>
+              )}
+              {getFieldError('company_name') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('company_name')}</p>
               )}
             </div>
 
@@ -375,7 +413,7 @@ const SignUp = () => {
                 onFocus={() => setFocusedField('businessType')}
                 onBlur={() => handleBlur('businessType')}
                 className={`w-full px-4 py-3 rounded-lg border appearance-none cursor-pointer transition-all duration-200 bg-white ${
-                  touched.businessType && errors.businessType
+                  (touched.businessType && errors.businessType) || getFieldError('business_type')
                     ? "border-red-300 bg-red-50 focus:border-red-400"
                     : focusedField === 'businessType'
                     ? "border-blue-400 shadow-sm"
@@ -393,9 +431,132 @@ const SignUp = () => {
                   <option key={type} value={type}>{type}</option>
                 ))}
               </select>
-              {touched.businessType && errors.businessType && (
+              {(touched.businessType && errors.businessType) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.businessType}</p>
               )}
+              {getFieldError('business_type') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('business_type')}</p>
+              )}
+            </div>
+
+            {/* Address Field - NEW */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Address <span className="text-blue-500">*</span>
+              </label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                onFocus={() => setFocusedField('address')}
+                onBlur={() => handleBlur('address')}
+                rows="3"
+                className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                  (touched.address && errors.address) || getFieldError('address')
+                    ? "border-red-300 bg-red-50 focus:border-red-400"
+                    : focusedField === 'address'
+                    ? "border-blue-400 shadow-sm"
+                    : "border-gray-200 hover:border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-blue-100`}
+                placeholder="Enter your full address"
+              />
+              {(touched.address && errors.address) && (
+                <p className="mt-1.5 text-sm text-red-500">{errors.address}</p>
+              )}
+              {getFieldError('address') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('address')}</p>
+              )}
+            </div>
+
+            {/* City, State, Pincode Row - NEW */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* City */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  City <span className="text-blue-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('city')}
+                  onBlur={() => handleBlur('city')}
+                  className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                    (touched.city && errors.city) || getFieldError('city')
+                      ? "border-red-300 bg-red-50 focus:border-red-400"
+                      : focusedField === 'city'
+                      ? "border-blue-400 shadow-sm"
+                      : "border-gray-200 hover:border-gray-300"
+                  } focus:outline-none focus:ring-2 focus:ring-blue-100`}
+                  placeholder="City"
+                />
+                {(touched.city && errors.city) && (
+                  <p className="mt-1.5 text-sm text-red-500">{errors.city}</p>
+                )}
+                {getFieldError('city') && (
+                  <p className="mt-1.5 text-sm text-red-500">{getFieldError('city')}</p>
+                )}
+              </div>
+
+              {/* State */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  State <span className="text-blue-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('state')}
+                  onBlur={() => handleBlur('state')}
+                  className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                    (touched.state && errors.state) || getFieldError('state')
+                      ? "border-red-300 bg-red-50 focus:border-red-400"
+                      : focusedField === 'state'
+                      ? "border-blue-400 shadow-sm"
+                      : "border-gray-200 hover:border-gray-300"
+                  } focus:outline-none focus:ring-2 focus:ring-blue-100`}
+                  placeholder="State"
+                />
+                {(touched.state && errors.state) && (
+                  <p className="mt-1.5 text-sm text-red-500">{errors.state}</p>
+                )}
+                {getFieldError('state') && (
+                  <p className="mt-1.5 text-sm text-red-500">{getFieldError('state')}</p>
+                )}
+              </div>
+
+              {/* Pincode */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Pincode <span className="text-blue-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('pincode')}
+                  onBlur={() => handleBlur('pincode')}
+                  maxLength="6"
+                  className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
+                    (touched.pincode && errors.pincode) || getFieldError('pincode')
+                      ? "border-red-300 bg-red-50 focus:border-red-400"
+                      : focusedField === 'pincode'
+                      ? "border-blue-400 shadow-sm"
+                      : "border-gray-200 hover:border-gray-300"
+                  } focus:outline-none focus:ring-2 focus:ring-blue-100`}
+                  placeholder="6-digit pincode"
+                />
+                {(touched.pincode && errors.pincode) && (
+                  <p className="mt-1.5 text-sm text-red-500">{errors.pincode}</p>
+                )}
+                {getFieldError('pincode') && (
+                  <p className="mt-1.5 text-sm text-red-500">{getFieldError('pincode')}</p>
+                )}
+              </div>
             </div>
 
             {/* Password Field */}
@@ -417,7 +578,7 @@ const SignUp = () => {
                   onFocus={() => setFocusedField('password')}
                   onBlur={() => handleBlur('password')}
                   className={`w-full pl-10 pr-10 py-3 rounded-lg border transition-all duration-200 ${
-                    touched.password && errors.password
+                    (touched.password && errors.password) || getFieldError('password')
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'password'
                       ? "border-blue-400 shadow-sm"
@@ -478,8 +639,11 @@ const SignUp = () => {
                 </div>
               )}
               
-              {touched.password && errors.password && (
+              {(touched.password && errors.password) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.password}</p>
+              )}
+              {getFieldError('password') && (
+                <p className="mt-1.5 text-sm text-red-500">{getFieldError('password')}</p>
               )}
             </div>
 
@@ -502,7 +666,7 @@ const SignUp = () => {
                   onFocus={() => setFocusedField('confirmPassword')}
                   onBlur={() => handleBlur('confirmPassword')}
                   className={`w-full pl-10 pr-10 py-3 rounded-lg border transition-all duration-200 ${
-                    touched.confirmPassword && errors.confirmPassword
+                    (touched.confirmPassword && errors.confirmPassword)
                       ? "border-red-300 bg-red-50 focus:border-red-400"
                       : focusedField === 'confirmPassword'
                       ? "border-blue-400 shadow-sm"
@@ -527,7 +691,7 @@ const SignUp = () => {
                   )}
                 </button>
               </div>
-              {touched.confirmPassword && errors.confirmPassword && (
+              {(touched.confirmPassword && errors.confirmPassword) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.confirmPassword}</p>
               )}
 
@@ -563,8 +727,20 @@ const SignUp = () => {
               </label>
             </div>
 
-            {/* API Error Message */}
-            {apiError && (
+            {/* API Error Message - Display validation errors in a better format */}
+            {apiError && typeof apiError === 'object' && apiError.message && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-sm font-medium text-red-600 mb-1">{apiError.message}</p>
+                {apiError.errors && Object.keys(apiError.errors).length > 0 && (
+                  <ul className="text-xs text-red-500 list-disc list-inside">
+                    {Object.entries(apiError.errors).map(([field, messages]) => (
+                      <li key={field}>{field}: {messages[0]}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+            {apiError && typeof apiError === 'string' && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-sm text-red-600">{apiError}</p>
               </div>

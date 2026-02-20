@@ -234,8 +234,12 @@ const DUMMY_JOBS = [
 
 // Get user role from localStorage
 const getUserRole = () => {
-  const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-  return userData?.role || 'user';
+  // FOR TESTING: Uncomment the line below to force admin view
+  return 'admin'; // Force admin for testing
+  
+  // Original code - comment this out temporarily
+  // const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  // return userData?.role || 'user';
 };
 
 const Career = () => {
@@ -570,7 +574,7 @@ const Career = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center px-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600">Loading career opportunities...</p>
         </div>
@@ -581,7 +585,7 @@ const Career = () => {
   if (error && !USE_DUMMY_DATA) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center px-4">
           <p className="text-red-600 mb-4">Error loading data: {error}</p>
           <button 
             onClick={() => window.location.reload()}
@@ -598,10 +602,10 @@ const Career = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Test Mode Indicator */}
       {USE_DUMMY_DATA && (
-        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 fixed top-0 left-0 right-0 z-50">
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-3 sm:p-4 fixed top-0 left-0 right-0 z-50 text-sm sm:text-base">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <p className="font-medium">
-              🔧 USING DUMMY DATA - Toggle USE_DUMMY_DATA to false for real API
+              🔧 USING DUMMY DATA
             </p>
           </div>
         </div>
@@ -612,27 +616,41 @@ const Career = () => {
         <img
           src={HeroImg}
           alt="Career Banner"
-          className="w-full h-[250px] object-cover"
+          className="w-full h-[180px] sm:h-[200px] md:h-[250px] object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80 flex items-center justify-center">
-          <h1 className="text-4xl font-bold text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white px-4 text-center">
             Join Our Team
           </h1>
         </div>
       </div>
 
-      {/* 3 Column Layout */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+      {/* Role Toggle for Testing - Remove in production */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-end">
+        <button
+          onClick={() => {
+            const newRole = isAdmin ? 'user' : 'admin';
+            localStorage.setItem('userData', JSON.stringify({ role: newRole }));
+            window.location.reload();
+          }}
+          className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-xs sm:text-sm shadow-md"
+        >
+          Switch to {isAdmin ? 'User' : 'Admin'} View
+        </button>
+      </div>
+
+      {/* 3 Column Layout - Responsive Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12 grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
         {/* LEFT SIDEBAR - Departments */}
-        <div className="bg-white rounded-xl shadow-md p-5 h-fit">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-gray-800">
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-5 h-fit md:sticky md:top-24">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h3 className="font-semibold text-gray-800 text-base sm:text-lg">
               Departments
             </h3>
             {isAdmin && (
               <button
                 onClick={handleAddDepartment}
-                className="w-8 h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center text-xl font-bold transition-colors shadow-sm"
+                className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center text-lg sm:text-xl font-bold transition-colors shadow-sm flex-shrink-0"
                 title="Add Department"
               >
                 +
@@ -640,22 +658,22 @@ const Career = () => {
             )}
           </div>
 
-          <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+          <div className="space-y-2 max-h-[350px] sm:max-h-[400px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-gray-300">
             {departments.map((dept) => (
               <div key={dept.id} className="relative group">
                 <button
                   onClick={() => setSelectedDept(dept)}
-                  className={`w-full text-left p-3 rounded-lg transition flex items-center justify-between
+                  className={`w-full text-left p-2 sm:p-3 rounded-lg transition flex items-center justify-between text-sm sm:text-base
                     ${
                       selectedDept?.id === dept.id
                         ? "bg-blue-600 text-white"
                         : "hover:bg-gray-100 text-gray-700"
                     }`}
                 >
-                  <span className="truncate max-w-[140px]">{dept.name}</span>
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <span className="truncate max-w-[100px] sm:max-w-[120px] md:max-w-[140px]">{dept.name}</span>
+                  <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                     {dept.jobCount > 0 && (
-                      <span className={`text-xs px-2 py-1 rounded-full ${
+                      <span className={`text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full ${
                         selectedDept?.id === dept.id
                           ? "bg-blue-500 text-white"
                           : "bg-gray-200 text-gray-600"
@@ -669,10 +687,10 @@ const Career = () => {
                 {isAdmin && (
                   <button
                     onClick={(e) => handleDeleteDepartmentClick(dept, e)}
-                    className="absolute -top-2 -right-2 hidden group-hover:flex p-1.5 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-colors shadow-sm"
+                    className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 hidden group-hover:flex p-1 sm:p-1.5 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-colors shadow-sm"
                     title="Delete Department"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                   </button>
@@ -683,12 +701,12 @@ const Career = () => {
         </div>
 
         {/* MIDDLE - Job Titles */}
-        <div className="bg-white rounded-xl shadow-md p-5 h-fit">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-gray-800">
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-5 h-fit md:sticky md:top-24">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h3 className="font-semibold text-gray-800 text-base sm:text-lg">
               Open Positions
               {selectedDept && (
-                <span className="ml-2 text-sm font-normal text-gray-500">
+                <span className="ml-2 text-xs sm:text-sm font-normal text-gray-500">
                   ({filteredJobs.length})
                 </span>
               )}
@@ -697,7 +715,7 @@ const Career = () => {
               <button
                 onClick={handleAddJob}
                 disabled={!selectedDept}
-                className={`w-8 h-8 rounded-lg flex items-center justify-center text-xl font-bold transition-colors shadow-sm flex-shrink-0 ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-lg sm:text-xl font-bold transition-colors shadow-sm flex-shrink-0 ${
                   selectedDept 
                     ? "bg-blue-600 hover:bg-blue-700 text-white" 
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -709,36 +727,36 @@ const Career = () => {
             )}
           </div>
 
-          <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+          <div className="space-y-2 max-h-[350px] sm:max-h-[400px] overflow-y-auto pr-1 sm:pr-2 scrollbar-thin scrollbar-thumb-gray-300">
             {filteredJobs.length > 0 ? (
               filteredJobs.map((job) => (
                 <div key={job.id} className="relative group bg-white rounded-lg hover:shadow-md transition-shadow">
                   <button
                     onClick={() => setSelectedJob(job)}
-                    className={`w-full text-left p-3 rounded-lg transition-all
+                    className={`w-full text-left p-2 sm:p-3 rounded-lg transition-all text-sm sm:text-base
                       ${
                         selectedJob?.id === job.id
                           ? "bg-blue-50 border-l-4 border-blue-600"
                           : "hover:bg-gray-50 border-l-4 border-transparent"
                       }`}
                   >
-                    <div className="font-medium">{job.name}</div>
+                    <div className="font-medium pr-16 sm:pr-20">{job.name}</div>
                     <div className="text-xs text-gray-500 mt-1">
                       {job.location} • {job.job_type}
                     </div>
                   </button>
                   
                   {isAdmin && (
-                    <div className="absolute top-2 right-2 hidden group-hover:flex gap-1">
+                    <div className="absolute top-1 right-1 sm:top-2 sm:right-2 hidden group-hover:flex gap-1 bg-white/90 backdrop-blur-sm rounded-lg p-1 shadow-sm">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleEditJob(job);
                         }}
-                        className="p-1.5 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors shadow-sm"
+                        className="p-1 sm:p-1.5 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
                         title="Edit"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                       </button>
@@ -747,10 +765,10 @@ const Career = () => {
                           e.stopPropagation();
                           handleDeleteClick(job);
                         }}
-                        className="p-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors shadow-sm"
+                        className="p-1 sm:p-1.5 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
                         title="Delete"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                       </button>
@@ -759,8 +777,8 @@ const Career = () => {
                 </div>
               ))
             ) : (
-              <div className="text-center py-8">
-                <p className="text-gray-500 text-sm">
+              <div className="text-center py-6 sm:py-8">
+                <p className="text-gray-500 text-xs sm:text-sm">
                   {selectedDept 
                     ? "No open positions in this department"
                     : "Select a department to view positions"}
@@ -768,7 +786,7 @@ const Career = () => {
                 {isAdmin && selectedDept && (
                   <button
                     onClick={handleAddJob}
-                    className="mt-4 text-blue-600 text-sm hover:underline font-medium"
+                    className="mt-3 sm:mt-4 text-blue-600 text-xs sm:text-sm hover:underline font-medium"
                   >
                     + Add first position
                   </button>
@@ -779,49 +797,49 @@ const Career = () => {
         </div>
 
         {/* RIGHT - Job Details */}
-        <div className="md:col-span-2 bg-white rounded-xl shadow-md p-8">
+        <div className="md:col-span-2 bg-white rounded-xl shadow-md p-5 sm:p-6 md:p-8">
           {selectedJob ? (
             <>
-              <h2 className="text-2xl font-bold mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2">
                 {selectedJob.name}
               </h2>
 
-              <div className="flex gap-6 text-sm text-gray-600 mb-6">
+              <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
                 <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   {selectedJob.location}
                 </span>
                 <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   {selectedJob.job_type}
                 </span>
               </div>
 
-              <div className="mb-6">
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <span className="w-1 h-5 bg-blue-600 rounded"></span>
+              <div className="mb-4 sm:mb-6">
+                <h4 className="font-semibold mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="w-1 h-4 sm:h-5 bg-blue-600 rounded"></span>
                   Key Responsibilities
                 </h4>
-                <ul className="list-disc list-inside text-gray-600 space-y-2 pl-2">
+                <ul className="list-disc list-inside text-gray-600 space-y-1 sm:space-y-2 pl-2 text-xs sm:text-sm">
                   {selectedJob.responsibility?.map((item, i) => (
-                    <li key={i} className="text-sm">{item}</li>
+                    <li key={i} className="text-xs sm:text-sm">{item}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-8">
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <span className="w-1 h-5 bg-blue-600 rounded"></span>
+              <div className="mb-6 sm:mb-8">
+                <h4 className="font-semibold mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="w-1 h-4 sm:h-5 bg-blue-600 rounded"></span>
                   Requirements
                 </h4>
-                <ul className="list-disc list-inside text-gray-600 space-y-2 pl-2">
+                <ul className="list-disc list-inside text-gray-600 space-y-1 sm:space-y-2 pl-2 text-xs sm:text-sm">
                   {selectedJob.requirements?.map((item, i) => (
-                    <li key={i} className="text-sm">{item}</li>
+                    <li key={i} className="text-xs sm:text-sm">{item}</li>
                   ))}
                 </ul>
               </div>
@@ -830,9 +848,9 @@ const Career = () => {
               {!isAdmin && (
                 <a
                   href={`mailto:${selectedJob.email}?subject=Application for ${selectedJob.name}`}
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all hover:shadow-lg"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-blue-700 transition-all hover:shadow-lg text-sm sm:text-base"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   Apply Now
@@ -840,11 +858,11 @@ const Career = () => {
               )}
             </>
           ) : (
-            <div className="text-center py-12">
-              <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-8 sm:py-12">
+              <svg className="w-12 h-12 sm:w-16 sm:h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <p className="text-gray-500">
+              <p className="text-gray-500 text-sm sm:text-base">
                 Select a position to view details
               </p>
             </div>
@@ -852,16 +870,17 @@ const Career = () => {
         </div>
       </div>
 
-      {/* Add Department Modal */}
+      {/* Add Department Modal - Fully Responsive */}
       {showDeptModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full shadow-2xl">
-            <div className="p-6">
+          <div className="bg-white rounded-xl w-full max-w-md mx-auto shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="relative p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">Add New Department</h3>
                 <button
                   onClick={() => setShowDeptModal(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl leading-none"
+                  className="text-gray-500 hover:text-gray-700 text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Close"
                 >
                   ×
                 </button>
@@ -876,21 +895,21 @@ const Career = () => {
                     value={newDeptName}
                     onChange={(e) => setNewDeptName(e.target.value)}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                     placeholder="e.g., Engineering"
                   />
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
-                    className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition shadow-sm"
+                    className="w-full sm:flex-1 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition shadow-sm text-sm font-medium"
                   >
                     Add Department
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowDeptModal(false)}
-                    className="flex-1 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 transition"
+                    className="w-full sm:flex-1 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 transition text-sm font-medium"
                   >
                     Cancel
                   </button>
@@ -901,11 +920,21 @@ const Career = () => {
         </div>
       )}
 
-      {/* Delete Department Confirmation Modal */}
+      {/* Delete Department Confirmation Modal - Fully Responsive */}
       {showDeleteDeptModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full shadow-2xl">
-            <div className="p-6">
+          <div className="bg-white rounded-xl w-full max-w-md mx-auto shadow-2xl">
+            <div className="relative p-6">
+              <button
+                onClick={() => {
+                  setShowDeleteDeptModal(false);
+                  setDepartmentToDelete(null);
+                }}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close"
+              >
+                ×
+              </button>
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -913,14 +942,14 @@ const Career = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Delete Department</h3>
-                <p className="text-gray-600">
+                <p className="text-sm text-gray-600">
                   Are you sure you want to delete "{departmentToDelete?.name}"? This action cannot be undone.
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleDeleteDepartment}
-                  className="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition shadow-sm"
+                  className="w-full sm:flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition shadow-sm text-sm font-medium"
                 >
                   Delete Department
                 </button>
@@ -929,7 +958,7 @@ const Career = () => {
                     setShowDeleteDeptModal(false);
                     setDepartmentToDelete(null);
                   }}
-                  className="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition"
+                  className="w-full sm:flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition text-sm font-medium"
                 >
                   Cancel
                 </button>
@@ -939,23 +968,26 @@ const Career = () => {
         </div>
       )}
 
-      {/* Add/Edit Job Modal */}
+      {/* Add/Edit Job Modal - Fully Responsive */}
       {showModal && modalMode !== 'delete' && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
+          <div className="bg-white rounded-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="sticky top-0 bg-white z-20 border-b border-gray-100 p-6">
+              <div className="flex justify-between items-center">
                 <h3 className="text-xl font-bold">
                   {modalMode === 'add' ? 'Add New Position' : 'Edit Position'}
                 </h3>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl leading-none"
+                  className="text-gray-500 hover:text-gray-700 text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Close"
                 >
                   ×
                 </button>
               </div>
+            </div>
 
+            <div className="p-6">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Title */}
                 <div>
@@ -968,12 +1000,12 @@ const Career = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                     placeholder="e.g., Senior Software Engineer"
                   />
                 </div>
 
-                {/* Department */}
+                {/* Department - Now Readonly/Disabled */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Department *
@@ -983,7 +1015,8 @@ const Career = () => {
                     value={formData.deptId}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    disabled
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed text-sm"
                   >
                     <option value="">Select Department</option>
                     {departments.map(dept => (
@@ -992,10 +1025,11 @@ const Career = () => {
                       </option>
                     ))}
                   </select>
+                  <p className="text-xs text-gray-500 mt-1">Department is locked to the selected department</p>
                 </div>
 
                 {/* Location and Type */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Location *
@@ -1006,7 +1040,7 @@ const Career = () => {
                       value={formData.location}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                       placeholder="New York, NY"
                     />
                   </div>
@@ -1019,7 +1053,7 @@ const Career = () => {
                       value={formData.job_type}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                     >
                       <option value="">Select Type</option>
                       <option value="Full-time">Full Time</option>
@@ -1038,28 +1072,28 @@ const Career = () => {
                   <div className="space-y-2">
                     {formData.responsibility.map((resp, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <span className="flex-1 text-sm bg-gray-50 p-2 rounded border border-gray-200">{resp}</span>
+                        <span className="flex-1 text-sm bg-gray-50 p-2 rounded border border-gray-200 break-words">{resp}</span>
                         <button
                           type="button"
                           onClick={() => removeResponsibility(index)}
-                          className="text-red-500 hover:text-red-700 p-1"
+                          className="text-red-500 hover:text-red-700 p-1 flex-shrink-0"
                         >
                           ×
                         </button>
                       </div>
                     ))}
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
                         value={newResponsibility}
                         onChange={(e) => setNewResponsibility(e.target.value)}
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Add a responsibility"
                       />
                       <button
                         type="button"
                         onClick={addResponsibility}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                        className="w-full sm:w-auto px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm whitespace-nowrap font-medium"
                       >
                         Add
                       </button>
@@ -1075,28 +1109,28 @@ const Career = () => {
                   <div className="space-y-2">
                     {formData.requirements.map((req, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <span className="flex-1 text-sm bg-gray-50 p-2 rounded border border-gray-200">{req}</span>
+                        <span className="flex-1 text-sm bg-gray-50 p-2 rounded border border-gray-200 break-words">{req}</span>
                         <button
                           type="button"
                           onClick={() => removeRequirement(index)}
-                          className="text-red-500 hover:text-red-700 p-1"
+                          className="text-red-500 hover:text-red-700 p-1 flex-shrink-0"
                         >
                           ×
                         </button>
                       </div>
                     ))}
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
                         value={newRequirement}
                         onChange={(e) => setNewRequirement(e.target.value)}
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Add a requirement"
                       />
                       <button
                         type="button"
                         onClick={addRequirement}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                        className="w-full sm:w-auto px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm whitespace-nowrap font-medium"
                       >
                         Add
                       </button>
@@ -1105,18 +1139,18 @@ const Career = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-100">
                   <button
                     type="submit"
                     disabled={createJobApi.loading}
-                    className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition shadow-sm disabled:opacity-50"
+                    className="w-full sm:flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition shadow-sm disabled:opacity-50 text-sm font-medium"
                   >
                     {createJobApi.loading ? 'Saving...' : 'Save Position'}
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                    className="w-full sm:flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition text-sm font-medium"
                   >
                     Cancel
                   </button>
@@ -1127,11 +1161,18 @@ const Career = () => {
         </div>
       )}
 
-      {/* Delete Job Confirmation Modal */}
+      {/* Delete Job Confirmation Modal - Fully Responsive */}
       {showModal && modalMode === 'delete' && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full shadow-2xl">
-            <div className="p-6">
+          <div className="bg-white rounded-xl w-full max-w-md mx-auto shadow-2xl">
+            <div className="relative p-6">
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close"
+              >
+                ×
+              </button>
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1139,21 +1180,21 @@ const Career = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Delete Position</h3>
-                <p className="text-gray-600">
+                <p className="text-sm text-gray-600">
                   Are you sure you want to delete "{currentJob?.name}"? This action cannot be undone.
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleDelete}
                   disabled={deleteJobApi.loading}
-                  className="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition shadow-sm disabled:opacity-50"
+                  className="w-full sm:flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition shadow-sm disabled:opacity-50 text-sm font-medium"
                 >
                   {deleteJobApi.loading ? 'Deleting...' : 'Delete'}
                 </button>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition"
+                  className="w-full sm:flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition text-sm font-medium"
                 >
                   Cancel
                 </button>

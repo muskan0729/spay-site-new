@@ -6,7 +6,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [mobileFeaturesOpen, setMobileFeaturesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
 
   const featuresRef = useRef(null);
   const productsRef = useRef(null);
@@ -31,8 +32,9 @@ const Header = () => {
 
     return () => mediaQuery.removeListener(handleChange);
   }, []);
+  const mobileMenuRef = useRef(null);
 
-  /* ================= CLICK OUTSIDE ================= */
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (featuresRef.current && !featuresRef.current.contains(event.target)) {
@@ -41,8 +43,10 @@ const Header = () => {
       if (productsRef.current && !productsRef.current.contains(event.target)) {
         setProductsOpen(false);
       }
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && !event.target.closest('.mobile-menu-btn')) {
         setMenuOpen(false);
+        setMobileFeaturesOpen(false);
+        setMobileProductsOpen(false);
       }
     };
 
@@ -50,33 +54,54 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMenuOpen(false);
+        setMobileFeaturesOpen(false);
+        setMobileProductsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleFeaturesClick = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setFeaturesOpen(!featuresOpen);
-    if (isMobile) setProductsOpen(false);
+    setProductsOpen(false);
   };
 
   const handleProductsClick = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setProductsOpen(!productsOpen);
-    if (isMobile) setFeaturesOpen(false);
+    setFeaturesOpen(false);
   };
 
-  const toggleMobileMenu = () => {
-    setMenuOpen(!menuOpen);
-    if (!menuOpen) {
-      setFeaturesOpen(false);
-      setProductsOpen(false);
-    }
+  const handleMobileFeaturesClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMobileFeaturesOpen(!mobileFeaturesOpen);
+    setMobileProductsOpen(false);
   };
 
-  const closeMobileMenu = () => {
+  const handleMobileProductsClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMobileProductsOpen(!mobileProductsOpen);
+    setMobileFeaturesOpen(false);
+  };
+
+  const closeAllMenus = () => {
     setMenuOpen(false);
     setFeaturesOpen(false);
     setProductsOpen(false);
+    setMobileFeaturesOpen(false);
+    setMobileProductsOpen(false);
   };
-
-  const padding = isMobile ? "0 16px" : "0 24px";
 
   return (
     <header
@@ -92,7 +117,7 @@ const Header = () => {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding,
+          padding: "0 24px",
         }}
       >
         <nav
@@ -103,76 +128,351 @@ const Header = () => {
             height: "72px",
           }}
         >
-          <Link to="/" onClick={closeMobileMenu}>
+          {/* LOGO */}
+          <Link to="/" onClick={closeAllMenus}>
             <img src={logo} alt="Spay" style={{ height: "48px" }} />
           </Link>
 
-          {isMobile && (
-            <button
-              ref={menuRef}
-              onClick={toggleMobileMenu}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "8px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "4px",
-                zIndex: 1002,
-              }}
-            >
-              <span style={burgerLine(menuOpen, 1)} />
-              <span style={burgerLine(menuOpen, 2)} />
-              <span style={burgerLine(menuOpen, 3)} />
-            </button>
-          )}
-
           {/* DESKTOP NAV */}
-          {!isMobile && (
-            <ul style={desktopNavStyle}>
-              <NavItem name="Home" link="/" />
-              <NavItem name="About" link="/about-us" />
-              <NavItem name="Integration" link="/integration" />
+          <ul
+            className="desktop-nav"
+            style={{
+              display: "flex",
+              gap: "18px",
+              alignItems: "center",
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <NavItem name="Home" link="/" onClick={closeAllMenus} />
+            <NavItem name="About" link="/about-us" onClick={closeAllMenus} />
+            <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
 
-              <li ref={featuresRef} style={{ position: "relative" }}>
-                <Link to="#" onClick={handleFeaturesClick} style={navLinkStyle}>
-                  Features <Chevron open={featuresOpen} />
-                </Link>
-                {featuresOpen && (
-                  <Dropdown>
-                    <DropItem to="/paymentgateway">Payment Gateway</DropItem>
-                    <DropItem to="/OneClick">One-click Checkout</DropItem>
-                  </Dropdown>
-                )}
-              </li>
+            {/* FEATURES - Desktop */}
+            <li ref={featuresRef} style={{ position: "relative" }}>
+              <Link
+                to="#"
+                onClick={handleFeaturesClick}
+                className="nav-link"
+                style={{
+                  ...navLinkStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+              >
+                Features
+                <Chevron open={featuresOpen} />
+              </Link>
 
-              <li ref={productsRef} style={{ position: "relative" }}>
-                <Link to="#" onClick={handleProductsClick} style={navLinkStyle}>
-                  Products <Chevron open={productsOpen} />
-                </Link>
-                {productsOpen && (
-                  <Dropdown>
-                    <DropItem to="/upi-autopay">UPI</DropItem>
-                    <DropItem to="/payment-links">Payment Links</DropItem>
-                    <DropItem to="/soundbox">SoundBox</DropItem>
-                  </Dropdown>
-                )}
-              </li>
+              {featuresOpen && (
+                <Dropdown>
+                  <DropItem to="/paymentgateway" onClick={closeAllMenus}>Payment Gateway</DropItem>
+                  <DropItem to="/OneClick" onClick={closeAllMenus}>One-click Checkout</DropItem>
+                </Dropdown>
+              )}
+            </li>
+
+            {/* PRODUCTS - Desktop */}
+            <li ref={productsRef} style={{ position: "relative" }}>
+              <Link
+                to="#"
+                onClick={handleProductsClick}
+                className="nav-link"
+                style={{
+                  ...navLinkStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+              >
+                Products
+                <Chevron open={productsOpen} />
+              </Link>
+
+              {productsOpen && (
+                <Dropdown>
+                  <DropItem to="/upi-autopay" onClick={closeAllMenus}>UPI</DropItem>
+                  <DropItem to="/payment-links" onClick={closeAllMenus}>Payment Links</DropItem>
+                  <DropItem to="/soundbox" onClick={closeAllMenus}>SoundBox</DropItem>
+                </Dropdown>
+              )}
+            </li>
 
               <NavItem name="Careers" link="/careers" />
               <NavItem name="Contact" link="/contact-us" />
               <NavItem name="Dashboard" link="/admin" />
             </ul>
-          )}
+          {/* )} */}
+            <NavItem name="Careers" link="/careers" onClick={closeAllMenus} />
+            <NavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
+              <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />    
+          {/* </ul> */}
 
-          {!isMobile && (
-            <Link to="/onboarding-merchant" style={signupStyle}>
-              Sign up
-            </Link>
-          )}
+          {/* SIGN UP BUTTON */}
+          <Link
+            to="/sign-up"
+            className="signup-btn desktop-only"
+            onClick={closeAllMenus}
+            style={{
+              background: "#111827",
+              color: "#ffffff",
+              padding: "8px 16px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: 500,
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = "#1f2937"}
+            onMouseLeave={(e) => e.currentTarget.style.background = "#111827"}
+          >
+            Sign up
+          </Link>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setMenuOpen(!menuOpen);
+            }}
+            className="mobile-menu-btn mobile-only"
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+            }}
+          >
+            <div style={{
+              width: "24px",
+              height: "2px",
+              background: "#111827",
+              margin: "5px 0",
+              transition: "0.3s",
+              transform: menuOpen ? "rotate(-45deg) translate(-5px, 6px)" : "none",
+            }} />
+            <div style={{
+              width: "24px",
+              height: "2px",
+              background: "#111827",
+              margin: "5px 0",
+              transition: "0.3s",
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <div style={{
+              width: "24px",
+              height: "2px",
+              background: "#111827",
+              margin: "5px 0",
+              transition: "0.3s",
+              transform: menuOpen ? "rotate(45deg) translate(-5px, -6px)" : "none",
+            }} />
+          </button>
         </nav>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div
+            ref={mobileMenuRef}
+            className="mobile-menu"
+            style={{
+              padding: "16px 0",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ul
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+              }}
+            >
+              <MobileNavItem name="Home" link="/" onClick={closeAllMenus} />
+              <MobileNavItem name="About" link="/about-us" onClick={closeAllMenus} />
+              <MobileNavItem name="Integration" link="/integration" onClick={closeAllMenus} />
+
+              {/* Mobile Features - Using separate state */}
+              <li style={{ marginBottom: "8px" }}>
+                <div
+                  onClick={handleMobileFeaturesClick}
+                  style={{
+                    ...mobileNavLinkStyle,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
+                >
+                  Features
+                  <Chevron open={mobileFeaturesOpen} />
+                </div>
+                {mobileFeaturesOpen && (
+                  <div style={{ paddingLeft: "16px", marginTop: "8px" }}>
+                    <Link
+                      to="/paymentgateway"
+                      onClick={closeAllMenus}
+                      style={{
+                        display: "block",
+                        padding: "10px 0",
+                        fontSize: "14px",
+                        color: "#4b5563",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #f0f0f0",
+                      }}
+                    >
+                      Payment Gateway
+                    </Link>
+                    <Link
+                      to="/OneClick"
+                      onClick={closeAllMenus}
+                      style={{
+                        display: "block",
+                        padding: "10px 0",
+                        fontSize: "14px",
+                        color: "#4b5563",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #f0f0f0",
+                      }}
+                    >
+                      One-click Checkout
+                    </Link>
+                  </div>
+                )}
+              </li>
+
+              {/* Mobile Products - Using separate state */}
+              <li style={{ marginBottom: "8px" }}>
+                <div
+                  onClick={handleMobileProductsClick}
+                  style={{
+                    ...mobileNavLinkStyle,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
+                >
+                  Products
+                  <Chevron open={mobileProductsOpen} />
+                </div>
+                {mobileProductsOpen && (
+                  <div style={{ paddingLeft: "16px", marginTop: "8px" }}>
+                    <Link
+                      to="/upi-autopay"
+                      onClick={closeAllMenus}
+                      style={{
+                        display: "block",
+                        padding: "10px 0",
+                        fontSize: "14px",
+                        color: "#4b5563",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #f0f0f0",
+                      }}
+                    >
+                      UPI
+                    </Link>
+                    <Link
+                      to="/payment-links"
+                      onClick={closeAllMenus}
+                      style={{
+                        display: "block",
+                        padding: "10px 0",
+                        fontSize: "14px",
+                        color: "#4b5563",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #f0f0f0",
+                      }}
+                    >
+                      Payment Links
+                    </Link>
+                    <Link
+                      to="/soundbox"
+                      onClick={closeAllMenus}
+                      style={{
+                        display: "block",
+                        padding: "10px 0",
+                        fontSize: "14px",
+                        color: "#4b5563",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #f0f0f0",
+                      }}
+                    >
+                      SoundBox
+                    </Link>
+                  </div>
+                )}
+              </li>
+
+              <MobileNavItem name="Careers" link="/careers" onClick={closeAllMenus} />
+              <MobileNavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
+
+              {/* Mobile Sign Up */}
+              <li style={{ marginTop: "16px" }}>
+                <Link
+                  to="/sign-up"
+                  onClick={closeAllMenus}
+                  style={{
+                    display: "block",
+                    background: "#111827",
+                    color: "#ffffff",
+                    padding: "12px 16px",
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    textAlign: "center",
+                  }}
+                >
+                  Sign up
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
+
+      {/* CSS Media Queries */}
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .desktop-only {
+            display: none !important;
+          }
+          .mobile-only {
+            display: block !important;
+          }
+          .mobile-menu {
+            display: block !important;
+          }
+        }
+        
+        @media (min-width: 769px) {
+          .mobile-only {
+            display: none !important;
+          }
+          .mobile-menu {
+            display: none !important;
+          }
+          .desktop-nav {
+            display: flex !important;
+          }
+          .desktop-only {
+            display: inline-block !important;
+          }
+        }
+
+        /* Ensure dropdown links are clickable */
+        .dropdown-item {
+          cursor: pointer;
+        }
+        
+        a, button, div[onClick] {
+          cursor: pointer;
+        }
+      `}</style>
     </header>
   );
 };
@@ -189,42 +489,53 @@ const desktopNavStyle = {
 };
 
 const navLinkStyle = {
+  background: "transparent",
+  border: "none",
   color: "#000000",
-  fontSize: "14px",
+  fontSize: "16px",
   fontWeight: 500,
+  cursor: "pointer",
   textDecoration: "none",
-  display: "flex",
-  alignItems: "center",
-  gap: "4px",
+  padding: "0",
+  margin: "0",
+  lineHeight: "1",
 };
 
-const signupStyle = {
-  background: "#3B82F6",
-  color: "#ffffff",
-  padding: "8px 16px",
-  borderRadius: "6px",
-  textDecoration: "none",
-  fontSize: "14px",
+const mobileNavLinkStyle = {
+  background: "transparent",
+  border: "none",
+  color: "#000000",
+  fontSize: "16px",
   fontWeight: 500,
+  cursor: "pointer",
+  textDecoration: "none",
+  padding: "12px 0",
+  margin: "0",
+  lineHeight: "1",
+  display: "block",
+  borderBottom: "1px solid #f0f0f0",
 };
 
-const burgerLine = (open, line) => ({
-  width: "24px",
-  height: "2px",
-  background: "#000",
-  transition: "0.3s",
-  transform:
-    line === 1 && open
-      ? "rotate(45deg) translate(5px,5px)"
-      : line === 3 && open
-      ? "rotate(-45deg) translate(6px,-6px)"
-      : "none",
-  opacity: line === 2 && open ? 0 : 1,
-});
-
-const NavItem = ({ name, link }) => (
+const NavItem = ({ name, link, onClick }) => (
   <li>
-    <Link to={link} style={navLinkStyle}>
+    <Link
+      to={link}
+      onClick={onClick}
+      className="nav-link"
+      style={navLinkStyle}
+    >
+      {name}
+    </Link>
+  </li>
+);
+
+const MobileNavItem = ({ name, link, onClick }) => (
+  <li style={{ borderBottom: "1px solid #f0f0f0", marginBottom: "8px" }}>
+    <Link
+      to={link}
+      onClick={onClick}
+      style={mobileNavLinkStyle}
+    >
       {name}
     </Link>
   </li>
@@ -249,10 +560,12 @@ const Dropdown = ({ children }) => (
   </ul>
 );
 
-const DropItem = ({ to, children }) => (
+const DropItem = ({ to, onClick, children }) => (
   <li>
     <Link
       to={to}
+      onClick={onClick}
+      className="dropdown-item"
       style={{
         display: "block",
         padding: "10px 16px",
@@ -261,6 +574,8 @@ const DropItem = ({ to, children }) => (
         textDecoration: "none",
          whiteSpace: "nowrap",
       }}
+      onMouseEnter={(e) => e.currentTarget.style.background = "#f9fafb"}
+      onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
     >
       {children}
     </Link>
@@ -272,6 +587,8 @@ const Chevron = ({ open }) => (
     width="14"
     height="14"
     style={{
+      width: "14px",
+      height: "14px",
       transform: open ? "rotate(180deg)" : "rotate(0deg)",
       transition: "0.3s",
     }}

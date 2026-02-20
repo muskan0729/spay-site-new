@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { motion } from "framer-motion";
 import bg2 from "../../assets/images/bg2.webp";
 
@@ -38,23 +38,12 @@ const FeaturesSection = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
@@ -69,11 +58,13 @@ const FeaturesSection = () => {
 
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0"
+        <div
+          className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }} />
+            backgroundSize: "40px 40px"
+          }}
+        />
       </div>
 
       <div className="relative container mx-auto px-4 sm:px-6">
@@ -107,55 +98,53 @@ const FeaturesSection = () => {
               variants={itemVariants}
               className="group relative h-full"
             >
-              {/* Card with glassmorphism effect - Fixed height for consistency */}
+              {/* Card with glassmorphism effect */}
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 
-                            border border-white/20 hover:border-cyan-400/50
-                            transition-all duration-500 hover:scale-105 hover:shadow-2xl
-                            overflow-hidden h-full flex flex-col">
-
+                              border border-white/20 hover:border-cyan-400/50
+                              transition-all duration-500 hover:scale-105 hover:shadow-2xl
+                              overflow-hidden h-full flex flex-col">
+                
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Icon Container - Responsive sizing */}
+                {/* Icon Container */}
                 <div className="relative mb-4 sm:mb-5 md:mb-6">
                   <div className="absolute inset-0 bg-cyan-500 rounded-xl blur-xl 
-                                opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+                                  opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                   <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
-                                bg-gradient-to-br from-cyan-400 to-blue-500 
-                                rounded-lg sm:rounded-xl flex items-center justify-center
-                                group-hover:scale-110 group-hover:rotate-3 
-                                transition-all duration-500 shadow-lg">
+                                  bg-gradient-to-br from-cyan-400 to-blue-500 
+                                  rounded-lg sm:rounded-xl flex items-center justify-center
+                                  group-hover:scale-110 group-hover:rotate-3 
+                                  transition-all duration-500 shadow-lg">
                     <i className={`fas ${feature.icon} text-white text-xl sm:text-2xl md:text-2xl`} />
                   </div>
                 </div>
 
-                {/* Content - Flexible height with proper spacing */}
+                {/* Content */}
                 <h3 className="text-lg sm:text-xl md:text-xl font-semibold text-white mb-2 sm:mb-3 
-                             group-hover:text-cyan-300 transition-colors line-clamp-2">
+                                group-hover:text-cyan-300 transition-colors line-clamp-2">
                   {feature.title}
                 </h3>
-                
-                {/* Description with fixed min-height for consistency */}
                 <p className="text-white/70 text-xs sm:text-sm md:text-sm leading-relaxed 
-                            group-hover:text-white/90 transition-colors flex-grow">
+                              group-hover:text-white/90 transition-colors flex-grow">
                   {feature.description}
                 </p>
 
                 {/* Decorative Line */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r 
-                              from-transparent via-cyan-400 to-transparent 
-                              scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                                from-transparent via-cyan-400 to-transparent 
+                                scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Floating Elements - Responsive positioning and sizing */}
+        {/* Floating Elements */}
         <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
-                      bg-cyan-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
+                        bg-cyan-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
         <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-32 sm:w-40 md:w-64 h-32 sm:h-40 md:h-64 
-                      bg-blue-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-1000" />
+                        bg-blue-500/30 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-1000" />
       </div>
     </section>
   );

@@ -302,6 +302,7 @@ const Career = () => {
       })) || []
     : dummyDepartments;
 
+  // Transform jobs data
   const jobs = !USE_DUMMY_DATA
     ? jobsApi.data?.data?.map(job => ({
         id: job.id,
@@ -321,6 +322,14 @@ const Career = () => {
         email: "Jobs@spay.live"
       }));
 
+  // Log for debugging
+  useEffect(() => {
+    if (jobs.length > 0) {
+      console.log("All jobs:", jobs);
+      console.log("Selected department:", selectedDept);
+    }
+  }, [jobs, selectedDept]);
+
   const loading = !USE_DUMMY_DATA ? (deptApi.loading || jobsApi.loading) : false;
   const error = !USE_DUMMY_DATA ? (deptApi.error || jobsApi.error) : null;
 
@@ -331,12 +340,28 @@ const Career = () => {
     }
   }, [departments]);
 
+  // Filter jobs based on selected department
   const filteredJobs = jobs.filter(
     (job) => job.deptId === selectedDept?.id
   );
 
+  // Log filtered jobs
   useEffect(() => {
-    setSelectedJob(filteredJobs[0] || null);
+    console.log("Filtered jobs:", filteredJobs);
+    console.log("Selected job:", selectedJob);
+  }, [filteredJobs, selectedJob]);
+
+  // Set first job of selected department
+  useEffect(() => {
+    if (filteredJobs.length > 0) {
+      // Only set if the current selected job is not in the filtered list
+      const isCurrentJobInFiltered = selectedJob && filteredJobs.some(job => job.id === selectedJob.id);
+      if (!isCurrentJobInFiltered) {
+        setSelectedJob(filteredJobs[0]);
+      }
+    } else {
+      setSelectedJob(null);
+    }
   }, [selectedDept, filteredJobs]);
 
   const handleInputChange = (e) => {

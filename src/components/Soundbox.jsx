@@ -207,9 +207,9 @@ const Soundbox = () => {
               <p className="hero-description">
                 Never miss a transaction again. Get clear, real-time voice confirmations for every UPI, QR, card, or mobile payment — loud, accurate, and secure.
               </p>
-              {/* <div className="hero-cta">
+              <div className="hero-cta">
                 <button className="cta-button">Get Your Soundbox →</button>
-              </div> */}
+              </div>
             </div>
 
             <div className="hero-image-wrapper">

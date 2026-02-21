@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
@@ -126,7 +127,6 @@ const Header = () => {
           >
             <NavItem name="Home" link="/" onClick={closeAllMenus} />
             <NavItem name="About" link="/about-us" onClick={closeAllMenus} />
-            <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
 
             {/* FEATURES - Desktop */}
             <li ref={featuresRef} style={{ position: "relative" }}>
@@ -178,9 +178,10 @@ const Header = () => {
                 </Dropdown>
               )}
             </li>
-
+            <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
             <NavItem name="Careers" link="/careers" onClick={closeAllMenus} />
             <NavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
+            <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />
           </ul>
 
           {/* SIGN UP BUTTON */}

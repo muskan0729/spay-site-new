@@ -181,7 +181,6 @@ const Header = () => {
             <NavItem name="Careers" link="/careers" onClick={closeAllMenus} />
             <NavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
             <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />
-
           </ul>
 
           {/* SIGN UP BUTTON */}

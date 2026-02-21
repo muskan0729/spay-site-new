@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
@@ -185,7 +186,7 @@ const Header = () => {
 
           {/* SIGN UP BUTTON */}
           <Link
-            to="/sign-up"
+            to="/onboarding-merchant"
             className="signup-btn desktop-only"
             onClick={closeAllMenus}
             style={{

@@ -25,11 +25,16 @@ import Users from "./admin/pages/Users";
 import Positions from "./admin/pages/Positions";
 import Candidates from "./admin/pages/Candidates";
 // import Departments from "./admin/pages/Departments";
+import ApplyJob from "./Pages/ApplyJob";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   return (
     <>
       <ScrollTop />
+       <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -47,6 +52,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           <Route path="/careers" element={<Career/>}/>
+          <Route path="/careers/apply/:id" element={<ApplyJob />} />
         </Route>
 
 

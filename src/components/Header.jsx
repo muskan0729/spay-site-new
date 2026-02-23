@@ -186,7 +186,7 @@ const Header = () => {
 
           {/* SIGN UP BUTTON */}
           <Link
-            to="/onboarding-merchant"
+            to="/sign-up"
             className="signup-btn desktop-only"
             onClick={closeAllMenus}
             style={{

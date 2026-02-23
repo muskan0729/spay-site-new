@@ -7,55 +7,55 @@ import {
   CheckCircle,
   XCircle,
   Activity,
+  Building2,
 } from "lucide-react";
+import { useGet } from "../../../hooks/useGet";
 
 const KPICards = () => {
   const [stats, setStats] = useState({
     totalPositions: 0,
     activePositions: 0,
+    inactivePositions: 0,
+    totalDepartments: 0,
     totalCandidates: 0,
     interviewsScheduled: 0,
     acceptedCandidates: 0,
     rejectedCandidates: 0,
   });
 
-  const [loading, setLoading] = useState(false);
-
   /* =========================
-     FETCH DASHBOARD STATS
+     FETCH DASHBOARD STATS FROM API
   ========================= */
+  const { 
+    data: dashboardData, 
+    loading, 
+    error,
+    refetch 
+  } = useGet('/dashboard-stats', { lazy: false });
+
+  // Update stats when data is received from API
   useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      setLoading(true);
-
-      // 🔁 Replace with real API later
-      // const res = await fetch("/api/dashboard/stats");
-      // const data = await res.json();
-      // setStats(data);
-
-      /* ======================
-         STATIC DEMO DATA
-      ====================== */
-      setTimeout(() => {
-        setStats({
-          totalPositions: 24,
-          activePositions: 18,
-          totalCandidates: 142,
-          interviewsScheduled: 12,
-          acceptedCandidates: 8,
-          rejectedCandidates: 20,
-        });
-        setLoading(false);
-      }, 800);
-    } catch (error) {
-      console.error("KPI fetch error:", error);
-      setLoading(false);
+    if (dashboardData?.data) {
+      setStats(prev => ({
+        ...prev,
+        totalPositions: dashboardData.data.total_positions || 0,
+        activePositions: dashboardData.data.active_positions || 0,
+        inactivePositions: dashboardData.data.inactive_positions || 0,
+        totalDepartments: dashboardData.data.total_departments || 0,
+        totalCandidates: dashboardData.data.total_candidates||0,
+        interviewsScheduled: dashboardData.data.interviews_scheduled||0,
+        acceptedCandidates: dashboardData.data.accepted_candidates||0,
+        rejectedCandidates: dashboardData.data.rejected_candidates||0,
+      }));
     }
-  };
+  }, [dashboardData]);
+
+  // Optional: Show error message
+  useEffect(() => {
+    if (error) {
+      console.error("Dashboard stats error:", error);
+    }
+  }, [error]);
 
   const cardData = [
     {
@@ -71,28 +71,30 @@ const KPICards = () => {
       color: "bg-indigo-100 text-indigo-600",
     },
     {
+      title: "Inactive Positions",
+      value: stats.inactivePositions,
+      icon: <XCircle size={22} />,
+      color: "bg-gray-100 text-gray-600",
+    },
+    {
+      title: "Total Departments",
+      value: stats.totalDepartments,
+      icon: <Building2 size={22} />,
+      color: "bg-emerald-100 text-emerald-600",
+    },
+    {
       title: "Total Candidates",
       value: stats.totalCandidates,
       icon: <Users size={22} />,
       color: "bg-purple-100 text-purple-600",
+      note: "Coming soon", // Optional note
     },
     {
       title: "Interviews Scheduled",
       value: stats.interviewsScheduled,
       icon: <CalendarCheck size={22} />,
       color: "bg-yellow-100 text-yellow-600",
-    },
-    {
-      title: "Accepted Candidates",
-      value: stats.acceptedCandidates,
-      icon: <CheckCircle size={22} />,
-      color: "bg-green-100 text-green-600",
-    },
-    {
-      title: "Rejected Candidates",
-      value: stats.rejectedCandidates,
-      icon: <XCircle size={22} />,
-      color: "bg-red-100 text-red-600",
+      note: "Coming soon",
     },
   ];
 
@@ -101,8 +103,13 @@ const KPICards = () => {
       {cardData.map((card, index) => (
         <div
           key={index}
-          className="bg-white rounded-2xl shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all"
+          className="bg-white rounded-2xl shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all relative"
         >
+          {card.note && (
+            <span className="absolute top-2 right-2 text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+              {card.note}
+            </span>
+          )}
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-500 mb-1">

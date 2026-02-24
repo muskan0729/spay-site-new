@@ -1389,3 +1389,24 @@
 .rbc-time-view {
   background-color: #ffffff;
 }
+
+/* Fix input text color globally */
+input,
+textarea,
+select {
+  color: #111827 !important; /* dark gray */
+}
+
+/* Fix placeholder color */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important; /* soft gray */
+  opacity: 1;
+}
+
+/* Ensure input background is white */
+input,
+textarea,
+select {
+  background-color: #ffffff !important;
+}

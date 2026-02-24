@@ -255,3 +255,51 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* API Error Box */
+.api-error {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background-color: #ffeaea;     /* light red background */
+  border: 1px solid #ffcccc;     /* soft red border */
+  color: #d93025;                /* proper red text */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Input error border */
+.input-error {
+  border: 1px solid #d93025 !important;
+  background-color: #fff5f5;
+}
+
+/* Inline field error text */
+.error-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #d93025;
+}
+.api-error {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #ffeaea;
+  border: 1px solid #ffcccc;
+  color: #d93025;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-error {
+  border: 1px solid #d93025 !important;
+  background-color: #fff5f5;
+}
+
+.error-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #d93025;
+}

@@ -10,11 +10,12 @@ const Login = () => {
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
-    username: "",
+    emailormobile: "", // Changed from username to emailormobile to match Laravel
     password: "",
-    remember: true,
+    remember: true, // Note: Laravel doesn't use this, but we'll keep it for UI
   });
 
+  
   const [errors, setErrors] = useState({});
 
   const {
@@ -138,6 +139,7 @@ const Login = () => {
                   name="remember"
                   checked={formData.remember}
                   onChange={handleChange}
+                  disabled={loading}
                 />
                 <span>Remember me</span>
               </label>

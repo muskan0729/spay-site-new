@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import {
   LayoutDashboard,
   Users,
   Briefcase,
   UserCheck,
+  LogOut,
 } from "lucide-react";
 
 import logo from "../../assets/images/logo.webp";
@@ -32,6 +34,14 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
+  const { logout } = useAuth();      // ✅ Correct place
+  const navigate = useNavigate();    // ✅ Correct place
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-200 shadow-sm flex flex-col">
       
@@ -61,7 +71,7 @@ const Sidebar = () => {
             <NavLink
               key={item.name}
               to={item.path}
-              end={item.path === "/admin"}   // ✅ FIX HERE
+              end={item.path === "/admin"}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                   isActive
@@ -75,6 +85,17 @@ const Sidebar = () => {
             </NavLink>
           );
         })}
+      </div>
+
+      {/* Logout Button */}
+      <div className="px-4 pb-6">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200 font-medium"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
       </div>
 
       {/* Footer */}

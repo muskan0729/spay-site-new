@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import illustration from "../assets/images/login.png";
 import "./Login.css";
+import { usePost } from "../hooks/usePost";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -10,18 +16,28 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+
+  const {
+    loading,
+    error: apiError,
+    post: loginUser,
+    reset,
+  } = usePost("/login");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
 
-    // Clear error on change
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+
+    if (apiError) {
+      reset();
     }
   };
 
@@ -29,81 +45,92 @@ const Login = () => {
     const newErrors = {};
 
     if (!formData.username.trim()) {
-      newErrors.username = "Username is required";
+      newErrors.username = "Email or Mobile is required";
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validate()) return;
 
-    setLoading(true);
+    const payload = {
+      emailormobile: formData.username,
+      password: formData.password,
+      remember: formData.remember,
+    };
 
-    // Simulate API call (replace with real fetch/axios)
-    setTimeout(() => {
-      console.log("Login Data:", formData);
-      alert("Login successful! (Demo)");
-      setLoading(false);
-      // Redirect or set auth state here
-    }, 1200);
+    const response = await loginUser(payload);
+
+    if (response.success) {
+      const { token, user } = response.data;
+
+      // 🔥 Use AuthContext instead of manual localStorage only
+      login(user, token);
+
+      // 🔥 Role Based Redirect
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/"); // Non-admin users go to homepage
+      }
+    }
   };
 
   return (
     <div className="login-page">
       <div className="login-card">
-        {/* Left - Illustration (hidden on mobile) */}
         <div className="login-illustration">
           <img src={illustration} alt="Login Illustration" />
         </div>
 
-        {/* Right - Form */}
         <div className="login-form-container">
           <div className="form-header">
             <h1>Welcome Back</h1>
-            <p>Log in to manage your Spay merchant account</p>
+            <p>Log in to manage your Spay account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="login-form" noValidate>
+            {/* Username */}
             <div className="form-group">
-              <label htmlFor="username">Username / Email</label>
+              <label>Username / Email</label>
               <input
-                id="username"
                 type="text"
                 name="username"
-                placeholder="Enter your username or email"
+                placeholder="Enter your email or mobile"
                 value={formData.username}
                 onChange={handleChange}
                 className={errors.username ? "input-error" : ""}
-                required
               />
-              {errors.username && <span className="error-text">{errors.username}</span>}
+              {errors.username && (
+                <span className="error-text">{errors.username}</span>
+              )}
             </div>
 
+            {/* Password */}
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label>Password</label>
               <input
-                id="password"
                 type="password"
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
                 className={errors.password ? "input-error" : ""}
-                required
               />
-              {errors.password && <span className="error-text">{errors.password}</span>}
+              {errors.password && (
+                <span className="error-text">{errors.password}</span>
+              )}
             </div>
 
+            {/* Options */}
             <div className="form-options">
               <label className="remember-me">
                 <input
@@ -115,28 +142,34 @@ const Login = () => {
                 <span>Remember me</span>
               </label>
 
-              <a href="/forgot-password" className="forgot-link">
+              <Link to="/forgot-password" className="forgot-link">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
 
-            <button
-              type="submit"
-              className="login-btn"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="loading">Signing in...</span>
-              ) : (
-                "Sign In"
-              )}
+            {/* API Validation Errors */}
+            {apiError?.type === "validation" && (
+              <div className="api-error">
+                {Object.values(apiError.errors).map((messages, i) => (
+                  <div key={i}>{messages[0]}</div>
+                ))}
+              </div>
+            )}
+
+            {/* Other Errors */}
+            {apiError?.type !== "validation" && apiError?.message && (
+              <div className="api-error">{apiError.message}</div>
+            )}
+
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
             </button>
 
             <div className="signup-prompt">
               Don't have an account?{" "}
-              <a href="/signup" className="signup-link">
+              <Link to="/sign-up" className="signup-link">
                 Create one now
-              </a>
+              </Link>
             </div>
           </form>
         </div>

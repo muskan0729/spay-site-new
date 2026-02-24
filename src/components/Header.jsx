@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/Spay TM Logo (Black).webp";
 
 const Header = () => {
+  const { user, logout } = useAuth();
+const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -14,6 +17,11 @@ const Header = () => {
   const productsRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
+const handleLogout = () => {
+  logout();
+  closeAllMenus();
+  navigate("/");
+};
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -181,28 +189,58 @@ const Header = () => {
             <NavItem name="Integration" link="/integration" onClick={closeAllMenus} />
             <NavItem name="Careers" link="/careers" onClick={closeAllMenus} />
             <NavItem name="Contact" link="/contact-us" onClick={closeAllMenus} />
-            <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />
-          </ul>
+  {user?.role === "admin" && (        
+  <NavItem name="Dashboard" link="/admin" onClick={closeAllMenus} />
+)}           </ul>
 
           {/* SIGN UP BUTTON */}
-          <Link
-            to="/sign-up"
-            className="signup-btn desktop-only"
-            onClick={closeAllMenus}
-            style={{
-              background: "#111827",
-              color: "#ffffff",
-              padding: "8px 16px",
-              borderRadius: "6px",
-              textDecoration: "none",
-              fontSize: "14px",
-              fontWeight: 500,
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.background = "#1f2937"}
-            onMouseLeave={(e) => e.currentTarget.style.background = "#111827"}
-          >
-            Sign up
-          </Link>
+  {!user ? (
+  <Link
+    to="/sign-up"
+    className="signup-btn desktop-only"
+    onClick={closeAllMenus}
+    style={{
+      background: "#111827",
+      color: "#ffffff",
+      padding: "8px 16px",
+      borderRadius: "6px",
+      textDecoration: "none",
+      fontSize: "14px",
+      fontWeight: 500,
+    }}
+    onMouseEnter={(e) =>
+      (e.currentTarget.style.background = "#1f2937")
+    }
+    onMouseLeave={(e) =>
+      (e.currentTarget.style.background = "#111827")
+    }
+  >
+    Sign up
+  </Link>
+) : (
+  <button
+    onClick={handleLogout}
+    className="signup-btn desktop-only"
+    style={{
+      background: "#111827",
+      color: "#ffffff",
+      padding: "8px 16px",
+      borderRadius: "6px",
+      fontSize: "14px",
+      fontWeight: 500,
+      border: "none",
+      cursor: "pointer",
+    }}
+    onMouseEnter={(e) =>
+      (e.currentTarget.style.background = "#1f2937")
+    }
+    onMouseLeave={(e) =>
+      (e.currentTarget.style.background = "#111827")
+    }
+  >
+    Logout
+  </button>
+)}
 
           {/* Mobile menu button */}
           <button
@@ -565,3 +603,4 @@ const Chevron = ({ open }) => (
 );
 
 export default Header;
+

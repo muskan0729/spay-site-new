@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePost } from "../hooks/usePost";
+import { Link,  } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -765,6 +766,18 @@ const SignUp = () => {
               )}
             </button>
           </form>
+          {/* Already have account section */}
+<div className="mt-6 text-center border-t pt-4">
+  <p className="text-sm text-gray-600">
+    Already have an account?{" "}
+    <Link
+      to="/login"
+      className="text-blue-600 font-semibold hover:text-blue-700 hover:underline transition-colors duration-200"
+    >
+      Login
+    </Link>
+  </p>
+</div>
         </div>
       </div>
     </div>

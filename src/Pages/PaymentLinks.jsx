@@ -1,15 +1,23 @@
 import React from 'react';
 import lastbg from '../assets/images/upicta (2).webp';
+import upi from '../assets/images/upi.png';
+import rupay from '../assets/images/Rupay.png';
+import pngegg from '../assets/images/pngegg.png';
+import visa from '../assets/images/Visa_2021.svg.png';
+import mastercard from '../assets/images/mastercard.png';
+import bglink2 from '../assets/images/bg_link2.jpg';
+import pglink1 from '../assets/images/pg_link1.png';
+import bglink2webp from '../assets/images/bg_link_2.webp';
 
 console.log('lastbg path:', lastbg); 
 
 const PaymentLinks = () => {
   const paymentMethods = [
-    { id: 1, src: "https://spay.live/public/images/upi.png", alt: "brand-number-one-1", width: "100px", height: "50px" },
-    { id: 2, src: "https://spay.live/public/images/Rupay.png", alt: "brand-number-one-1", width: "100px", height: "50px" },
-    { id: 3, src: "https://spay.live/public/images/pngegg.png", alt: "brand-number-one-1", width: "100px", height: "50px" },
-    { id: 4, src: "https://spay.live/public/images/Visa_2021.svg.png", alt: "brand-number-one-1", width: "100px", height: "50px" },
-    { id: 5, src: "https://spay.live/public/images/mastercard.png", alt: "brand-number-one-1", width: "100px", height: "50px" },
+    { id: 1, src: upi, alt: "UPI", width: "100px", height: "50px" },
+    { id: 2, src: rupay, alt: "Rupay", width: "100px", height: "50px" },
+    { id: 3, src: pngegg, alt: "PNG Egg", width: "100px", height: "50px" },
+    { id: 4, src: visa, alt: "Visa", width: "100px", height: "50px" },
+    { id: 5, src: mastercard, alt: "Mastercard", width: "100px", height: "50px" },
   ];
 
   return (
@@ -17,7 +25,7 @@ const PaymentLinks = () => {
       {/* ----- SECTION 1: HERO ----- */}
       <div 
         className="relative bg-cover bg-top min-h-[350px] sm:min-h-[400px] md:min-h-[450px]"
-        style={{ backgroundImage: "url('https://spay.live/public/images/bg_link2.jpg')" }}
+        style={{ backgroundImage: `url(${bglink2})` }}
       >
         <div className="absolute inset-0 bg-white/1"></div>
         
@@ -47,12 +55,13 @@ const PaymentLinks = () => {
                     color: '#1e293b', 
                     fontSize: 'clamp(0.875rem, 3vw, 1.125rem)', 
                     fontWeight: 400, 
-                    lineHeight: '1.6 sm:line-height-1.7',
+                    lineHeight: '1.6',
                     marginBottom: '1.5rem',
                     fontFamily: "'Inter', 'Segoe UI', sans-serif",
-                    maxWidth: '100% md:max-w-[90%]',
-                    padding: '0 0.5rem sm:0'
+                    maxWidth: '100%',
+                    padding: '0 0.5rem'
                   }}
+                  className="md:max-w-[90%]"
                 >
                   Delays in payment can disrupt your cash flow, a common challenge for many businesses. With Spay, you can easily send payment links to your customers via SMS, messenger, email, chatbot, and more, facilitating instant payments.
                 </p>
@@ -63,14 +72,10 @@ const PaymentLinks = () => {
             <div className="w-full md:w-1/2 flex items-center justify-center py-6 sm:py-8 md:py-0">
               <div className="w-full max-w-[95%] sm:max-w-[90%] mx-auto text-center">
                 <img 
-                  src="https://spay.live/public/images/pg_link1.png" 
+                  src={pglink1}
                   alt="payment link illustration"
                   className="w-4/5 sm:w-3/4 md:w-4/5 max-w-[500px] h-auto mx-auto"
                   loading="lazy"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://via.placeholder.com/500x320?text=Payment+Link+Illustration";
-                  }}
                 />
               </div>
             </div>
@@ -95,10 +100,6 @@ const PaymentLinks = () => {
                     objectFit: 'contain'
                   }}
                   loading="lazy"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://via.placeholder.com/120x60?text=" + method.alt;
-                  }}
                 />
               </div>
             ))}
@@ -116,10 +117,6 @@ const PaymentLinks = () => {
                     objectFit: 'contain'
                   }}
                   loading="lazy"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://via.placeholder.com/120x60?text=" + method.alt;
-                  }}
                 />
               </div>
             ))}
@@ -131,7 +128,7 @@ const PaymentLinks = () => {
       <div 
         className="relative bg-cover bg-center py-12 sm:py-16 md:py-20 mt-8 sm:mt-10 md:mt-12"
         style={{ 
-          backgroundImage: "url('https://spay.live/public/images/bg_link_2.webp')",
+          backgroundImage: `url(${bglink2webp})`,
         }}
       >
         {/* Lighter overlay for better contrast */}
@@ -180,7 +177,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Versatile Options
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         Enjoy seamless transactions with just one click, allowing your customers to choose from a wide range of checkout options for their convenience.
                       </p>
                     </div>
@@ -199,7 +196,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Privacy Protection
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         We prioritize the security of all transactions and customer data. Secure your transactions with a One-Time Password setup and share payment links that remain confidential between you and your customer.
                       </p>
                     </div>
@@ -218,7 +215,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Multiple Payment Methods
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         Complete transactions using any method you prefer, including UPI, net banking, credit/debit cards, and digital wallets.
                       </p>
                     </div>
@@ -244,7 +241,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Quick Setup
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         Our hosted services streamline the integration process, allowing you to customize your checkout page and payment links, thereby enhancing your brand's presence.
                       </p>
                     </div>
@@ -263,7 +260,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Contactless Payments
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         Customers can make payments without needing to meet delivery agents, providing added safety and convenience.
                       </p>
                     </div>
@@ -282,7 +279,7 @@ const PaymentLinks = () => {
                       <h5 className="text-lg sm:text-xl font-bold text-blue-900 mb-1 sm:mb-2" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
                         Power Dashboard
                       </h5>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6 sm:1.7' }}>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", lineHeight: '1.6' }}>
                         With our Competence Dashboard, you can effortlessly send notifications, create links, and perform various tasks without spending your precious time.
                       </p>
                     </div>
@@ -295,7 +292,7 @@ const PaymentLinks = () => {
       </div>
 
       {/* ----- CTA SECTION ----- */}
-      <div className="relative py-2" style={{ minHeight: '80px sm:min-height-100px' }}>
+      <div className="relative py-2 min-h-[80px] sm:min-h-[100px]">
         <img 
           src={lastbg} 
           alt="Security background"
@@ -304,7 +301,7 @@ const PaymentLinks = () => {
         />
         <div className="absolute inset-0 bg-[radial-gradient(800px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(800px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)] md:bg-[radial-gradient(1200px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(1000px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)]"></div>
         
-        <div className="relative container mx-auto px-4 text-center z-10 flex items-center justify-center" style={{ minHeight: '120px sm:min-height-150px' }}>
+        <div className="relative container mx-auto px-4 text-center z-10 flex items-center justify-center min-h-[120px] sm:min-h-[150px]">
           <h2 
             className="fw-bold text-white px-4" 
             style={{ 
@@ -322,56 +319,44 @@ const PaymentLinks = () => {
       </div>
 
       {/* Custom CSS */}
-      <style jsx>{`
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
         .slider-container {
           width: 100%;
           background: linear-gradient(90deg, transparent, rgba(10, 25, 41, 0.02), transparent);
         }
-        
         .slider-track {
           display: flex;
           width: fit-content;
           animation: professional-scroll 4s linear infinite; 
         }
-        
         .slide {
           flex-shrink: 0;
           transition: all 0.4s ease;
         }
-        
         .financial-logo {
           transition: all 0.4s ease;
           opacity: 0.8;
         }
-        
         .slide:hover .financial-logo {
           transform: translateY(-5px);
           opacity: 1;
         }
-        
         @keyframes professional-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(calc(-100% / 2)); }
         }
-        
         .slider-container:hover .slider-track {
           animation-play-state: paused;
         }
-
-        /* Enhanced Card Styles */
         .feature-card {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
-
         .feature-card:hover {
           transform: translateY(-6px);
           box-shadow: 0 25px 35px -12px rgba(10, 25, 41, 0.2) !important;
         }
-
-        /* Icon Styles */
         .icon-container {
           background: linear-gradient(135deg, #e6f0ff 0%, #d4e4ff 100%);
           padding: clamp(8px, 2vw, 12px);
@@ -384,25 +369,20 @@ const PaymentLinks = () => {
           align-items: center;
           justify-content: center;
         }
-
         .feature-card:hover .icon-container {
           background: linear-gradient(135deg, #d4e4ff 0%, #c0d6ff 100%);
           transform: scale(1.05);
           box-shadow: 0 8px 16px rgba(0, 40, 100, 0.12);
         }
-
         .icon-container svg {
           transition: transform 0.3s ease;
           width: clamp(20px, 4vw, 28px);
           height: clamp(20px, 4vw, 28px);
         }
-
         .feature-card:hover .icon-container svg {
           transform: scale(1.1);
           color: #0a1929;
         }
-
-        /* Typography Improvements */
         .feature-card p {
           font-size: clamp(0.875rem, 2vw, 0.95rem);
           color: #334155;
@@ -410,20 +390,15 @@ const PaymentLinks = () => {
           letter-spacing: 0.01em;
           margin-bottom: 0;
         }
-
         .feature-card h5 {
           font-weight: 700;
           letter-spacing: -0.01em;
           margin-bottom: 0.5rem;
           font-size: clamp(1.1rem, 3vw, 1.25rem);
         }
-
-        /* Consistent spacing between sections */
         .feature-card .mb-10:last-child {
           margin-bottom: 0;
         }
-
-        /* Gradient overlays for slider */
         .slider-container::before,
         .slider-container::after {
           content: '';
@@ -434,37 +409,28 @@ const PaymentLinks = () => {
           z-index: 2;
           pointer-events: none;
         }
-
         .slider-container::before {
           left: 0;
           background: linear-gradient(90deg, white, transparent);
         }
-
         .slider-container::after {
           right: 0;
           background: linear-gradient(90deg, transparent, white);
         }
-
-        /* Mobile-specific adjustments */
         @media (max-width: 640px) {
           .slider-track {
-            animation: professional-scroll 3s linear infinite; /* Faster on mobile */
+            animation: professional-scroll 3s linear infinite;
           }
-          
           .feature-card {
             padding: 1.25rem;
           }
-          
           .feature-card:hover {
-            transform: translateY(-3px); /* Smaller hover effect on mobile */
+            transform: translateY(-3px);
           }
-          
           .icon-container {
             margin-bottom: 0.5rem;
           }
         }
-
-        /* Tablet-specific adjustments */
         @media (min-width: 641px) and (max-width: 1024px) {
           .feature-card {
             padding: 1.5rem;

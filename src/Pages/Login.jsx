@@ -1,48 +1,56 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { usePost } from "../hooks/usePost"; // Adjust the import path as needed
+import { useNavigate, Link } from "react-router-dom";
 import illustration from "../assets/images/login.png";
 import "./Login.css";
+import { usePost } from "../hooks/usePost";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     emailormobile: "", // Changed from username to emailormobile to match Laravel
     password: "",
     remember: true, // Note: Laravel doesn't use this, but we'll keep it for UI
   });
 
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
   
-  // Update the API endpoint to match your Laravel route
-  // Assuming your Laravel API is served from the same domain
-  // or you have the baseURL configured in apiClient
-  const { loading, error: apiError, post: loginUser, reset: resetApi } = usePost('/login');
+  const [errors, setErrors] = useState({});
+
+  const {
+    loading,
+    error: apiError,
+    post: loginUser,
+    reset,
+  } = usePost("/login");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
 
-    // Clear error on change
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+
+    if (apiError) {
+      reset();
     }
   };
 
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.emailormobile.trim()) {
-      newErrors.emailormobile = "Email or phone number is required";
+    if (!formData.username.trim()) {
+      newErrors.username = "Email or Mobile is required";
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
@@ -54,96 +62,76 @@ const Login = () => {
 
     if (!validate()) return;
 
-    // Reset any previous API errors
-    resetApi();
-
-    // Make the API call using the post method from usePost
-    // Send only the fields that Laravel expects
-    const response = await loginUser({
-      emailormobile: formData.emailormobile, // This matches Laravel's expected field
+    const payload = {
+      emailormobile: formData.username,
       password: formData.password,
-      // Note: Laravel doesn't use 'remember' field, so we don't send it
-    });
+      remember: formData.remember,
+    };
+
+    const response = await loginUser(payload);
 
     if (response.success) {
-      console.log("Login successful:", response.data);
-      
-      // Store auth token if returned from API
-      if (response.data.token) {
-        localStorage.setItem('authToken', response.data.token);
-        // You might also want to store user data
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+      const { token, user } = response.data;
+
+      // 🔥 Use AuthContext instead of manual localStorage only
+      login(user, token);
+
+      // 🔥 Role Based Redirect
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/"); // Non-admin users go to homepage
       }
-      
-      // Handle successful login
-      alert("Login successful!");
-      
-      // Redirect to dashboard or home page
-      // You can use React Router's navigate here
-      // window.location.href = '/dashboard';
-      // or if using useNavigate from react-router-dom:
-      navigate('/');
-      
-    } else {
-      console.error("Login failed:", response.error);
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-card">
-        {/* Left - Illustration (hidden on mobile) */}
         <div className="login-illustration">
           <img src={illustration} alt="Login Illustration" />
         </div>
 
-        {/* Right - Form */}
         <div className="login-form-container">
           <div className="form-header">
             <h1>Welcome Back</h1>
-            <p>Log in to manage your Spay merchant account</p>
+            <p>Log in to manage your Spay account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="login-form" noValidate>
-            {/* Display API error if any */}
-            {apiError && (
-              <div className="api-error-message">
-                {apiError}
-              </div>
-            )}
-
+            {/* Username */}
             <div className="form-group">
-              <label htmlFor="emailormobile">Email or Phone Number</label>
+              <label>Username / Email</label>
               <input
-                id="emailormobile"
                 type="text"
-                name="emailormobile" // Changed to match Laravel's expected field
-                placeholder="Enter your email or phone number"
-                value={formData.emailormobile}
+                name="username"
+                placeholder="Enter your email or mobile"
+                value={formData.username}
                 onChange={handleChange}
-                className={errors.emailormobile ? "input-error" : ""}
-                disabled={loading}
-                required
+                className={errors.username ? "input-error" : ""}
               />
-              {errors.emailormobile && <span className="error-text">{errors.emailormobile}</span>}
+              {errors.username && (
+                <span className="error-text">{errors.username}</span>
+              )}
             </div>
 
+            {/* Password */}
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label>Password</label>
               <input
-                id="password"
                 type="password"
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
                 className={errors.password ? "input-error" : ""}
-                disabled={loading}
-                required
               />
-              {errors.password && <span className="error-text">{errors.password}</span>}
+              {errors.password && (
+                <span className="error-text">{errors.password}</span>
+              )}
             </div>
 
+            {/* Options */}
             <div className="form-options">
               <label className="remember-me">
                 <input
@@ -156,28 +144,34 @@ const Login = () => {
                 <span>Remember me</span>
               </label>
 
-              <a href="/forgot-password" className="forgot-link">
+              <Link to="/forgot-password" className="forgot-link">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
 
-            <button
-              type="submit"
-              className="login-btn"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="loading">Signing in...</span>
-              ) : (
-                "Sign In"
-              )}
+            {/* API Validation Errors */}
+            {apiError?.type === "validation" && (
+              <div className="api-error">
+                {Object.values(apiError.errors).map((messages, i) => (
+                  <div key={i}>{messages[0]}</div>
+                ))}
+              </div>
+            )}
+
+            {/* Other Errors */}
+            {apiError?.type !== "validation" && apiError?.message && (
+              <div className="api-error">{apiError.message}</div>
+            )}
+
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
             </button>
 
             <div className="signup-prompt">
               Don't have an account?{" "}
-              <a href="/signup" className="signup-link">
+              <Link to="/sign-up" className="signup-link">
                 Create one now
-              </a>
+              </Link>
             </div>
           </form>
         </div>

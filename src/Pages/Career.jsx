@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HeroImg from "../assets/images/careersectionimg.webp";
+import HeroImg from "../assets/images/careerN.jpeg";
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 

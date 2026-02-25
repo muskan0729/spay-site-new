@@ -5,7 +5,6 @@ import SearchBar from "../components/dashboard/SearchBar";
 import UpcomingInterviews from "../components/dashboard/UpcomingInterviews";
 import InterviewCalendar from "../components/dashboard/InterviewCalendar";
 
-
 const Dashboard = () => {
   return (
     <div className="space-y-8">
@@ -25,17 +24,20 @@ const Dashboard = () => {
       {/* ================= QUICK ACTIONS ================= */}
       <QuickActions />
 
-      {/* ================= CHART + UPCOMING ================= */}
+      {/* ================= UPCOMING + CALENDAR ================= */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        
 
+        {/* Left: Upcoming Interviews */}
+        <div className="xl:col-span-1">
+          <UpcomingInterviews />
+        </div>
 
-        {/* Upcoming Interviews */}
-        <UpcomingInterviews />
+        {/* Right: Calendar */}
+        <div className="xl:col-span-2">
+          <InterviewCalendar />
+        </div>
+
       </div>
-
-      {/* ================= INTERVIEW CALENDAR ================= */}
-      <InterviewCalendar />
 
     </div>
   );

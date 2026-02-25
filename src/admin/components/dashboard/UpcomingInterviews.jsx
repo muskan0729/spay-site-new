@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CalendarDays, Video } from "lucide-react";
+import { apiClient } from "../../../hooks/useApi"; // adjust path if needed
 
 const UpcomingInterviews = () => {
   const [interviews, setInterviews] = useState([]);
@@ -16,32 +17,21 @@ const UpcomingInterviews = () => {
     try {
       setLoading(true);
 
-      // 🔁 Replace with real API later
-      // const res = await fetch("/api/interviews/upcoming");
-      // const data = await res.json();
-      // setInterviews(data);
+      const response = await apiClient.get("/interviews");
 
-      /* ===== Static Demo Data ===== */
-      const demoData = [
-        {
-          id: 1,
-          candidate: "Rahul Sharma",
-          position: "Frontend Developer",
-          date: "2026-02-22",
-          time: "10:00 AM",
-          joinLink: "https://meet.google.com/demo-link",
-        },
-        {
-          id: 2,
-          candidate: "Priya Verma",
-          position: "UI Designer",
-          date: "2026-02-24",
-          time: "02:00 PM",
-          joinLink: "https://meet.google.com/demo-link",
-        },
-      ];
+      const today = new Date().toISOString().split("T")[0];
 
-      setInterviews(demoData);
+      // Filter only today + future interviews
+      const upcoming = response.data
+        .filter((item) => item.date >= today)
+        .sort((a, b) => {
+          if (a.date === b.date) {
+            return a.start_time.localeCompare(b.start_time);
+          }
+          return a.date.localeCompare(b.date);
+        });
+
+      setInterviews(upcoming);
       setLoading(false);
     } catch (error) {
       console.error("Upcoming fetch error:", error);
@@ -79,13 +69,13 @@ const UpcomingInterviews = () => {
               {/* Left Info */}
               <div>
                 <p className="font-semibold text-gray-800">
-                  {item.candidate}
+                  {item.candidate?.name || "Candidate"}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {item.position}
+                  {item.position?.name || "Position"}
                 </p>
                 <p className="text-sm text-gray-600 mt-1">
-                  {item.date} • {item.time}
+                  {item.date} • {item.start_time} - {item.end_time}
                 </p>
               </div>
 
@@ -101,15 +91,17 @@ const UpcomingInterviews = () => {
                   </span>
                 )}
 
-                <a
-                  href={item.joinLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm hover:bg-indigo-700 transition"
-                >
-                  <Video size={16} />
-                  Join
-                </a>
+                {item.join_link && (
+                  <a
+                    href={item.join_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm hover:bg-indigo-700 transition"
+                  >
+                    <Video size={16} />
+                    Join
+                  </a>
+                )}
               </div>
             </div>
           ))}

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import "./SocialSidebar.css"; // make sure this is imported
 
 const SocialSidebar = () => {
   return (
@@ -15,7 +16,8 @@ const SocialSidebar = () => {
       </a>
 
       <a
-        href="https://x.com/SpayLive/"        target="_blank"
+        href="https://x.com/SpayLive/"
+        target="_blank"
         rel="noopener noreferrer"
         className="social-icon twitter"
       >
@@ -23,7 +25,8 @@ const SocialSidebar = () => {
       </a>
 
       <a
-href="https://www.instagram.com/spay_fintech/"        target="_blank"
+        href="https://www.instagram.com/spay_fintech/"
+        target="_blank"
         rel="noopener noreferrer"
         className="social-icon instagram"
       >
@@ -31,7 +34,8 @@ href="https://www.instagram.com/spay_fintech/"        target="_blank"
       </a>
 
       <a
-href="https://www.linkedin.com/company/spay-fintech-private-limited/"        target="_blank"
+        href="https://www.linkedin.com/company/spay-fintech-private-limited/"
+        target="_blank"
         rel="noopener noreferrer"
         className="social-icon linkedin"
       >
@@ -39,7 +43,8 @@ href="https://www.linkedin.com/company/spay-fintech-private-limited/"        tar
       </a>
 
       <a
-href="https://www.youtube.com/@SpayFintechPrivateLimited"        target="_blank"
+        href="https://www.youtube.com/@SpayFintechPrivateLimited"
+        target="_blank"
         rel="noopener noreferrer"
         className="social-icon youtube"
       >

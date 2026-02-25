@@ -404,14 +404,13 @@ const Positions = () => {
           </h3>
 
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <input
-              type="text"
-              placeholder="New Department"
-              className="flex-1 min-w-[220px] border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              value={newDepartment}
-              onChange={(e) => setNewDepartment(e.target.value)}
-              disabled={loading}
-            />
+          <input
+            type="text"
+            placeholder="Search job roles..."
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
             <button
               onClick={handleAddDepartment}
               disabled={loading}
@@ -445,59 +444,81 @@ const Positions = () => {
         </div>
 
         {/* Filters & Create Button */}
-        <div className="bg-white rounded-xl shadow border border-gray-200 p-6 mb-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <input
-              type="text"
-              placeholder="Search job..."
-              className="flex-1 min-w-[200px] border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+{/* Filters & Create Button */}
+<div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6 space-y-6">
 
-            <select
-              className="min-w-[140px] border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
+  {/* Top Row */}
+  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
-            <select
-              className="min-w-[160px] border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-              value={filterDepartment}
-              onChange={(e) => setFilterDepartment(e.target.value)}
-            >
-              <option value="all">All Departments</option>
-              {departments.map((dep) => (
-                <option key={dep.id} value={dep.name}>
-                  {dep.name}
-                </option>
-              ))}
-            </select>
+    {/* Search */}
+    <div className="w-full lg:w-2/5">
+      <input
+        type="text"
+        placeholder="Search job roles..."
+        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </div>
 
-            <select
-              className="min-w-[140px] border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-            >
-              <option value="newest">Newest</option>
-              <option value="oldest">Oldest</option>
-            </select>
+    {/* Create Job Button */}
+    <button
+      onClick={() => setShowModal(true)}
+      disabled={loading}
+      className="self-start lg:self-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 transition-all duration-200 disabled:opacity-50"
+    >
+      + Create Job
+    </button>
 
-            <button
-              onClick={() => setShowModal(true)}
-              disabled={loading}
-              className="ml-auto px-5 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors whitespace-nowrap disabled:opacity-50"
-            >
-              Create Job
-            </button>
-          </div>
-        </div>
+  </div>
+
+  {/* Divider */}
+  <div className="border-t border-gray-100"></div>
+
+  {/* Filters */}
+  <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+
+    <select
+      className="min-w-[160px] px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+      value={filterStatus}
+      onChange={(e) => setFilterStatus(e.target.value)}
+    >
+      <option value="all">All Status</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+
+    <select
+      className="min-w-[200px] px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+      value={filterDepartment}
+      onChange={(e) => setFilterDepartment(e.target.value)}
+    >
+      <option value="all">All Departments</option>
+      {departments.map((dep) => (
+        <option key={dep.id} value={dep.name}>
+          {dep.name}
+        </option>
+      ))}
+    </select>
+
+    <select
+      className="min-w-[160px] px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+      value={sortBy}
+      onChange={(e) => setSortBy(e.target.value)}
+    >
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+    </select>
+
+  </div>
+</div>
 
         {/* Jobs Table */}
+        <div className="mb-4 text-sm text-gray-500">
+  Showing <span className="font-medium text-gray-800">
+    {filteredJobs.length}
+  </span> job(s)
+</div>
         <div className="bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">

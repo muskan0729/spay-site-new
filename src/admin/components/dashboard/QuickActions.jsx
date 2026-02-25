@@ -32,13 +32,6 @@ const QuickActions = () => {
       color: "bg-yellow-100 text-yellow-600",
       action: () => navigate("/admin/candidates"),
     },
-    {
-      title: "Export Reports",
-      description: "Download hiring reports",
-      icon: <FileDown size={28} />,
-      color: "bg-green-100 text-green-600",
-      action: () => alert("Exporting Reports (Demo)"),
-    },
   ];
 
   return (

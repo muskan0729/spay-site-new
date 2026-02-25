@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useGet } from "../../hooks/useGet";
+import { useInterviews } from "../../hooks/useInterviews";
 import { apiClient } from "../../hooks/useApi"; // Import apiClient for direct calls
 
 const Candidates = () => {
@@ -40,6 +41,9 @@ const Candidates = () => {
       search: filters.search || undefined
     }
   });
+
+  // Integrate useInterviews for scheduling
+  const { createInterview, creating } = useInterviews();
 
   // Extract candidates from the nested data structure
   const candidates = candidatesData?.data?.data || [];
@@ -151,43 +155,34 @@ const Candidates = () => {
   };
 
   /* ================= SCHEDULE INTERVIEW ================= */
-  const scheduleInterview = async () => {
-    if (!interviewData.date || !interviewData.time) {
-      return alert("Please select both date and time");
-    }
+const scheduleInterview = async () => {
+  if (!interviewData.date || !interviewData.time) {
+    return alert("Please select both date and time");
+  }
 
-    setActionLoading(true);
-    try {
-      const url = `/admin/candidates/${scheduleModal.id}/schedule`;
-      
-      console.log(`Making POST request to: ${url}`);
-      console.log("Payload:", {
-        interview_date: interviewData.date,
-        interview_time: interviewData.time
-      });
-      
-      const response = await apiClient.post(url, {
-        interview_date: interviewData.date,
-        interview_time: interviewData.time
-      });
-      
-      console.log("Response:", response.data);
+  setActionLoading(true);
 
-      if (response.data?.status) {
-        await refetchCandidates();
-        alert('Interview scheduled successfully');
-        setScheduleModal(null);
-        setInterviewData({ date: "", time: "" });
-      } else {
-        alert(`Failed to schedule interview: ${response.data?.message || 'Unknown error'}`);
-      }
-    } catch (error) {
-      console.error("Error scheduling interview:", error);
-      alert("Failed to schedule interview. Please try again.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
+  try {
+    const response = await apiClient.post("/interviews", {
+      candidate_id: scheduleModal.id,
+      date: interviewData.date,
+      start_time: interviewData.time,
+      end_time: interviewData.time, // or add +1 hour if needed
+      type: "in_person", // or "online"
+    });
+
+    alert("Interview scheduled successfully");
+
+    setScheduleModal(null);
+    setInterviewData({ date: "", time: "" });
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to schedule interview");
+  } finally {
+    setActionLoading(false);
+  }
+};
 
   /* ================= EMAIL ================= */
   const sendEmail = async (candidate) => {
@@ -315,7 +310,7 @@ const Candidates = () => {
     refetchCandidates();
   }, [filters.status, currentPage, refetchCandidates]);
 
-  const isLoading = loading || actionLoading;
+  const isLoading = loading || actionLoading || creating;
 
   // Helper function to get position name safely
   const getPositionName = (candidate) => {
@@ -416,105 +411,136 @@ const Candidates = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {candidates.map((c) => (
-                      <tr
-                        key={c.id}
-                        className="hover:bg-blue-50/40 transition-colors"
-                      >
-                        <td className="p-4">
-                          <input
-                            type="checkbox"
-                            checked={selectedIds.includes(c.id)}
-                            onChange={() => toggleSelect(c.id)}
-                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                            disabled={isLoading}
-                          />
-                        </td>
+                    {candidates.map((c) => {
+                      const isRejected = c.status === "rejected";
+                      const isAccepted = c.status === "accepted";
 
-                        <td className="p-4 font-medium text-gray-900">{c.name}</td>
-                        <td className="p-4 text-gray-600">{c.email}</td>
-                        <td className="p-4 text-gray-600">{c.mobile_no || '-'}</td>
-                        
-                        <td className="p-4 text-gray-600">
-                          {getPositionName(c)}
-                        </td>
+                      return (
+                        <tr
+                          key={c.id}
+                          className="hover:bg-blue-50/40 transition-colors"
+                        >
+                          <td className="p-4">
+                            <input
+                              type="checkbox"
+                              checked={selectedIds.includes(c.id)}
+                              onChange={() => toggleSelect(c.id)}
+                              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                              disabled={isLoading || isRejected}
+                            />
+                          </td>
 
-                        <td className="p-4">
-                          {hasResume(c) ? (
-                            <div className="flex gap-2">
+                          <td className="p-4 font-medium text-gray-900">{c.name}</td>
+                          <td className="p-4 text-gray-600">{c.email}</td>
+                          <td className="p-4 text-gray-600">{c.mobile_no || '-'}</td>
+                          
+                          <td className="p-4 text-gray-600">
+                            {getPositionName(c)}
+                          </td>
+
+                          <td className="p-4">
+                            {hasResume(c) ? (
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => previewResumeHandler(c)}
+                                  className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
+                                  disabled={isLoading}
+                                >
+                                  Preview
+                                </button>
+                                <button
+                                  onClick={() => downloadResume(c)}
+                                  className="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition"
+                                  disabled={isLoading}
+                                >
+                                  Download
+                                </button>
+                              </div>
+                            ) : (
+                              <span className="text-gray-400 text-sm">No resume</span>
+                            )}
+                          </td>
+
+                          <td className="p-4">
+                            <span
+                              className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadge(
+                                c.status
+                              )}`}
+                            >
+                              {c.status.charAt(0).toUpperCase() + c.status.slice(1)}
+                            </span>
+                          </td>
+
+                          <td className="p-4">
+                            <div className="flex flex-wrap justify-end gap-2">
+
+                              {/* Email */}
                               <button
-                                onClick={() => previewResumeHandler(c)}
-                                className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
-                                disabled={isLoading}
+                                onClick={() => {
+                                  if (isRejected) return;
+                                  setEmailModal(c);
+                                  setEmailData({
+                                    subject: `Interview Update - ${getPositionName(c)}`,
+                                    message: `Hello ${c.name},\n\n`,
+                                  });
+                                }}
+                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                  isRejected
+                                    ? "bg-gray-300 cursor-not-allowed"
+                                    : "bg-indigo-600 hover:bg-indigo-700"
+                                }`}
+                                disabled={isLoading || isRejected}
                               >
-                                Preview
+                                Email
                               </button>
+
+                              {/* Schedule */}
                               <button
-                                onClick={() => downloadResume(c)}
-                                className="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition"
-                                disabled={isLoading}
+                                onClick={() => {
+                                  if (isRejected) return;
+                                  setScheduleModal(c);
+                                }}
+                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                  isRejected
+                                    ? "bg-gray-300 cursor-not-allowed"
+                                    : "bg-blue-600 hover:bg-blue-700"
+                                }`}
+                                disabled={isLoading || isRejected}
                               >
-                                Download
+                                Schedule
                               </button>
+
+                              {/* Accept */}
+                              <button
+                                onClick={() => updateStatus(c.id, "accepted")}
+                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                  isRejected || isAccepted
+                                    ? "bg-gray-300 cursor-not-allowed"
+                                    : "bg-green-600 hover:bg-green-700"
+                                }`}
+                                disabled={isLoading || isRejected || isAccepted}
+                              >
+                                Accept
+                              </button>
+
+                              {/* Reject */}
+                              <button
+                                onClick={() => updateStatus(c.id, "rejected")}
+                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                  isRejected
+                                    ? "bg-gray-300 cursor-not-allowed"
+                                    : "bg-red-600 hover:bg-red-700"
+                                }`}
+                                disabled={isLoading || isRejected}
+                              >
+                                Reject
+                              </button>
+
                             </div>
-                          ) : (
-                            <span className="text-gray-400 text-sm">No resume</span>
-                          )}
-                        </td>
-
-                        <td className="p-4">
-                          <span
-                            className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadge(
-                              c.status
-                            )}`}
-                          >
-                            {c.status.charAt(0).toUpperCase() + c.status.slice(1)}
-                          </span>
-                        </td>
-
-                        <td className="p-4">
-                          <div className="flex flex-wrap justify-end gap-2">
-                            <button
-                              onClick={() => {
-                                setEmailModal(c);
-                                setEmailData({
-                                  subject: `Interview Update - ${getPositionName(c)}`,
-                                  message: `Hello ${c.name},\n\n`,
-                                });
-                              }}
-                              className="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 transition"
-                              disabled={isLoading}
-                            >
-                              Email
-                            </button>
-
-                            <button
-                              onClick={() => setScheduleModal(c)}
-                              className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
-                              disabled={isLoading}
-                            >
-                              Schedule
-                            </button>
-
-                            <button
-                              onClick={() => updateStatus(c.id, "accepted")}
-                              className="px-3 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition"
-                              disabled={isLoading}
-                            >
-                              Accept
-                            </button>
-
-                            <button
-                              onClick={() => updateStatus(c.id, "rejected")}
-                              className="px-3 py-1.5 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition"
-                              disabled={isLoading}
-                            >
-                              Reject
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -677,6 +703,7 @@ const Candidates = () => {
                 >
                   {actionLoading ? 'Sending...' : 'Send Email'}
                 </button>
+                
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import integrationBg from "../assets/images/integration-bg.jpg";
+import integrationBg from "../assets/images/Integrations1N.jpeg";
 
 import {
   FaCode,

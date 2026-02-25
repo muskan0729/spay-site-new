@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import slide1 from "../../assets/images/bg3.webp";
-import slide2 from "../../assets/images/freepik.webp";
-import slide3 from "../../assets/images/2slide.webp";
-import slide4 from "../../assets/images/3slide.webp";
+import slide1 from "../../assets/images/Slide1N.jpeg";
+import slide2 from "../../assets/images/Slide2N.jpeg";
+import slide3 from "../../assets/images/Slide3N.jpeg";
+import slide4 from "../../assets/images/Slide4N.jpeg";
 
 const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   const slides = [

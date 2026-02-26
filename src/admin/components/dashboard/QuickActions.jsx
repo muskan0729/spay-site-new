@@ -4,7 +4,6 @@ import {
   PlusCircle,
   Users,
   CalendarPlus,
-  FileDown,
 } from "lucide-react";
 
 const QuickActions = () => {
@@ -13,55 +12,62 @@ const QuickActions = () => {
   const actions = [
     {
       title: "Add Position",
-      description: "Create a new job role",
-      icon: <PlusCircle size={28} />,
-      color: "bg-blue-100 text-blue-600",
+      description: "Create and publish a new job role",
+      icon: PlusCircle,
+      color: "bg-blue-50 text-blue-600",
+      hover: "hover:bg-blue-600 hover:text-white",
       action: () => navigate("/admin/positions"),
     },
     {
       title: "View Candidates",
-      description: "Manage all applicants",
-      icon: <Users size={28} />,
-      color: "bg-purple-100 text-purple-600",
+      description: "Manage and review all applicants",
+      icon: Users,
+      color: "bg-purple-50 text-purple-600",
+      hover: "hover:bg-purple-600 hover:text-white",
       action: () => navigate("/admin/candidates"),
     },
     {
       title: "Schedule Interview",
-      description: "Plan candidate interviews",
-      icon: <CalendarPlus size={28} />,
-      color: "bg-yellow-100 text-yellow-600",
+      description: "Plan and organize interviews",
+      icon: CalendarPlus,
+      color: "bg-yellow-50 text-yellow-600",
+      hover: "hover:bg-yellow-500 hover:text-white",
       action: () => navigate("/admin/candidates"),
     },
   ];
 
   return (
-    <div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-4">
+    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+      <h3 className="text-lg font-semibold text-gray-800 mb-6">
         Quick Actions
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {actions.map((item, index) => (
-          <div
-            key={index}
-            onClick={item.action}
-            className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all"
-          >
-            <div
-              className={`w-12 h-12 flex items-center justify-center rounded-xl mb-4 ${item.color}`}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {actions.map((item, index) => {
+          const Icon = item.icon;
+
+          return (
+            <button
+              key={index}
+              onClick={item.action}
+              className="group text-left p-6 rounded-2xl border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-gray-50"
             >
-              {item.icon}
-            </div>
+              <div
+                className={`w-12 h-12 flex items-center justify-center rounded-xl mb-4 transition-all duration-300 ${item.color} ${item.hover}`}
+              >
+                <Icon size={26} />
+              </div>
 
-            <h4 className="font-semibold text-gray-800">
-              {item.title}
-            </h4>
+              <h4 className="font-semibold text-gray-800 group-hover:text-gray-900 transition">
+                {item.title}
+              </h4>
 
-            <p className="text-sm text-gray-500 mt-1">
-              {item.description}
-            </p>
-          </div>
-        ))}
+              <p className="text-sm text-gray-500 mt-1 group-hover:text-gray-600 transition">
+                {item.description}
+              </p>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

@@ -87,14 +87,14 @@ const KPICards = () => {
       value: stats.totalCandidates,
       icon: <Users size={22} />,
       color: "bg-purple-100 text-purple-600",
-      note: "Coming soon", // Optional note
+      // note: "Coming soon", // Optional note
     },
     {
       title: "Interviews Scheduled",
       value: stats.interviewsScheduled,
       icon: <CalendarCheck size={22} />,
       color: "bg-yellow-100 text-yellow-600",
-      note: "Coming soon",
+      // note: "Coming soon",
     },
   ];
 

@@ -15,50 +15,51 @@ import {
 const Integration = () => {
   const navigate = useNavigate();
 
-  // Redirect handler
   const handleRedirect = () => {
     navigate("/login");
   };
 
-  // Card animation variants
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.2,
+        delay: i * 0.15,
         duration: 0.6,
         ease: "easeOut",
       },
     }),
     hover: {
-      scale: 1.05,
-      boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+      scale: 1.04,
+      boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
       transition: { duration: 0.3 },
     },
   };
 
   return (
-    <div className="font-sans text-gray-900 overflow-hidden">
+    <div className="font-sans text-gray-900">
+
       {/* ================= HERO SECTION ================= */}
+      {/* min-h-[calc(100vh-96px)] adjusts for fixed navbar height */}
       <section
-        className="relative h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative min-h-[calc(100vh-96px)] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${integrationBg})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
 
         <motion.div
-          className="relative text-center text-white z-10 px-6"
+          className="relative z-10 text-center text-white px-6 max-w-6xl"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent leading-tight">
             Simplified Integration
           </h1>
 
-          <p className="text-xl md:text-3xl mb-12 max-w-4xl mx-auto">
+          <p className="text-lg md:text-2xl mb-12 max-w-4xl mx-auto">
             Well-documented custom code for modern apps and websites.
             Accelerate your development with seamless APIs, SDKs, and plugins.
           </p>
@@ -71,7 +72,7 @@ const Integration = () => {
             ].map((item, i) => (
               <motion.div
                 key={item.label}
-                className="flex flex-col items-center bg-white/15 backdrop-blur-sm p-6 rounded-3xl shadow-xl border border-white/20"
+                className="flex flex-col items-center bg-white/15 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/20"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -79,7 +80,9 @@ const Integration = () => {
                 whileHover="hover"
               >
                 <item.icon className="text-4xl mb-3 text-blue-300" />
-                <span className="font-bold text-lg">{item.label}</span>
+                <span className="font-semibold text-lg">
+                  {item.label}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -87,12 +90,12 @@ const Integration = () => {
       </section>
 
       {/* ================= PAYMENT SECTION ================= */}
-      <section className="py-24 px-6 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-28 px-6 bg-gradient-to-b from-white to-blue-50">
         <div className="text-center max-w-6xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-blue-600">
             Integrate Payments Seamlessly
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Empower your platform with flexible, secure payment solutions tailored to your needs.
           </p>
         </div>
@@ -112,7 +115,7 @@ const Integration = () => {
           ].map((card, idx) => (
             <motion.div
               key={card.title}
-              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:border-blue-200 transition-all"
+              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
@@ -125,7 +128,7 @@ const Integration = () => {
 
               <button
                 onClick={handleRedirect}
-                className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:scale-105 transition-all"
+                className="flex items-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:bg-blue-700 transition"
               >
                 View Documentation <FaDownload />
               </button>
@@ -135,12 +138,12 @@ const Integration = () => {
       </section>
 
       {/* ================= APP SECTION ================= */}
-      <section className="py-24 px-6 bg-blue-50">
+      <section className="py-28 px-6 bg-blue-50">
         <div className="text-center max-w-6xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-blue-600">
             Native App Integration
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Bring payments to life in your mobile apps with optimized SDKs.
           </p>
         </div>
@@ -160,7 +163,7 @@ const Integration = () => {
           ].map((card, idx) => (
             <motion.div
               key={card.title}
-              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:border-blue-200 transition-all"
+              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
@@ -173,7 +176,7 @@ const Integration = () => {
 
               <button
                 onClick={handleRedirect}
-                className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:scale-105 transition-all"
+                className="flex items-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:bg-blue-700 transition"
               >
                 View Documentation <FaDownload />
               </button>
@@ -182,22 +185,6 @@ const Integration = () => {
         </div>
       </section>
 
-      {/* ================= CTA SECTION ================= */}
-      <section className="py-16 px-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
-        <h3 className="text-3xl md:text-4xl font-bold mb-4">
-          Ready to Integrate?
-        </h3>
-        <p className="text-xl mb-8 max-w-2xl mx-auto">
-          Join thousands of developers building the future of payments.
-        </p>
-
-        <button
-          onClick={handleRedirect}
-          className="bg-white text-blue-600 py-4 px-8 rounded-2xl font-bold shadow-2xl hover:scale-105 transition-all"
-        >
-          Start Integrating Now
-        </button>
-      </section>
     </div>
   );
 };

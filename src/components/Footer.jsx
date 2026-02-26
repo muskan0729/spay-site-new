@@ -1,5 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 // Assets
 import pci from "../assets/images/pci-dss-1 (1).png";
@@ -9,15 +16,15 @@ import appStore from "../assets/images/download-on-the-app-store-flat-badge-logo
 const Footer = () => {
   return (
     <footer className="relative overflow-hidden text-white">
-      {/* PREMIUM GRADIENT BACKGROUND */}
+      {/* PREMIUM BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,#1e3a8a_0%,transparent_45%),radial-gradient(1000px_circle_at_80%_20%,#0f172a_0%,transparent_55%),linear-gradient(to_bottom,#020617,#00040f)]" />
 
-      {/* CONTENT */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/* TOP SECTION */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14 md:gap-y-0">
-          {/* LEFT CONTENT */}
-          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-10">
+          
+          {/* LEFT GRID */}
+          <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-10">
             <FooterBlock title="Address">
               316 Laxmi Plaza, Laxmi Industrial Estate,
               <br />
@@ -25,13 +32,11 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Contact">
-              <div className="space-y-1 md:space-y-2">
-                <p>022-46072193</p>
-                <p>+91 8450007614</p>
-                <a href="mailto:inquiry@spay.live" className={linkClass}>
-                  inquiry@spay.live
-                </a>
-              </div>
+              <p>022-46072193</p>
+              <p>+91 8450007614</p>
+              <a href="mailto:inquiry@spay.live" className={linkClass}>
+                inquiry@spay.live
+              </a>
             </FooterBlock>
 
             <FooterBlock title="Services">
@@ -48,25 +53,23 @@ const Footer = () => {
             </FooterBlock>
           </div>
 
-          {/* RIGHT BRAND / TRUST */}
+          {/* RIGHT */}
           <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
-            {/* APP */}
-            <div className="w-full lg:w-auto">
-              <p className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] uppercase tracking-widest text-white/70">
+            
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-widest text-white/70">
                 Get the app
               </p>
               <a
                 href="https://apps.apple.com/in/app/spay-fintech/id6444719057"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block opacity-95 hover:opacity-100 transition"
               >
-                <img src={appStore} alt="App Store" className="h-[40px] sm:h-[44px]" />
+                <img src={appStore} alt="App Store" className="h-[44px]" />
               </a>
             </div>
 
-            {/* TRUST */}
-            <div className="flex items-center gap-6 flex-wrap">
+            <div className="flex items-center gap-6">
               <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
               <img src={iso} alt="ISO Certified" className="h-[48px] opacity-90" />
             </div>
@@ -74,17 +77,63 @@ const Footer = () => {
         </div>
 
         {/* DIVIDER */}
-        <div className="mt-6 md:mt-8 lg:mt-16 border-t border-white/10" />
+        <div className="mt-12 border-t border-white/10" />
 
-        {/* BOTTOM */}
-        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* BOTTOM SECTION */}
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+
+          {/* LEFT */}
           <p className="text-[13px] text-white/70 text-center md:text-left">
             © 2024 Spay Fintech. All rights reserved.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center md:gap-6 gap-2 text-[13px]">
-            <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
-            <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
+          {/* RIGHT SECTION */}
+          <div className="flex flex-col md:flex-row items-center gap-6">
+
+            {/* Policy Links (shifted slightly left) */}
+            <div className="flex items-center gap-6 mr-4">
+              <FooterLink to="/privacy-policy">
+                Privacy Policy
+              </FooterLink>
+              <FooterLink to="/terms-conditions">
+                Terms & Conditions
+              </FooterLink>
+            </div>
+
+            {/* SOCIAL ICONS */}
+            <div className="flex items-center gap-4 text-lg">
+
+              <SocialIcon
+                href="https://www.facebook.com/people/SPAY-Fintech-Private-Limited/100083292313713/"
+                icon={<FaFacebookF />}
+                hoverColor="hover:text-[#1877F2]"
+              />
+
+              <SocialIcon
+                href="https://x.com/SpayLive/"
+                icon={<FaXTwitter />}
+                hoverColor="hover:text-white"
+              />
+
+              <SocialIcon
+                href="https://www.instagram.com/spay_fintech/"
+                icon={<FaInstagram />}
+                hoverColor="hover:text-pink-500"
+              />
+
+              <SocialIcon
+                href="https://www.linkedin.com/company/spay-fintech-private-limited/"
+                icon={<FaLinkedinIn />}
+                hoverColor="hover:text-[#0A66C2]"
+              />
+
+              <SocialIcon
+                href="https://www.youtube.com/@SpayFintechPrivateLimited"
+                icon={<FaYoutube />}
+                hoverColor="hover:text-red-500"
+              />
+
+            </div>
           </div>
         </div>
       </div>
@@ -96,15 +145,17 @@ const Footer = () => {
 
 const FooterBlock = ({ title, children }) => (
   <div>
-    <h5 className="mb-2 md:mb-3 lg:mb-4 text-xs md:text-[13px] font-medium uppercase tracking-widest text-white/80">
+    <h5 className="mb-4 text-xs font-medium uppercase tracking-widest text-white/80">
       {title}
     </h5>
-    <div className="text-[14px] leading-[1.7] text-white space-y-2">{children}</div>
+    <div className="text-[14px] leading-[1.7] text-white space-y-2">
+      {children}
+    </div>
   </div>
 );
 
 const linkClass =
-  "relative block w-fit text-white transition-opacity duration-300 opacity-90 " +
+  "relative block w-fit text-white opacity-90 transition-all duration-300 " +
   "after:content-[''] after:absolute after:left-1/2 after:-bottom-[3px] " +
   "after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 " +
   "hover:opacity-100 hover:after:left-0 hover:after:w-full";
@@ -113,6 +164,17 @@ const FooterLink = ({ to, children }) => (
   <Link to={to} className={linkClass}>
     {children}
   </Link>
+);
+
+const SocialIcon = ({ href, icon, hoverColor }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className={`text-white/70 transition-all duration-300 transform hover:scale-110 ${hoverColor}`}
+  >
+    {icon}
+  </a>
 );
 
 export default Footer;

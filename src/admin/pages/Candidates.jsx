@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from "react";
 import { useGet } from "../../hooks/useGet";
 import { useInterviews } from "../../hooks/useInterviews";
@@ -155,34 +156,34 @@ const Candidates = () => {
   };
 
   /* ================= SCHEDULE INTERVIEW ================= */
-const scheduleInterview = async () => {
-  if (!interviewData.date || !interviewData.time) {
-    return alert("Please select both date and time");
-  }
+  const scheduleInterview = async () => {
+    if (!interviewData.date || !interviewData.time) {
+      return alert("Please select both date and time");
+    }
 
-  setActionLoading(true);
+    setActionLoading(true);
 
-  try {
-    const response = await apiClient.post("/interviews", {
-      candidate_id: scheduleModal.id,
-      date: interviewData.date,
-      start_time: interviewData.time,
-      end_time: interviewData.time, // or add +1 hour if needed
-      type: "in_person", // or "online"
-    });
+    try {
+      const response = await apiClient.post("/interviews", {
+        candidate_id: scheduleModal.id,
+        date: interviewData.date,
+        start_time: interviewData.time,
+        end_time: interviewData.time, // or add +1 hour if needed
+        type: "in_person", // or "online"
+      });
 
-    alert("Interview scheduled successfully");
+      alert("Interview scheduled successfully");
 
-    setScheduleModal(null);
-    setInterviewData({ date: "", time: "" });
+      setScheduleModal(null);
+      setInterviewData({ date: "", time: "" });
 
-  } catch (error) {
-    console.error(error);
-    alert("Failed to schedule interview");
-  } finally {
-    setActionLoading(false);
-  }
-};
+    } catch (error) {
+      console.error(error);
+      alert("Failed to schedule interview");
+    } finally {
+      setActionLoading(false);
+    }
+  };
 
   /* ================= EMAIL ================= */
   const sendEmail = async (candidate) => {
@@ -323,22 +324,22 @@ const scheduleInterview = async () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen text-gray-900">
-      <div className="max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 bg-gray-50 min-h-screen text-gray-900">
+      <div className="max-w-7xl mx-auto w-full">
         {/* Header + Top Actions */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
             Candidates Management
           </h2>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 w-full sm:w-auto">
             <button
               onClick={bulkReject}
               disabled={selectedIds.length === 0 || isLoading}
-              className={`px-4 py-2 rounded-lg font-medium text-white transition-colors ${
+              className={`flex-1 sm:flex-none px-4 py-2 rounded-lg font-medium text-white transition-colors ${
                 selectedIds.length === 0 || isLoading
-                  ? "bg-red-300 cursor-not-allowed"
-                  : "bg-red-600 hover:bg-red-700"
+                  ? "bg-pink-300 cursor-not-allowed"
+                  : "bg-pink-500 hover:bg-pink-600"
               }`}
             >
               Bulk Reject {selectedIds.length > 0 && `(${selectedIds.length})`}
@@ -346,7 +347,7 @@ const scheduleInterview = async () => {
 
             <button
               onClick={exportCSV}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="flex-1 sm:flex-none px-4 py-2 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors"
             >
               Export CSV
             </button>
@@ -362,7 +363,7 @@ const scheduleInterview = async () => {
               placeholder="Search by name or email..."
               value={filters.search}
               onChange={handleFilterChange}
-              className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full border rounded-lg px-3 py-2 sm:px-4 sm:py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               disabled={isLoading}
             />
           </div>
@@ -371,7 +372,7 @@ const scheduleInterview = async () => {
               name="status"
               value={filters.status}
               onChange={handleFilterChange}
-              className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full border rounded-lg px-3 py-2 sm:px-4 sm:py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               disabled={isLoading}
             >
               <option value="">All Status</option>
@@ -384,30 +385,30 @@ const scheduleInterview = async () => {
         </div>
 
         {/* Table Container */}
-        <div className="bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-xl shadow border border-gray-200 overflow-hidden w-full">
           {loading ? (
-            <div className="p-12 text-center text-gray-500">
+            <div className="p-8 sm:p-12 text-center text-gray-500">
               <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
               Loading candidates...
             </div>
           ) : candidates.length === 0 ? (
-            <div className="p-12 text-center text-gray-500">
+            <div className="p-8 sm:p-12 text-center text-gray-500">
               No candidates found
             </div>
           ) : (
             <>
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full min-w-[800px] text-left border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 text-gray-700 text-sm uppercase tracking-wider">
-                      <th className="p-4 w-10"></th>
-                      <th className="p-4">Name</th>
-                      <th className="p-4">Email</th>
-                      <th className="p-4">Phone</th>
-                      <th className="p-4">Position</th>
-                      <th className="p-4">Resume</th>
-                      <th className="p-4">Status</th>
-                      <th className="p-4 text-right">Actions</th>
+                    <tr className="bg-gray-100 text-gray-700 text-xs sm:text-sm uppercase tracking-wider">
+                      <th className="p-2 sm:p-4 w-10"></th>
+                      <th className="p-2 sm:p-4">Name</th>
+                      <th className="p-2 sm:p-4">Email</th>
+                      <th className="p-2 sm:p-4">Phone</th>
+                      <th className="p-2 sm:p-4">Position</th>
+                      <th className="p-2 sm:p-4">Resume</th>
+                      <th className="p-2 sm:p-4">Status</th>
+                      <th className="p-2 sm:p-4 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -420,7 +421,7 @@ const scheduleInterview = async () => {
                           key={c.id}
                           className="hover:bg-blue-50/40 transition-colors"
                         >
-                          <td className="p-4">
+                          <td className="p-2 sm:p-4">
                             <input
                               type="checkbox"
                               checked={selectedIds.includes(c.id)}
@@ -430,40 +431,40 @@ const scheduleInterview = async () => {
                             />
                           </td>
 
-                          <td className="p-4 font-medium text-gray-900">{c.name}</td>
-                          <td className="p-4 text-gray-600">{c.email}</td>
-                          <td className="p-4 text-gray-600">{c.mobile_no || '-'}</td>
+                          <td className="p-2 sm:p-4 font-medium text-gray-900 text-sm sm:text-base">{c.name}</td>
+                          <td className="p-2 sm:p-4 text-gray-600 text-sm sm:text-base">{c.email}</td>
+                          <td className="p-2 sm:p-4 text-gray-600 text-sm sm:text-base">{c.mobile_no || '-'}</td>
                           
-                          <td className="p-4 text-gray-600">
+                          <td className="p-2 sm:p-4 text-gray-600 text-sm sm:text-base">
                             {getPositionName(c)}
                           </td>
 
-                          <td className="p-4">
+                          <td className="p-2 sm:p-4">
                             {hasResume(c) ? (
-                              <div className="flex gap-2">
+                              <div className="flex flex-wrap gap-2">
                                 <button
                                   onClick={() => previewResumeHandler(c)}
-                                  className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
+                                  className="px-2 sm:px-3 py-1 bg-blue-600 text-white text-xs sm:text-sm rounded-md hover:bg-blue-700 transition"
                                   disabled={isLoading}
                                 >
                                   Preview
                                 </button>
                                 <button
                                   onClick={() => downloadResume(c)}
-                                  className="px-3 py-1.5 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition"
+                                  className="px-2 sm:px-3 py-1 bg-gray-600 text-white text-xs sm:text-sm rounded-md hover:bg-gray-700 transition"
                                   disabled={isLoading}
                                 >
                                   Download
                                 </button>
                               </div>
                             ) : (
-                              <span className="text-gray-400 text-sm">No resume</span>
+                              <span className="text-gray-400 text-xs sm:text-sm">No resume</span>
                             )}
                           </td>
 
-                          <td className="p-4">
+                          <td className="p-2 sm:p-4">
                             <span
-                              className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadge(
+                              className={`inline-flex px-2 sm:px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadge(
                                 c.status
                               )}`}
                             >
@@ -471,8 +472,8 @@ const scheduleInterview = async () => {
                             </span>
                           </td>
 
-                          <td className="p-4">
-                            <div className="flex flex-wrap justify-end gap-2">
+                          <td className="p-2 sm:p-4">
+                            <div className="flex flex-wrap justify-end gap-1 sm:gap-2">
 
                               {/* Email */}
                               <button
@@ -484,7 +485,7 @@ const scheduleInterview = async () => {
                                     message: `Hello ${c.name},\n\n`,
                                   });
                                 }}
-                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                className={`px-2 sm:px-3 py-1 text-white text-xs sm:text-sm rounded-md transition ${
                                   isRejected
                                     ? "bg-gray-300 cursor-not-allowed"
                                     : "bg-indigo-600 hover:bg-indigo-700"
@@ -500,7 +501,7 @@ const scheduleInterview = async () => {
                                   if (isRejected) return;
                                   setScheduleModal(c);
                                 }}
-                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                className={`px-2 sm:px-3 py-1 text-white text-xs sm:text-sm rounded-md transition ${
                                   isRejected
                                     ? "bg-gray-300 cursor-not-allowed"
                                     : "bg-blue-600 hover:bg-blue-700"
@@ -513,7 +514,7 @@ const scheduleInterview = async () => {
                               {/* Accept */}
                               <button
                                 onClick={() => updateStatus(c.id, "accepted")}
-                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                className={`px-2 sm:px-3 py-1 text-white text-xs sm:text-sm rounded-md transition ${
                                   isRejected || isAccepted
                                     ? "bg-gray-300 cursor-not-allowed"
                                     : "bg-green-600 hover:bg-green-700"
@@ -526,7 +527,7 @@ const scheduleInterview = async () => {
                               {/* Reject */}
                               <button
                                 onClick={() => updateStatus(c.id, "rejected")}
-                                className={`px-3 py-1.5 text-white text-sm rounded-md transition ${
+                                className={`px-2 sm:px-3 py-1 text-white text-xs sm:text-sm rounded-md transition ${
                                   isRejected
                                     ? "bg-gray-300 cursor-not-allowed"
                                     : "bg-red-600 hover:bg-red-700"
@@ -547,25 +548,25 @@ const scheduleInterview = async () => {
 
               {/* Pagination */}
               {pagination.last_page > 1 && (
-                <div className="px-4 py-3 border-t flex items-center justify-between">
-                  <div className="text-sm text-gray-700">
+                <div className="px-2 sm:px-4 py-3 border-t flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm">
+                  <div className="text-gray-700">
                     Showing {pagination.from} to {pagination.to} of {pagination.total} candidates
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => handlePageChange(pagination.current_page - 1)}
                       disabled={pagination.current_page === 1 || isLoading}
-                      className="px-3 py-1 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                      className="px-2 sm:px-3 py-1 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
                     >
                       Previous
                     </button>
-                    <span className="px-3 py-1">
+                    <span className="px-2 sm:px-3 py-1">
                       Page {pagination.current_page} of {pagination.last_page}
                     </span>
                     <button
                       onClick={() => handlePageChange(pagination.current_page + 1)}
                       disabled={pagination.current_page === pagination.last_page || isLoading}
-                      className="px-3 py-1 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                      className="px-2 sm:px-3 py-1 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
                     >
                       Next
                     </button>
@@ -579,23 +580,23 @@ const scheduleInterview = async () => {
         {/* Schedule Interview Modal */}
         {scheduleModal && (
           <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
-              <div className="p-6 border-b">
-                <h3 className="text-lg font-bold">
+            <div className="bg-white rounded-xl shadow-2xl w-full max-w-sm sm:max-w-md">
+              <div className="p-4 sm:p-6 border-b">
+                <h3 className="text-base sm:text-lg font-bold">
                   Schedule Interview – {scheduleModal.name}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
                   Position: {getPositionName(scheduleModal)}
                 </p>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-4 sm:p-6 space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Date
                   </label>
                   <input
                     type="date"
-                    className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full border rounded-lg px-2 sm:px-3 py-1 sm:py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={interviewData.date}
                     onChange={(e) =>
                       setInterviewData({ ...interviewData, date: e.target.value })
@@ -604,12 +605,12 @@ const scheduleInterview = async () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Time
                   </label>
                   <input
                     type="time"
-                    className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full border rounded-lg px-2 sm:px-3 py-1 sm:py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={interviewData.time}
                     onChange={(e) =>
                       setInterviewData({ ...interviewData, time: e.target.value })
@@ -618,20 +619,20 @@ const scheduleInterview = async () => {
                   />
                 </div>
               </div>
-              <div className="p-6 border-t flex justify-end gap-3">
+              <div className="p-4 sm:p-6 border-t flex justify-end gap-3">
                 <button
                   onClick={() => {
                     setScheduleModal(null);
                     setInterviewData({ date: "", time: "" });
                   }}
-                  className="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+                  className="px-3 sm:px-5 py-1 sm:py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 text-xs sm:text-sm"
                   disabled={isLoading}
                 >
                   Cancel
                 </button>
                 <button
                   onClick={scheduleInterview}
-                  className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="px-3 sm:px-5 py-1 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs sm:text-sm"
                   disabled={isLoading}
                 >
                   {actionLoading ? 'Scheduling...' : 'Confirm Schedule'}
@@ -644,24 +645,24 @@ const scheduleInterview = async () => {
         {/* Email Modal */}
         {emailModal && (
           <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
-              <div className="p-6 border-b">
-                <h3 className="text-lg font-bold">
+            <div className="bg-white rounded-xl shadow-2xl w-full max-w-md sm:max-w-lg">
+              <div className="p-4 sm:p-6 border-b">
+                <h3 className="text-base sm:text-lg font-bold">
                   Send Email to {emailModal.name}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
                   Position: {getPositionName(emailModal)}
                 </p>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-4 sm:p-6 space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Subject
                   </label>
                   <input
                     type="text"
                     placeholder="Subject"
-                    className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="w-full border rounded-lg px-2 sm:px-3 py-1 sm:py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     value={emailData.subject}
                     onChange={(e) =>
                       setEmailData({ ...emailData, subject: e.target.value })
@@ -670,13 +671,13 @@ const scheduleInterview = async () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Message
                   </label>
                   <textarea
-                    rows={6}
+                    rows={4}
                     placeholder="Write your message here..."
-                    className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="w-full border rounded-lg px-2 sm:px-3 py-1 sm:py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     value={emailData.message}
                     onChange={(e) =>
                       setEmailData({ ...emailData, message: e.target.value })
@@ -685,25 +686,24 @@ const scheduleInterview = async () => {
                   />
                 </div>
               </div>
-              <div className="p-6 border-t flex justify-end gap-3">
+              <div className="p-4 sm:p-6 border-t flex justify-end gap-3">
                 <button
                   onClick={() => {
                     setEmailModal(null);
                     setEmailData({ subject: "", message: "" });
                   }}
-                  className="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+                  className="px-3 sm:px-5 py-1 sm:py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 text-xs sm:text-sm"
                   disabled={isLoading}
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => sendEmail(emailModal)}
-                  className="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+                  className="px-3 sm:px-5 py-1 sm:py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-xs sm:text-sm"
                   disabled={isLoading}
                 >
                   {actionLoading ? 'Sending...' : 'Send Email'}
                 </button>
-                
               </div>
             </div>
           </div>

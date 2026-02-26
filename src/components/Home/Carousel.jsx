@@ -12,12 +12,12 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title: (
         <>
           Accept Payments Seamlessly with <br />
-          <span style={{ color: "#0cd7ff" }}>
-            Lightning-Fast transactions
+          <span className="text-[#0cd7ff]">
+            Lightning-Fast Transactions
           </span>
         </>
       ),
-      align: "top-center",
+      align: "center",
     },
     {
       image: slide2,
@@ -31,84 +31,71 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title:
         "Enjoy Safe and Secure Transactions with Our Payment Solutions",
       description:
-        "While many payment gateways promise security, Spay goes further by offering 24/7 helpline support. Your issues are our responsibility, ensuring you have the most secure payment experience possible.",
+        "Spay offers advanced fraud protection and seamless integrations.",
       align: "left",
     },
     {
       image: slide4,
       title:
-        "Enjoy Safe and Secure Transactions with Our Payment Solutions",
+        "24/7 Support & Advanced Security",
       description:
-        "While many payment gateways promise security, Spay goes further by offering 24/7 helpline support. Your issues are our responsibility, ensuring you have the most secure payment experience possible.",
+        "Your business stays protected and always running smoothly.",
       align: "left",
     },
   ];
 
   const [current, setCurrent] = useState(0);
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  };
-
-  // ✅ Improved autoplay (no dependency on current)
   useEffect(() => {
-    if (!autoPlay || slides.length === 0) return;
+    if (!autoPlay) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, interval);
 
-    const timer = setInterval(nextSlide, interval);
     return () => clearInterval(timer);
   }, [autoPlay, interval]);
 
-  if (slides.length === 0) return <p>No Slides Found</p>;
-
   const getAlignmentClasses = (align) => {
     switch (align) {
-      case "top-center":
-        return "items-start justify-center pt-8 sm:pt-12 md:pt-16 text-center";
       case "left":
-        return "items-center justify-start px-4 sm:px-8 md:px-12 lg:px-20 text-left";
+        return "items-center justify-start px-6 md:px-16 text-left";
+      case "center":
       default:
-        return "items-center justify-center";
+        return "items-center justify-center text-center";
     }
   };
 
-  return (
-    <div className="w-full relative overflow-hidden">
+  return (  
+    <div className="relative w-full h-[70vh] min-h-[450px] overflow-hidden">
 
-      {/* Slide Image */}
-      <div className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] lg:h-[650px] xl:h-[750px] 2xl:h-[850px]">
-        <img
-          src={slides[current].image}
-          alt="slide"
-          className="w-full h-full object-cover transition-all duration-700"
-        />
+      {/* Image */}
+      <img
+        src={slides[current].image}
+        alt="slide"
+        className="absolute inset-0 w-full h-full object-contain transition-all duration-700"
+      />
 
-        {/* ✅ Dark overlay for better readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
-      </div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/50" />
 
-      {/* Caption Overlay */}
+      {/* Content */}
       <div
         className={`absolute inset-0 flex ${getAlignmentClasses(
           slides[current].align
         )}`}
       >
-        <div className="py-6 sm:py-8 md:py-10 max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl 2xl:max-w-3xl">
-
+        <div className="max-w-3xl">
           <h2
             className="text-white font-bold leading-tight"
-            style={{
-              fontSize: "clamp(1.3rem, 4.5vw, 3rem)",
-            }}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
           >
             {slides[current].title}
           </h2>
 
           {slides[current].description && (
             <p
-              className="hidden sm:block mt-3 md:mt-5 text-white font-semibold leading-relaxed"
-              style={{
-                fontSize: "clamp(0.9rem, 1.5vw, 1.25rem)",
-              }}
+              className="hidden sm:block mt-4 text-white font-medium"
+              style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}
             >
               {slides[current].description}
             </p>
@@ -116,18 +103,17 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
         </div>
       </div>
 
-      {/* Dots - Mobile Optimized */}
-      <div className="absolute bottom-4 sm:bottom-6 w-full flex justify-center gap-2 sm:gap-3">
+      {/* Dots */}
+      <div className="absolute bottom-5 w-full flex justify-center gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`transition-all duration-300 ${
+            className={`transition-all duration-300 rounded-full ${
               current === index
                 ? "w-6 h-2.5 bg-white"
-                : "w-3 h-2.5 bg-gray-400 hover:bg-gray-300"
-            } rounded-full`}
-            aria-label={`Go to slide ${index + 1}`}
+                : "w-3 h-2.5 bg-gray-400"
+            }`}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import { motion } from "framer-motion";
 import heroBg from "../../assets/images/hero-bg.webp";
 import dcpImage from "../../assets/images/dcp.webp";
@@ -25,149 +25,180 @@ const DynamicControlPanel = () => {
     }
   ];
 
+  /* ================= ANIMATION VARIANTS ================= */
+
   const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.25
+      }
+    }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, x: 80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.9, ease: "easeOut" }
+    }
   };
 
   return (
-    <div className="relative py-16 sm:py-20 md:py-24 bg-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #2563eb 1px, transparent 0)`,
-            backgroundSize: "30px 30px"
-          }}
-        />
-      </div>
+    <section className="relative py-12 sm:py-16 bg-white overflow-hidden">
+
+      {/* Background subtle animated pattern */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.05 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, #2563eb 1px, transparent 0)",
+          backgroundSize: "30px 30px"
+        }}
+      />
 
       <div className="relative container mx-auto px-4 sm:px-6">
-        {/* Section Header */}
+
+        {/* ================= HEADER ================= */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3">
             Dynamic Control Panel for Complete Management
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-4xl mx-auto leading-relaxed px-4">
-            Our platform provides you with full control over payments, transfers, refunds, invoices, e-accounts, and much more. This versatility makes us one of the top choices for online payment solutions.
-          </p>
-        </motion.div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-16">
-          {/* Left Column - Features */}
+          <p className="text-gray-600 text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
+            Our platform provides full control over payments, transfers,
+            refunds, invoices, e-accounts, and much more.
+          </p>
+
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 50 }}
+            transition={{ duration: 0.8 }}
+            className="h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto mt-4 rounded-full"
+          />
+        </motion.div>
+        <div className="flex flex-col lg:flex-row items-center gap-8">
+
+          {/* ================= LEFT FEATURES ================= */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:w-1/2 w-full space-y-4 sm:space-y-6 lg:space-y-8"
+            className="lg:w-1/2 space-y-6"
           >
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative flex flex-col sm:flex-row gap-4 sm:gap-5 p-4 sm:p-5 
-                           rounded-xl hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 
-                           transition-all duration-300 cursor-default 
+                whileHover={{ x: 6 }}
+                className="group relative flex gap-4 p-4 rounded-lg 
+                           transition-all duration-300
+                           hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50
                            border border-transparent hover:border-cyan-100"
               >
-                {/* Icon with gradient background */}
-                <div className="relative flex-shrink-0 self-start">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 
-                                rounded-xl blur-md opacity-0 group-hover:opacity-50 
-                                transition-opacity duration-300" />
-                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-cyan-500 to-blue-500 
-                                rounded-xl flex items-center justify-center
-                                group-hover:scale-110 group-hover:rotate-3 
-                                transition-all duration-300 shadow-md group-hover:shadow-xl">
-                    <i className={`fas ${feature.icon} text-white text-lg sm:text-xl`} />
-                  </div>
-                </div>
+                {/* Animated Icon */}
+                <motion.div
+                  whileHover={{ rotate: 8, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="relative w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600
+                             rounded-lg flex items-center justify-center shadow-sm"
+                >
+                  <i className={`fas ${feature.icon} text-white text-lg`} />
+                </motion.div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2 
-                               group-hover:text-cyan-600 transition-colors">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-cyan-600 transition-colors">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+
+                  <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                     {feature.description}
                   </p>
                 </div>
 
-                {/* Hover indicator line */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 
-                              bg-gradient-to-b from-cyan-500 to-blue-500 rounded-r
-                              group-hover:h-12 sm:group-hover:h-16 transition-all duration-300" />
+                {/* Left Accent Line Animation */}
+                <motion.div
+                  initial={{ height: 0 }}
+                  whileHover={{ height: "60%" }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-1
+                             bg-gradient-to-b from-cyan-500 to-blue-500 rounded-r"
+                />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Right Column - Image */}
+          {/* ================= RIGHT IMAGE ================= */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            variants={imageVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="lg:w-1/2 w-full max-w-lg lg:max-w-none mx-auto"
+            className="lg:w-1/2 max-w-sm mx-auto"
           >
-            <div className="relative">
-              {/* Decorative elements */}
-              <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-16 sm:w-20 md:w-24 
-                            h-16 sm:h-20 md:h-24 bg-cyan-200 rounded-full blur-xl sm:blur-2xl 
-                            opacity-60 animate-pulse" />
-              <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 w-20 sm:w-24 md:w-32 
-                            h-20 sm:h-24 md:h-32 bg-blue-200 rounded-full blur-xl sm:blur-2xl 
-                            opacity-60 animate-pulse delay-700" />
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600
+                              blur-lg opacity-15 rounded-lg" />
 
-              {/* Main image */}
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 
-                              rounded-xl sm:rounded-2xl blur-xl sm:blur-2xl opacity-20 
-                              group-hover:opacity-30 transition-opacity duration-500" />
+              <motion.img
+                src={dcpImage}
+                alt="Dynamic Control Panel"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.5 }}
+                className="relative w-full rounded-lg shadow-lg border-2 border-white"
+              />
 
-                <img
-                  src={dcpImage}
-                  alt="Dynamic Control Panel"
-                  className="w-full h-auto rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl
-                           border-2 sm:border-4 border-white/50 transform group-hover:scale-105 
-                           transition-all duration-700 relative z-10"
-                />
 
-                {/* Floating badges */}
-                <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 
-                              bg-white rounded-lg shadow-lg sm:shadow-xl p-2 sm:p-3 
-                              animate-bounce z-20">
-                  <i className="fas fa-check-circle text-green-500 text-base sm:text-xl" />
-                </div>
-                <div className="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 
-                              bg-white rounded-lg shadow-lg sm:shadow-xl p-2 sm:p-3 
-                              animate-bounce delay-300 z-20">
-                  <i className="fas fa-chart-pie text-cyan-500 text-base sm:text-xl" />
-                </div>
+              {/* Floating badges */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -top-3 -right-3 bg-white p-2 rounded-md shadow-md"
+              >
+                <i className="fas fa-check-circle text-green-500 text-base" />
+              </motion.div>
 
-                {/* Hover effect ring */}
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl 
-                              ring-2 ring-transparent group-hover:ring-cyan-400/50 
-                              transition-all duration-500 pointer-events-none z-30" />
-              </div>
-            </div>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -bottom-3 -left-3 bg-white p-2 rounded-md shadow-md"
+              >
+                <i className="fas fa-chart-pie text-cyan-500 text-base" />
+              </motion.div>
+            </motion.div>
           </motion.div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

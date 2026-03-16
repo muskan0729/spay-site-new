@@ -486,18 +486,20 @@ const Career = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="relative w-full">
-        <img
-          src={HeroImg}
-          alt="Career Banner"
-          className="w-full h-[120px] xs:h-[150px] sm:h-[180px] md:h-[220px] lg:h-[280px] xl:h-[320px] object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80 flex items-center justify-center">
-          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white px-4 text-center">
-            Join Our Team
-          </h1>
-        </div>
-      </div>
+{/* Hero Section */}
+<div className="relative w-full">
+  <img
+    src={HeroImg}
+    alt="Career Banner"
+    className="w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[320px] xl:h-[380px] object-cover"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80 flex items-center justify-center">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white text-center px-4">
+      Join Our Team
+    </h1>
+  </div>
+</div>
 
       {/* Success Message */}
       {updateSuccess && (

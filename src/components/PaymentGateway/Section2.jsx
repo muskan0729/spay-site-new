@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import slide32 from "../../assets/images/slide32.jpg";
 import slide33 from "../../assets/images/slide33.jpg";
 import slide34 from "../../assets/images/slide34.jpg";
@@ -11,6 +11,23 @@ const slides = [slide32, slide33, slide34, slide35, slide36, slide37];
 
 const Section2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 768) {
+        setItemsPerView(2);
+      } else {
+        setItemsPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const prevSlide = () => {
     if (currentIndex > 0) {
@@ -19,55 +36,53 @@ const Section2 = () => {
   };
 
   const nextSlide = () => {
-    if (currentIndex < slides.length - 3) {
+    if (currentIndex < slides.length - itemsPerView) {
       setCurrentIndex(currentIndex + 1);
     }
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-indigo-800">
+    <section className="py-14 md:py-16 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-800">
             Scale Your Business Across Multiple Sectors
           </h2>
-          <p className="mt-4 text-gray-600 text-lg">
+          <p className="mt-3 text-gray-600 text-sm sm:text-base">
             Showcasing your industry reach with elegance and style.
           </p>
         </div>
 
-        {/* Slider */}
         <div className="relative flex items-center">
 
-          {/* Left Button */}
+          {/* Left */}
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="absolute -left-6 z-10 bg-white shadow-lg p-3 rounded-full disabled:opacity-40"
+            className="absolute -left-3 z-10 bg-white shadow-md p-2 rounded-full disabled:opacity-40"
           >
-            <FaArrowLeft className="text-indigo-700" />
+            <FaArrowLeft className="text-indigo-700 text-sm" />
           </button>
 
-          {/* Slides Container */}
+          {/* Slider */}
           <div className="overflow-hidden w-full">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex transition-transform duration-500"
               style={{
-                transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
               }}
             >
               {slides.map((slide, index) => (
                 <div
                   key={index}
-                  className="w-1/3 flex-shrink-0 p-4"
+                  className="w-full sm:w-1/2 md:w-1/3 flex-shrink-0 px-3"
                 >
-                  <div className="rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition duration-300">
+                  <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
                     <img
                       src={slide}
-                      alt={`Slide ${index + 1}`}
-                      className="w-full h-[300px] object-cover"
+                      alt={`Slide ${index}`}
+                      className="w-full h-[240px] object-cover"
                     />
                   </div>
                 </div>
@@ -75,14 +90,15 @@ const Section2 = () => {
             </div>
           </div>
 
-          {/* Right Button */}
+          {/* Right */}
           <button
             onClick={nextSlide}
-            disabled={currentIndex >= slides.length - 3}
-            className="absolute -right-6 z-10 bg-white shadow-lg p-3 rounded-full disabled:opacity-40"
+            disabled={currentIndex >= slides.length - itemsPerView}
+            className="absolute -right-3 z-10 bg-white shadow-md p-2 rounded-full disabled:opacity-40"
           >
-            <FaArrowRight className="text-indigo-700" />
+            <FaArrowRight className="text-indigo-700 text-sm" />
           </button>
+
         </div>
       </div>
     </section>

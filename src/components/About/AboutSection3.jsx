@@ -1,70 +1,123 @@
 import React from "react";
-import { FaLightbulb, FaShieldAlt, FaClock, FaUsers, FaHandshake } from "react-icons/fa";
+import {
+  FaLightbulb,
+  FaShieldAlt,
+  FaClock,
+  FaUsers,
+  FaHandshake,
+} from "react-icons/fa";
 
 const AboutSection3 = () => {
   const coreValues = [
     {
-      icon: <FaLightbulb size={24} className="sm:size-30 text-white" />,
+      icon: <FaLightbulb />,
       title: "Innovation",
       description:
-        "Continuously seeking and implementing cutting-edge technologies to enhance our offerings.",
-      gradient: "bg-gradient-to-br from-indigo-600 to-purple-600",
+        "Continuously implementing cutting-edge technologies to enhance our offerings.",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+      border: "border-blue-500",
     },
     {
-      icon: <FaShieldAlt size={24} className="sm:size-30 text-white" />,
+      icon: <FaShieldAlt />,
       title: "Security",
       description:
-        "Protecting sensitive data and ensuring the highest level of security for all transactions.",
-      gradient: "bg-gradient-to-br from-yellow-500 to-orange-500",
+        "Protecting sensitive data with the highest level of transaction security.",
+      color: "text-cyan-600",
+      bg: "bg-cyan-50",
+      border: "border-cyan-500",
     },
     {
-      icon: <FaClock size={24} className="sm:size-30 text-white" />,
+      icon: <FaClock />,
       title: "Reliability",
       description:
         "Delivering consistent, dependable, and uninterrupted services.",
-      gradient: "bg-gradient-to-br from-teal-500 to-cyan-500",
+      color: "text-blue-700",
+      bg: "bg-blue-100",
+      border: "border-blue-600",
     },
     {
-      icon: <FaUsers size={24} className="sm:size-30 text-white" />,
+      icon: <FaUsers />,
       title: "Customer Centricity",
-      description: "Prioritizing the needs and satisfaction of our customers.",
-      gradient: "bg-gradient-to-br from-blue-500 to-blue-700",
+      description:
+        "Prioritizing customer needs and long-term satisfaction.",
+      color: "text-sky-600",
+      bg: "bg-sky-50",
+      border: "border-sky-500",
     },
     {
-      icon: <FaHandshake size={24} className="sm:size-30 text-white" />,
+      icon: <FaHandshake />,
       title: "Integrity",
       description:
-        "Adhering to ethical standards and maintaining transparency in our operations.",
-      gradient: "bg-gradient-to-br from-pink-500 to-rose-600",
+        "Maintaining transparency and strong ethical standards in operations.",
+      color: "text-blue-500",
+      bg: "bg-blue-50",
+      border: "border-blue-400",
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-5 bg-gray-100">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-900">
-        Core Values
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-8 max-w-6xl mx-auto">
-        {coreValues.map((value, index) => {
-          // Tailwind classes for exact grid placement on md and up
-          let gridClass = "md:col-span-2";
-          if (index === 0) gridClass += ""; // Default col-span-2 (cols 1-2)
-          if (index === 1) gridClass += " md:col-start-3"; // cols 3-4
-          if (index === 2) gridClass += " md:col-start-5"; // cols 5-6
-          if (index === 3) gridClass += " md:col-start-2"; // cols 2-3
-          if (index === 4) gridClass += " md:col-start-4"; // cols 4-5
+    <section className="py-14 md:py-16 bg-gray-50 px-6">
+      <div className="max-w-6xl mx-auto">
 
-          return (
+        {/* Title */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          Core Values
+        </h2>
+
+        {/* Top Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {coreValues.slice(0, 3).map((value, index) => (
             <div
               key={index}
-              className={`rounded-xl p-4 sm:p-6 md:p-8 flex flex-col items-start shadow-lg transform transition-transform duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-xl md:hover:shadow-2xl ${value.gradient} ${gridClass}`}
+              className={`bg-white rounded-2xl p-6 border-t-4 ${value.border}
+              shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
             >
-              {value.icon}
-              <h3 className="text-xl sm:text-2xl font-semibold mt-3 sm:mt-4 mb-2 sm:mb-3">{value.title}</h3>
-              <p className="text-white text-sm leading-relaxed">{value.description}</p>
+              <div
+                className={`w-11 h-11 flex items-center justify-center rounded-lg 
+                ${value.bg} ${value.color} text-lg mb-4`}
+              >
+                {value.icon}
+              </div>
+
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {value.title}
+              </h3>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {value.description}
+              </p>
             </div>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Bottom Row */}
+        <div className="flex flex-col sm:flex-row justify-center gap-6">
+          {coreValues.slice(3).map((value, index) => (
+            <div
+              key={index}
+              className={`bg-white rounded-2xl p-6 border-t-4 ${value.border}
+              shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1
+              w-full sm:w-[48%] lg:w-[32%]`}
+            >
+              <div
+                className={`w-11 h-11 flex items-center justify-center rounded-lg 
+                ${value.bg} ${value.color} text-lg mb-4`}
+              >
+                {value.icon}
+              </div>
+
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {value.title}
+              </h3>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

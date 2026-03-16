@@ -4,56 +4,65 @@ import { FaGlobe, FaSyncAlt, FaChartLine } from "react-icons/fa";
 
 const Section3 = () => {
   return (
-    <div
-      className="relative w-full flex items-center justify-center bg-center bg-cover py-16 sm:py-20 md:py-24"
+    <section
+      className="relative w-full flex items-center justify-center bg-center bg-cover py-12 md:py-16"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/10"></div>
+      {/* Softer Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/5"></div>
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 md:px-12">
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl text-center p-8 sm:p-10 md:p-14">
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl text-center p-6 sm:p-8 md:p-10">
 
-          {/* Section Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 sm:mb-8">
+          {/* Title (Smaller + Balanced) */}
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900 mb-4">
             Why Spay?
           </h2>
 
           {/* Description */}
-          <p className="text-gray-900 font-medium text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10">
-            Tired of searching for the "perfect" payment solution? Discover Spay and put an end to your quest.
+          <p className="text-gray-700 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-8">
+            Tired of searching for the perfect payment solution? Discover Spay and put an end to your quest.
             Our diverse range of services is tailored to meet your specific business needs.
           </p>
 
-          {/* Features List */}
-          <ul className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-start md:items-center">
+          {/* Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaGlobe className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
+            {/* Feature 1 */}
+            <div className="flex flex-col items-center text-center gap-3 group">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-100 shadow-sm group-hover:shadow-md transition">
+                <FaGlobe className="text-blue-700 text-base" />
+              </div>
+              <p className="text-gray-800 text-sm font-medium leading-relaxed">
                 Gain comprehensive insights into payment transactions.
-              </span>
-            </li>
+              </p>
+            </div>
 
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaSyncAlt className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
+            {/* Feature 2 */}
+            <div className="flex flex-col items-center text-center gap-3 group">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-100 shadow-sm group-hover:shadow-md transition">
+                <FaSyncAlt className="text-blue-700 text-base" />
+              </div>
+              <p className="text-gray-800 text-sm font-medium leading-relaxed">
                 Enjoy real-time analysis and visibility at your fingertips.
-              </span>
-            </li>
+              </p>
+            </div>
 
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaChartLine className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
+            {/* Feature 3 */}
+            <div className="flex flex-col items-center text-center gap-3 group">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-100 shadow-sm group-hover:shadow-md transition">
+                <FaChartLine className="text-blue-700 text-base" />
+              </div>
+              <p className="text-gray-800 text-sm font-medium leading-relaxed">
                 Access detailed data breakdowns for effective revenue management.
-              </span>
-            </li>
+              </p>
+            </div>
 
-          </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

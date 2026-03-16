@@ -160,17 +160,17 @@ const PaymentLinks = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
-            {/* FIRST CARD - Versatile Options, Privacy Protection, Multiple Payment Methods */}
+            {/* FIRST CARD */}
             <div className="w-full lg:w-5/12 px-2 sm:px-4 mb-6 sm:mb-8">
               <div className="feature-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-blue-100 h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900"></div>
                 
-                {/* Versatile Options - FULL CONTENT */}
+                {/* Versatile Options */}
                 <div className="mb-6 sm:mb-8 md:mb-10">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -184,12 +184,12 @@ const PaymentLinks = () => {
                   </div>
                 </div>
                 
-                {/* Privacy Protection - FULL CONTENT */}
+                {/* Privacy Protection */}
                 <div className="mb-6 sm:mb-8 md:mb-10">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -203,12 +203,12 @@ const PaymentLinks = () => {
                   </div>
                 </div>
                 
-                {/* Multiple Payment Methods - FULL CONTENT */}
+                {/* Multiple Payment Methods */}
                 <div>
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -224,17 +224,17 @@ const PaymentLinks = () => {
               </div>
             </div>
 
-            {/* SECOND CARD - Quick Setup, Contactless Payments, Power Dashboard */}
+            {/* SECOND CARD */}
             <div className="w-full lg:w-5/12 px-2 sm:px-4 mb-6 sm:mb-8">
               <div className="feature-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-blue-100 h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900"></div>
                 
-                {/* Quick Setup - FULL CONTENT */}
+                {/* Quick Setup */}
                 <div className="mb-6 sm:mb-8 md:mb-10">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -248,12 +248,12 @@ const PaymentLinks = () => {
                   </div>
                 </div>
                 
-                {/* Contactless Payments - FULL CONTENT */}
+                {/* Contactless Payments */}
                 <div className="mb-6 sm:mb-8 md:mb-10">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -267,12 +267,12 @@ const PaymentLinks = () => {
                   </div>
                 </div>
                 
-                {/* Power Dashboard - FULL CONTENT */}
+                {/* Power Dashboard */}
                 <div>
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
                     <div className="icon-container flex-shrink-0 mx-auto sm:mx-0">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
                     </div>
                     <div className="text-center sm:text-left">
@@ -318,7 +318,7 @@ const PaymentLinks = () => {
         </div>
       </div>
 
-      {/* Custom CSS */}
+      {/* Custom CSS - only icon sizing changed */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
         .slider-container {
@@ -359,12 +359,12 @@ const PaymentLinks = () => {
         }
         .icon-container {
           background: linear-gradient(135deg, #e6f0ff 0%, #d4e4ff 100%);
-          padding: clamp(8px, 2vw, 12px);
+          padding: clamp(6px, 1.5vw, 10px);
           border-radius: 14px;
           transition: all 0.3s ease;
           box-shadow: 0 4px 8px rgba(0, 40, 100, 0.08);
-          min-width: clamp(40px, 8vw, 56px);
-          height: clamp(40px, 8vw, 56px);
+          min-width: clamp(36px, 7vw, 48px);
+          height: clamp(36px, 7vw, 48px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -376,8 +376,8 @@ const PaymentLinks = () => {
         }
         .icon-container svg {
           transition: transform 0.3s ease;
-          width: clamp(20px, 4vw, 28px);
-          height: clamp(20px, 4vw, 28px);
+          width: clamp(20px, 3.5vw, 24px);
+          height: clamp(20px, 3.5vw, 24px);
         }
         .feature-card:hover .icon-container svg {
           transform: scale(1.1);

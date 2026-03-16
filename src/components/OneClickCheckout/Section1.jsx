@@ -36,20 +36,20 @@ const Section1 = () => {
           <div className="hidden md:block md:w-1/2"></div>
 
           {/* Right Column - Text */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left space-y-6 md:pe-20">
+<div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left space-y-6 md:pl-16">
 
-            <h1 className="text-3xl md:text-4xl font-bold text-[#00008b] leading-tight">
-              One-Click Checkout
-            </h1>
+  <h1 className="text-3xl md:text-4xl font-bold text-[#00008b] leading-tight">
+    One-Click Checkout
+  </h1>
 
-            <p className="text-black text-base md:text-md leading-relaxed">
-              Navigating through multiple forms before reaching the checkout can
-              be frustrating for customers. This lengthy process often leads them
-              to reconsider their purchase. To enhance the shopping experience,
-              implementing a one-click checkout option is essential.
-            </p>
+  <p className="text-black text-base md:text-md leading-relaxed">
+    Navigating through multiple forms before reaching the checkout can
+    be frustrating for customers. This lengthy process often leads them
+    to reconsider their purchase. To enhance the shopping experience,
+    implementing a one-click checkout option is essential.
+  </p>
 
-          </div>
+</div>
         </div>
       </div>
 

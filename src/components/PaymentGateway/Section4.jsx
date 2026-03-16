@@ -4,52 +4,78 @@ import featuresImage from "../../assets/images/pg_features.jpg";
 
 const Section4 = () => {
   return (
-    <section className="relative mt-10">
+    <section className="relative mt-6">
       {/* Background */}
       <div
-        className="bg-center bg-cover relative"
+        className="relative bg-center bg-cover"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/80"></div>
+        {/* Softer Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/90"></div>
 
-        <div className="container mx-auto px-4 relative z-10 py-16">
-          {/* Section Title */}
-          <h2 className="text-center text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 drop-shadow-sm">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 py-12 md:py-14">
+          
+          {/* Section Title (Smaller + Balanced) */}
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-10">
             Key Features
           </h2>
 
           {/* Content Row */}
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
-            {/* Left Column - Image */}
-            <div className="md:w-5/12 flex justify-center relative">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10">
+            
+            {/* Left - Image (Smaller & Responsive) */}
+            <div className="md:w-5/12 flex justify-center">
               <img
                 src={featuresImage}
                 alt="Payment Gateway Feature"
-                className="rounded-3xl shadow-2xl w-80 h-80 md:w-[400px] md:h-[400px] object-cover transform transition-transform duration-500 hover:scale-105"
+                className="rounded-2xl shadow-xl 
+                w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 
+                object-cover transition-transform duration-300 hover:scale-105"
               />
             </div>
 
-            {/* Right Column - Features List */}
-            <div className="md:w-7/12 flex flex-col justify-center space-y-5">
-              <ul className="list-disc list-inside text-lg md:text-xl leading-relaxed text-gray-800">
-                <li className="hover:text-blue-600 transition-colors duration-300">
-                  Seamless integration of payment services into your website
+            {/* Right - Features */}
+            <div className="md:w-7/12">
+              <ul className="space-y-4 text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed">
+                
+                <li className="flex items-start gap-3 group">
+                  <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                  <span className="group-hover:text-blue-700 transition">
+                    Seamless integration of payment services into your website
+                  </span>
                 </li>
-                <li className="hover:text-blue-600 transition-colors duration-300">
-                  Mobile integration capabilities and features
+
+                <li className="flex items-start gap-3 group">
+                  <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                  <span className="group-hover:text-blue-700 transition">
+                    Mobile integration capabilities and features
+                  </span>
                 </li>
-                <li className="hover:text-blue-600 transition-colors duration-300">
-                  Smooth experiences with both Hosted and Self-Checkout options
+
+                <li className="flex items-start gap-3 group">
+                  <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                  <span className="group-hover:text-blue-700 transition">
+                    Smooth experiences with Hosted and Self-Checkout options
+                  </span>
                 </li>
-                <li className="hover:text-blue-600 transition-colors duration-300">
-                  Quick and easy APIs for hassle-free, fast transactions
+
+                <li className="flex items-start gap-3 group">
+                  <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                  <span className="group-hover:text-blue-700 transition">
+                    Quick and easy APIs for hassle-free transactions
+                  </span>
                 </li>
-                <li className="hover:text-blue-600 transition-colors duration-300">
-                  Comprehensive offerings, including offer engines and EMI facilities
+
+                <li className="flex items-start gap-3 group">
+                  <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                  <span className="group-hover:text-blue-700 transition">
+                    Comprehensive offerings including offer engines and EMI facilities
+                  </span>
                 </li>
+
               </ul>
             </div>
+
           </div>
         </div>
       </div>

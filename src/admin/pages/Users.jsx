@@ -99,33 +99,69 @@ const Users = () => {
         Users Management
       </h2>
 
-      {/* ================= FILTER SECTION ================= */}
-      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border mb-6 flex flex-col md:flex-row gap-4 md:items-center">
-        <input
-          type="text"
-          placeholder="Search user..."
-          className="border rounded-xl px-4 py-2 w-full sm:w-64 focus:ring-2 focus:ring-blue-500 outline-none"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+{/* ================= FILTER SECTION ================= */}
+<div className="bg-gradient-to-r from-white to-gray-50 p-5 sm:p-6 rounded-2xl shadow-md border border-gray-100 mb-8">
 
-        <select
-          className="border rounded-xl px-4 py-2 w-full sm:w-48 focus:ring-2 focus:ring-blue-500 outline-none"
-          value={filterRole}
-          onChange={(e) => setFilterRole(e.target.value)}
-        >
-          <option value="all">All Roles</option>
-          <option value="admin">Admin</option>
-          <option value="user">User</option>
-        </select>
+  <div className="flex flex-col md:flex-row gap-4 md:items-center">
 
-        <button
-          onClick={() => setShowModal(true)}
-          className="md:ml-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition"
-        >
-          + Add User
-        </button>
-      </div>
+    {/* Search Input */}
+    <div className="relative w-full md:w-72">
+      <input
+        type="text"
+        placeholder="Search user..."
+        className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m1.6-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+
+    {/* Role Filter */}
+    <div className="relative w-full md:w-52">
+      <select
+        className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none appearance-none transition-all"
+        value={filterRole}
+        onChange={(e) => setFilterRole(e.target.value)}
+      >
+        <option value="all">All Roles</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+
+      {/* Custom dropdown arrow */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-4 h-4 text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+
+    {/* Optional Add Button (Better Styled) */}
+    {/* 
+    <button
+      onClick={() => setShowModal(true)}
+      className="md:ml-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2.5 rounded-xl shadow-md transition-all"
+    >
+      + Add User
+    </button>
+    */}
+
+  </div>
+</div>
 
       {/* ================= TABLE ================= */}
       <div className="bg-white rounded-2xl shadow-sm border overflow-x-auto">

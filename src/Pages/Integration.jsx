@@ -1,86 +1,81 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import integrationBg from "../assets/images/Integrations1N.jpeg";
-
 import {
   FaCode,
   FaPlug,
   FaProjectDiagram,
   FaAndroid,
   FaApple,
-  FaDownload,
+  FaArrowRight,
 } from "react-icons/fa";
 
 const Integration = () => {
-  const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate("/login");
+    window.location.href = "https://uatdashboard.spay.live/";
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i) => ({
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        delay: i * 0.15,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    }),
-    hover: {
-      scale: 1.04,
-      boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-      transition: { duration: 0.3 },
+      transition: { duration: 0.5 },
     },
   };
 
   return (
-    <div className="font-sans text-gray-900">
+    <div className="font-sans text-gray-900 overflow-x-hidden">
 
       {/* ================= HERO SECTION ================= */}
-      {/* min-h-[calc(100vh-96px)] adjusts for fixed navbar height */}
       <section
-        className="relative min-h-[calc(100vh-96px)] bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(${integrationBg})` }}
+        className="relative min-h-[65vh] flex items-center justify-center text-center text-white"
+        style={{
+          backgroundImage: `url(${integrationBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-black/75 to-blue-800/85"></div>
 
         <motion.div
-          className="relative z-10 text-center text-white px-6 max-w-6xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className="relative z-10 max-w-6xl w-full px-4 sm:px-6"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent leading-tight">
-            Simplified Integration
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Simplified{" "}
+            <span className="bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
+              Integration
+            </span>
           </h1>
 
-          <p className="text-lg md:text-2xl mb-12 max-w-4xl mx-auto">
-            Well-documented custom code for modern apps and websites.
-            Accelerate your development with seamless APIs, SDKs, and plugins.
+          <p className="text-sm sm:text-base mb-8 text-gray-300">
+            APIs, SDKs & Plugins built for seamless integration.
           </p>
 
-          <div className="flex justify-center gap-8 flex-wrap">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {[
-              { icon: FaCode, label: "SDKs" },
-              { icon: FaPlug, label: "Plugins" },
-              { icon: FaProjectDiagram, label: "API" },
-            ].map((item, i) => (
+              { icon: FaCode, label: "SDKs", color: "text-cyan-400" },
+              { icon: FaPlug, label: "Plugins", color: "text-indigo-400" },
+              { icon: FaProjectDiagram, label: "API", color: "text-emerald-400" },
+            ].map((item) => (
               <motion.div
                 key={item.label}
-                className="flex flex-col items-center bg-white/15 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/20"
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-                whileHover="hover"
+                whileHover={{ y: -5 }}
+                className="bg-white/10 backdrop-blur-lg 
+                           p-4 rounded-xl 
+                           border border-white/20
+                           shadow-xl
+                           flex flex-col items-center justify-center
+                           text-center
+                           min-h-[110px]
+                           transition-all duration-300"
               >
-                <item.icon className="text-4xl mb-3 text-blue-300" />
-                <span className="font-semibold text-lg">
+                <item.icon className={`text-2xl mb-2 ${item.color}`} />
+                <span className="text-xs font-semibold">
                   {item.label}
                 </span>
               </motion.div>
@@ -90,98 +85,138 @@ const Integration = () => {
       </section>
 
       {/* ================= PAYMENT SECTION ================= */}
-      <section className="py-28 px-6 bg-gradient-to-b from-white to-blue-50">
-        <div className="text-center max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-blue-600">
-            Integrate Payments Seamlessly
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Empower your platform with flexible, secure payment solutions tailored to your needs.
-          </p>
-        </div>
+      <section className="py-12 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-6xl mx-auto px-2 sm:px-6">
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {[
-            {
-              icon: FaProjectDiagram,
-              title: "API as per your Platform",
-              desc: "Build dynamic websites and applications with our RESTful APIs. Supports webhooks for real-time updates.",
-            },
-            {
-              icon: FaCode,
-              title: "Custom SDKs",
-              desc: "Accelerate integration with pre-built SDKs in multiple languages.",
-            },
-          ].map((card, idx) => (
-            <motion.div
-              key={card.title}
-              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100"
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              custom={idx}
-              whileHover="hover"
-            >
-              <card.icon className="text-blue-600 text-5xl mb-6" />
-              <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-              <p className="text-gray-600 mb-8">{card.desc}</p>
+          <motion.div
+            className="text-center mb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+            <h2 className="text-2xl font-semibold text-blue-700 mb-2">
+              Integrate Payments Seamlessly
+            </h2>
+            <p className="text-sm text-gray-600">
+              Secure infrastructure tailored for modern platforms.
+            </p>
+          </motion.div>
 
-              <button
-                onClick={handleRedirect}
-                className="flex items-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:bg-blue-700 transition"
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: FaProjectDiagram,
+                title: "API Integration",
+                desc: "RESTful APIs with webhook support.",
+                color: "text-blue-600",
+              },
+              {
+                icon: FaCode,
+                title: "Custom SDKs",
+                desc: "Developer-friendly SDKs for fast setup.",
+                color: "text-purple-600",
+              },
+            ].map((card) => (
+              <motion.div
+                key={card.title}
+                whileHover={{ y: -6 }}
+                className="bg-white p-6 rounded-xl
+                           shadow-lg hover:shadow-2xl
+                           border border-gray-100
+                           flex flex-col items-center justify-between
+                           text-center
+                           min-h-[220px]
+                           transition-all duration-300"
               >
-                View Documentation <FaDownload />
-              </button>
-            </motion.div>
-          ))}
+                <div>
+                  <card.icon className={`text-4xl mb-3 ${card.color}`} />
+                  <h3 className="text-lg font-semibold mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    {card.desc}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleRedirect}
+                  className="mt-5 flex items-center gap-2 bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+                >
+                  View Docs <FaArrowRight className="text-xs" />
+                </button>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </section>
 
       {/* ================= APP SECTION ================= */}
-      <section className="py-28 px-6 bg-blue-50">
-        <div className="text-center max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-blue-600">
-            Native App Integration
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Bring payments to life in your mobile apps with optimized SDKs.
-          </p>
-        </div>
+      <section className="py-12 bg-blue-50">
+        <div className="max-w-6xl mx-auto px-2 sm:px-6">
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              icon: FaAndroid,
-              title: "Android",
-              desc: "Seamless transaction tracking with native Kotlin/Java support.",
-            },
-            {
-              icon: FaApple,
-              title: "iOS",
-              desc: "Effortless management using Swift/Objective-C.",
-            },
-          ].map((card, idx) => (
-            <motion.div
-              key={card.title}
-              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100"
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              custom={idx}
-              whileHover="hover"
-            >
-              <card.icon className="text-blue-600 text-6xl mb-6" />
-              <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-              <p className="text-gray-600 mb-8">{card.desc}</p>
+          <motion.div
+            className="text-center mb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+            <h2 className="text-2xl font-semibold text-blue-700 mb-2">
+              Native App Integration
+            </h2>
+            <p className="text-sm text-gray-600">
+              Optimized SDKs for Android & iOS.
+            </p>
+          </motion.div>
 
-              <button
-                onClick={handleRedirect}
-                className="flex items-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold w-full justify-center hover:bg-blue-700 transition"
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: FaAndroid,
+                title: "Android",
+                desc: "Kotlin & Java support.",
+                color: "text-green-500",
+              },
+              {
+                icon: FaApple,
+                title: "iOS",
+                desc: "Swift & Objective-C support.",
+                color: "text-gray-800",
+              },
+            ].map((card) => (
+              <motion.div
+                key={card.title}
+                whileHover={{ y: -6 }}
+                className="bg-white p-6 rounded-xl
+                           shadow-lg hover:shadow-2xl
+                           border border-gray-100
+                           flex flex-col items-center justify-between
+                           text-center
+                           min-h-[220px]
+                           transition-all duration-300"
               >
-                View Documentation <FaDownload />
-              </button>
-            </motion.div>
-          ))}
+                <div>
+                  <card.icon className={`text-4xl mb-3 ${card.color}`} />
+                  <h3 className="text-lg font-semibold mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    {card.desc}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleRedirect}
+                  className="mt-5 flex items-center gap-2 bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+                >
+                  View Docs <FaArrowRight className="text-xs" />
+                </button>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </section>
 
@@ -189,4 +224,4 @@ const Integration = () => {
   );
 };
 
-export default Integration;
+export default Integration; 

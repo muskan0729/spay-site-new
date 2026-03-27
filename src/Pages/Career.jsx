@@ -484,7 +484,11 @@ const Career = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+     
+
+      
+        <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
 {/* Hero Section */}
 <div className="relative w-full">
@@ -1293,6 +1297,8 @@ const Career = () => {
         </div>
       )}
     </div>
+    </>
+
   );
 };
 

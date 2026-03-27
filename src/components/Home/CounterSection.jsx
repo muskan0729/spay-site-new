@@ -42,17 +42,8 @@ const CounterSection = () => {
   const counters = [
     { icon: clogo2, title: "Success Rate", value: counts.success.toFixed(1), suffix: "%" },
     { icon: clogo1, title: "Uptime", value: counts.uptime.toFixed(1), suffix: "%" },
-    { icon: clogo3, title: "Visitor Count", value: (counts.visitors / 1000).toFixed(1), suffix: "K" }
+    { icon: clogo3, title: "Visitor Count", value: (counts.visitors / 1000).toFixed(1), suffix: "K+" }
   ];
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.2 }
-    }
-  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -66,90 +57,51 @@ const CounterSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 sm:py-16 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/40 to-purple-50/20"
+      className="bg-[#12319b] py-8 sm:py-10 mt-5"
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-            Trusted by{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              Growing Businesses
-            </span>
-          </h2>
+        {/* ✅ Responsive Layout */}
+        <div className="flex flex-wrap sm:flex-nowrap justify-center sm:justify-between items-center gap-6 sm:gap-4">
 
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: 60 } : {}}
-            transition={{ duration: 0.6 }}
-            className="h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full"
-          />
-        </motion.div>
-
-        {/* Counter Cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
           {counters.map((counter, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="flex items-center gap-3 w-[45%] sm:w-auto justify-start sm:justify-center"
             >
+
               {/* Icon */}
-              <motion.div
-                className="flex justify-center mb-4"
-                whileHover={{ rotate: 5, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 rounded-full bg-white flex items-center justify-center">
                 <img
                   src={counter.icon}
                   alt={counter.title}
-                  className="h-16 w-16 object-contain"
+                  className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain"
                 />
-              </motion.div>
+              </div>
 
-              {/* Title */}
-              <h3 className="text-center text-sm sm:text-base font-medium text-gray-600 mb-2">
-                {counter.title}
-              </h3>
+              {/* Text */}
+              <div className="text-white text-left">
+                <h3 className="text-xs sm:text-sm font-medium opacity-90">
+                  {counter.title}
+                </h3>
 
-              {/* Value with pop animation */}
-              <motion.div
-                key={counter.value}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-                className="text-center"
-              >
-                <span className="text-3xl sm:text-4xl font-bold text-gray-800">
-                  {counter.value}
-                </span>
-                <span className="text-lg font-semibold text-gray-500 ml-1">
-                  {counter.suffix}
-                </span>
-              </motion.div>
+                <div className="flex items-center">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold">
+                    {counter.value}
+                  </span>
+                  <span className="ml-1 text-2xl sm:text-3xl md:text-4xl font-extrabold">
+                    {counter.suffix}
+                  </span>
+                </div>
+              </div>
 
-              {/* Bottom Accent */}
-              <motion.div
-                initial={{ width: 0 }}
-                whileHover={{ width: "40%" }}
-                transition={{ duration: 0.3 }}
-                className="h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-4 rounded-full"
-              />
             </motion.div>
           ))}
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );

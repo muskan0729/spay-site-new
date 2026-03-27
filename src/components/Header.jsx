@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "../assets/images/Spay TM Logo (Black).webp";
+import logo from "../assets/images/logo.png";
 
 const Header = () => {
   const { user, logout } = useAuth();
@@ -281,8 +281,9 @@ const Header = () => {
           justify-content: space-between;
           height: 72px;
           width: 100%;
-          margin: 0;
+          margin-bottom: 5px;
           padding: 0;
+         
         }
 
         /* Logo - Fixed left, no padding/margin */
@@ -291,15 +292,17 @@ const Header = () => {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          margin: 0;
+          margin-bottom:3px;
           padding: 0;
+          
         }
 
         .logo-img {
-          height: 48px;
+          height: 90px;
           width: auto;
           display: block;
-          margin: 0;
+         
+    
         }
 
         /* Nav Center - Flexible centering with stretch support */

@@ -38,6 +38,7 @@ const Integration = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-black/75 to-blue-800/85"></div>
+        {/* <div className="absolute "/> */}
 
         <motion.div
           className="relative z-10 max-w-6xl w-full px-4 sm:px-6"

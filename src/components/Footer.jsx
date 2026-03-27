@@ -91,7 +91,8 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center gap-6">
 
             {/* Policy Links (shifted slightly left) */}
-            <div className="flex items-center gap-6 mr-4">
+            <div className="flex items-center gap-6 mr-4"
+            style={{fontSize:"14px"}}>
               <FooterLink to="/privacy-policy">
                 Privacy Policy
               </FooterLink>

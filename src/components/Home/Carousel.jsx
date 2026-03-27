@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import slide1 from "../../assets/images/csgo1.jpeg";
-import slide2 from "../../assets/images/Slide2N.jpeg";
-import slide3 from "../../assets/images/s3.jpeg";
-import slide4 from "../../assets/images/Slide4N.jpeg";
+import slide1 from "../../assets/images/spay_banner.svg";
+import slide2 from "../../assets/images/spay_banner_1.svg";
+import slide3 from "../../assets/images/spay_banner.svg";
+import slide4 from "../../assets/images/spay_banner_1.svg";
 
 const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   const slides = [
@@ -12,31 +12,38 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title: (
         <>
           <span className="text-white drop-shadow-lg">
-            Accept Payments Seamlessly with
+            Reliable Payment Gateway
           </span>
           <br />
           <span className="text-[#0cd7ff] drop-shadow-lg">
-            Lightning-Fast Transactions
-          </span>
-        </>
-      ),
-      align: "left",
-    },
-    {
-      image: slide2,
-      title: (
-        <>
-          <span className="text-white drop-shadow-lg">
-            Boost Your Business with
-          </span>
-          <br />
-          <span className="text-[#0cd7ff] drop-shadow-lg">
-            Fast Payments
+            for Your Business
           </span>
         </>
       ),
       description:
-        "Manage all transactions easily and grow your business with Spay solutions.",
+        "Accept payments smoothly with secure, fast, and easy-to-use solutions designed for modern businesses",
+      align: "left",
+    },
+    {
+      image: slide2,
+      overlay: "bg-black/10",
+      title: (
+        <>
+          <span className="text-black drop-shadow-lg">
+            Online Payment Gateway
+          </span>
+          <br />
+          <span className="text-[#12309c] drop-shadow-lg">
+            with UPI & Smart Payment Portals
+          </span>
+        </>
+      ),
+      description: (
+        <span className="text-black">
+          Our online payment gateway for businesses in Mumbai makes it easy to
+          accept UPI, card, and digital payments with a seamless experience.
+        </span>
+      ),
       align: "left",
     },
     {
@@ -44,33 +51,38 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title: (
         <>
           <span className="text-white drop-shadow-lg">
-            Safe & Secure
+            API Payment Gateway
           </span>
           <br />
           <span className="text-[#0cd7ff] drop-shadow-lg">
-            Payment Solutions
+            for Fast & Scalable Integrations
           </span>
         </>
       ),
       description:
-        "Advanced fraud protection and seamless integrations.",
+        "Powerful fraud detection to keep transactions safe paired with smooth payment gateway integration",
       align: "left",
     },
     {
       image: slide4,
+      overlay: "bg-black/10",
       title: (
         <>
-          <span className="text-white drop-shadow-lg">
-            24/7 Support &
+          <span className="text-black drop-shadow-lg">
+            International & Crypto
           </span>
           <br />
-          <span className="text-[#0cd7ff] drop-shadow-lg">
-            Advanced Security
+          <span className="text-[#12309c] drop-shadow-lg">
+            Payment Gateway Solutions
           </span>
         </>
       ),
-      description:
-        "Your business stays protected and always running smoothly.",
+      description: (
+        <span className="text-black">
+          We provide reliable and scalable digital payment solutions for startups
+          and SMEs that help businesses grow with confidence.
+        </span>
+      ),
       align: "left",
     },
   ];
@@ -87,56 +99,47 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
     return () => clearInterval(timer);
   }, [autoPlay, interval]);
 
-  const getAlignmentClasses = (align) => {
-    switch (align) {
-      case "left":
-        return "items-center justify-start text-left px-6 md:px-20";
-      case "center":
-      default:
-        return "items-center justify-center text-center";
-    }
+  const getAlignmentClasses = () => {
+    return "items-center justify-start text-left px-6 md:px-20";
   };
 
   return (
     <div className="relative w-full h-[60vh] md:h-[70vh] min-h-[420px] overflow-hidden">
-      
-      {/* Background Image */}
+
+      {/* Background */}
       <img
         src={slides[current].image}
         alt="slide"
-        className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      {/* Light Overlay for readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      {/* Overlay */}
+      {slides[current].overlay && (
+        <div className={`absolute inset-0 ${slides[current].overlay}`}></div>
+      )}
 
       {/* Content */}
-      <div
-        className={`absolute inset-0 flex ${getAlignmentClasses(
-          slides[current].align
-        )}`}
-      >
-        <div className="max-w-2xl px-4">
-          <h2
-            className="font-bold leading-tight"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}
-          >
-            {slides[current].title}
-          </h2>
+      <div className={`absolute inset-0 flex ${getAlignmentClasses()}`}>
+        
+        {/* ✅ Keep desktop-like width */}
+        <div className="w-[90%] md:w-[600px]">
 
+          {/* Title */}
+          <h1 className="font-bold leading-tight text-[1.6rem] md:text-[2.6rem]">
+            {slides[current].title}
+          </h1>
+
+          {/* Description */}
           {slides[current].description && (
-            <p
-              className="hidden sm:block mt-4 text-white/90"
-              style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)" }}
-            >
+            <div className="mt-4 text-[0.95rem] md:text-[1.1rem] leading-relaxed">
               {slides[current].description}
-            </p>
+            </div>
           )}
         </div>
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-6 w-full flex justify-center gap-3">
+      <div className="absolute bottom-5 w-full flex justify-center gap-3">
         {slides.map((_, index) => (
           <button
             key={index}

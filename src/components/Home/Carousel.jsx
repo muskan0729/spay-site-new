@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import slide1 from "../../assets/images/spay_banner.svg";
+import slide1 from "../../assets/images/bg_banner_1.svg";
 import slide2 from "../../assets/images/spay_banner_1.svg";
-import slide3 from "../../assets/images/spay_banner.svg";
-import slide4 from "../../assets/images/spay_banner_1.svg";
+import slide3 from "../../assets/images/bg_banner_crypto_!.svg";
 
 const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   const slides = [
@@ -11,17 +10,17 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       image: slide1,
       title: (
         <>
-          <span className="text-white drop-shadow-lg">
-            Reliable Payment Gateway
+          <span className="text-black drop-shadow-lg">
+            Reliable API Payment 
           </span>
           <br />
-          <span className="text-[#0cd7ff] drop-shadow-lg">
-            for Your Business
+          <span className="text-[#12309c]  drop-shadow-lg">
+            Gateway for Your Business
           </span>
         </>
       ),
       description:
-        "Accept payments smoothly with secure, fast, and easy-to-use solutions designed for modern businesses",
+        "A powerful API payment gateway built for automation, speed, and secure online payment processing.",
       align: "left",
     },
     {
@@ -30,11 +29,11 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title: (
         <>
           <span className="text-black drop-shadow-lg">
-            Online Payment Gateway
+           Best UPI Gateway 
           </span>
           <br />
           <span className="text-[#12309c] drop-shadow-lg">
-            with UPI & Smart Payment Portals
+            Fast, Safe & Reliable
           </span>
         </>
       ),
@@ -50,41 +49,20 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       image: slide3,
       title: (
         <>
-          <span className="text-white drop-shadow-lg">
-            API Payment Gateway
+          <span className="text-black drop-shadow-lg">
+         International & Crypto
           </span>
           <br />
-          <span className="text-[#0cd7ff] drop-shadow-lg">
-            for Fast & Scalable Integrations
+          <span className="text-[#12309c]  drop-shadow-lg">
+           Payment Gateway Solutions
           </span>
         </>
       ),
       description:
-        "Powerful fraud detection to keep transactions safe paired with smooth payment gateway integration",
+        "Grow globally with an international payment gateway India and enable digital payments using a crypto payment gateway.",
       align: "left",
     },
-    {
-      image: slide4,
-      overlay: "bg-black/10",
-      title: (
-        <>
-          <span className="text-black drop-shadow-lg">
-            International & Crypto
-          </span>
-          <br />
-          <span className="text-[#12309c] drop-shadow-lg">
-            Payment Gateway Solutions
-          </span>
-        </>
-      ),
-      description: (
-        <span className="text-black">
-          We provide reliable and scalable digital payment solutions for startups
-          and SMEs that help businesses grow with confidence.
-        </span>
-      ),
-      align: "left",
-    },
+ 
   ];
 
   const [current, setCurrent] = useState(0);
@@ -104,7 +82,7 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   };
 
   return (
-    <div className="relative w-full h-[60vh] md:h-[70vh] min-h-[420px] overflow-hidden">
+    <div className="relative w-full h-[60vh] md:h-[70vh] min-h-[420px] overflow-hidden ">
 
       {/* Background */}
       <img
@@ -122,7 +100,7 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       <div className={`absolute inset-0 flex ${getAlignmentClasses()}`}>
         
         {/* ✅ Keep desktop-like width */}
-        <div className="w-[90%] md:w-[600px]">
+        <div className="w-130 "> 
 
           {/* Title */}
           <h1 className="font-bold leading-tight text-[1.6rem] md:text-[2.6rem]">

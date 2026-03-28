@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import faq_img from "../../assets/images/faq1.png";
+import faq_img from "../../assets/images/faq1.jpg";
 import faq_bg from "../../assets/images/bg_white1.png";
 
 const Faq_section = () => {
@@ -40,7 +40,7 @@ const Faq_section = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-10 sm:py-14 md:py-16">
+    <section className="bg-white py-10 sm:py-14 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ✅ HEADING */}
@@ -59,7 +59,7 @@ const Faq_section = () => {
 
           {/* LEFT IMAGE */}
           <div className="relative flex justify-center md:justify-start">
-            <div className="absolute w-40 sm:w-52 md:w-60 h-40 sm:h-52 md:h-60 rounded-full blur-3xl"></div>
+            {/* <div className="absolute w-40 sm:w-52 md:w-60 h-40 sm:h-52 md:h-60 rounded-full blur-3xl"></div> */}
 
             <img
               src={faq_img}

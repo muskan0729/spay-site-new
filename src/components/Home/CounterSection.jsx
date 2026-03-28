@@ -45,63 +45,67 @@ const CounterSection = () => {
     { icon: clogo3, title: "Visitor Count", value: (counts.visitors / 1000).toFixed(1), suffix: "K+" }
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
   return (
     <section
       ref={sectionRef}
-      className="bg-[#12319b] py-8 sm:py-10 mt-5"
+      className="relative py-16 mt-1 overflow-hidden "
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* ✅ Responsive Layout */}
-        <div className="flex flex-wrap sm:flex-nowrap justify-center sm:justify-between items-center gap-6 sm:gap-4">
+      {/* 🔵 Soft Background Blobs */}
+      {/* <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 opacity-20 rounded-full blur-3xl"></div> */}
+      {/* <div className="absolute bottom-0 right-0 w-72 h-72 bg-indigo-200 opacity-20 rounded-full blur-3xl"></div> */}
 
-          {counters.map((counter, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="flex items-center gap-3 w-[45%] sm:w-auto justify-start sm:justify-center"
-            >
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
 
-              {/* Icon */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 rounded-full bg-white flex items-center justify-center">
-                <img
-                  src={counter.icon}
-                  alt={counter.title}
-                  className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain"
-                />
-              </div>
+        {/* MAIN CARD */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="bg-gray-100 backdrop-blur-md border border-blue-100 rounded-3xl shadow-xl p-6 sm:p-8"
+        >
 
-              {/* Text */}
-              <div className="text-white text-left">
-                <h3 className="text-xs sm:text-sm font-medium opacity-90">
-                  {counter.title}
-                </h3>
+          {/* FLEX ROW */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
 
-                <div className="flex items-center">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold">
-                    {counter.value}
-                  </span>
-                  <span className="ml-1 text-2xl sm:text-3xl md:text-4xl font-extrabold">
-                    {counter.suffix}
-                  </span>
+            {counters.map((counter, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 w-full sm:w-auto justify-center"
+              >
+
+                {/* Blue Circle */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-md">
+                  <img
+                    src={counter.icon}
+                    alt={counter.title}
+                    className="w-8 h-8 object-contain"
+                  />
                 </div>
+
+                {/* Text */}
+                <div>
+                  <h3 className="text-sm font-medium text-gray-600">
+                    {counter.title}
+                  </h3>
+
+                  <div className="flex items-center">
+                    <span className="text-3xl font-bold text-gray-900">
+                      {counter.value}
+                    </span>
+                    <span className="ml-1 text-3xl font-bold text-blue-600">
+                      {counter.suffix}
+                    </span>
+                  </div>
+                </div>
+
               </div>
+            ))}
 
-            </motion.div>
-          ))}
+          </div>
 
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

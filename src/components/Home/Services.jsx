@@ -25,7 +25,7 @@ const Services = () => {
       icon: "fa-chalkboard-teacher",
       title: "API-Based Payment Integration",
       description:
-        "Our payment gateway API integration services make it simple to connect payments with your existing platform",
+        "Our Top payment gateway API integration services make it simple to connect payments with your existing platform",
       path: "/integration",
     },
     {

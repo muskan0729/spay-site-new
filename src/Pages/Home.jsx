@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Spay Fintech Pvt Ltd | Secure & Easy Solutions</title>
+        <title>Spay | Secure Payment Gateway for Businesses.</title>
         <meta
           name="description"
           content="Get a reliable payment gateway in Mumbai with Spay Fintech Pvt Ltd. Accept UPI, cards, and
@@ -26,8 +26,14 @@ const Home = () => {
         />
         <meta
           name="keywords"
-          content="payment portals in mumbai,online payment gateway , secure payment gateway, upi payment Gateway,
-          crypto payment gateway, api payment gateway, international payment gateway india, best payment gateway in india,aeps api integration,one click checkout payment"
+          content="payment portals in mumbai,online payment gateway , secure payment gateway,
+           upi payment Gateway,
+          crypto payment gateway, api payment gateway, international payment gateway india, 
+          best payment gateway in india,aeps api integration,one click checkout payment
+          Top Payment Gateway in Andheri,  Best Payment Gateway in Andheri,
+            Payment Gateway for Startups in Andheri,  
+            Payment Gateway for Online Business in Mumbai,  Secure Online Payment Gateway in Andheri
+            ,AEPS Gateway in Andheri ,BBPS Gateway in Andheri"
         />
       </Helmet>
 

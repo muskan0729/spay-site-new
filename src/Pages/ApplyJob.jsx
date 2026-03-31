@@ -95,19 +95,7 @@ const ApplyJob = () => {
     };
 
     return (
-        <>
-              <Helmet>
-                <title>SPay - Secure Payment Gateway for Businesses</title>
-                <meta
-                  name="description"
-                  content="Accept payments online with SPay's secure payment gateway. Fast, reliable, and trusted by 5000+ businesses. Multi payment options, 99.9% uptime."
-                />
-                <meta
-                  name="keywords"
-                  content="payment gateway, online payments, secure transactions, business payments"
-                />
-              </Helmet>
-        
+        <>      
         <div className="min-h-screen bg-gray-50 py-10 px-4">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
                 {/* Job Summary */}

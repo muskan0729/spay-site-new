@@ -102,10 +102,10 @@ const Header = () => {
                 </button>
                 {featuresOpen && (
                   <Dropdown>
-                    <DropItem to="/paymentgateway" onClick={closeAllMenus}>
+                    <DropItem to="/payment-gateway" onClick={closeAllMenus}>
                       Payment Gateway
                     </DropItem>
-                    <DropItem to="/OneClick" onClick={closeAllMenus}>
+                    <DropItem to="/one-click-checkout" onClick={closeAllMenus}>
                       One-click Checkout
                     </DropItem>
                   </Dropdown>
@@ -133,7 +133,7 @@ const Header = () => {
                     <DropItem to="/payment-links" onClick={closeAllMenus}>
                       Payment Links
                     </DropItem>
-                    <DropItem to="/soundbox" onClick={closeAllMenus}>
+                    <DropItem to="/sound-box" onClick={closeAllMenus}>
                       SoundBox
                     </DropItem>
                   </Dropdown>

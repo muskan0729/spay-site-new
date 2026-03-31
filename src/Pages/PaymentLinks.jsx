@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import lastbg from '../assets/images/upicta (2).webp';
 import upi from '../assets/images/upi.png';
 import rupay from '../assets/images/Rupay.png';
@@ -22,6 +23,15 @@ const PaymentLinks = () => {
 
   return (
     <div className="font-sans overflow-x-hidden">
+      <Helmet>
+        <title>Spay | Secure Payment Links for Easy Collections.</title>
+        <link rel="canonical" href="https://spay.live/payment-links" />
+        <meta
+          name="description"
+          content="Create and share secure payment links with Spay to collect payments instantly via UPI, cards, net banking, and wallets across SMS, email, and chat."
+        />
+      </Helmet>
+
       {/* ----- SECTION 1: HERO ----- */}
       <div 
         className="relative bg-cover bg-top min-h-[350px] sm:min-h-[400px] md:min-h-[450px]"

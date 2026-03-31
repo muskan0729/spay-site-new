@@ -19,22 +19,13 @@ const Home = () => {
     <>
       <Helmet>
         <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <link rel="canonical" href="https://spay.live/" />
         <meta
           name="description"
           content="Get a reliable payment gateway in Mumbai with Spay Fintech Pvt Ltd. Accept UPI, cards, and
-                  online payments with secure, fast, and easy integration for your business."
+                  online payments with secure, fast, and easy integration."
         />
-        <meta
-          name="keywords"
-          content="payment portals in mumbai,online payment gateway , secure payment gateway,
-           upi payment Gateway,
-          crypto payment gateway, api payment gateway, international payment gateway india, 
-          best payment gateway in india,aeps api integration,one click checkout payment
-          Top Payment Gateway in Andheri,  Best Payment Gateway in Andheri,
-            Payment Gateway for Startups in Andheri,  
-            Payment Gateway for Online Business in Mumbai,  Secure Online Payment Gateway in Andheri
-            ,AEPS Gateway in Andheri ,BBPS Gateway in Andheri"
-        />
+       
       </Helmet>
 
       <div className="home-page relative">

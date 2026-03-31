@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import './Soundbox.css';
 
@@ -140,6 +141,14 @@ const Soundbox = () => {
 
   return (
     <div className="soundbox-container font-sans">
+       <Helmet>
+              <title>Spay | Soundbox for Instant Payment Alerts.</title>
+              <link rel="canonical" href="https://spay.live/soundbox" />
+              <meta
+                name="description"
+                content="Spay Soundbox gives instant voice alerts for payments. Get real-time UPI confirmations and manage transactions easily with a smart solution."
+              />
+            </Helmet>
 
       {/* Hero Section - SCALED DOWN */}
 <div className="relative w-full min-h-[360px] sm:min-h-[420px] md:min-h-[480px] overflow-hidden flex items-center">        {/* Background image */}

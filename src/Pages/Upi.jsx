@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { FaQrcode, FaSyncAlt, FaCreditCard } from "react-icons/fa";
 import upiBgImage from "../assets/images/upi bg.webp";
@@ -22,6 +23,14 @@ const Upi = () => {
 
   return (
     <main className="font-['Inter','Poppins',system-ui,sans-serif] overflow-x-hidden">
+      <Helmet>
+        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <link rel="canonical" href="https://spay.live/upi-autopay" />
+        <meta
+          name="description"
+          content="Accept secure UPI payments with SPAY using static and dynamic QR codes, instant settlements, and seamless customer checkout."
+        />
+      </Helmet>
 
       {/* ================= HERO ================= */}
       <section

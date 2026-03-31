@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import integrationBg from "../assets/images/Integrations1N.jpeg";
 import {
@@ -27,6 +28,14 @@ const Integration = () => {
 
   return (
     <div className="font-sans text-gray-900 overflow-x-hidden">
+       <Helmet>
+              <title>Spay | Payment Gateway API Integration for Businesses.</title>
+              <link rel="canonical" href="https://spay.live/integration" />
+              <meta
+                name="description"
+                content="Integrate Spay payment gateway API for secure and fast transactions. Accept UPI, cards, and online payments with easy developer-friendly setup."
+              />
+            </Helmet>
 
       {/* ================= HERO SECTION ================= */}
       <section

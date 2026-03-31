@@ -40,10 +40,10 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Services">
-              <FooterLink to="/paymentgateway">Payment Gateway</FooterLink>
+              <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
               <FooterLink to="/payment-links">Payment Links</FooterLink>
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
-              <FooterLink to="/OneClick">One-Click Checkout</FooterLink>
+              <FooterLink to="/one-click-checkout">One-Click Checkout</FooterLink>
             </FooterBlock>
 
             <FooterBlock title="Company">
@@ -84,7 +84,7 @@ const Footer = () => {
 
           {/* LEFT */}
           <p className="text-[13px] text-white/70 text-center md:text-left">
-            © 2024 Spay Fintech. All rights reserved.
+            © 2026 Spay Fintech. All rights reserved.
           </p>
 
           {/* RIGHT SECTION */}

@@ -12,7 +12,7 @@ const Services = () => {
       title: "Payment Gateway Solutions",
       description:
         "Our online payment gateway India solution helps businesses accept payments through websites and mobile apps securely.",
-      path: "/paymentgateway",
+      path: "/payment-gateway",
     },
     {
       icon: "fa-credit-card",
@@ -33,7 +33,7 @@ const Services = () => {
       title: "Soundbox Payment Solutions",
       description:
         "Our soundbox payment solution India helps businesses get instant audio confirmation for payments, making transactions faster and more reliable for daily operations",
-      path: "/soundbox",
+      path: "/sound-box",
     },
     {
       icon: "fa-computer",
@@ -47,7 +47,7 @@ const Services = () => {
       title: "One-Click Checkout",
       description:
         "Our one-click checkout India solution helps businesses offer fast and seamless payments, improving customer experience and increasing successful transactions.",
-      path: "/OneClick",
+      path: "/one-click-checkout",
     },
   ];
 

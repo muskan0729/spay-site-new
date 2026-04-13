@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import slide1 from "../../assets/images/bg_banner_1.svg";
-import slide2 from "../../assets/images/spay_banner_1.svg";
-import slide3 from "../../assets/images/bg_banner_crypto_!.svg";
+import slide1 from "../../assets/images/bg_banner_1.webp";
+import slide2 from "../../assets/images/spay_banner_1.webp";
+import slide3 from "../../assets/images/bg_banner_crypto_!.webp";
 
 const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   const slides = [

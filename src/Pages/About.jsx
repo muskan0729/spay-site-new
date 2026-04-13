@@ -10,6 +10,7 @@ const About = () => {
       <Helmet>
         <title>Spay | Secure Payment Gateway for Businesses.</title>
         <link rel="canonical" href="https://spay.live/about-us" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
           content="Spay Fintech Pvt Ltd offers a secure online payment gateway in India with UPI, cards, fast processing, and easy API integration for businesses"

@@ -8,6 +8,7 @@ const OneClick = () => {
       <Helmet>
         <title>Spay | Secure Payment Gateway for Businesses.</title>
         <link rel="canonical" href="https://spay.live/one-click-checkout" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
           content="Spay offers one click checkout for faster payments. Reduce drop-offs and boost conversions with a secure and seamless payment experience."

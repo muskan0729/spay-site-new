@@ -31,6 +31,7 @@ const Integration = () => {
        <Helmet>
               <title>Spay | Payment Gateway API Integration for Businesses.</title>
               <link rel="canonical" href="https://spay.live/integration" />
+              <meta  name="robots" content="index, follow, max-image-preview:large" />
               <meta
                 name="description"
                 content="Integrate Spay payment gateway API for secure and fast transactions. Accept UPI, cards, and online payments with easy developer-friendly setup."

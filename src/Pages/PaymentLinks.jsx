@@ -26,6 +26,7 @@ const PaymentLinks = () => {
       <Helmet>
         <title>Spay | Secure Payment Links for Easy Collections.</title>
         <link rel="canonical" href="https://spay.live/payment-links" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
           content="Create and share secure payment links with Spay to collect payments instantly via UPI, cards, net banking, and wallets across SMS, email, and chat."

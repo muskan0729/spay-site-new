@@ -83,8 +83,8 @@ const Footer = () => {
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* LEFT */}
-          <p className="text-[13px] text-white/70 text-center md:text-left">
-            © 2026 Spay Fintech. All rights reserved.
+          <p className="text-[15px] text-white/70 text-center md:text-left">
+            © 2026 Spay Fintech Pvt. Ltd. All rights reserved.
           </p>
 
           {/* RIGHT SECTION */}

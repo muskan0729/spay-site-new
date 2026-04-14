@@ -26,6 +26,7 @@ const Upi = () => {
       <Helmet>
         <title>Spay | Secure Payment Gateway for Businesses.</title>
         <link rel="canonical" href="https://spay.live/upi-autopay" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
           content="Accept secure UPI payments with SPAY using static and dynamic QR codes, instant settlements, and seamless customer checkout."

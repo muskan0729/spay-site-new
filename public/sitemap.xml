@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://spay.live/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -17,42 +17,42 @@
 
     <url>
     <loc>https://spay.live/payment-gateway</loc>
-     <lastmod>2026-03-25</lastmod>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 
     <url>
-    <loc>https://spay.live/one-click</loc>
-     <lastmod>2026-03-25</lastmod>
+    <loc>https://spay.live/one-click-checkout</loc>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
 
     <url>
     <loc>https://spay.live/upi-autopay</loc>
-     <lastmod>2026-03-25</lastmod>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.8</priority>
   </url>
 
     <url>
     <loc>https://spay.live/payment-links</loc>
-     <lastmod>2026-03-25</lastmod>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 
     <url>
     <loc>https://spay.live/sound-box</loc>
-     <lastmod>2026-03-25</lastmod>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
 
     <url>
     <loc>https://spay.live/integration</loc>
-     <lastmod>2026-03-25</lastmod>
+     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -61,7 +61,7 @@
     <loc>https://spay.live/careers</loc>
      <lastmod>2026-03-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
       <url>

@@ -11,6 +11,7 @@ const PaymentGateway = () => {
       <Helmet>
         <title>Spay | Secure Payment Gateway for Businesses.</title>
         <link rel="canonical" href="https://spay.live/payment-gateway" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
           content="Secure and fast payment gateway for businesses. Accept UPI, cards, and online payments with easy integration and reliable processing."

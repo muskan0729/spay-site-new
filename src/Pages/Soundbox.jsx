@@ -144,6 +144,7 @@ const Soundbox = () => {
        <Helmet>
               <title>Spay | Soundbox for Instant Payment Alerts.</title>
               <link rel="canonical" href="https://spay.live/soundbox" />
+              <meta  name="robots" content="index, follow, max-image-preview:large" />
               <meta
                 name="description"
                 content="Spay Soundbox gives instant voice alerts for payments. Get real-time UPI confirmations and manage transactions easily with a smart solution."

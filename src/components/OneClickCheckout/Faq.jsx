@@ -36,7 +36,7 @@ const faqs = [
 	{
 		question: "Does Spay help reduce cart abandonment?",
 		answer:
-			"Significantly. By removing checkout friction through one click checkout, fast payment processing, and a mobile-optimised checkout UI, Spay merchants typically see a 30 to 40 percent improvement in checkout conversion rates, meaning fewer lost sales and more revenue from the same traffic.",
+			"Significantly. By removing checkout friction through one click checkout, fast payment processing, and a mobile-optimized checkout UI, Spay merchants typically see a 30 to 40 percent improvement in checkout conversion rates, meaning fewer lost sales and more revenue from the same traffic.",
 	},
 ];
 

@@ -25,7 +25,7 @@ const features = [
 	{
 		title: "Mobile Payment Gateway",
 		description:
-			"Spay Fintech's mobile payment gateway is fully optimised for Android and iOS no extra SDK required for most use cases. Your customers get a smooth, fast checkout experience on any device, anywhere in India.",
+			"Spay Fintech mobile payment gateway is fully optimized for Android and iOS no extra SDK required for most use cases. Your customers get a smooth, fast checkout experience on any device, anywhere in India.",
 	},
 	{
 		title: "Infinite Scalability",

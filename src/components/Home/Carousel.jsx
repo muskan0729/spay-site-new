@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import slide1 from "../../assets/images/bg_banner_1.webp";
-import slide2 from "../../assets/images/spay_banner_1.webp";
-import slide3 from "../../assets/images/bg_banner_crypto_!.webp";
+import slide1 from "../../assets/images/bg_banner_1.svg";
+import slide2 from "../../assets/images/spay_banner_1.svg";
+import slide3 from "../../assets/images/bbps_banner.svg";
 
 const Carousel = ({ autoPlay = true, interval = 4000 }) => {
   const slides = [
@@ -50,16 +50,16 @@ const Carousel = ({ autoPlay = true, interval = 4000 }) => {
       title: (
         <>
           <span className="text-black drop-shadow-lg">
-         International & Crypto
+      Power Your Business 
           </span>
           <br />
           <span className="text-[#12309c]  drop-shadow-lg">
-           Payment Gateway Solutions
+             with BBPS Payment Gateway
           </span>
         </>
       ),
       description:
-        "Grow globally with an international payment gateway India and enable digital payments using a crypto payment gateway.",
+        " Enable seamless utility bill collections, insurance payments, and subscription renewals through India's most trusted Bharat Bill Payment System.",
       align: "left",
     },
  

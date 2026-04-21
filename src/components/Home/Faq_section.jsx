@@ -55,16 +55,16 @@ const Faq_section = () => {
         </div>
 
         {/* ✅ GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 items-center ">
 
           {/* LEFT IMAGE */}
-          <div className="relative flex justify-center md:justify-start">
+          <div className="relative flex justify-center md:justify-start  ">
             {/* <div className="absolute w-40 sm:w-52 md:w-60 h-40 sm:h-52 md:h-60 rounded-full blur-3xl"></div> */}
 
             <img
               src={faq_img}
               alt="FAQ Illustration"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto object-contain"
+              className="w-full h-auto object-cover "
             />
           </div>
 

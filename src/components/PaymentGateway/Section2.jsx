@@ -9,6 +9,15 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const slides = [slide32, slide33, slide34, slide35, slide36, slide37];
 
+const slideLabels = [
+  "Retail & eCommerce",
+  "Service Businesses",
+  "Fintech & Payments",
+  "Startups & SMBs",
+  "Enterprise Operations",
+  "Expansion Ready",
+];
+
 const Section2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
@@ -17,10 +26,10 @@ const Section2 = () => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setItemsPerView(1);
-      } else if (window.innerWidth < 768) {
+      } else if (window.innerWidth < 1024) {
         setItemsPerView(2);
       } else {
-        setItemsPerView(3);
+        setItemsPerView(4);
       }
     };
 
@@ -28,6 +37,13 @@ const Section2 = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const maxIndex = Math.max(0, slides.length - itemsPerView);
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [currentIndex, itemsPerView]);
 
   const prevSlide = () => {
     if (currentIndex > 0) {
@@ -42,33 +58,42 @@ const Section2 = () => {
   };
 
   return (
-    <section className="py-14 md:py-16 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="relative overflow-hidden bg-[#eef2f7] py-14 md:py-16 lg:py-18">
+      <style>{`
+        @keyframes section2FadeUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-800">
+        .section2-fade-up {
+          animation: section2FadeUp 700ms ease-out both;
+        }
+      `}</style>
+
+      <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <h2 className="section2-fade-up mt-5 text-3xl font-medium leading-tight text-[#0d2447] sm:text-4xl lg:text-[2.0rem] [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
             Scale Your Business Across Multiple Sectors
           </h2>
-          <p className="mt-3 text-gray-600 text-sm sm:text-base">
-            Showcasing your industry reach with elegance and style.
+
+          <p className="section2-fade-up mt-4 text-base leading-7 text-[#3a4c70] sm:text-lg" style={{ animationDelay: "140ms" }}>
+            Industry-ready payment experiences designed for modern growth.
           </p>
         </div>
 
-        <div className="relative flex items-center">
-
-          {/* Left */}
+        <div className="section2-fade-up relative rounded-[1.8rem] border border-[#d7dfeb] bg-white p-4 shadow-[0_20px_45px_rgba(15,23,42,0.06)] sm:p-6" style={{ animationDelay: "220ms" }}>
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="absolute -left-3 z-10 bg-white shadow-md p-2 rounded-full disabled:opacity-40"
+            aria-label="Previous slide"
+            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#d7dfeb] bg-white p-3 text-[#1d4ed8] shadow-[0_8px_18px_rgba(15,23,42,0.08)] transition duration-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <FaArrowLeft className="text-indigo-700 text-sm" />
+            <FaArrowLeft className="text-sm" />
           </button>
 
-          {/* Slider */}
-          <div className="overflow-hidden w-full">
+          <div className="overflow-hidden px-2 sm:px-3">
             <div
-              className="flex transition-transform duration-500"
+              className="flex transition-transform duration-700 ease-out"
               style={{
                 transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
               }}
@@ -76,29 +101,45 @@ const Section2 = () => {
               {slides.map((slide, index) => (
                 <div
                   key={index}
-                  className="w-full sm:w-1/2 md:w-1/3 flex-shrink-0 px-3"
+                  className="w-full flex-shrink-0 px-2 sm:w-1/2 lg:w-1/4"
                 >
-                  <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
-                    <img
-                      src={slide}
-                      alt={`Slide ${index}`}
-                      className="w-full h-[240px] object-cover"
-                    />
+                  <div className="group overflow-hidden rounded-[1rem] border border-[#d8e0eb] bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(15,23,42,0.09)]">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={slide}
+                        alt={slideLabels[index] || `Slide ${index + 1}`}
+                        className="h-[220px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right */}
           <button
             onClick={nextSlide}
             disabled={currentIndex >= slides.length - itemsPerView}
-            className="absolute -right-3 z-10 bg-white shadow-md p-2 rounded-full disabled:opacity-40"
+            aria-label="Next slide"
+            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 rounded-full border border-[#d7dfeb] bg-white p-3 text-[#1d4ed8] shadow-[0_8px_18px_rgba(15,23,42,0.08)] transition duration-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <FaArrowRight className="text-indigo-700 text-sm" />
+            <FaArrowRight className="text-sm" />
           </button>
 
+          <div className="mt-6 flex items-center justify-center gap-2">
+            {slides.slice(0, Math.max(1, slides.length - itemsPerView + 1)).map((_, index) => (
+              <button
+                key={index}
+                aria-label={`Go to slide group ${index + 1}`}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index
+                    ? "w-8 bg-[#1d4ed8]"
+                    : "w-2 bg-blue-200 hover:bg-blue-300"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

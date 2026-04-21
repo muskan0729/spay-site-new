@@ -1,20 +1,34 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Section1 from '../components/OneClickCheckout/Section1'
+import HeroSection from '../components/OneClickCheckout/herosection.jsx'
+import Section2 from '../components/OneClickCheckout/Section2.jsx'
+import Section3 from '../components/OneClickCheckout/Section3.jsx'
+import Section4 from '../components/OneClickCheckout/Section4.jsx'
+import Section5 from '../components/OneClickCheckout/Section5.jsx'
+import Faq from '../components/OneClickCheckout/Faq.jsx'
+
+
 
 const OneClick = () => {
   return (
     <div>
       <Helmet>
-        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <title>Spay Fintech |One Click Checkout Payment Gateway in Mumbai </title>
         <link rel="canonical" href="https://spay.live/one-click-checkout" />
         <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
-          content="Spay offers one click checkout for faster payments. Reduce drop-offs and boost conversions with a secure and seamless payment experience."
+          content="The quickest one-click checkout payment gateway in Mumbai is provided by Spay Fintech.Trusted by 1,000+ merchants in Mumbai, Andheri & across India."
         />
       </Helmet>
-      <Section1 />
+      <HeroSection />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Faq />
+
+      
     </div>
   )
 }

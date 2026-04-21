@@ -72,11 +72,11 @@ const Section2 = () => {
 
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <h2 className="section2-fade-up mt-5 text-3xl font-medium leading-tight text-[#0d2447] sm:text-4xl lg:text-[2.0rem] [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
+          <h2 className="section2-fade-up mt-5 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
             Scale Your Business Across Multiple Sectors
           </h2>
 
-          <p className="section2-fade-up mt-4 text-base leading-7 text-[#3a4c70] sm:text-lg" style={{ animationDelay: "140ms" }}>
+          <p className="section2-fade-up mt-4 text-sm leading-relaxed text-[#5a6f90] sm:text-base" style={{ animationDelay: "140ms" }}>
             Industry-ready payment experiences designed for modern growth.
           </p>
         </div>

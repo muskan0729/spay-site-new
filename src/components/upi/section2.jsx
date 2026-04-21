@@ -9,7 +9,7 @@ const benefits = [
 
 const Section2 = () => {
 	return (
-			<section className="relative overflow-hidden bg-[#f5f8fc] py-16 sm:py-18 md:py-24">
+		<section className="relative overflow-hidden bg-[#f7f9fd] py-14 sm:py-16 md:py-20">
 			<style>
 				{`
 					@keyframes sectionRise {
@@ -80,7 +80,7 @@ const Section2 = () => {
 					</p>
 				</div>
 
-				<div className="mt-12 rounded-[2rem] border border-[#dce7f7] bg-white/95 p-5 shadow-[0_24px_60px_-36px_rgba(16,39,84,0.18)] md:p-7 lg:p-8">
+				<div className="mt-12 rounded-[2rem] border border-[#dce7f7] bg-white/95 p-5 shadow-[0_24px_60px_-36px_rgba(16,39,84,0.24)] md:p-7 lg:p-8">
 					<div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
 						<div className="s2-rise relative overflow-hidden rounded-[1.6rem] border border-[#e3ecf8] bg-gradient-to-b from-[#f8fbff] to-[#f0f6ff] p-6 md:p-7" style={{ animationDelay: "160ms" }}>
 							<div className="pointer-events-none absolute right-[-2.4rem] top-[-2.4rem] h-24 w-24 rounded-full border border-[#b8cff1]/60" />

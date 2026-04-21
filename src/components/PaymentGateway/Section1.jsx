@@ -35,16 +35,16 @@ const Section1 = () => {
       <div className="relative container mx-auto px-4 sm:px-6 py-14 md:py-20 lg:py-5">
         <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
           <div className="text-center lg:pr-2 lg:text-left">
-            <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-[#163f89]/15 bg-[#f6faff] px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#163f89] shadow-[0_8px_20px_rgba(15,23,42,0.05)]">
+            <div className="hero-fade-up inline-flex items-center gap-2 border-l-2 border-[#1099d0] pl-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#163f89] shadow-[0_8px_20px_rgba(15,23,42,0.05)]">
               <FaCheckCircle className="text-[#2563eb]" />
               Trusted Payment Gateway in India
             </div>
 
-            <h1 className="hero-fade-up mt-6 text-3xl font-medium leading-tight text-[#0d2447] sm:text-4xl lg:text-[1.9rem] lg:leading-[1.08] [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
-              The Smartest Payment Gateway in India for Growing Businesses
+            <h1 className="hero-fade-up mt-6 text-[2.1rem] font-medium leading-[1.15] text-[#0d2447] sm:text-5xl lg:text-[2.75rem] [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
+              The Smartest <span className="italic text-[#1d4c9a]">Payment Gateway</span> in India for Growing Businesses
             </h1>
 
-            <p className="hero-fade-up mx-auto mt-4 max-w-2xl text-base leading-8 text-[#3a4c70] sm:text-lg lg:mx-0" style={{ animationDelay: "140ms" }}>
+            <p className="hero-fade-up mx-auto mt-4 max-w-2xl text-[1.03rem] leading-relaxed text-[#3a4c70] md:text-lg lg:mx-0" style={{ animationDelay: "140ms" }}>
               Looking for a reliable payment gateway in India to accept payments smoothly?
               We are a trusted payment gateway provider built specifically for the Indian market. From startups in Mumbai to enterprises across India, businesses rely on Spay Fintech to process payments securely, settle funds instantly, and keep customers coming back. 
             </p>

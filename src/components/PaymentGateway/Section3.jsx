@@ -56,11 +56,11 @@ const Section3 = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6">
         <div className="mx-auto mb-10 max-w-5xl text-left">
-          <h2 className="text-2xl font-medium leading-tight text-[#0d2447] sm:text-3xl md:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
             Our Complete Payment Gateway Solutions
           </h2>
 
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
            Why juggle five different vendors when one platform can do it all? Spay Fintech offers a truly complete multi payment gateway solution that covers every payment method your customers use
           </p>
         </div>

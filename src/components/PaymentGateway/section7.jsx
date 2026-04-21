@@ -62,10 +62,10 @@ const Section7 = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
-          <h2 className="text-2xl font-medium leading-tight text-[#0d2447] sm:text-3xl md:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
             Why Businesses Trust Spay Fintech
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
             We are not just another payment gateway provider. We are a full-stack
             fintech payment solutions company with a team that cares deeply about
             your success.

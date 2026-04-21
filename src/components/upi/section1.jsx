@@ -5,7 +5,7 @@ const trustPoints = ["Instant mandate setup", "NPCI compliant", "24x7 recurring 
 
 const Section1 = () => {
 	return (
-		<section className="relative overflow-hidden bg-[#f5f8fc] py-16 sm:py-18 md:py-24">
+		<section className="relative overflow-hidden bg-[#f2f5fb]">
 			<style>
 				{`
 					@keyframes upiHeroRise {
@@ -44,10 +44,10 @@ const Section1 = () => {
 			<div className="pointer-events-none absolute left-[-6rem] top-[-5rem] h-[16rem] w-[16rem] rounded-full bg-[#1d4c9a]/20 blur-3xl" />
 			<div className="pointer-events-none absolute bottom-[-6rem] right-[-4rem] h-[18rem] w-[18rem] rounded-full bg-[#0ea5d4]/20 blur-3xl" />
 
-			<div className="relative mx-auto max-w-7xl px-6 md:px-10">
+			<div className="relative mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20 lg:py-16">
 				<div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
 					<div className="upi-hero-rise space-y-7 text-center md:text-left" style={{ animationDelay: "70ms" }}>
-						<p className="inline-flex rounded-full border border-[#dbe7f6] bg-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#24508d] shadow-sm">
+						<p className="inline-flex items-center gap-2 border-l-2 border-[#1099d0] pl-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0f3d91]">
 							UPI AutoPay For India
 						</p>
 
@@ -61,7 +61,7 @@ const Section1 = () => {
 							Launch UPI AutoPay in days with Spay Fintech. Collect subscriptions, EMIs, and utility dues with seamless e-mandates, predictable settlements, and a checkout your customers trust.
 						</p>
 
-						<div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
+						{/* <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
 							{trustPoints.map((point, index) => (
 								<span
 									key={point}
@@ -71,7 +71,7 @@ const Section1 = () => {
 									{point}
 								</span>
 							))}
-						</div>
+						</div> */}
 
 						<div className="flex flex-col items-center gap-4 sm:flex-row md:items-start">
 							<a
@@ -94,7 +94,7 @@ const Section1 = () => {
 							<div className="absolute left-[-1rem] top-6 h-16 w-16 rounded-full bg-[#0ea5d4]/30 blur-2xl upi-hero-pulse" />
 							<div className="absolute bottom-4 right-[-1.2rem] h-20 w-20 rounded-full bg-[#1d4c9a]/25 blur-2xl upi-hero-pulse" style={{ animationDelay: "1.2s" }} />
 
-							<div className="relative overflow-hidden rounded-[1.7rem] border border-[#dfe9f8] bg-gradient-to-br from-white to-[#eef5ff] p-4 shadow-[0_20px_50px_-24px_rgba(23,53,110,0.18)] md:p-5">
+							<div className="relative overflow-hidden rounded-[1.7rem] border border-white/80 bg-gradient-to-br from-white to-[#e8f1ff] p-4 shadow-[0_20px_50px_-24px_rgba(23,53,110,0.38)] md:p-5">
 								<img
 									src={autopayVisual}
 									alt="Spay UPI AutoPay dashboard preview"

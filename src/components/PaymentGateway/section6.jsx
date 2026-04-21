@@ -26,10 +26,10 @@ const Section6 = () => {
             API Integration
           </p>
 
-          <h2 className="mt-5 text-2xl font-medium leading-tight text-[#0d2447] sm:text-3xl md:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="mt-5 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
             API Payment Gateway Integration - Connect in Hours, Not Days
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
             Spay Fintech offers a clean, well-documented REST API that your developers will actually enjoy working with. Whether you're building a website, mobile app, or SaaS product, our API payment gateway slots right in.
           </p>
         </div>

@@ -7,7 +7,6 @@ import herobgImage from "../assets/images/hero-bg.webp";
 import Section1 from "../components/upi/section1";
 import Section2 from "../components/upi/section2";
 import Section3 from "../components/upi/section3";
-import Section4 from "../components/upi/section4";
 
 const Upi = () => {
   const [windowWidth, setWindowWidth] = useState(
@@ -42,9 +41,6 @@ const Upi = () => {
 
       {/* ================= BENEFITS ================= */}
       <Section3 />
-
-      {/* ================= INTEGRATION ================= */}
-      <Section4 />
 
       {/* ================= CARDS SECTION ================= */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">

@@ -63,7 +63,7 @@ const benefitCards = [
 
 const Section3 = () => {
 	return (
-		<section className="relative overflow-hidden bg-[#f5f8fc] py-16 sm:py-18 md:py-24">
+		<section className="relative overflow-hidden bg-[#f8fbff] py-16 sm:py-18 md:py-24">
 			<style>
 				{`
 					@keyframes b3Rise {
@@ -106,8 +106,8 @@ const Section3 = () => {
 				`}
 			</style>
 
-			<div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-[#1e40af]/10 blur-3xl b3-glow" />
-			<div className="pointer-events-none absolute -right-16 bottom-2 h-72 w-72 rounded-full bg-[#06b6d4]/10 blur-3xl b3-glow" style={{ animationDelay: "1.4s" }} />
+			<div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-[#1e40af]/12 blur-3xl b3-glow" />
+			<div className="pointer-events-none absolute -right-16 bottom-2 h-72 w-72 rounded-full bg-[#06b6d4]/12 blur-3xl b3-glow" style={{ animationDelay: "1.4s" }} />
 			<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#d8e4f5] to-transparent" />
 
 			<div className="relative mx-auto max-w-7xl px-6 md:px-10">
@@ -134,7 +134,7 @@ const Section3 = () => {
 						return (
 							<article
 								key={item.title}
-								className="b3-rise group relative overflow-hidden rounded-[1.35rem] border border-[#deebfa] bg-white p-5 shadow-[0_14px_34px_-28px_rgba(20,54,111,0.18)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cddff6] hover:shadow-[0_18px_36px_-28px_rgba(20,54,111,0.26)]"
+								className="b3-rise group relative overflow-hidden rounded-[1.35rem] border border-[#deebfa] bg-white p-5 shadow-[0_14px_34px_-28px_rgba(20,54,111,0.24)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cddff6] hover:shadow-[0_18px_36px_-28px_rgba(20,54,111,0.35)]"
 								style={{ animationDelay: `${140 + index * 80}ms` }}
 							>
 								<div className="pointer-events-none absolute right-0 top-0 flex h-16 w-16 items-center justify-center rounded-bl-[1.1rem] bg-[#eff5ff]">

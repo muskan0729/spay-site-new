@@ -66,10 +66,10 @@ const Faq = () => {
           <p className="inline-flex items-center rounded-full border border-[#163f89]/15 bg-[#f6faff] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#163f89] shadow-[0_8px_20px_rgba(15,23,42,0.05)] backdrop-blur">
             FAQ
           </p>
-          <h2 className="mt-4 text-2xl font-medium leading-tight text-[#0d2447] sm:text-3xl md:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
             Frequently Asked Questions
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
             About Payment Gateway in India
           </p>
           <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[#163f89] to-[#1099d0]" />

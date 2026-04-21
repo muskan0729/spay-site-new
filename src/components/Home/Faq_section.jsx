@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import faq_img from "../../assets/images/faq1.jpg";
-// import faq_bg from "../../assets/images/bg_white1.png";
+import faq_bg from "../../assets/images/bg_white1.png";
 
 const Faq_section = () => {
   const [activeIndex, setActiveIndex] = useState(null);

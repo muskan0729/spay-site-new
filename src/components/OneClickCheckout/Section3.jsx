@@ -17,7 +17,7 @@ const featureItems = [
 		icon: "fas fa-mobile-alt",
 		title: "Mobile-first design",
 		description:
-			"Every pixel of our checkout UI is optimised for smartphones. Fast, clean, thumb-friendly, and designed to work beautifully on every device.",
+			"Every pixel of our checkout UI is optimized for smartphones. Fast, clean, thumb-friendly, and designed to work beautifully on every device.",
 	},
 	{
 		icon: "fas fa-shield-alt",

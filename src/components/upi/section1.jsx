@@ -75,13 +75,13 @@ const Section1 = () => {
 
 						<div className="flex flex-col items-center gap-4 sm:flex-row md:items-start">
 							<a
-								href="/contact-us"
+								href="https://spay.live/contact-us"
 								className="rounded-full bg-[#163f89] px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#102f67] hover:shadow-lg hover:shadow-[#163f89]/30"
 							>
 								Get Started Now
 							</a>
 							<a
-								href="/integration"
+								href="https://spay.live/integration"
 								className="rounded-full border border-[#163f89]/25 bg-white px-8 py-3 text-sm font-semibold text-[#163f89] transition-colors duration-300 hover:bg-[#edf3ff]"
 							>
 								View API Docs

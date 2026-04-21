@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import React, { useState, useEffect } from "react";
 import slide32 from "../../assets/images/slide32.jpg";
 import slide33 from "../../assets/images/slide33.jpg";
 import slide34 from "../../assets/images/slide34.jpg";
 import slide35 from "../../assets/images/slide35.jpg";
 import slide36 from "../../assets/images/slide36.jpg";
 import slide37 from "../../assets/images/slide37.jpg";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const slides = [slide32, slide33, slide34, slide35, slide36, slide37];

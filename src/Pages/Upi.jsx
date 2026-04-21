@@ -7,6 +7,7 @@ import herobgImage from "../assets/images/hero-bg.webp";
 import Section1 from "../components/upi/section1";
 import Section2 from "../components/upi/section2";
 import Section3 from "../components/upi/section3";
+import Section4 from "../components/upi/section4";
 
 const Upi = () => {
   const [windowWidth, setWindowWidth] = useState(
@@ -42,13 +43,16 @@ const Upi = () => {
       {/* ================= BENEFITS ================= */}
       <Section3 />
 
-      {/* ================= CARDS SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      {/* ================= FAQ ================= */}
+      <Section4 />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {/* ================= CARDS SECTION ================= */}
+      {/* <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> */}
 
           {/* STATIC QR */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaQrcode className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -60,10 +64,10 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               Generate your unique QR codes in seconds and print them for display anywhere.
             </p>
-          </div>
+          </div> */}
 
           {/* DYNAMIC QR */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaSyncAlt className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -75,10 +79,10 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               Make a Dynamic QR Code that you can update without needing to print again.
             </p>
-          </div>
+          </div> */}
 
           {/* AUTOPAY */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaCreditCard className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -90,13 +94,13 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               UPI Autopay enables secure, instant recurring payments with easy payee management.
             </p>
-          </div>
+          </div> */}
 
-        </div>
-      </section>
+        {/* </div>
+      </section> */}
 
       {/* ================= DISCOVER SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      {/* <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
 
         <h2 className="text-2xl md:text-4xl font-bold text-blue-900 text-center mb-8 md:mb-12">
           Discover UPI Payments
@@ -137,10 +141,10 @@ const Upi = () => {
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= PRICING SECTION ================= */}
-      <section
+      {/* <section
         className="bg-cover bg-center py-10 md:py-14"
         style={{ backgroundImage: `url(${herobgImage})` }}
       >
@@ -152,9 +156,9 @@ const Upi = () => {
               src={autopayImage}
               alt="Pricing"
               className="w-52 md:w-72 mx-auto rounded-xl shadow-lg"
-            />
+            /> */}
 
-            <div>
+            {/* <div>
 
               <h2 className="text-xl md:text-3xl font-bold text-blue-900 mb-4 md:mb-5">
                 Transparent Pricing
@@ -169,12 +173,12 @@ const Upi = () => {
                 Our technical team is always available to assist you in selecting the right plan.
               </p>
 
-            </div>
+            </div> */}
 
-          </div>
+          {/* </div>
 
         </div>
-      </section>
+      </section> */}
 
     </main>
   );

@@ -10,7 +10,7 @@ import bglink2 from '../assets/images/bg_link2.jpg';
 import pglink1 from '../assets/images/pg_link1.png';
 import bglink2webp from '../assets/images/bg_link_2.webp';
 
-console.log('lastbg path:', lastbg); 
+// console.log('lastbg path:', lastbg); 
 
 const PaymentLinks = () => {
   const paymentMethods = [

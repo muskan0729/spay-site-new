@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Section1 from '../components/PaymentGateway/Section1'
 import Section2 from '../components/PaymentGateway/Section2'
 import Section3 from '../components/PaymentGateway/Section3'

@@ -5,6 +5,7 @@ import {
   Users,
   Briefcase,
   UserCheck,
+  FileText,
   LogOut,
 } from "lucide-react";
 
@@ -31,11 +32,16 @@ const menuItems = [
     path: "/admin/candidates",
     icon: UserCheck,
   },
+  {
+    name: "Blogs",
+    path: "/admin/blogs",
+    icon: FileText,
+  },
 ];
 
 const Sidebar = () => {
-  const { logout } = useAuth();      // ✅ Correct place
-  const navigate = useNavigate();    // ✅ Correct place
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -44,21 +50,12 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-200 shadow-sm flex flex-col">
-      
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-6 border-b border-gray-100">
-        <img
-          src={logo}
-          alt="Logo"
-          className="h-10 w-auto object-contain"
-        />
+        <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
         <div>
-          <h2 className="text-lg font-bold text-gray-800">
-            Admin Panel
-          </h2>
-          <p className="text-xs text-gray-500">
-            Recruitment System
-          </p>
+          <h2 className="text-lg font-bold text-gray-800">Admin Panel</h2>
+          <p className="text-xs text-gray-500">Recruitment System</p>
         </div>
       </div>
 
@@ -85,6 +82,25 @@ const Sidebar = () => {
             </NavLink>
           );
         })}
+        <button
+          onClick={() => navigate("/")}
+          className="
+          h-9
+          px-4
+          rounded-xl
+          bg-[#f8fafc]
+          hover:bg-[#eef2ff]
+          border
+          border-[#e2e8f0]
+          text-[13px]
+          font-medium
+          text-[#2563eb]
+          transition
+          cursor-pointer
+        "
+        >
+          Home ?
+        </button>
       </div>
 
       {/* Logout Button */}

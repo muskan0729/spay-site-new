@@ -34,16 +34,10 @@ const Header = () => {
   // Close dropdowns/mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        featuresRef.current &&
-        !featuresRef.current.contains(event.target)
-      ) {
+      if (featuresRef.current && !featuresRef.current.contains(event.target)) {
         setFeaturesOpen(false);
       }
-      if (
-        productsRef.current &&
-        !productsRef.current.contains(event.target)
-      ) {
+      if (productsRef.current && !productsRef.current.contains(event.target)) {
         setProductsOpen(false);
       }
       if (
@@ -140,9 +134,18 @@ const Header = () => {
                 )}
               </li>
 
-              <NavItem name="Integration" to="/integration" onClick={closeAllMenus} />
+              <NavItem
+                name="Integration"
+                to="/integration"
+                onClick={closeAllMenus}
+              />
               <NavItem name="Careers" to="/careers" onClick={closeAllMenus} />
-              <NavItem name="Contact" to="/contact-us" onClick={closeAllMenus} />
+              <NavItem
+                name="Contact"
+                to="/contact-us"
+                onClick={closeAllMenus}
+              />
+              <NavItem name="Blogs" to="/blogs" onClick={closeAllMenus} />
 
               {user?.role === "admin" && (
                 <NavItem name="Dashboard" to="/admin" onClick={closeAllMenus} />
@@ -180,7 +183,11 @@ const Header = () => {
           <div className="mobile-menu" ref={mobileMenuRef}>
             <div className="mobile-menu-content">
               <MobileNavItem name="Home" to="/" onClick={closeAllMenus} />
-              <MobileNavItem name="About" to="/about-us" onClick={closeAllMenus} />
+              <MobileNavItem
+                name="About"
+                to="/about-us"
+                onClick={closeAllMenus}
+              />
 
               {/* Mobile Features */}
               <div className="mobile-dropdown">
@@ -233,17 +240,37 @@ const Header = () => {
                 )}
               </div>
 
-              <MobileNavItem name="Integration" to="/integration" onClick={closeAllMenus} />
-              <MobileNavItem name="Careers" to="/careers" onClick={closeAllMenus} />
-              <MobileNavItem name="Contact" to="/contact-us" onClick={closeAllMenus} />
+              <MobileNavItem
+                name="Integration"
+                to="/integration"
+                onClick={closeAllMenus}
+              />
+              <MobileNavItem
+                name="Careers"
+                to="/careers"
+                onClick={closeAllMenus}
+              />
+              <MobileNavItem
+                name="Contact"
+                to="/contact-us"
+                onClick={closeAllMenus}
+              />
 
               {user?.role === "admin" && (
-                <MobileNavItem name="Dashboard" to="/admin" onClick={closeAllMenus} />
+                <MobileNavItem
+                  name="Dashboard"
+                  to="/admin"
+                  onClick={closeAllMenus}
+                />
               )}
 
               <div className="mobile-auth">
                 {!user ? (
-                  <Link to="/sign-up" className="mobile-auth-btn" onClick={closeAllMenus}>
+                  <Link
+                    to="/sign-up"
+                    className="mobile-auth-btn"
+                    onClick={closeAllMenus}
+                  >
                     Sign up
                   </Link>
                 ) : (
@@ -283,7 +310,6 @@ const Header = () => {
           width: 100%;
           margin-bottom: 5px;
           padding: 0;
-         
         }
 
         /* Logo - Fixed left, no padding/margin */
@@ -292,17 +318,14 @@ const Header = () => {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          margin-bottom:3px;
+          margin-bottom: 3px;
           padding: 0;
-          
         }
 
         .logo-img {
           height: 90px;
           width: auto;
           display: block;
-         
-    
         }
 
         /* Nav Center - Flexible centering with stretch support */
@@ -421,7 +444,7 @@ const Header = () => {
           left: 0;
           background: white;
           border-radius: 8px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
           min-width: 180px;
           margin-top: 8px;
           z-index: 1001;
@@ -612,11 +635,7 @@ const Dropdown = ({ children }) => (
 );
 
 const DropItem = ({ to, onClick, children }) => (
-  <Link
-    to={to}
-    onClick={onClick}
-    className="dropdown-item"
-  >
+  <Link to={to} onClick={onClick} className="dropdown-item">
     {children}
   </Link>
 );

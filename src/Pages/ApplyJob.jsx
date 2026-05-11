@@ -95,6 +95,7 @@ const ApplyJob = () => {
     };
 
     return (
+        <>      
         <div className="min-h-screen bg-gray-50 py-10 px-4">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
                 {/* Job Summary */}
@@ -244,6 +245,7 @@ const ApplyJob = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

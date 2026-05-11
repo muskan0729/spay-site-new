@@ -402,23 +402,23 @@ const Positions = () => {
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
             Manage Departments
           </h3>
+<div className="flex flex-wrap items-center gap-3 mb-5">
+  <input
+    type="text"
+    placeholder="Enter department name..."
+    className="w-full md:w-80 px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+    value={newDepartment}
+    onChange={(e) => setNewDepartment(e.target.value)}
+  />
 
-          <div className="flex flex-wrap items-center gap-3 mb-5">
-          <input
-            type="text"
-            placeholder="Search job roles..."
-            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-            <button
-              onClick={handleAddDepartment}
-              disabled={loading}
-              className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap disabled:opacity-50"
-            >
-              Add
-            </button>
-          </div>
+  <button
+    onClick={handleAddDepartment}
+    disabled={loading}
+    className="px-5 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50"
+  >
+    Add Department
+  </button>
+</div>
 
           <div className="flex flex-wrap gap-2">
             {departments.map((dep) => (
@@ -554,17 +554,27 @@ const Positions = () => {
                       <td className="p-4 font-medium text-gray-900">{job.title}</td>
                       <td className="p-4 text-gray-600">{job.department}</td>
                       <td className="p-4 text-gray-600">{job.applications}</td>
-                      <td className="p-4">
-                        <span
-                          className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
-                            job.status === "active"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-red-100 text-red-700"
-                          }`}
-                        >
-                          {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
-                        </span>
-                      </td>
+<td className="p-4">
+  <span
+    className={`
+      inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full
+      shadow-sm border border-transparent
+      ${
+        job.status === "active"
+          ? "bg-green-50 text-green-800 border-green-200"
+          : "bg-red-50 text-red-800 border-red-200"
+      }
+    `}
+  >
+    <span
+      className={`
+        flex h-2 w-2 rounded-full
+        ${job.status === "active" ? "bg-green-500" : "bg-red-500"}
+      `}
+    />
+    {job.status === "active" ? "Active" : "Inactive"}
+  </span>
+</td>
                       <td className="p-4 text-gray-600">{job.created_at}</td>
                       <td className="p-4">
                         <div className="flex flex-wrap justify-end gap-2">
@@ -575,13 +585,36 @@ const Positions = () => {
                           >
                             View
                           </button>
-                          <button
-                            onClick={() => handleToggleStatus(job.id)}
-                            disabled={loading}
-                            className="px-3 py-1.5 bg-yellow-500 text-white text-sm rounded-md hover:bg-yellow-600 transition disabled:opacity-50"
-                          >
-                            Toggle
-                          </button>
+<button
+  onClick={() => handleToggleStatus(job.id)}
+  disabled={loading || togglingStatus}
+  className={`
+    inline-flex items-center gap-2 px-3.5 py-1.5 text-sm font-medium rounded-lg
+    transition-all duration-200 shadow-sm
+    disabled:opacity-50 disabled:cursor-not-allowed
+    ${
+      job.status === "active"
+        ? "bg-green-600/90 hover:bg-green-700 text-white"
+        : "bg-red-600/90 hover:bg-red-700 text-white"
+    }
+  `}
+>
+  <span className="relative flex h-2.5 w-2.5">
+    <span
+      className={`
+        animate-ping absolute inline-flex h-full w-full rounded-full opacity-70
+        ${job.status === "active" ? "bg-green-300" : "bg-red-300"}
+      `}
+    />
+    <span
+      className={`
+        relative inline-flex rounded-full h-2.5 w-2.5
+        ${job.status === "active" ? "bg-green-500" : "bg-red-500"}
+      `}
+    />
+  </span>
+  {job.status === "active" ? "Active" : "Inactive"}
+</button>
                           <button
                             onClick={() => handleEditJob(job)}
                             disabled={loading}

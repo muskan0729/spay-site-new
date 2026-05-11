@@ -1,59 +1,96 @@
 import React from "react";
-import bgImage from "../../assets/images/pgbg8.webp";
-import { FaGlobe, FaSyncAlt, FaChartLine } from "react-icons/fa";
+import {
+  FaBolt,
+  FaCreditCard,
+  FaFingerprint,
+  FaQrcode,
+  FaRandom,
+  FaShoppingCart,
+} from "react-icons/fa";
 
 const Section3 = () => {
+  const solutions = [
+    {
+      icon: FaCreditCard,
+      title: "Online Payment Gateway",
+      description:
+        "Accept payments seamlessly across UPI, cards, net banking, and wallets with our powerful online payment gateway. Designed for speed, security, and high success rates ensuring every transaction is smooth and reliable.",
+    },
+    {
+      icon: FaQrcode,
+      title: "UPI Payment Gateway",
+      description:
+        "Accept real-time UPI payments via QR codes, VPA, and UPI Autopay. Our UPI payment gateway is built for speed and reliability customers pay in seconds, you get notified instantly.",
+    },
+    {
+      icon: FaFingerprint,
+      title: "AEPS Payment Gateway",
+      description:
+        "Our Aadhaar Enabled Payment System solution is perfect for banking correspondents, micro-ATM operators, and merchants serving rural India. Simple, biometric-based, and completely secure.",
+    },
+    {
+      icon: FaBolt,
+      title: "BBPS Payment Gateway",
+      description:
+        "Collect utility bills, insurance premiums, loan repayments, and subscriptions through our Bharat Bill Payment System integration a standardised, trusted channel your customers already know.",
+    },
+    {
+      icon: FaShoppingCart,
+      title: "E-commerce Payment Gateway",
+      description:
+        "Built specifically for online stores. Our e-commerce payment gateway supports smart retries, EMI options, one-click checkout, and seamless plugin support for WooCommerce, Shopify, and Magento.",
+    },
+    {
+      icon: FaRandom,
+      title: "Multi Payment Gateway Solution",
+      description:
+        "Optimize payment success with our multi payment gateway solution that intelligently routes transactions through multiple providers. Reduce failures, improve success rates, and ensure uninterrupted payment processing for your business.",
+    },
+  ];
+
   return (
-    <div
-      className="relative w-full flex items-center justify-center bg-center bg-cover py-16 sm:py-20 md:py-24"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/10"></div>
+    <section className="relative overflow-hidden bg-white py-14 sm:py-16 md:py-20" data-section="payment-gateway-solutions">
+      {/* Atmosphere */}
+      <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#4aa3ff]/15 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#003e9f]/15 blur-3xl" />
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 md:px-12">
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl text-center p-8 sm:p-10 md:p-14">
-
-          {/* Section Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 sm:mb-8">
-            Why Spay?
+      <div className="relative container mx-auto px-4 sm:px-6">
+        <div className="mx-auto mb-10 max-w-5xl text-left">
+          <h2 className="text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+            Our Complete Payment Gateway Solutions
           </h2>
 
-          {/* Description */}
-          <p className="text-gray-900 font-medium text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10">
-            Tired of searching for the "perfect" payment solution? Discover Spay and put an end to your quest.
-            Our diverse range of services is tailored to meet your specific business needs.
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
+           Why juggle five different vendors when one platform can do it all? Spay Fintech offers a truly complete multi payment gateway solution that covers every payment method your customers use
           </p>
+        </div>
 
-          {/* Features List */}
-          <ul className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-start md:items-center">
-            
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaGlobe className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
-                Gain comprehensive insights into payment transactions.
-              </span>
-            </li>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+          {solutions.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="group relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_10px_20px_-16px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_18px_38px_-22px_rgba(29,78,216,0.45)] sm:p-6"
+            >
+              <div className="absolute inset-x-5 top-0 h-0.5 bg-gradient-to-r from-transparent via-blue-300/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:inset-x-6" />
 
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaSyncAlt className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
-                Enjoy real-time analysis and visibility at your fingertips.
-              </span>
-            </li>
-
-            <li className="flex gap-3 text-gray-900 font-medium hover:text-blue-600 transition-colors duration-300 text-left md:text-center max-w-xs">
-              <FaChartLine className="text-blue-600 text-2xl mt-1 md:mt-0 flex-shrink-0" />
-              <span>
-                Access detailed data breakdowns for effective revenue management.
-              </span>
-            </li>
-
-          </ul>
+              <div className="flex items-start gap-3">
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-100 bg-[#eff6ff] text-[#1d4ed8] transition-colors duration-300 group-hover:bg-[#dbeafe]">
+                  <Icon className="text-sm" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-[1rem] font-semibold leading-snug text-[#0d2447] sm:text-[1.03rem]">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#3a4c70]">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

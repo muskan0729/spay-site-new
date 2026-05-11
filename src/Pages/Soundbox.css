@@ -32,33 +32,42 @@
 .text-navy-800 { color: #0033cc; }
 .text-navy-900 { color: #002080; }
 
-/* Hero Section Background - FIXED with opacity */
+/* Hero Background */
 .hero-background {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* opacity: 0.25; Restored opacity */
-  mix-blend-mode: soft-light;
   z-index: 0;
 }
 
-/* Features Section Background - FIXED with opacity */
+/* Features Background */
 .features-background {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* opacity: 0.2; Restored opacity */
-  mix-blend-mode: soft-light;
   z-index: 0;
+}
+
+/* Apply blend mode only on desktop */
+@media (min-width: 768px) {
+
+  .hero-background {
+    mix-blend-mode: soft-light;
+  }
+
+  .features-background {
+    mix-blend-mode: soft-light;
+  }
+
 }
 
 /* Animation keyframes */
 @keyframes float-slow {
-  0%, 100% {
+  0%,100% {
     transform: translateY(0px) rotateY(-5deg) rotateX(5deg);
   }
   50% {
@@ -67,7 +76,7 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,100% {
     transform: translateY(0px);
   }
   50% {
@@ -76,7 +85,7 @@
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,100% {
     opacity: 0.2;
     transform: scale(1);
   }
@@ -118,32 +127,28 @@
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+
   .feature-card .text-xl {
     font-size: 1.125rem;
   }
-  
+
   .feature-card .w-20 {
     width: 3.5rem;
     height: 3.5rem;
   }
-  
+
   .feature-card svg {
     width: 2rem;
     height: 2rem;
   }
-  
-  .hero-background {
-    opacity: 0.2;
-  }
-  
-  .features-background {
-    opacity: 0.15;
-  }
+
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
+
   .feature-card .w-20 {
     width: 4rem;
     height: 4rem;
   }
+
 }

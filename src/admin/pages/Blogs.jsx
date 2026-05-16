@@ -4,6 +4,9 @@ import { useGet } from "../../hooks/useGet";
 import { usePost, usePostForm } from "../../hooks/usePost";
 import { useDelete } from "../../hooks/useDelete";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 import logo from "../../assets/images/logo.webp";
 
 const Blogs = () => {
@@ -101,7 +104,9 @@ const Blogs = () => {
       errors.category = "Category is required";
     }
 
-    if (!blogForm.description.trim()) {
+    const plainText = blogForm.description.replace(/<(.|\n)*?>/g, "").trim();
+
+    if (!plainText) {
       errors.description = "Description is required";
     }
 
@@ -168,11 +173,64 @@ const Blogs = () => {
     }
   };
 
+  const quillStyles = `
+    .blog-editor .ql-toolbar {
+      border: none !important;
+      border-bottom: 1px solid #e7edf5 !important;
+      padding: 14px !important;
+    }
+
+    .blog-editor .ql-container {
+      border: none !important;
+      font-size: 15px !important;
+      font-family: Inter, sans-serif !important;
+      height: auto !important;
+    }
+
+    .blog-editor .ql-editor {
+      min-height: 120px !important;
+      max-height: 260px !important;
+      overflow-y: auto !important;
+
+      padding: 20px !important;
+      color: #0f172a !important;
+      line-height: 1.9 !important;
+    }
+
+    .blog-editor .ql-editor ol {
+      list-style-type: decimal !important;
+      padding-left: 24px !important;
+    }
+
+    .blog-editor .ql-editor ul {
+      list-style-type: disc !important;
+      padding-left: 24px !important;
+    }
+
+    .blog-editor .ql-editor li {
+      margin-bottom: 10px !important;
+    }
+
+    .blog-editor .ql-align-center {
+      text-align: center !important;
+    }
+
+    .blog-editor .ql-align-right {
+      text-align: right !important;
+    }
+
+    .blog-editor .ql-align-justify {
+      text-align: justify !important;
+    }
+  `;
+
   return (
-    <div className="min-h-screen bg-[#f5f7fb]">
-      <div className="max-w-[1500px] mx-auto px-6 py-6">
-        <div
-          className="
+    <>
+      <style>{quillStyles}</style>
+      <div className="min-h-screen bg-[#f5f7fb]">
+        <div className="max-w-[1500px] mx-auto px-6 py-6">
+          <div
+            className="
           h-[74px]
           bg-white
           border
@@ -184,11 +242,11 @@ const Blogs = () => {
           justify-between
           shadow-[0_4px_20px_rgba(15,23,42,0.03)]
           "
-        >
-          {/* LEFT */}
-          <div className="flex items-center gap-4">
-            <div
-              className="
+          >
+            {/* LEFT */}
+            <div className="flex items-center gap-4">
+              <div
+                className="
               h-11
               w-11
               rounded-xl
@@ -202,39 +260,39 @@ const Blogs = () => {
               shadow-lg
               shadow-blue-500/20
               "
-            >
-              B
+              >
+                B
+              </div>
+
+              <div>
+                <h1 className="text-[22px] font-semibold tracking-tight text-[#0f172a]">
+                  Blog Management
+                </h1>
+
+                <p className="text-sm text-gray-400 mt-0.5">
+                  Manage all published content
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h1 className="text-[22px] font-semibold tracking-tight text-[#0f172a]">
-                Blog Management
-              </h1>
+            {/* RIGHT */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  setShowModal(true);
 
-              <p className="text-sm text-gray-400 mt-0.5">
-                Manage all published content
-              </p>
-            </div>
-          </div>
+                  setIsEdit(false);
+                  setEditId(null);
 
-          {/* RIGHT */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                setShowModal(true);
-
-                setIsEdit(false);
-                setEditId(null);
-
-                setBlogForm({
-                  title: "",
-                  subtitle: "",
-                  description: "",
-                  category: "",
-                  image: null,
-                });
-              }}
-              className="
+                  setBlogForm({
+                    title: "",
+                    subtitle: "",
+                    description: "",
+                    category: "",
+                    image: null,
+                  });
+                }}
+                className="
               h-11
               px-5
               rounded-xl
@@ -247,29 +305,29 @@ const Blogs = () => {
               shadow-blue-500/20
               transition
               "
-            >
-              + New Blog
-            </button>
+              >
+                + New Blog
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* ================= STATS ================= */}
+          {/* ================= STATS ================= */}
 
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
-          {[
-            {
-              title: "Total Blogs",
-              value: blogs.length,
-            },
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
+            {[
+              {
+                title: "Total Blogs",
+                value: blogs.length,
+              },
 
-            {
-              title: "Views",
-              value: "18.2K",
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="
+              {
+                title: "Views",
+                value: "18.2K",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="
               bg-white
               border
               border-[#e8edf5]
@@ -278,20 +336,20 @@ const Blogs = () => {
               py-5
               shadow-[0_4px_20px_rgba(15,23,42,0.03)]
               "
-            >
-              <p className="text-sm text-gray-400">{item.title}</p>
+              >
+                <p className="text-sm text-gray-400">{item.title}</p>
 
-              <h2 className="text-[30px] leading-none font-semibold text-[#0f172a] mt-4 tracking-tight">
-                {item.value}
-              </h2>
-            </div>
-          ))}
-        </div>
+                <h2 className="text-[30px] leading-none font-semibold text-[#0f172a] mt-4 tracking-tight">
+                  {item.value}
+                </h2>
+              </div>
+            ))}
+          </div>
 
-        {/* ================= FILTER BAR ================= */}
+          {/* ================= FILTER BAR ================= */}
 
-        <div
-          className="
+          <div
+            className="
           mt-5
           bg-white
           border
@@ -307,15 +365,15 @@ const Blogs = () => {
           gap-4
           shadow-[0_4px_20px_rgba(15,23,42,0.03)]
           "
-        >
-          {/* LEFT */}
-          <div className="flex flex-col md:flex-row gap-3">
-            <input
-              type="text"
-              placeholder="Search blogs..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="
+          >
+            {/* LEFT */}
+            <div className="flex flex-col md:flex-row gap-3">
+              <input
+                type="text"
+                placeholder="Search blogs..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="
               h-11
               w-full
               md:w-[280px]
@@ -329,24 +387,24 @@ const Blogs = () => {
               focus:border-[#0066ff]
               transition
               "
-            />
+              />
+            </div>
           </div>
-        </div>
 
-        {/* ================= ERROR ================= */}
+          {/* ================= ERROR ================= */}
 
-        {error && (
-          <div className="mt-5 bg-red-50 border border-red-100 text-red-600 rounded-xl px-5 py-4 text-sm">
-            {error}
-          </div>
-        )}
+          {error && (
+            <div className="mt-5 bg-red-50 border border-red-100 text-red-600 rounded-xl px-5 py-4 text-sm">
+              {error}
+            </div>
+          )}
 
-        {/* ================= BLOG GRID ================= */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-9 mt-8 pl-5 pr-5">
-          {loading ? (
-            <div className="col-span-full">
-              <div
-                className="
+          {/* ================= BLOG GRID ================= */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-9 mt-8 pl-5 pr-5">
+            {loading ? (
+              <div className="col-span-full">
+                <div
+                  className="
                   bg-white
                   border
                   border-[#e8edf5]
@@ -358,9 +416,9 @@ const Blogs = () => {
                   justify-center
                   shadow-[0_4px_20px_rgba(15,23,42,0.03)]
                 "
-              >
-                <div
-                  className="
+                >
+                  <div
+                    className="
                     h-12
                     w-12
                     rounded-full
@@ -369,21 +427,21 @@ const Blogs = () => {
                     border-t-[#2563eb]
                     animate-spin
                   "
-                />
+                  />
 
-                <h3 className="mt-5 text-[18px] font-semibold text-[#0f172a]">
-                  Loading Blogs...
-                </h3>
+                  <h3 className="mt-5 text-[18px] font-semibold text-[#0f172a]">
+                    Loading Blogs...
+                  </h3>
 
-                <p className="mt-2 text-sm text-[#94a3b8]">
-                  Fetching latest blog articles
-                </p>
+                  <p className="mt-2 text-sm text-[#94a3b8]">
+                    Fetching latest blog articles
+                  </p>
+                </div>
               </div>
-            </div>
-          ) : filteredBlogs.length === 0 ? (
-            <div className="col-span-full">
-              <div
-                className="
+            ) : filteredBlogs.length === 0 ? (
+              <div className="col-span-full">
+                <div
+                  className="
                   bg-white
                   border
                   border-[#e8edf5]
@@ -392,25 +450,25 @@ const Blogs = () => {
                   text-center
                   shadow-[0_4px_20px_rgba(15,23,42,0.03)]
                 "
-              >
-                <h3 className="text-[20px] font-semibold text-[#0f172a]">
-                  No Blogs Found
-                </h3>
+                >
+                  <h3 className="text-[20px] font-semibold text-[#0f172a]">
+                    No Blogs Found
+                  </h3>
 
-                <p className="mt-2 text-sm text-[#94a3b8]">
-                  Try changing search filters or create a new blog.
-                </p>
+                  <p className="mt-2 text-sm text-[#94a3b8]">
+                    Try changing search filters or create a new blog.
+                  </p>
+                </div>
               </div>
-            </div>
-          ) : (
-            filteredBlogs.map((blog) => (
-              <div
-                key={blog.id}
-                onClick={() => {
-                  setSelectedBlog(blog);
-                  setShowViewModal(true);
-                }}
-                className="
+            ) : (
+              filteredBlogs.map((blog) => (
+                <div
+                  key={blog.id}
+                  onClick={() => {
+                    setSelectedBlog(blog);
+                    setShowViewModal(true);
+                  }}
+                  className="
                 group
                 bg-white
                 border
@@ -423,13 +481,13 @@ const Blogs = () => {
                 duration-300
                 cursor-pointer
                 "
-              >
-                {/* IMAGE */}
-                <div className="relative h-[220px] overflow-hidden">
-                  <img
-                    src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
-                    alt={blog.title}
-                    className="
+                >
+                  {/* IMAGE */}
+                  <div className="relative h-[220px] overflow-hidden">
+                    <img
+                      src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
+                      alt={blog.title}
+                      className="
                     w-full
                     h-full
                     object-cover
@@ -437,15 +495,15 @@ const Blogs = () => {
                     transition-transform
                     duration-700
                     "
-                  />
+                    />
 
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent" />
+                    {/* OVERLAY */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent" />
 
-                  {/* TOP BADGE */}
-                  <div className="absolute top-4 left-4">
-                    <div
-                      className="
+                    {/* TOP BADGE */}
+                    <div className="absolute top-4 left-4">
+                      <div
+                        className="
                         h-8
                         px-3
                         rounded-full
@@ -457,17 +515,17 @@ const Blogs = () => {
                         font-medium
                         text-[#0f172a]
                         "
-                    >
-                      Blog #{blog.id}
+                      >
+                        Blog #{blog.id}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* CONTENT */}
-                <div className="p-5">
-                  {/* TITLE */}
-                  <h2
-                    className="
+                  {/* CONTENT */}
+                  <div className="p-5">
+                    {/* TITLE */}
+                    <h2
+                      className="
                     text-[22px]
                     leading-[31px]
                     tracking-[-0.02em]
@@ -478,46 +536,46 @@ const Blogs = () => {
                     transition-colors
                     duration-300
                     "
-                  >
-                    {blog.title}
-                  </h2>
+                    >
+                      {blog.title}
+                    </h2>
 
-                  {/* META */}
-                  <div className="flex items-center gap-2 mt-2 text-[11px] uppercase tracking-[0.14em] text-[#94a3b8] font-medium">
-                    <span>
-                      {new Date(blog.created_at).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </span>
+                    {/* META */}
+                    <div className="flex items-center gap-2 mt-2 text-[11px] uppercase tracking-[0.14em] text-[#94a3b8] font-medium">
+                      <span>
+                        {new Date(blog.created_at).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
 
-                    <div className="h-1 w-1 rounded-full bg-[#cbd5e1]" />
+                      <div className="h-1 w-1 rounded-full bg-[#cbd5e1]" />
 
-                    <span>{blog.category}</span>
-                  </div>
+                      <span>{blog.category}</span>
+                    </div>
 
-                  {/* SUBTITLE */}
-                  <p
-                    className="
+                    {/* SUBTITLE */}
+                    <p
+                      className="
                     mt-3
                     text-[15px]
                     leading-[28px]
                     text-[#475569]
                     line-clamp-2
                     "
-                  >
-                    {blog.subtitle}
-                  </p>
+                    >
+                      {blog.subtitle}
+                    </p>
 
-                  {/* FOOTER */}
-                  <div className="flex items-center justify-between mt-3 pt-4 border-t border-[#eef2f6]">
-                    {/* AUTHOR */}
-                    <div className="flex items-center gap-3">
+                    {/* FOOTER */}
+                    <div className="flex items-center justify-between mt-3 pt-4 border-t border-[#eef2f6]">
+                      {/* AUTHOR */}
                       <div className="flex items-center gap-3">
-                        {/* LOGO */}
-                        <div
-                          className="
+                        <div className="flex items-center gap-3">
+                          {/* LOGO */}
+                          <div
+                            className="
                             h-10
                             w-10
                             rounded-2xl
@@ -529,50 +587,50 @@ const Blogs = () => {
                             justify-center
                             overflow-hidden
                             "
-                        >
-                          <img
-                            src={logo}
-                            alt="company"
-                            className="h-10 object-contain"
-                          />
-                        </div>
+                          >
+                            <img
+                              src={logo}
+                              alt="company"
+                              className="h-10 object-contain"
+                            />
+                          </div>
 
-                        {/* COMPANY */}
-                        <div className="leading-tight">
-                          <p className="text-[13px] font-semibold tracking-tight text-[#0f172a]">
-                            Spay Fintech
-                          </p>
-
-                          <div className="flex items-center gap-2 mt-1">
-                            <div className="h-1 w-1 rounded-full bg-[#cbd5e1]" />
-
-                            <p className="text-[11px] text-[#94a3b8]">
-                              Published article
+                          {/* COMPANY */}
+                          <div className="leading-tight">
+                            <p className="text-[13px] font-semibold tracking-tight text-[#0f172a]">
+                              Spay Fintech
                             </p>
+
+                            <div className="flex items-center gap-2 mt-1">
+                              <div className="h-1 w-1 rounded-full bg-[#cbd5e1]" />
+
+                              <p className="text-[11px] text-[#94a3b8]">
+                                Published article
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* ACTIONS */}
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowModal(true);
+                      {/* ACTIONS */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowModal(true);
 
-                          setIsEdit(true);
-                          setEditId(blog.id);
+                            setIsEdit(true);
+                            setEditId(blog.id);
 
-                          setBlogForm({
-                            title: blog.title,
-                            subtitle: blog.subtitle,
-                            description: blog.description,
-                            category: blog.category || "",
-                            image: blog.image,
-                          });
-                        }}
-                        className="
+                            setBlogForm({
+                              title: blog.title,
+                              subtitle: blog.subtitle,
+                              description: blog.description,
+                              category: blog.category || "",
+                              image: blog.image,
+                            });
+                          }}
+                          className="
                         h-9
                         px-4
                         rounded-full
@@ -585,16 +643,16 @@ const Blogs = () => {
                         font-medium
                         transition-all
                         "
-                      >
-                        Edit
-                      </button>
+                        >
+                          Edit
+                        </button>
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setDeleteId(blog.id);
-                        }}
-                        className="
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteId(blog.id);
+                          }}
+                          className="
                         h-9
                         w-9
                         rounded-full
@@ -609,23 +667,23 @@ const Blogs = () => {
                         justify-center
                         transition-all
                         "
-                      >
-                        ×
-                      </button>
+                        >
+                          ×
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* ================= CREATE BLOG MODAL ================= */}
+        {/* ================= CREATE BLOG MODAL ================= */}
 
-      {showModal && (
-        <div
-          className="
+        {showModal && (
+          <div
+            className="
             fixed
             inset-0
             z-50
@@ -637,9 +695,9 @@ const Blogs = () => {
             p-4
             overflow-y-auto
             "
-        >
-          <div
-            className="
+          >
+            <div
+              className="
                 w-full
                 max-w-2xl
                 bg-white
@@ -649,32 +707,32 @@ const Blogs = () => {
                 shadow-[0_20px_80px_rgba(15,23,42,0.08)]
                 overflow-hidden
                 "
-          >
-            {/* HEADER */}
-            <div className="px-7 py-6 border-b border-[#e8eef7] bg-[#f8fbff] flex items-center justify-between">
-              <div>
-                <h2 className="text-[24px] font-semibold tracking-tight text-[#0445d1]">
-                  {isEdit ? "Update Blog" : "Create New Blog"}
-                </h2>
+            >
+              {/* HEADER */}
+              <div className="px-7 py-6 border-b border-[#e8eef7] bg-[#f8fbff] flex items-center justify-between">
+                <div>
+                  <h2 className="text-[24px] font-semibold tracking-tight text-[#0445d1]">
+                    {isEdit ? "Update Blog" : "Create New Blog"}
+                  </h2>
 
-                <p className="text-sm text-[#64748b] mt-1">
-                  Publish a new article to your platform
-                </p>
-              </div>
+                  <p className="text-sm text-[#64748b] mt-1">
+                    Publish a new article to your platform
+                  </p>
+                </div>
 
-              <button
-                onClick={() => {
-                  setShowModal(false);
+                <button
+                  onClick={() => {
+                    setShowModal(false);
 
-                  setBlogForm({
-                    title: "",
-                    subtitle: "",
-                    description: "",
-                    category: "",
-                    image: null,
-                  });
-                }}
-                className="
+                    setBlogForm({
+                      title: "",
+                      subtitle: "",
+                      description: "",
+                      category: "",
+                      image: null,
+                    });
+                  }}
+                  className="
                     h-10
                     w-10
                     rounded-full
@@ -684,30 +742,30 @@ const Blogs = () => {
                     transition
                     cursor-pointer
                     "
-              >
-                ×
-              </button>
-            </div>
+                >
+                  ×
+                </button>
+              </div>
 
-            {/* BODY */}
-            <div className="p-7 space-y-5 max-h-[70vh] overflow-y-auto">
-              {/* TITLE */}
-              <div>
-                <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
-                  Blog Title
-                </label>
+              {/* BODY */}
+              <div className="p-7 space-y-5 max-h-[70vh] overflow-y-auto">
+                {/* TITLE */}
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Blog Title
+                  </label>
 
-                <input
-                  type="text"
-                  value={blogForm.title}
-                  onChange={(e) =>
-                    setBlogForm({
-                      ...blogForm,
-                      title: e.target.value,
-                    })
-                  }
-                  placeholder="Enter blog title..."
-                  className="
+                  <input
+                    type="text"
+                    value={blogForm.title}
+                    onChange={(e) =>
+                      setBlogForm({
+                        ...blogForm,
+                        title: e.target.value,
+                      })
+                    }
+                    placeholder="Enter blog title..."
+                    className="
                     w-full
                     h-12
                     px-4
@@ -722,31 +780,31 @@ const Blogs = () => {
                     focus:ring-blue-100
                     transition
                     "
-                />
-                {formErrors.title && (
-                  <p className="mt-2 text-[13px] text-red-500">
-                    {formErrors.title}
-                  </p>
-                )}
-              </div>
+                  />
+                  {formErrors.title && (
+                    <p className="mt-2 text-[13px] text-red-500">
+                      {formErrors.title}
+                    </p>
+                  )}
+                </div>
 
-              {/* SUBTITLE */}
-              <div>
-                <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
-                  Subtitle
-                </label>
+                {/* SUBTITLE */}
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Subtitle
+                  </label>
 
-                <input
-                  type="text"
-                  value={blogForm.subtitle}
-                  onChange={(e) =>
-                    setBlogForm({
-                      ...blogForm,
-                      subtitle: e.target.value,
-                    })
-                  }
-                  placeholder="Enter subtitle..."
-                  className="
+                  <input
+                    type="text"
+                    value={blogForm.subtitle}
+                    onChange={(e) =>
+                      setBlogForm({
+                        ...blogForm,
+                        subtitle: e.target.value,
+                      })
+                    }
+                    placeholder="Enter subtitle..."
+                    className="
                     w-full
                     h-12
                     px-4
@@ -761,28 +819,28 @@ const Blogs = () => {
                     focus:ring-blue-100
                     transition
                     "
-                />
-                {formErrors.subtitle && (
-                  <p className="mt-2 text-[13px] text-red-500">
-                    {formErrors.subtitle}
-                  </p>
-                )}
-              </div>
+                  />
+                  {formErrors.subtitle && (
+                    <p className="mt-2 text-[13px] text-red-500">
+                      {formErrors.subtitle}
+                    </p>
+                  )}
+                </div>
 
-              <div>
-                <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
-                  Category
-                </label>
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Category
+                  </label>
 
-                <select
-                  value={blogForm.category}
-                  onChange={(e) =>
-                    setBlogForm({
-                      ...blogForm,
-                      category: e.target.value,
-                    })
-                  }
-                  className="
+                  <select
+                    value={blogForm.category}
+                    onChange={(e) =>
+                      setBlogForm({
+                        ...blogForm,
+                        category: e.target.value,
+                      })
+                    }
+                    className="
                     w-full
                     h-12
                     px-4
@@ -797,70 +855,78 @@ const Blogs = () => {
                     focus:ring-blue-100
                     transition
                   "
-                >
-                  <option value="">Select Category</option>
-                  <option value="Fintech">Fintech</option>
-                  <option value="Payments">Payments</option>
-                  <option value="Backend">Backend</option>
-                  <option value="AI">AI</option>
-                  <option value="Technology">Technology</option>
-                </select>
-                {formErrors.category && (
-                  <p className="mt-2 text-[13px] text-red-500">
-                    {formErrors.category}
-                  </p>
-                )}
-              </div>
+                  >
+                    <option value="">Select Category</option>
+                    <option value="Fintech">Fintech</option>
+                    <option value="Payments">Payments</option>
+                    <option value="Backend">Backend</option>
+                    <option value="AI">AI</option>
+                    <option value="Technology">Technology</option>
+                  </select>
+                  {formErrors.category && (
+                    <p className="mt-2 text-[13px] text-red-500">
+                      {formErrors.category}
+                    </p>
+                  )}
+                </div>
 
-              {/* DESCRIPTION */}
-              <div>
-                <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
-                  Description
-                </label>
+                {/* DESCRIPTION */}
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Description
+                  </label>
 
-                <textarea
-                  rows={6}
-                  value={blogForm.description}
-                  onChange={(e) =>
-                    setBlogForm({
-                      ...blogForm,
-                      description: e.target.value,
-                    })
-                  }
-                  placeholder="Write blog content..."
-                  className="
-                    w-full
-                    px-4
-                    py-4
-                    rounded-xl
+                  <div
+                    className="
+                    overflow-hidden
+                    rounded-2xl
                     border
                     border-[#e7edf5]
-                    bg-[#f8fafc]
-                    text-[14px]
-                    leading-7
-                    outline-none
-                    resize-none
-                    focus:border-[#2563eb]
-                    focus:ring-4
-                    focus:ring-blue-100
+                    bg-white
+                    focus-within:ring-4
+                    focus-within:ring-blue-100
                     transition
-                    "
-                />
-                {formErrors.description && (
-                  <p className="mt-2 text-[13px] text-red-500">
-                    {formErrors.description}
-                  </p>
-                )}
-              </div>
+                  "
+                  >
+                    <ReactQuill
+                      theme="snow"
+                      value={blogForm.description}
+                      onChange={(value) =>
+                        setBlogForm({
+                          ...blogForm,
+                          description: value,
+                        })
+                      }
+                      modules={{
+                        toolbar: [
+                          [{ header: [1, 2, 3, false] }],
+                          ["bold", "italic", "underline"],
+                          [{ color: [] }, { background: [] }],
+                          [{ list: "ordered" }, { list: "bullet" }],
+                          [{ align: [] }],
+                          ["link"],
+                          ["clean"],
+                        ],
+                      }}
+                      placeholder="Write amazing blog content..."
+                      className="blog-editor"
+                    />
+                  </div>
+                  {formErrors.description && (
+                    <p className="mt-2 text-[13px] text-red-500">
+                      {formErrors.description}
+                    </p>
+                  )}
+                </div>
 
-              {/* IMAGE */}
-              <div>
-                <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
-                  Upload Image
-                </label>
+                {/* IMAGE */}
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Upload Image
+                  </label>
 
-                <label
-                  className="
+                  <label
+                    className="
                     relative
                     h-[150px]
                     rounded-2xl
@@ -876,39 +942,39 @@ const Blogs = () => {
                     hover:border-[#bfd3ec]
                     transition
                     "
-                >
-                  <input
-                    type="file"
-                    hidden
-                    accept="image/*"
-                    onChange={(e) =>
-                      setBlogForm({
-                        ...blogForm,
-                        image: e.target.files[0],
-                      })
-                    }
-                  />
+                  >
+                    <input
+                      type="file"
+                      hidden
+                      accept="image/*"
+                      onChange={(e) =>
+                        setBlogForm({
+                          ...blogForm,
+                          image: e.target.files[0],
+                        })
+                      }
+                    />
 
-                  {/* PREVIEW */}
-                  {blogForm.image ? (
-                    <div className="relative w-full h-full">
-                      <img
-                        src={
-                          typeof blogForm.image === "string"
-                            ? `${import.meta.env.VITE_IMAGE_URL}/${blogForm.image}`
-                            : URL.createObjectURL(blogForm.image)
-                        }
-                        alt="preview"
-                        className="
+                    {/* PREVIEW */}
+                    {blogForm.image ? (
+                      <div className="relative w-full h-full">
+                        <img
+                          src={
+                            typeof blogForm.image === "string"
+                              ? `${import.meta.env.VITE_IMAGE_URL}/${blogForm.image}`
+                              : URL.createObjectURL(blogForm.image)
+                          }
+                          alt="preview"
+                          className="
                             w-full
                             h-full
                             object-cover
                         "
-                      />
+                        />
 
-                      {/* OVERLAY */}
-                      <div
-                        className="
+                        {/* OVERLAY */}
+                        <div
+                          className="
                             absolute
                             inset-0
                             bg-black/20
@@ -919,9 +985,9 @@ const Blogs = () => {
                             items-center
                             justify-center
                             "
-                      >
-                        <div
-                          className="
+                        >
+                          <div
+                            className="
                             h-10
                             px-4
                             rounded-full
@@ -933,15 +999,15 @@ const Blogs = () => {
                             flex
                             items-center
                             "
-                        >
-                          Change Image
+                          >
+                            Change Image
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center">
-                      <div
-                        className="
+                    ) : (
+                      <div className="flex flex-col items-center justify-center">
+                        <div
+                          className="
                             h-11
                             w-11
                             rounded-full
@@ -954,43 +1020,43 @@ const Blogs = () => {
                             text-lg
                             text-[#2563eb]
                             "
-                      >
-                        +
+                        >
+                          +
+                        </div>
+
+                        <p className="text-[14px] font-medium text-[#0f172a] mt-4">
+                          Upload cover image
+                        </p>
+
+                        <p className="text-[12px] text-[#94a3b8] mt-1">
+                          PNG, JPG up to 5MB
+                        </p>
                       </div>
-
-                      <p className="text-[14px] font-medium text-[#0f172a] mt-4">
-                        Upload cover image
-                      </p>
-
-                      <p className="text-[12px] text-[#94a3b8] mt-1">
-                        PNG, JPG up to 5MB
-                      </p>
-                    </div>
+                    )}
+                  </label>
+                  {formErrors.image && (
+                    <p className="mt-2 text-[13px] text-red-500">
+                      {formErrors.image}
+                    </p>
                   )}
-                </label>
-                {formErrors.image && (
-                  <p className="mt-2 text-[13px] text-red-500">
-                    {formErrors.image}
-                  </p>
-                )}
+                </div>
               </div>
-            </div>
 
-            {/* FOOTER */}
-            <div className="px-7 py-5 border-t border-[#eef2f6] flex items-center justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowModal(false);
+              {/* FOOTER */}
+              <div className="px-7 py-5 border-t border-[#eef2f6] flex items-center justify-end gap-3">
+                <button
+                  onClick={() => {
+                    setShowModal(false);
 
-                  setBlogForm({
-                    title: "",
-                    subtitle: "",
-                    description: "",
-                    category: "",
-                    image: null,
-                  });
-                }}
-                className="
+                    setBlogForm({
+                      title: "",
+                      subtitle: "",
+                      description: "",
+                      category: "",
+                      image: null,
+                    });
+                  }}
+                  className="
                     h-11
                     px-5
                     rounded-xl
@@ -1003,14 +1069,14 @@ const Blogs = () => {
                     hover:bg-[#f8fafc]
                     transition
                     "
-              >
-                Cancel
-              </button>
+                >
+                  Cancel
+                </button>
 
-              <button
-                onClick={handleSubmitBlog}
-                disabled={creatingBlog || updatingBlog}
-                className="
+                <button
+                  onClick={handleSubmitBlog}
+                  disabled={creatingBlog || updatingBlog}
+                  className="
                     h-11
                     px-6
                     rounded-xl
@@ -1025,23 +1091,23 @@ const Blogs = () => {
                     disabled:opacity-50
                     cursor-pointer
                     "
-              >
-                {isEdit
-                  ? updatingBlog
-                    ? "Updating..."
-                    : "Update Blog"
-                  : creatingBlog
-                    ? "Publishing..."
-                    : "Publish Blog"}
-              </button>
+                >
+                  {isEdit
+                    ? updatingBlog
+                      ? "Updating..."
+                      : "Update Blog"
+                    : creatingBlog
+                      ? "Publishing..."
+                      : "Publish Blog"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {showViewModal && selectedBlog && (
-        <div
-          className="
+        {showViewModal && selectedBlog && (
+          <div
+            className="
             fixed
             inset-0
             z-50
@@ -1052,10 +1118,10 @@ const Blogs = () => {
             justify-center
             p-5
             "
-          onClick={() => setShowViewModal(false)}
-        >
-          <div
-            className="
+            onClick={() => setShowViewModal(false)}
+          >
+            <div
+              className="
                 w-full
                 max-w-5xl
                 max-h-[92vh]
@@ -1067,20 +1133,20 @@ const Blogs = () => {
                 border-white/40
                 animate-[fadeIn_.25s_ease]
                 "
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* IMAGE */}
-            <div className="h-[240px] overflow-hidden sticky top-0 bg-black">
-              <img
-                src={`${import.meta.env.VITE_IMAGE_URL}/${selectedBlog.image}`}
-                alt={selectedBlog.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* IMAGE */}
+              <div className="h-[240px] overflow-hidden sticky top-0 bg-black">
+                <img
+                  src={`${import.meta.env.VITE_IMAGE_URL}/${selectedBlog.image}`}
+                  alt={selectedBlog.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-            {/* CONTENT */}
-            <div
-              className="
+              {/* CONTENT */}
+              <div
+                className="
                     p-8
                     overflow-y-auto
                     max-h-[calc(102vh-320px)]
@@ -1088,22 +1154,22 @@ const Blogs = () => {
                     scrollbar-thumb-[#cbd5e1]
                     scrollbar-track-transparent
                 "
-            >
-              {/* TOP */}
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-[12px] uppercase tracking-[0.2em] text-[#94a3b8]">
-                    Blog #{selectedBlog.id}
-                  </p>
+              >
+                {/* TOP */}
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-[12px] uppercase tracking-[0.2em] text-[#94a3b8]">
+                      Blog #{selectedBlog.id}
+                    </p>
 
-                  <h1 className="text-[34px] leading-[44px] font-semibold text-[#0f172a] mt-2">
-                    {selectedBlog.title}
-                  </h1>
-                </div>
+                    <h1 className="text-[34px] leading-[44px] font-semibold text-[#0f172a] mt-2">
+                      {selectedBlog.title}
+                    </h1>
+                  </div>
 
-                <button
-                  onClick={() => setShowViewModal(false)}
-                  className="
+                  <button
+                    onClick={() => setShowViewModal(false)}
+                    className="
                     h-11
                     w-11
                     rounded-full
@@ -1111,45 +1177,45 @@ const Blogs = () => {
                     hover:bg-[#eef2f7]
                     text-xl
                     "
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* SUBTITLE */}
-              <p className="mt-5 text-[18px] leading-[34px] text-[#475569]">
-                {selectedBlog.subtitle}
-              </p>
-
-              {/* META */}
-              <div className="flex items-center gap-3 mt-6">
-                <img
-                  src={logo}
-                  alt="logo"
-                  className="h-11 w-11 rounded-full object-cover border border-[#e2e8f0]"
-                />
-
-                <div>
-                  <p className="text-[14px] font-semibold text-[#0f172a]">
-                    Spay Fintech
-                  </p>
-
-                  <p className="text-[12px] text-[#94a3b8]">
-                    {new Date(selectedBlog.created_at).toLocaleDateString(
-                      "en-US",
-                      {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      },
-                    )}
-                  </p>
+                  >
+                    ×
+                  </button>
                 </div>
-              </div>
 
-              {/* DESCRIPTION */}
-              <div
-                className="
+                {/* SUBTITLE */}
+                <p className="mt-5 text-[18px] leading-[34px] text-[#475569]">
+                  {selectedBlog.subtitle}
+                </p>
+
+                {/* META */}
+                <div className="flex items-center gap-3 mt-6">
+                  <img
+                    src={logo}
+                    alt="logo"
+                    className="h-11 w-11 rounded-full object-cover border border-[#e2e8f0]"
+                  />
+
+                  <div>
+                    <p className="text-[14px] font-semibold text-[#0f172a]">
+                      Spay Fintech
+                    </p>
+
+                    <p className="text-[12px] text-[#94a3b8]">
+                      {new Date(selectedBlog.created_at).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        },
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {/* DESCRIPTION */}
+                <div
+                  className="
                 mt-8
                 text-[17px]
                 leading-[38px]
@@ -1157,17 +1223,21 @@ const Blogs = () => {
                 whitespace-pre-line
                 tracking-[0.01em]
                 "
-              >
-                {selectedBlog.description}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: selectedBlog.description,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {deleteId && (
-        <div
-          className="
+        {deleteId && (
+          <div
+            className="
             fixed
             inset-0
             z-50
@@ -1178,9 +1248,9 @@ const Blogs = () => {
             justify-center
             p-4
           "
-        >
-          <div
-            className="
+          >
+            <div
+              className="
               w-full
               max-w-[380px]
               bg-white
@@ -1191,11 +1261,11 @@ const Blogs = () => {
               shadow-[0_20px_60px_rgba(15,23,42,0.12)]
               animate-[fadeIn_.2s_ease]
             "
-          >
-            {/* TOP */}
-            <div className="flex items-start gap-4">
-              <div
-                className="
+            >
+              {/* TOP */}
+              <div className="flex items-start gap-4">
+                <div
+                  className="
                   h-11
                   w-11
                   rounded-full
@@ -1207,26 +1277,26 @@ const Blogs = () => {
                   text-lg
                   shrink-0
                 "
-              >
-                🗑
+                >
+                  🗑
+                </div>
+
+                <div>
+                  <h2 className="text-[18px] font-semibold text-[#0f172a]">
+                    Delete blog?
+                  </h2>
+
+                  <p className="text-[14px] leading-6 text-[#64748b] mt-1">
+                    This action cannot be undone.
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <h2 className="text-[18px] font-semibold text-[#0f172a]">
-                  Delete blog?
-                </h2>
-
-                <p className="text-[14px] leading-6 text-[#64748b] mt-1">
-                  This action cannot be undone.
-                </p>
-              </div>
-            </div>
-
-            {/* ACTIONS */}
-            <div className="flex items-center justify-end gap-3 mt-6">
-              <button
-                onClick={() => setDeleteId(null)}
-                className="
+              {/* ACTIONS */}
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <button
+                  onClick={() => setDeleteId(null)}
+                  className="
                   h-10
                   px-5
                   rounded-xl
@@ -1238,13 +1308,13 @@ const Blogs = () => {
                   hover:bg-[#f8fafc]
                   transition
                 "
-              >
-                Cancel
-              </button>
+                >
+                  Cancel
+                </button>
 
-              <button
-                onClick={handleDelete}
-                className="
+                <button
+                  onClick={handleDelete}
+                  className="
                   h-10
                   px-5
                   rounded-xl
@@ -1255,14 +1325,15 @@ const Blogs = () => {
                   font-medium
                   transition
                 "
-              >
-                Delete
-              </button>
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

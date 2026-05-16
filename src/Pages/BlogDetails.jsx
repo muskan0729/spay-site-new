@@ -71,17 +71,94 @@ const BlogDetails = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* ================= HERO ================= */}
+  const blogStyles = `
+  .blog-content ul {
+    list-style-type: disc !important;
+    padding-left: 30px !important;
+    margin: 20px 0 !important;
+  }
 
-      <section className="border-b border-[#eef2f7]">
-        <div className="max-w-5xl mx-auto px-6 pt-16 pb-16">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            {/* BACK */}
-            <button
-              onClick={() => navigate(-1)}
-              className="
+  .blog-content ol {
+    list-style-type: decimal !important;
+    padding-left: 30px !important;
+    margin: 20px 0 !important;
+  }
+
+  .blog-content li {
+    margin-bottom: 12px !important;
+  }
+
+  .blog-content .ql-align-center {
+    text-align: center !important;
+  }
+
+  .blog-content .ql-align-right {
+    text-align: right !important;
+  }
+
+  .blog-content .ql-align-justify {
+    text-align: justify !important;
+  }
+
+  .blog-content strong {
+    font-weight: 700 !important;
+  }
+
+  .blog-content em {
+    font-style: italic !important;
+  }
+
+  .blog-content u {
+    text-decoration: underline !important;
+  }
+
+  .blog-content a {
+    color: #2563eb !important;
+    text-decoration: underline !important;
+  }
+
+  .blog-content h1 {
+    font-size: 42px !important;
+    line-height: 52px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 40px 0 20px !important;
+  }
+
+  .blog-content h2 {
+    font-size: 34px !important;
+    line-height: 44px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 34px 0 18px !important;
+  }
+
+  .blog-content h3 {
+    font-size: 28px !important;
+    line-height: 38px !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    margin: 28px 0 16px !important;
+  }
+
+  .blog-content p {
+    margin-bottom: 5px !important;
+  }
+  `;
+
+  return (
+    <>
+      <style>{blogStyles}</style>
+      <div className="min-h-screen bg-white">
+        {/* ================= HERO ================= */}
+
+        <section className="border-b border-[#eef2f7]">
+          <div className="max-w-5xl mx-auto px-6 pt-16 pb-16">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              {/* BACK */}
+              <button
+                onClick={() => navigate(-1)}
+                className="
                 h-11
                 px-5
                 rounded-full
@@ -98,14 +175,14 @@ const BlogDetails = () => {
                 transition-all
                 cursor-pointer
                 "
-            >
-              <ArrowLeft size={16} />
-              Back
-            </button>
+              >
+                <ArrowLeft size={16} />
+                Back
+              </button>
 
-            {/* CATEGORY */}
-            <div
-              className="
+              {/* CATEGORY */}
+              <div
+                className="
                 inline-flex
                 items-center
                 h-10
@@ -116,14 +193,14 @@ const BlogDetails = () => {
                 text-sm
                 font-medium
                 "
-            >
-              {blog.category}
+              >
+                {blog.category}
+              </div>
             </div>
-          </div>
 
-          {/* TITLE */}
-          <h4
-            className="
+            {/* TITLE */}
+            <h4
+              className="
               mt-8
               text-[42px]
               md:text-[56px]
@@ -133,121 +210,125 @@ const BlogDetails = () => {
               text-[#0f172a]
               max-w-5xl
             "
-          >
-            {blog.title}
-          </h4>
+            >
+              {blog.title}
+            </h4>
 
-          {/* SUBTITLE */}
-          <p
-            className="
+            {/* SUBTITLE */}
+            <p
+              className="
               mt-8
               text-[20px]
               leading-[40px]
               text-[#475569]
               max-w-3xl
             "
-          >
-            {blog.subtitle}
-          </p>
+            >
+              {blog.subtitle}
+            </p>
 
-          {/* META */}
-          <div className="flex items-center gap-6 mt-12 flex-wrap">
-            {/* AUTHOR */}
-            <div className="flex items-center gap-4">
-              <img
-                src={logo}
-                alt="logo"
-                className="
+            {/* META */}
+            <div className="flex items-center gap-6 mt-12 flex-wrap">
+              {/* AUTHOR */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="
                   h-12
                   w-12
                   rounded-full
                   object-cover
                 "
-              />
+                />
 
-              <div>
-                <p className="text-[#0f172a] font-semibold">Spay Fintech</p>
+                <div>
+                  <p className="text-[#0f172a] font-semibold">Spay Fintech</p>
 
-                <p className="text-[#94a3b8] text-sm">Premium Insights</p>
+                  <p className="text-[#94a3b8] text-sm">Premium Insights</p>
+                </div>
+              </div>
+
+              <div className="h-5 w-[1px] bg-[#e2e8f0]" />
+
+              {/* DATE */}
+              <div className="flex items-center gap-2 text-[#64748b] text-sm">
+                <CalendarDays size={16} />
+
+                {new Date(blog.created_at).toLocaleDateString("en-US", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
               </div>
             </div>
-
-            <div className="h-5 w-[1px] bg-[#e2e8f0]" />
-
-            {/* DATE */}
-            <div className="flex items-center gap-2 text-[#64748b] text-sm">
-              <CalendarDays size={16} />
-
-              {new Date(blog.created_at).toLocaleDateString("en-US", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ================= ARTICLE ================= */}
+        {/* ================= ARTICLE ================= */}
 
-      <section className="px-6 pt-5 pb-20">
-        <div className="max-w-4xl mx-auto">
-          {/* IMAGE */}
-          <div className="overflow-hidden">
-            <img
-              src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
-              alt={blog.title}
-              className="
+        <section className="px-6 pt-5 pb-20">
+          <div className="max-w-4xl mx-auto">
+            {/* IMAGE */}
+            <div className="overflow-hidden">
+              <img
+                src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
+                alt={blog.title}
+                className="
                 w-full
                 max-h-[650px]
                 object-cover
               "
-            />
-          </div>
+              />
+            </div>
 
-          {/* DESCRIPTION */}
-          <div
-            className="
-              mt-16
-              text-[19px]
-              leading-[44px]
-              text-[#334155]
-              whitespace-pre-line
-              tracking-[0.01em]
-            "
-          >
-            {blog.description}
-          </div>
+            {/* DESCRIPTION */}
+            <div
+              className="
+                blog-content
+                mt-16
+                text-[19px]
+                leading-[44px]
+                text-[#334155]
+                tracking-[0.01em]
+              "
+            >
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: blog.description,
+                }}
+              />
+            </div>
 
-          {/* FOOTER */}
-          <div className="mt-24 pt-10 border-t border-[#eef2f7] flex items-center justify-between flex-wrap gap-5">
-            {/* LEFT */}
-            <div className="flex items-center gap-4">
-              <img
-                src={logo}
-                alt="logo"
-                className="
+            {/* FOOTER */}
+            <div className="mt-24 pt-10 border-t border-[#eef2f7] flex items-center justify-between flex-wrap gap-5">
+              {/* LEFT */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="
                   h-14
                   w-14
                   rounded-full
                   object-cover
                 "
-              />
+                />
 
-              <div>
-                <p className="font-semibold text-[#0f172a]">Spay Fintech</p>
+                <div>
+                  <p className="font-semibold text-[#0f172a]">Spay Fintech</p>
 
-                <p className="text-sm text-[#94a3b8] mt-1">
-                  Building premium fintech experiences.
-                </p>
+                  <p className="text-sm text-[#94a3b8] mt-1">
+                    Building premium fintech experiences.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* ACTIONS */}
-            <div className="flex items-center gap-3 flex-wrap">
-              <button
-                onClick={() => navigate(-1)}
-                className="
+              {/* ACTIONS */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="
                   h-12
                   px-6
                   rounded-2xl
@@ -260,13 +341,13 @@ const BlogDetails = () => {
                   transition-all
                   cursor-pointer
                 "
-              >
-                ← Back
-              </button>
+                >
+                  ← Back
+                </button>
 
-              <button
-                onClick={() => navigate("/blogs")}
-                className="
+                <button
+                  onClick={() => navigate("/blogs")}
+                  className="
                   h-12
                   px-6
                   rounded-2xl
@@ -277,14 +358,15 @@ const BlogDetails = () => {
                   transition-all
                   cursor-pointer
                 "
-              >
-                Explore More Blogs
-              </button>
+                >
+                  Explore More Blogs
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

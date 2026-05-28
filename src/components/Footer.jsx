@@ -40,6 +40,7 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Services">
+                <FooterLink to="https://dashboardbbps.spay.live/" target="_blank" rel="noopener noreferrer">BBPS</FooterLink>
               <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
               <FooterLink to="/payment-links">Payment Links</FooterLink>
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>

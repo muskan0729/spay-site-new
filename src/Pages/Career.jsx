@@ -484,7 +484,11 @@ const Career = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+     
+
+      
+        <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
 {/* Hero Section */}
 <div className="relative w-full">
@@ -726,11 +730,11 @@ const Career = () => {
                         {selectedJob.experience}
                       </span>
                     )}
-                    {selectedJob.salary_range && (
+                    {/* {selectedJob.salary_range && (
                       <span className="flex items-center gap-1">
                         {selectedJob.salary_range}
                       </span>
-                    )}
+                    )} */}
                   </div>
 
                   {/* Skills Section */}
@@ -1056,7 +1060,7 @@ const Career = () => {
                       <p className="mt-1 text-xs sm:text-sm text-red-600">{errors.experience}</p>
                     )}
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
                       Salary Range (LPA)
                     </label>
@@ -1073,7 +1077,7 @@ const Career = () => {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Status Toggle */}
@@ -1293,6 +1297,8 @@ const Career = () => {
         </div>
       )}
     </div>
+    </>
+
   );
 };
 

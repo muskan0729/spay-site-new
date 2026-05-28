@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import integrationBg from "../assets/images/Integrations1N.jpeg";
 import {
@@ -27,6 +28,15 @@ const Integration = () => {
 
   return (
     <div className="font-sans text-gray-900 overflow-x-hidden">
+       <Helmet>
+              <title>Spay | Payment Gateway API Integration for Businesses.</title>
+              <link rel="canonical" href="https://spay.live/integration" />
+              <meta  name="robots" content="index, follow, max-image-preview:large" />
+              <meta
+                name="description"
+                content="Integrate Spay payment gateway API for secure and fast transactions. Accept UPI, cards, and online payments with easy developer-friendly setup."
+              />
+            </Helmet>
 
       {/* ================= HERO SECTION ================= */}
       <section
@@ -38,6 +48,7 @@ const Integration = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-black/75 to-blue-800/85"></div>
+        {/* <div className="absolute "/> */}
 
         <motion.div
           className="relative z-10 max-w-6xl w-full px-4 sm:px-6"

@@ -40,16 +40,17 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Services">
-              <FooterLink to="/paymentgateway">Payment Gateway</FooterLink>
+              <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
               <FooterLink to="/payment-links">Payment Links</FooterLink>
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
-              <FooterLink to="/OneClick">One-Click Checkout</FooterLink>
+              <FooterLink to="/one-click-checkout">One-Click Checkout</FooterLink>
             </FooterBlock>
 
             <FooterBlock title="Company">
               <FooterLink to="/about-us">About Us</FooterLink>
               <FooterLink to="/integration">Integration</FooterLink>
               <FooterLink to="/contact-us">Contact Us</FooterLink>
+              <FooterLink to="/Refund&Cancellation">Refund & Cancellation</FooterLink>
             </FooterBlock>
           </div>
 
@@ -83,15 +84,16 @@ const Footer = () => {
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* LEFT */}
-          <p className="text-[13px] text-white/70 text-center md:text-left">
-            © 2024 Spay Fintech. All rights reserved.
+          <p className="text-[15px] text-white/70 text-center md:text-left">
+            © 2026 Spay Fintech Pvt. Ltd. All rights reserved.
           </p>
 
           {/* RIGHT SECTION */}
           <div className="flex flex-col md:flex-row items-center gap-6">
 
             {/* Policy Links (shifted slightly left) */}
-            <div className="flex items-center gap-6 mr-4">
+            <div className="flex items-center gap-6 mr-4"
+            style={{fontSize:"14px"}}>
               <FooterLink to="/privacy-policy">
                 Privacy Policy
               </FooterLink>

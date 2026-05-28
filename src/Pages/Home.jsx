@@ -5,6 +5,10 @@ import CardSlider from "../components/Home/CardSlider";
 import CounterSection from "../components/Home/CounterSection";
 import FeaturesSection from "../components/Home/FeaturesSection";
 import DynamicControlPanel from "../components/Home/DynamicControlPanel";
+import Services from "../components/Home/Services";
+import AboutSection from "../components/Home/aboutSection";
+import CardSliderNew from "../components/Home/CardSliderNew";
+import Faq_section from "../components/Home/Faq_section";
 
 const Home = () => {
   useEffect(() => {
@@ -14,23 +18,23 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>SPay - Secure Payment Gateway for Businesses</title>
-        <meta
+        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <link rel="canonical" href="https://spay.live/" />  
+    <meta  name="robots" content="index, follow, max-image-preview:large" />
+       <meta
           name="description"
-          content="Accept payments online with SPay's secure payment gateway. Fast, reliable, and trusted by 5000+ businesses. Multi payment options, 99.9% uptime."
+          content="Get a reliable payment gateway in Mumbai with Spay Fintech Pvt Ltd. Accept UPI, cards, and
+                  online payments with secure, fast, and easy integration."
         />
-        <meta
-          name="keywords"
-          content="payment gateway, online payments, secure transactions, business payments"
-        />
+       
       </Helmet>
 
       <div className="home-page relative">
         {/* Hero Section with Gradient Overlay */}
         <div className="relative w-full overflow-hidden">
           {/* Overlay gradients */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-transparent to-transparent z-10 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+          <div className="absolute inset-0  pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" />
 
           {/* Hero Carousel */}
           <Carousel autoPlay={true} interval={5000} />
@@ -40,7 +44,22 @@ const Home = () => {
         <div className="relative w-full flex flex-col gap-0 md:gap-4">
           {/* Trusted Card Slider */}
           <section className="relative">
+            {/* <CardSlider /> */}
+            <CardSliderNew/>
+          </section>
+
+                 {/* <section className="relative">
             <CardSlider />
+            
+          </section> */}
+
+          <section className="relative">
+            <AboutSection />
+          </section>
+
+
+    <section className="relative">
+            <Services />
           </section>
 
           {/* Counter Section */}
@@ -49,13 +68,20 @@ const Home = () => {
           </section>
 
           {/* Features Section */}
-          <section className="relative">
+          {/* <section className="relative">
             <FeaturesSection />
-          </section>
+          </section> */}
+
+         
 
           {/* Dynamic Control Panel Section */}
           <section className="relative">
             <DynamicControlPanel />
+          </section>
+
+
+            <section className="relative">
+            <Faq_section />
           </section>
         </div>
       </div>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 import { FaQrcode, FaSyncAlt, FaCreditCard } from "react-icons/fa";
-import upiBgImage from "../assets/images/upi bg.webp";
-import qrScannerImage from "../assets/images/qr-codee.webp";
 import qrFlyerVideo from "../assets/images/White Red Modern Scan The QR Code Flyer (2).mp4";
 import autopayImage from "../assets/images/autopay7 (1).webp";
 import herobgImage from "../assets/images/hero-bg.webp";
+import Section1 from "../components/upi/section1";
+import Section2 from "../components/upi/section2";
+import Section3 from "../components/upi/section3";
+import Section4 from "../components/upi/section4";
 
 const Upi = () => {
   const [windowWidth, setWindowWidth] = useState(
@@ -22,50 +24,35 @@ const Upi = () => {
 
   return (
     <main className="font-['Inter','Poppins',system-ui,sans-serif] overflow-x-hidden">
+      <Helmet>
+        <title>Spay Fintech | Best UPI Autopay Payment Gateway in Mumbai</title>
+        <link rel="canonical" href="https://spay.live/upi-autopay" />
+        <meta  name="robots" content="index, follow, max-image-preview:large" />
+        <meta
+          name="description"
+          content="Looking for a UPI payment gateway in India? Spay Fintech offers secure UPI Autopay, fast integration payment solutions for businesses in Mumbai & Andheri."
+        />
+      </Helmet>
 
       {/* ================= HERO ================= */}
-      <section
-        className="relative bg-cover bg-center bg-no-repeat min-h-[45vh] md:min-h-[60vh] flex items-center"
-        style={{ backgroundImage: `url(${upiBgImage})` }}
-      >
-        <div className="absolute inset-0 bg-white/70"></div>
+      <Section1 />
 
-        <div className="relative w-full max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+      {/* ================= AUTOPAY EXPLAINER ================= */}
+      <Section2 />
 
-            {/* LEFT */}
-            <div>
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-blue-900 mb-4 md:mb-5 leading-tight">
-                What is a UPI QR Code?
-              </h1>
+      {/* ================= BENEFITS ================= */}
+      <Section3 />
 
-              <p className="text-sm sm:text-base md:text-lg text-black leading-relaxed max-w-xl">
-                A UPI QR Code allows your customers to make payments quickly and easily.
-                Create Static and Dynamic QR codes with Spay and offer your customers
-                multiple scanning options.
-              </p>
-            </div>
-
-            {/* RIGHT IMAGE */}
-            <div className="flex justify-center md:justify-end">
-              <img
-                src={qrScannerImage}
-                alt="QR Code"
-                className="w-36 sm:w-44 md:w-60 lg:w-64 object-contain"
-              />
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* ================= FAQ ================= */}
+      <Section4 />
 
       {/* ================= CARDS SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      {/* <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> */}
 
           {/* STATIC QR */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaQrcode className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -77,10 +64,10 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               Generate your unique QR codes in seconds and print them for display anywhere.
             </p>
-          </div>
+          </div> */}
 
           {/* DYNAMIC QR */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaSyncAlt className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -92,10 +79,10 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               Make a Dynamic QR Code that you can update without needing to print again.
             </p>
-          </div>
+          </div> */}
 
           {/* AUTOPAY */}
-          <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
+          {/* <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 md:p-6 border-l-4 border-blue-900">
             <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-3 md:mb-4">
               <FaCreditCard className="text-blue-900 text-xl md:text-2xl" />
             </div>
@@ -107,13 +94,13 @@ const Upi = () => {
             <p className="text-sm text-gray-600 leading-relaxed">
               UPI Autopay enables secure, instant recurring payments with easy payee management.
             </p>
-          </div>
+          </div> */}
 
-        </div>
-      </section>
+        {/* </div>
+      </section> */}
 
       {/* ================= DISCOVER SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      {/* <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
 
         <h2 className="text-2xl md:text-4xl font-bold text-blue-900 text-center mb-8 md:mb-12">
           Discover UPI Payments
@@ -154,10 +141,10 @@ const Upi = () => {
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= PRICING SECTION ================= */}
-      <section
+      {/* <section
         className="bg-cover bg-center py-10 md:py-14"
         style={{ backgroundImage: `url(${herobgImage})` }}
       >
@@ -169,9 +156,9 @@ const Upi = () => {
               src={autopayImage}
               alt="Pricing"
               className="w-52 md:w-72 mx-auto rounded-xl shadow-lg"
-            />
+            /> */}
 
-            <div>
+            {/* <div>
 
               <h2 className="text-xl md:text-3xl font-bold text-blue-900 mb-4 md:mb-5">
                 Transparent Pricing
@@ -186,12 +173,12 @@ const Upi = () => {
                 Our technical team is always available to assist you in selecting the right plan.
               </p>
 
-            </div>
+            </div> */}
 
-          </div>
+          {/* </div>
 
         </div>
-      </section>
+      </section> */}
 
     </main>
   );

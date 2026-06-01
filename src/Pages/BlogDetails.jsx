@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 
@@ -7,7 +7,7 @@ import { useGet } from "../hooks/useGet";
 import logo from "../assets/images/logo.webp";
 
 const BlogDetails = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const navigate = useNavigate();
 
@@ -15,11 +15,30 @@ const BlogDetails = () => {
     data: blogData,
     loading,
     error,
-  } = useGet(`/blogviewsingle/${id}`, {
+  } = useGet(`/blogviewsingle/${slug}`, {
+    lazy: false,
+  });
+
+  const { data: allBlogsData } = useGet("/blogview", {
     lazy: false,
   });
 
   const blog = blogData?.data;
+
+  const relatedBlogs =
+    allBlogsData?.data
+      ?.filter((item) => item.slug !== blog?.slug)
+      ?.slice(0, 3) || [];
+
+  useEffect(() => {
+    const headings = document.querySelectorAll(
+      ".blog-content h1, .blog-content h2, .blog-content h3",
+    );
+
+    headings.forEach((heading, index) => {
+      heading.id = `heading-${index}`;
+    });
+  }, [blog]);
 
   /* ================= LOADING ================= */
 
@@ -71,79 +90,156 @@ const BlogDetails = () => {
     );
   }
 
+  const createTOC = () => {
+    if (!blog?.description) return [];
+
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = blog.description;
+
+    const headings = tempDiv.querySelectorAll("h1, h2, h3");
+
+    return Array.from(headings).map((heading, index) => ({
+      id: `heading-${index}`,
+      text: heading.textContent,
+    }));
+  };
+
+  const tableOfContents = createTOC();
+
   const blogStyles = `
-  .blog-content ul {
-    list-style-type: disc !important;
-    padding-left: 30px !important;
-    margin: 20px 0 !important;
-  }
+    .blog-content {
+      font-family: Inter, sans-serif;
+    }
 
-  .blog-content ol {
-    list-style-type: decimal !important;
-    padding-left: 30px !important;
-    margin: 20px 0 !important;
-  }
+    /* LISTS */
 
-  .blog-content li {
-    margin-bottom: 12px !important;
-  }
+    .blog-content ul {
+      list-style-type: disc !important;
+      padding-left: 22px !important;
+      margin: 14px 0 !important;
+    }
 
-  .blog-content .ql-align-center {
-    text-align: center !important;
-  }
+    .blog-content ol {
+      list-style-type: decimal !important;
+      padding-left: 22px !important;
+      margin: 14px 0 !important;
+    }
 
-  .blog-content .ql-align-right {
-    text-align: right !important;
-  }
+    .blog-content li {
+      margin-bottom: 8px !important;
+      line-height: 30px !important;
+    }
 
-  .blog-content .ql-align-justify {
-    text-align: justify !important;
-  }
+    /* ALIGN */
 
-  .blog-content strong {
-    font-weight: 700 !important;
-  }
+    .blog-content .ql-align-center {
+      text-align: center !important;
+    }
 
-  .blog-content em {
-    font-style: italic !important;
-  }
+    .blog-content .ql-align-right {
+      text-align: right !important;
+    }
 
-  .blog-content u {
-    text-decoration: underline !important;
-  }
+    .blog-content .ql-align-justify {
+      text-align: justify !important;
+    }
 
-  .blog-content a {
-    color: #2563eb !important;
-    text-decoration: underline !important;
-  }
+    /* TEXT */
 
-  .blog-content h1 {
-    font-size: 42px !important;
-    line-height: 52px !important;
-    font-weight: 700 !important;
-    color: #0f172a !important;
-    margin: 40px 0 20px !important;
-  }
+    .blog-content strong {
+      font-weight: 700 !important;
+      color: #0f172a !important;
+    }
 
-  .blog-content h2 {
-    font-size: 34px !important;
-    line-height: 44px !important;
-    font-weight: 700 !important;
-    color: #0f172a !important;
-    margin: 34px 0 18px !important;
-  }
+    .blog-content em {
+      font-style: italic !important;
+    }
 
-  .blog-content h3 {
-    font-size: 28px !important;
-    line-height: 38px !important;
-    font-weight: 600 !important;
-    color: #0f172a !important;
-    margin: 28px 0 16px !important;
-  }
+    .blog-content u {
+      text-decoration: underline !important;
+    }
 
-  .blog-content p {
-    margin-bottom: 5px !important;
-  }
+    .blog-content a {
+      color: #2563eb !important;
+      text-decoration: none !important;
+      font-weight: 500 !important;
+    }
+
+    .blog-content a:hover {
+      text-decoration: underline !important;
+    }
+
+    /* HEADINGS */
+
+    .blog-content h1,
+    .blog-content h2,
+    .blog-content h3 {
+      scroll-margin-top: 120px;
+    }
+
+    .blog-content h1 {
+      font-size: 30px !important;
+      line-height: 40px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      margin: 30px 0 14px !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .blog-content h2 {
+      font-size: 24px !important;
+      line-height: 34px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      margin: 26px 0 12px !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .blog-content h3 {
+      font-size: 20px !important;
+      line-height: 30px !important;
+      font-weight: 600 !important;
+      color: #0f172a !important;
+      margin: 22px 0 10px !important;
+    }
+
+    /* PARAGRAPH */
+
+    .blog-content p {
+      margin-bottom: 12px !important;
+      line-height: 31px !important;
+    }
+
+    /* BLOCKQUOTE */
+
+    .blog-content blockquote {
+      border-left: 4px solid #2563eb !important;
+      padding-left: 18px !important;
+      margin: 18px 0 !important;
+      color: #475569 !important;
+      font-style: italic !important;
+    }
+
+    /* IMAGE */
+
+    .blog-content img {
+      border-radius: 18px !important;
+      margin: 24px 0 !important;
+    }
+
+    /* TABLE */
+
+    .blog-content table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 20px 0 !important;
+    }
+
+    .blog-content table td,
+    .blog-content table th {
+      border: 1px solid #e2e8f0 !important;
+      padding: 10px !important;
+    }
   `;
 
   return (
@@ -270,7 +366,7 @@ const BlogDetails = () => {
         <section className="px-6 pt-5 pb-20">
           <div className="max-w-4xl mx-auto">
             {/* IMAGE */}
-            <div className="overflow-hidden">
+            <div className="overflow-hidden mb-10">
               <img
                 src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
                 alt={blog.title}
@@ -282,15 +378,176 @@ const BlogDetails = () => {
               />
             </div>
 
+            {tableOfContents.length > 0 && (
+              <div
+                className="
+                  mb-16
+                  rounded-[30px]
+                  border
+                  border-[#dbeafe]
+                  bg-gradient-to-br
+                  from-[#f8fbff]
+                  via-white
+                  to-[#f1f7ff]
+                  overflow-hidden
+                  shadow-[0_10px_40px_rgba(37,99,235,0.05)]
+                "
+              >
+                {/* HEADER */}
+                <div
+                  className="
+                    h-[62px]
+                    px-7
+                    border-b
+                    border-[#e5edf8]
+                    bg-gradient-to-r
+                    from-[#2563eb]
+                    to-[#3b82f6]
+                    flex
+                    items-center
+                    justify-between
+                  "
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="
+                        h-8
+                        w-8
+                        rounded-full
+                        bg-white/20
+                        backdrop-blur-xl
+                        flex
+                        items-center
+                        justify-center
+                        text-white
+                        text-[13px]
+                        font-semibold
+                      "
+                    >
+                      #
+                    </div>
+
+                    <h3
+                      className="
+                        text-white
+                        text-[15px]
+                        tracking-[0.02em]
+                        font-semibold
+                      "
+                    >
+                      Table of Contents
+                    </h3>
+                  </div>
+
+                  <div
+                    className="
+                      h-8
+                      px-3
+                      rounded-full
+                      bg-white/15
+                      text-white
+                      text-[12px]
+                      font-medium
+                      flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    {tableOfContents.length} Sections
+                  </div>
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-7">
+                  <div className="space-y-2">
+                    {tableOfContents.map((item, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          const element = document.getElementById(item.id);
+
+                          if (element) {
+                            const offset = 120;
+
+                            const top =
+                              element.getBoundingClientRect().top +
+                              window.pageYOffset -
+                              offset;
+
+                            window.scrollTo({
+                              top,
+                              behavior: "smooth",
+                            });
+                          }
+                        }}
+                        className="
+                          group
+                          w-full
+                          flex
+                          items-start
+                          gap-4
+                          px-4
+                          py-3
+                          rounded-2xl
+                          hover:bg-[#eff6ff]
+                          transition-all
+                          duration-200
+                          cursor-pointer
+                          text-left
+                        "
+                      >
+                        {/* NUMBER */}
+                        <div
+                          className="
+                            h-7
+                            min-w-[28px]
+                            px-2
+                            rounded-full
+                            bg-[#eff6ff]
+                            group-hover:bg-[#2563eb]
+                            text-[#2563eb]
+                            group-hover:text-white
+                            text-[12px]
+                            font-semibold
+                            flex
+                            items-center
+                            justify-center
+                            transition-all
+                            mt-[2px]
+                          "
+                        >
+                          {index + 1}
+                        </div>
+
+                        {/* TEXT */}
+                        <p
+                          className="
+                            text-[15px]
+                            leading-[28px]
+                            text-[#334155]
+                            group-hover:text-[#2563eb]
+                            transition-colors
+                            font-medium
+                          "
+                        >
+                          {item.text}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* DESCRIPTION */}
             <div
               className="
                 blog-content
-                mt-16
-                text-[19px]
-                leading-[44px]
+                mt-10
+                text-[15px]
+                leading-[31px]
                 text-[#334155]
-                tracking-[0.01em]
+                tracking-[0.005em]
               "
             >
               <div
@@ -299,6 +556,98 @@ const BlogDetails = () => {
                 }}
               />
             </div>
+
+            {/* ================= RELATED POSTS ================= */}
+
+            {relatedBlogs.length > 0 && (
+              <div className="mt-24">
+                <div className="text-center mb-12">
+                  <h2
+                    className="
+                      text-[34px]
+                      leading-[42px]
+                      font-bold
+                      tracking-[-0.03em]
+                      text-[#0f172a]
+                    "
+                  >
+                    Related Posts
+                  </h2>
+
+                  <div className="w-12 h-[2px] bg-[#0f172a] mx-auto mt-4" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                  {relatedBlogs.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() => navigate(`/blogs/${item.slug}`)}
+                      className="
+                        group
+                        cursor-pointer
+                      "
+                    >
+                      <div
+                        className="
+                          overflow-hidden
+                          bg-[#f8fafc]
+                        "
+                      >
+                        <img
+                          src={`${import.meta.env.VITE_IMAGE_URL}/${item.image}`}
+                          alt={item.title}
+                          className="
+                            w-full
+                            h-[245px]
+                            object-cover
+                            group-hover:scale-[1.02]
+                            transition-transform
+                            duration-500
+                          "
+                        />
+                      </div>
+
+                      <div className="pt-6">
+                        <h3
+                          className="
+                            text-[20px]
+                            leading-[38px]
+                            font-semibold
+                            text-[#0f172a]
+                            tracking-[-0.02em]
+                            transition-colors
+                            duration-300
+                            group-hover:text-[#2563eb]
+                          "
+                        >
+                          {item.title}
+                        </h3>
+
+                        <p
+                          className="
+                            mt-5
+                            text-[12px]
+                            uppercase
+                            tracking-[0.18em]
+                            text-[#94a3b8]
+                            font-medium
+                          "
+                        >
+                          {new Date(item.created_at).toLocaleDateString(
+                            "en-US",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            },
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* FOOTER */}
             <div className="mt-24 pt-10 border-t border-[#eef2f7] flex items-center justify-between flex-wrap gap-5">

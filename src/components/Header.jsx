@@ -121,6 +121,14 @@ const Header = () => {
                 </button>
                 {productsOpen && (
                   <Dropdown>
+                    <DropItem
+                      to="https://dashboardbbps.spay.live/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeAllMenus}
+                    >
+                      BBPS
+                    </DropItem>
                     <DropItem to="/upi-autopay" onClick={closeAllMenus}>
                       UPI
                     </DropItem>

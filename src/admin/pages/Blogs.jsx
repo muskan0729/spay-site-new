@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { useGet } from "../../hooks/useGet";
-// import { usePost } from "../../hooks/usePost";
 import { usePost, usePostForm } from "../../hooks/usePost";
 import { useDelete } from "../../hooks/useDelete";
 
@@ -70,6 +69,7 @@ const Blogs = () => {
 
   const [blogForm, setBlogForm] = useState({
     title: "",
+    slug: "",
     subtitle: "",
     description: "",
     category: "",
@@ -92,6 +92,10 @@ const Blogs = () => {
       errors.title = "Title is required";
     } else if (blogForm.title.length > 255) {
       errors.title = "Title must be under 255 characters";
+    }
+
+    if (!blogForm.slug.trim()) {
+      errors.slug = "Slug is required";
     }
 
     if (!blogForm.subtitle.trim()) {
@@ -137,6 +141,7 @@ const Blogs = () => {
     const formData = new FormData();
 
     formData.append("title", blogForm.title);
+    formData.append("slug", blogForm.slug);
     formData.append("subtitle", blogForm.subtitle);
     formData.append("description", blogForm.description);
     formData.append("category", blogForm.category);
@@ -162,6 +167,7 @@ const Blogs = () => {
 
       setBlogForm({
         title: "",
+        slug: "",
         subtitle: "",
         description: "",
         category: "",
@@ -286,6 +292,7 @@ const Blogs = () => {
 
                   setBlogForm({
                     title: "",
+                    slug: "",
                     subtitle: "",
                     description: "",
                     category: "",
@@ -319,11 +326,6 @@ const Blogs = () => {
                 title: "Total Blogs",
                 value: blogs.length,
               },
-
-              {
-                title: "Views",
-                value: "18.2K",
-              },
             ].map((item, i) => (
               <div
                 key={i}
@@ -350,21 +352,21 @@ const Blogs = () => {
 
           <div
             className="
-          mt-5
-          bg-white
-          border
-          border-[#e8edf5]
-          rounded-2xl
-          px-5
-          py-4
-          flex
-          flex-col
-          xl:flex-row
-          xl:items-center
-          justify-between
-          gap-4
-          shadow-[0_4px_20px_rgba(15,23,42,0.03)]
-          "
+            mt-5
+            bg-white
+            border
+            border-[#e8edf5]
+            rounded-2xl
+            px-5
+            py-4
+            flex
+            flex-col
+            xl:flex-row
+            xl:items-center
+            justify-between
+            gap-4
+            shadow-[0_4px_20px_rgba(15,23,42,0.03)]
+            "
           >
             {/* LEFT */}
             <div className="flex flex-col md:flex-row gap-3">
@@ -374,19 +376,19 @@ const Blogs = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="
-              h-11
-              w-full
-              md:w-[280px]
-              rounded-xl
-              border
-              border-[#e7edf5]
-              bg-[#f8fafc]
-              px-4
-              text-sm
-              outline-none
-              focus:border-[#0066ff]
-              transition
-              "
+                h-11
+                w-full
+                md:w-[280px]
+                rounded-xl
+                border
+                border-[#e7edf5]
+                bg-[#f8fafc]
+                px-4
+                text-sm
+                outline-none
+                focus:border-[#0066ff]
+                transition
+                "
               />
             </div>
           </div>
@@ -469,18 +471,18 @@ const Blogs = () => {
                     setShowViewModal(true);
                   }}
                   className="
-                group
-                bg-white
-                border
-                border-[#e9edf3]
-                rounded-[22px]
-                overflow-hidden
-                hover:border-[#d8e2f0]
-                hover:shadow-[0_12px_40px_rgba(15,23,42,0.04)]
-                transition-all
-                duration-300
-                cursor-pointer
-                "
+                  group
+                  bg-white
+                  border
+                  border-[#e9edf3]
+                  rounded-[22px]
+                  overflow-hidden
+                  hover:border-[#d8e2f0]
+                  hover:shadow-[0_12px_40px_rgba(15,23,42,0.04)]
+                  transition-all
+                  duration-300
+                  cursor-pointer
+                  "
                 >
                   {/* IMAGE */}
                   <div className="relative h-[220px] overflow-hidden">
@@ -488,37 +490,17 @@ const Blogs = () => {
                       src={`${import.meta.env.VITE_IMAGE_URL}/${blog.image}`}
                       alt={blog.title}
                       className="
-                    w-full
-                    h-full
-                    object-cover
-                    group-hover:scale-[1.015]
-                    transition-transform
-                    duration-700
-                    "
+                        w-full
+                        h-full
+                        object-cover
+                        group-hover:scale-[1.015]
+                        transition-transform
+                        duration-700
+                        "
                     />
 
                     {/* OVERLAY */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent" />
-
-                    {/* TOP BADGE */}
-                    <div className="absolute top-4 left-4">
-                      <div
-                        className="
-                        h-8
-                        px-3
-                        rounded-full
-                        bg-white/90
-                        backdrop-blur-xl
-                        inline-flex
-                        items-center
-                        text-[11px]
-                        font-medium
-                        text-[#0f172a]
-                        "
-                      >
-                        Blog #{blog.id}
-                      </div>
-                    </div>
                   </div>
 
                   {/* CONTENT */}
@@ -624,6 +606,7 @@ const Blogs = () => {
 
                             setBlogForm({
                               title: blog.title,
+                              slug: blog.slug || "",
                               subtitle: blog.subtitle,
                               description: blog.description,
                               category: blog.category || "",
@@ -631,18 +614,18 @@ const Blogs = () => {
                             });
                           }}
                           className="
-                        h-9
-                        px-4
-                        rounded-full
-                        bg-[#f8fafc]
-                        hover:bg-[#f1f5f9]
-                        border
-                        border-[#e5e7eb]
-                        text-[#0f172a]
-                        text-[12px]
-                        font-medium
-                        transition-all
-                        "
+                          h-9
+                          px-4
+                          rounded-full
+                          bg-[#f8fafc]
+                          hover:bg-[#f1f5f9]
+                          border
+                          border-[#e5e7eb]
+                          text-[#0f172a]
+                          text-[12px]
+                          font-medium
+                          transition-all
+                          "
                         >
                           Edit
                         </button>
@@ -653,20 +636,20 @@ const Blogs = () => {
                             setDeleteId(blog.id);
                           }}
                           className="
-                        h-9
-                        w-9
-                        rounded-full
-                        bg-[#fff5f5]
-                        hover:bg-[#ffecec]
-                        border
-                        border-[#fee2e2]
-                        text-[#ef4444]
-                        text-sm
-                        flex
-                        items-center
-                        justify-center
-                        transition-all
-                        "
+                          h-9
+                          w-9
+                          rounded-full
+                          bg-[#fff5f5]
+                          hover:bg-[#ffecec]
+                          border
+                          border-[#fee2e2]
+                          text-[#ef4444]
+                          text-sm
+                          flex
+                          items-center
+                          justify-center
+                          transition-all
+                          "
                         >
                           ×
                         </button>
@@ -726,6 +709,7 @@ const Blogs = () => {
 
                     setBlogForm({
                       title: "",
+                      slug: "",
                       subtitle: "",
                       description: "",
                       category: "",
@@ -786,6 +770,43 @@ const Blogs = () => {
                       {formErrors.title}
                     </p>
                   )}
+                </div>
+
+                <div>
+                  <label className="text-[13px] font-medium text-[#0f172a] block mb-2">
+                    Slug
+                  </label>
+
+                  <input
+                    type="text"
+                    value={blogForm.slug}
+                    onChange={(e) =>
+                      setBlogForm({
+                        ...blogForm,
+                        slug: e.target.value
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")
+                          .replace(/[^a-z0-9-]/g, ""),
+                      })
+                    }
+                    placeholder="Enter slug url..."
+                    className="
+                      w-full
+                      h-12
+                      px-4
+                      rounded-xl
+                      border
+                      border-[#e7edf5]
+                      bg-[#f8fafc]
+                      text-[14px]
+                      outline-none
+                      focus:border-[#2563eb]
+                      focus:ring-4
+                      focus:ring-blue-100
+                      transition
+                    "
+                  />
+                  {formErrors.title && <p>{formErrors.title}</p>}
                 </div>
 
                 {/* SUBTITLE */}
@@ -1050,6 +1071,7 @@ const Blogs = () => {
 
                     setBlogForm({
                       title: "",
+                      slug: "",
                       subtitle: "",
                       description: "",
                       category: "",

@@ -49,13 +49,16 @@ function App() {
           <Route path="payment-gateway" element={<PaymentGateway />} />
           <Route path="one-click-checkout" element={<OneClick />} />
           <Route path="about-us" element={<About />} />
-          <Route path="Refund&Cancellation" element={<RefundandCancellation />} />
+          <Route
+            path="Refund&Cancellation"
+            element={<RefundandCancellation />}
+          />
           <Route path="upi-autopay" element={<Upi />} />
           <Route path="payment-links" element={<PaymentLinks />} />
           <Route path="sound-box" element={<Soundbox />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="blogs" element={<AllBlogs />} />
-          <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="integration" element={<Integration />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />

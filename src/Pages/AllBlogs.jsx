@@ -290,7 +290,7 @@ const AllBlogs = () => {
               </div>
 
               <button
-                onClick={() => navigate(`/blogs/${featuredBlog.id}`)}
+                onClick={() => navigate(`/blogs/${featuredBlog.slug}`)}
                 className="
                   mt-10
                   h-14
@@ -400,7 +400,7 @@ const AllBlogs = () => {
               {paginatedBlogs.map((blog) => (
                 <div
                   key={blog.id}
-                  onClick={() => navigate(`/blogs/${blog.id}`)}
+                  onClick={() => navigate(`/blogs/${blog.slug}`)}
                   className="
                     group
                     bg-white

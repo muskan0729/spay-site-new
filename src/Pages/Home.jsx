@@ -18,13 +18,12 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <title>Spay | Online Payment Gateway in India | Secure & Instant</title>
         <link rel="canonical" href="https://spay.live/" />  
     <meta  name="robots" content="index, follow, max-image-preview:large" />
        <meta
           name="description"
-          content="Get a reliable payment gateway in Mumbai with Spay Fintech Pvt Ltd. Accept UPI, cards, and
-                  online payments with secure, fast, and easy integration."
+          content="Spay India's secure online payment gateway for businesses. Accept UPI, cards, AEPS, BBPS & net banking with instant settlements.Trusted fintech from Mumbai"
         />
        
       </Helmet>

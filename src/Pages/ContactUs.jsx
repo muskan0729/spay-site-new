@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import contactVideo from "../assets/videos/contact-hero.mp4";
 import {
   FaEnvelope,
@@ -80,6 +81,16 @@ const inquiryData = [
 const ContactUs = () => {
   return (
     <div className="bg-gray-50 w-full min-h-screen overflow-x-hidden">
+
+       <Helmet>
+                    <title>Contact Spay Fintech | Payment Gateway Company in Mumbai</title>
+                    <link rel="canonical" href="https://spay.live/about-us" />
+                    <meta  name="robots" content="index, follow, max-image-preview:large" />
+                    <meta
+                      name="description"
+                      content="Have questions about payment gateway setup or fintech solutions in India? Contact Spay Fintech's Mumbai support team in Andheri West. Call now."
+                    />
+                  </Helmet>
 
       {/* ================= HERO ================= */}
       <section className="relative w-full h-[32vh] sm:h-[35vh] md:h-[40vh] overflow-hidden">

@@ -73,10 +73,10 @@ const Section4 = () => {
           <span className="inline-flex rounded-full bg-[#eaf1ff] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1f56aa]">
             How It Works
           </span>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl md:text-[2.7rem] [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
             How to Set Up Spay&apos;s One Click Checkout Integration
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
             Getting started with Spay is designed to be straightforward, even if your team has never integrated a payment gateway before. Here is the process from sign-up to first sale:
           </p>
         </div>
@@ -96,16 +96,16 @@ const Section4 = () => {
               </div>
 
               <div className="flex items-start gap-4 sm:gap-5">
-                <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#163f89] to-[#1099d0] text-white shadow-[0_14px_26px_-18px_rgba(22,63,137,0.55)]">
+                <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#155DFC] text-white shadow-[0_14px_26px_-18px_rgba(22,63,137,0.55)]">
                   <div className="absolute inset-0 rounded-full ring-1 ring-white/60" />
                   <span className="text-lg font-semibold leading-none">{step.id}</span>
                 </div>
 
                 <div className="min-w-0">
-                  <h3 className="text-[1.03rem] font-semibold leading-snug text-[#10294f] sm:text-[1.09rem]">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#5f7496] sm:text-[0.98rem]">
+                  <p className="mt-3 text-gray-600 text-sm leading-relaxed">
                     {step.description}
                   </p>
                 </div>

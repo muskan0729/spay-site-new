@@ -121,6 +121,15 @@ const Header = () => {
                 </button>
                 {productsOpen && (
                   <Dropdown>
+                    <DropItem
+                      to="https://dashboardbbps.spay.live/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeAllMenus}
+                    >
+                      BBPS
+                    </DropItem>
+
                     <DropItem to="/upi-autopay" onClick={closeAllMenus}>
                       UPI
                     </DropItem>
@@ -139,13 +148,16 @@ const Header = () => {
                 to="/integration"
                 onClick={closeAllMenus}
               />
+
+              <NavItem name="Blogs" to="/blogs" onClick={closeAllMenus} />
+
               <NavItem name="Careers" to="/careers" onClick={closeAllMenus} />
               <NavItem
                 name="Contact"
                 to="/contact-us"
                 onClick={closeAllMenus}
               />
-              <NavItem name="Blogs" to="/blogs" onClick={closeAllMenus} />
+              
 
               {user?.role === "admin" && (
                 <NavItem name="Dashboard" to="/admin" onClick={closeAllMenus} />
@@ -203,10 +215,10 @@ const Header = () => {
                 </div>
                 {mobileFeaturesOpen && (
                   <div className="mobile-dropdown-items">
-                    <Link to="/paymentgateway" onClick={closeAllMenus}>
+                    <Link to="/payment-gateway" onClick={closeAllMenus}>
                       Payment Gateway
                     </Link>
-                    <Link to="/OneClick" onClick={closeAllMenus}>
+                    <Link to="/one-click-checkout" onClick={closeAllMenus}>
                       One-click Checkout
                     </Link>
                   </div>
@@ -233,7 +245,7 @@ const Header = () => {
                     <Link to="/payment-links" onClick={closeAllMenus}>
                       Payment Links
                     </Link>
-                    <Link to="/soundbox" onClick={closeAllMenus}>
+                    <Link to="/sound-box" onClick={closeAllMenus}>
                       SoundBox
                     </Link>
                   </div>
@@ -243,6 +255,11 @@ const Header = () => {
               <MobileNavItem
                 name="Integration"
                 to="/integration"
+                onClick={closeAllMenus}
+              />
+               <MobileNavItem
+                name=" Blogs"
+                to="/blogs"
                 onClick={closeAllMenus}
               />
               <MobileNavItem

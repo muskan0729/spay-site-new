@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaMinus, FaArrowRight } from "react-icons/fa";
 
+
 const faqs = [
   {
     question: "What is the best payment gateway in India for small and medium businesses?",
@@ -66,11 +67,11 @@ const Faq = () => {
           <p className="inline-flex items-center rounded-full border border-[#163f89]/15 bg-[#f6faff] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#163f89] shadow-[0_8px_20px_rgba(15,23,42,0.05)] backdrop-blur">
             FAQ
           </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
-            About Payment Gateway in India
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+            About Payment Gateway Services 
           </p>
           <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[#163f89] to-[#1099d0]" />
         </div>
@@ -102,7 +103,7 @@ const Faq = () => {
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1 text-base font-semibold leading-snug text-[#0d2447] sm:text-lg">
+                  <span className="flex-1 text-xl font-semibold text-gray-900 leading-snug sm:text-lg">
                     {faq.question}
                   </span>
                 </div>
@@ -123,7 +124,7 @@ const Faq = () => {
 
               {openIndex === index && (
                 <div className="faq-reveal border-t border-blue-100 bg-gradient-to-b from-blue-50/35 via-blue-50/10 to-white px-5 py-5 sm:px-7 md:px-8">
-                  <p className="text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+                  <p className="text-gray-600 text-sm leading-relaxed sm:text-base">
                     {faq.answer}
                   </p>
                 </div>
@@ -133,18 +134,21 @@ const Faq = () => {
         </div>
 
         <div className="mx-auto mt-12 max-w-5xl rounded-3xl border border-blue-200 bg-gradient-to-br from-[#eaf3ff] via-white to-[#eef2ff] p-6 text-center shadow-[0_26px_45px_-30px_rgba(29,78,216,0.45)] sm:mt-14 sm:p-8">
-          <h3 className="text-lg font-semibold text-[#0d2447] sm:text-xl">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">
             Still have questions?
           </h3>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[#3a4c70] sm:text-base">
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-4">
             Our support team is available 24/7 to assist you with any questions about our payment gateway solutions.
           </p>
-          <a href="https://spay.live/contact-us" target="_blank" rel="noopener noreferrer">
-            <button className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#1d4ed8] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_18px_rgba(29,78,216,0.25)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#1942bf] hover:shadow-[0_14px_26px_rgba(29,78,216,0.35)]">
-              Contact Support
-              <FaArrowRight className="text-xs" />
-            </button>
-          </a>
+         <a
+  href="https://spay.live/contact-us"
+  rel="noopener"
+>
+  <button className="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700 shadow-md transition">
+    Contact Support
+    <FaArrowRight className="text-xs" />
+  </button>
+</a>
         </div>
       </div>
     </section>

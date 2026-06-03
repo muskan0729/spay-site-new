@@ -49,20 +49,21 @@ const Faq = () => {
 			<div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#163f89]/15 blur-3xl" />
 
 			<div className="mx-auto max-w-6xl px-4 md:px-8">
-				<div className="grid gap-8 lg:grid-cols-[0.95fr_1.45fr] lg:gap-10">
+				{/* <div className="grid gap-8 lg:grid-cols-[0.95fr_1.45fr] lg:gap-10"> */}
+				<div className="max-w-5xl mx-auto">
 					<div className="lg:sticky lg:top-24 lg:h-fit">
-						<div className="relative overflow-hidden rounded-[28px] border border-[#163f89]/15 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(22,63,137,0.65)] md:p-8">
+						{/* <div className="relative overflow-hidden rounded-[28px] border border-[#163f89]/15 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(22,63,137,0.65)] md:p-8">
 							<div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#1099d0]/20 blur-2xl" />
 							<div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[#163f89]/15 blur-2xl" />
 
 							<p className="relative mb-3 inline-flex rounded-full border border-[#163f89]/20 bg-[#f6faff] px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#163f89]">
 								One Click Checkout FAQs
 							</p>
-							<h2 className="relative text-2xl font-bold leading-tight text-[#102e6a] md:text-3xl">
+							<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
 								Frequently Asked Questions About Spay&apos;s One Click Checkout
 								Payment Gateway
 							</h2>
-							<p className="relative mt-4 text-sm leading-relaxed text-[#3a4c70] md:text-base">
+							<p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
 								Everything merchants ask before going live. Tap a question to view
 								the answer.
 							</p>
@@ -81,8 +82,8 @@ const Faq = () => {
 									<p className="mt-1 text-lg font-bold text-[#0e336f]">50+</p>
 								</div>
 								
-							</div>
-						</div>
+							</div> */}
+						{/* </div> */}
 					</div>
 
 					<div className="relative space-y-4">
@@ -100,7 +101,7 @@ const Faq = () => {
 									<span
 										className={`absolute left-0 top-5 hidden h-8 w-8 items-center justify-center rounded-full border text-xs font-bold tracking-[0.1em] md:flex ${
 											isOpen
-												? "border-[#163f89] bg-[#163f89] text-white"
+												? "bg-[#155DFC] text-white"
 												: "border-[#b7cff5] bg-white text-[#163f89]"
 										}`}
 									>
@@ -118,7 +119,7 @@ const Faq = () => {
 												<span className="mt-0.5 rounded-lg bg-[#eff5ff] px-2 py-1 text-[10px] font-bold tracking-[0.16em] text-[#163f89] md:hidden">
 													{serial}
 												</span>
-												<span className="text-base font-semibold leading-snug text-[#123778] md:text-lg">
+												<span className="text-xl font-semibold text-gray-900 leading-snug md:text-lg">
 													{item.question}
 												</span>
 											</span>
@@ -126,8 +127,8 @@ const Faq = () => {
 											<span
 												className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xl font-semibold transition ${
 													isOpen
-														? "bg-[#163f89] text-white"
-														: "bg-[#edf4ff] text-[#163f89]"
+														? "bg-[#155DFC] text-white"
+														: "bg-[#155DFC] text-white"
 												}`}
 												aria-hidden="true"
 											>
@@ -142,7 +143,7 @@ const Faq = () => {
 										>
 											<div className="min-h-0">
 												<div className="border-t border-[#e8f1ff] bg-gradient-to-r from-[#f9fcff] to-white px-5 pb-6 pt-4 md:px-7 md:pt-5">
-													<p className="text-sm leading-relaxed text-[#2f3d57] md:text-base">
+													<p className="text-gray-600 text-sm leading-relaxed md:text-base">
 														{item.answer}
 													</p>
 												</div>

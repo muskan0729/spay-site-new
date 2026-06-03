@@ -8,17 +8,18 @@ const About = () => {
   return (
     <div>
       <Helmet>
-        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <title>Who We Are| Spay - India's Trusted Fintech & Payment Gateway</title>
         <link rel="canonical" href="https://spay.live/about-us" />
         <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
-          content="Spay Fintech Pvt Ltd offers a secure online payment gateway in India with UPI, cards, fast processing, and easy API integration for businesses"
+          content="Founded in Mumbai, Spay Fintech is a secure payment gateway & API banking provider trusted by businesses. Compliant, scalable & built for India's digital economy."
         />
       </Helmet>
       <AboutSection1 />
       <AboutSection2 />
       <AboutSection3 />
+      
     </div>
   )
 }

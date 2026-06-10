@@ -8,6 +8,7 @@ import DynamicControlPanel from "../components/Home/DynamicControlPanel";
 import Services from "../components/Home/Services";
 import AboutSection from "../components/Home/aboutSection";
 import CardSliderNew from "../components/Home/CardSliderNew";
+import VideoService from "../components/Home/videoservice";
 import Faq_section from "../components/Home/Faq_section";
 
 const Home = () => {
@@ -54,6 +55,10 @@ const Home = () => {
 
           <section className="relative">
             <AboutSection />
+          </section>
+
+          <section className="relative">
+            <VideoService />
           </section>
 
 

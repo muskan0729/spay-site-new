@@ -57,7 +57,7 @@ const inquiryData = [
     desc: "Please share your complaint details and our team will contact you shortly.",
     extra: [
       { type: "phone", value: "+91 84500 07614" },
-      { type: "email", value: "inquiry@spay.live" },
+      { type: "email", value: "helpdesk@spay.live" },
     ],
     color: "purple",
     icon: <FaUserTie />,
@@ -65,14 +65,14 @@ const inquiryData = [
   {
     title: "Grievance Redressal",
     desc: "Provide complaint details and we’ll address it as soon as possible.",
-    extra: [{ type: "email", value: "inquiry@spay.live" }],
+    extra: [{ type: "email", value: "helpdesk@spay.live" }],
     color: "green",
     icon: <FaEnvelope />,
   },
   {
     title: "Compliance Inquiry",
     desc: "Share your compliance concerns and we will address them promptly.",
-    extra: [{ type: "email", value: "inquiry@spay.live" }],
+    extra: [{ type: "email", value: "compliance@spay.live" }],
     color: "red",
     icon: <FaEnvelope />,
   },
@@ -180,7 +180,7 @@ const ContactUs = () => {
             <div className="rounded-xl overflow-hidden shadow border border-gray-200">
               <iframe
                 title="Spay Location"
-                src="https://www.google.com/maps?q=316%20Laxmi%20Plaza%20Andheri%20West%20Mumbai&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.3521983211285!2d72.8292998!3d19.1360545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c950e5d80efd%3A0xd73698698f0e4fbd!2sSPAY%20FINTECH%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1781074800277!5m2!1sen!2sin"
                 height="280"
                 className="w-full"
                 loading="lazy"

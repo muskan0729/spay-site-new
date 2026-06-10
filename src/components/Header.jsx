@@ -133,6 +133,9 @@ const Header = () => {
                     <DropItem to="/upi-autopay" onClick={closeAllMenus}>
                       UPI
                     </DropItem>
+                    <DropItem to="/payout" onClick={closeAllMenus}>
+                      Payout
+                    </DropItem>
                     <DropItem to="/payment-links" onClick={closeAllMenus}>
                       Payment Links
                     </DropItem>
@@ -241,6 +244,9 @@ const Header = () => {
                   <div className="mobile-dropdown-items">
                     <Link to="/upi-autopay" onClick={closeAllMenus}>
                       UPI
+                    </Link>
+                    <Link to="/payout" onClick={closeAllMenus}>
+                      Payout
                     </Link>
                     <Link to="/payment-links" onClick={closeAllMenus}>
                       Payment Links

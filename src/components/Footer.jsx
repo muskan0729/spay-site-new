@@ -31,7 +31,7 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Contact">
-              <p>022-46072193</p>
+              <p>+91 22-46072193</p>
               <p>+91 8450007614</p>
               <a href="mailto:inquiry@spay.live" className={linkClass}>
                 inquiry@spay.live
@@ -45,6 +45,9 @@ const Footer = () => {
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
               <FooterLink to="/one-click-checkout">
                 One-Click Checkout
+              </FooterLink>
+              <FooterLink to="/payout">
+                Payout
               </FooterLink>
             </FooterBlock>
 

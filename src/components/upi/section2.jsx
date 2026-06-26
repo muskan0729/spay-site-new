@@ -41,7 +41,7 @@ const Section2 = () => {
 						</div>
 
 						<div className="mt-6 flex flex-col sm:flex-row gap-3">
-							<a href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2563eb] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1f4bb8]">
+							<a href="/contact-us" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2563eb] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1f4bb8]">
 								Get Started
 								<FaArrowRight className="text-xs" />
 							</a>

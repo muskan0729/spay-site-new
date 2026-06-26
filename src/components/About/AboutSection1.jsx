@@ -1,6 +1,6 @@
 import React from "react";
 // import aboutImg from "../../assets/images/aboutus1.webp";
-import aboutVideo from "../../assets/images/spay-about-us.mp4";
+import aboutVideo from "../../assets/images/spay-intro-part.mp4";
 
 const AboutSection1 = () => {
   return (

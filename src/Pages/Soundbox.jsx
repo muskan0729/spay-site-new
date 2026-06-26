@@ -143,7 +143,7 @@ const Soundbox = () => {
     <div className="soundbox-container font-sans">
        <Helmet>
               <title>Spay | Soundbox for Instant Payment Alerts.</title>
-              <link rel="canonical" href="https://spay.live/soundbox" />
+              <link rel="canonical" href="https://spay.live/sound-box" />
               <meta  name="robots" content="index, follow, max-image-preview:large" />
               <meta
                 name="description"

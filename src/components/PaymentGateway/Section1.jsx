@@ -59,7 +59,7 @@ const Section1 = () => {
                 <FaArrowRight />
               </a>
               <a
-                href="/contact"
+                href="https://spay.live/contact-us"
                 className="inline-flex items-center justify-center rounded-2xl border border-blue-200 bg-white px-6 py-4 text-sm sm:text-base font-semibold text-[#163f89] shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50"
               >
                 Talk to Our Team

@@ -35,7 +35,7 @@ const AboutSection = () => {
         {/* Button */}
         <div className="w-full md:w-auto">
           <button
-            onClick={() => navigate("/About-us")}
+            onClick={() => navigate("/about-us")}
             className="w-full md:w-auto flex items-center justify-center gap-2 
             bg-blue-500 text-white px-6 py-3 rounded-lg 
             hover:bg-blue-700 shadow-md hover:shadow-lg 

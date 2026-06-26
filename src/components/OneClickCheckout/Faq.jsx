@@ -2,36 +2,36 @@ import React, { useState } from "react";
 
 const faqs = [
 	{
-		question: "What is a one click checkout payment gateway?",
+		question: "How do I choose the best payment gateway provider for my business in India?",
 		answer:
-			"A one click checkout payment gateway allows returning customers to complete a purchase with a single tap, without re-entering payment details, delivery address, or OTPs. Spay securely stores customer preferences after the first transaction and retrieves them instantly at checkout, dramatically reducing friction and cart abandonment for e-commerce businesses.",
+			"Choosing the right payment gateway provider depends on factors such as security, payment success rate, settlement speed, supported payment methods, and ease of integration. A reliable online payment gateway should support UPI, cards, net banking, and digital wallets while providing a secure checkout experience. Spay helps businesses across India accept payments with a scalable, secure payment gateway designed for startups, e-commerce brands, and enterprises.",
 	},
 	{
 		question:
-			"Which businesses can use the one click checkout payment gateway in India?",
+			"Which businesses can benefit from an online payment gateway?",
 		answer:
-			"Spay's one click checkout is designed for any e-commerce business operating in India, from D2C brands and fashion retailers to electronics stores, subscription services, and marketplace sellers. Whether you are a startup or an established merchant, Spay scales with your business.",
+			"An online payment gateway is suitable for e-commerce stores, service providers, educational institutions, healthcare businesses, travel companies, SaaS platforms, subscription-based businesses, freelancers, and retailers. Whether you're launching a startup or managing an established enterprise, Spay's payment gateway simplifies online payment collection and supports business growth with secure and reliable payment processing.",
 	},
 	{
-		question: "How long does one click checkout integration take?",
+		question: "How long does it take to integrate a payment gateway into a website or mobile app?",
 		answer:
-			"Most merchants are fully live within one business day. Shopify and WooCommerce plugin integrations typically take under 30 minutes. For custom API integrations, our comprehensive developer documentation and dedicated support team ensure a smooth, predictable process.",
+			"With Spay's API payment gateway, businesses can integrate online payments quickly using developer-friendly APIs, SDKs, and ready-to-use plugins. Depending on your platform and requirements, payment gateway integration can often be completed within a short timeframe, enabling you to start accepting UPI payments, cards, and other digital payment methods with minimal development effort.",
 	},
 	{
 		question:
-			"Is Spay's payment gateway available in Mumbai and Andheri specifically?",
+			"Why is payment success rate important when choosing a payment gateway?",
 		answer:
-			"Yes. Spay Fintech is headquartered in Andheri, Mumbai, and merchants in the Mumbai metropolitan area benefit from local onboarding support and hands-on account management from our Andheri office. We also serve e-commerce businesses across all of India with the same quality of service.",
+			"A high payment success rate means more successful transactions and fewer failed payments, directly impacting revenue and customer satisfaction. Spay's secure payment gateway is built to deliver reliable payment processing, intelligent routing, and a seamless checkout experience, helping businesses improve conversions and reduce transaction failures.",
 	},
 	{
-		question: "What payment modes does Spay support?",
+		question: "Does Spay support multiple payment methods through a single payment gateway integration?",
 		answer:
-			"Spay supports 50+ Indian payment methods including UPI (all major apps), credit and debit cards (Visa, Mastercard, RuPay, Amex), net banking across all major banks, digital wallets, BNPL providers, and EMI on select credit cards.",
+			"Yes. Spay offers a multi payment gateway solution that enables businesses to accept payments through UPI, credit cards, debit cards, net banking, digital wallets, payment links, and recurring payments—all through a single integration. This simplifies payment management while giving customers the flexibility to pay using their preferred payment method.",
 	},
 	{
-		question: "Is Spay's payment gateway secure?",
+		question: "Why do businesses across India choose Spay as their payment gateway provider?",
 		answer:
-			"Yes. Spay is PCI-DSS Level 1 certified, fully RBI-compliant, and uses end-to-end encryption on every transaction. Our platform also implements real-time fraud detection and 3D Secure authentication to protect both merchants and customers.",
+			"Businesses choose Spay because it combines secure payment processing, easy integration, multiple payment options, and reliable support in one platform. Our payment gateway in India is designed to help startups, SMEs, e-commerce brands, and enterprises accept online payments with confidence. With scalable technology, fast settlements, and developer-friendly APIs, Spay enables businesses to streamline collections and deliver a better payment experience. ",
 	},
 	{
 		question: "Does Spay help reduce cart abandonment?",

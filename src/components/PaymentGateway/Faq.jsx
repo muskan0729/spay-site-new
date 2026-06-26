@@ -4,34 +4,34 @@ import { FaPlus, FaMinus, FaArrowRight } from "react-icons/fa";
 
 const faqs = [
   {
-    question: "What is the best payment gateway in India for small and medium businesses?",
+    question: "Which is the best payment gateway in Mumbai for startups and e-commerce businesses?",
     answer:
-      "Spay Fintech Private Limited, headquartered in Andheri, Mumbai, is one of India's most reliable payment gateway providers for SMBs. We support UPI, cards, net banking, AEPS, BBPS, and wallets all from a single, easy-to-use dashboard. Businesses across Mumbai and pan-India trust us for high success rates, instant settlement, and 24/7 support.",
+      "For startups, SMEs, and ecommerce businesses, the best payment gateway in Mumbai should offer secure payment processing, easy integration, multiple payment options, and reliable settlements. Spay provides a secure payment gateway in Mumbai and across India that supports UPI payments, cards, net banking, and digital wallets, helping businesses accept payments seamlessly while improving customer experience and transaction success rates.",
   },
   {
-    question: "How does Spay Fintech ensure secure online transactions for merchants?",
+    question: "How can I integrate a payment gateway for my website in India?",
     answer:
-      "Spay Fintech's secure payment gateway uses PCI-DSS Level 1 certification, 256-bit SSL encryption, and 3D Secure authentication on every transaction. Our AI-based fraud detection runs in real time, keeping merchants in Andheri, Mumbai, and across India fully protected. Your customers' payment data is never stored on public servers security is built into every layer.",
+      "Integrating a payment gateway for a website is simple with Spay. Businesses can use our API payment gateway, developer-friendly documentation, and ready-to-use integration tools to start accepting online payments quickly. Whether you run an ecommerce store, service platform, or custom website, Spay's payment gateway integration enables secure online payment collection with minimal development effort.",
   },
   {
-    question: "Does Spay Fintech offer UPI, AEPS, and BBPS payment gateway solutions?",
+    question: "Is Spay a secure payment gateway provider in India?",
     answer:
-      "Yes, Spay Fintech offers a complete multi payment gateway solution covering UPI, AEPS, and BBPS under one single integration. From real-time UPI collections to Bharat Bill Payments, merchants in Mumbai, Andheri, and across India manage all digital payments from one platform. No need to manage multiple vendors or separate dashboards.",
+      "Yes. Spay is a secure payment gateway provider designed to help businesses process transactions safely and efficiently. Our payment infrastructure uses advanced encryption, fraud monitoring systems, and secure payment processing protocols to protect merchant and customer data. Businesses across Mumbai, Andheri, and India trust Spay for reliable and secure online payments.",
   },
   {
-    question: "How quickly can I integrate Spay Fintech's API payment gateway?",
+    question: "What is an instant settlement payment gateway and how does it help businesses?",
     answer:
-      "Spay Fintech's API payment gateway comes with ready-made SDKs, WooCommerce and Shopify plugins, and full Paytm payment integration support so most merchants go live within 24 to 48 hours. Our integration team, based in Andheri, Mumbai, provides hands-on technical support throughout the process. A sandbox environment is available for testing before you go live.",
+      "An instant settlement payment gateway allows businesses to access their funds faster after successful transactions. This improves cash flow, simplifies financial planning, and helps businesses manage day-to-day operations more effectively. Spay's instant settlement payment gateway is built for modern businesses that need quick access to revenue without long settlement delays.",
   },
   {
-    question: "Does Spay Fintech offer instant settlement for merchants in India?",
+    question: "Can developers use Spay's API payment gateway for websites and mobile apps?",
     answer:
-      "Yes, Spay Fintech is one of the few instant settlement payment gateway providers in India, offering T+0 same-day fund credit for eligible merchants. Businesses in Mumbai, Andheri, and pan-India benefit from faster cash flow, real-time payment processing, and full settlement transparency via the merchant dashboard. No more waiting two to three days for money that is already yours.",
+      "Absolutely. Spay offers a powerful API payment gateway that enables developers to integrate secure payment acceptance into websites, mobile applications, SaaS platforms, and ecommerce stores. With flexible APIs, real-time transaction tracking, and seamless payment gateway integration, businesses can deliver a smooth checkout experience across multiple digital channels.",
   },
   {
-    question: "Why should Mumbai businesses choose Spay Fintech as their payment gateway provider?",
+    question: "Why do businesses choose Spay as their payment gateway provider in Mumbai and India?",
     answer:
-      "Spay Fintech Private Limited is based in Andheri, Mumbai giving local businesses the rare advantage of a payment gateway provider they can actually meet in person. We offer in-person onboarding, Maharashtra compliance support, and 24/7 merchant assistance for businesses across Andheri, Bandra, Navi Mumbai, and Thane. Combined with pan-India reach and enterprise-grade fintech infrastructure, we are Mumbai's most trusted payment gateway partner.",
+      "Businesses choose Spay because it combines security, performance, and scalability in one complete online payment gateway solution. From startups in Andheri to growing enterprises across Mumbai and India, merchants benefit from multiple payment options, higher transaction success rates, fast settlements, dedicated support, and reliable fintech payment solutions designed for long-term business growth.",
   },
 ];
 

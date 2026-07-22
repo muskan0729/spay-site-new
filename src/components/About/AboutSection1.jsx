@@ -1,5 +1,6 @@
 import React from "react";
-import aboutImg from "../../assets/images/aboutus1.webp";
+// import aboutImg from "../../assets/images/aboutus1.webp";
+import aboutVideo from "../../assets/images/spay-intro-part.mp4";
 
 const AboutSection1 = () => {
   return (
@@ -18,22 +19,18 @@ const AboutSection1 = () => {
           </span>
 
           <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
-            Powering the Future of
+            Your Trusted Partner in
             <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               Digital Payments
             </span>
           </h1>
 
           <p className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
-            We are a next-generation payment gateway aggregator designed
-            to empower startups and SMEs with secure, scalable, and seamless
-            transaction experiences.
+            Founded in 2021, Led by directors Kanak Parauha, Sharad Kumar Porwal, and Onila Jain, Spay is built on a vision to empower businesses with reliable financial technology.
           </p>
 
           <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
-            From non-tech merchants to growing enterprises, we ensure
-            every transaction is handled with precision, protection,
-            and reliability.
+            Spay ensures that every transaction is seamless and every fund transfer is secure. From instant online transactions and secure UPI payments to paying bills online in India.
           </p>
         </div>
 
@@ -41,16 +38,23 @@ const AboutSection1 = () => {
         <div className="relative group">
 
           {/* Decorative Card */}
-          <div className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl opacity-10 hidden lg:block"></div>
+          {/* <div className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl opacity-10 hidden lg:block"></div> */}
 
           <div className="relative bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg p-3 transition duration-500 group-hover:shadow-xl">
 
-            <img
-              src={aboutImg}
-              alt="About Spay"
-              className="rounded-xl w-full object-cover h-56 sm:h-64 md:h-72 transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
+  <video
+    autoPlay
+    loop
+    // muted
+    playsInline
+    controls
+    className="rounded-xl w-full object-cover h-56 sm:h-64 md:h-72 transition-transform duration-500 group-hover:scale-105"
+  >
+    <source src={aboutVideo} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+</div>
 
         </div>
       </div>

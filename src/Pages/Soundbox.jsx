@@ -6,7 +6,7 @@ import './Soundbox.css';
 // Import local images
 import bgLink2 from '../assets/images/bg_link2.jpg';
 import bg2 from '../assets/images/bg2.webp';
-import soundboxImg from '../assets/images/sdbox.png';
+import soundboxImg from '../assets/images/spay-soundbox.png';
 import soundboxSetup from '../assets/images/SOUNDBOX (2).jpg';
 
 const Soundbox = () => {
@@ -143,7 +143,7 @@ const Soundbox = () => {
     <div className="soundbox-container font-sans">
        <Helmet>
               <title>Spay | Soundbox for Instant Payment Alerts.</title>
-              <link rel="canonical" href="https://spay.live/soundbox" />
+              <link rel="canonical" href="https://spay.live/sound-box" />
               <meta  name="robots" content="index, follow, max-image-preview:large" />
               <meta
                 name="description"
@@ -152,7 +152,7 @@ const Soundbox = () => {
             </Helmet>
 
       {/* Hero Section - SCALED DOWN */}
-<div className="relative w-full min-h-[360px] sm:min-h-[420px] md:min-h-[480px] overflow-hidden flex items-center">        {/* Background image */}
+<div className="relative w-full min-h-[300px] sm:min-h-[410px] md:min-h-[450px] overflow-hidden flex items-center">        {/* Background image */}
         <div
           className="hero-background"
           style={{ backgroundImage: `url(${bgLink2})` }}

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import {
 	FiRefreshCw,
 	FiTrendingDown,
@@ -13,117 +13,72 @@ import {
 const benefitCards = [
 	{
 		icon: FiRefreshCw,
-		title: "100% Automated Payment Collection",
+		title: "Automated payment collection",
 		description:
-			"Once the mandate is in place, your automatic payment processing engine runs without human intervention. Every billing date, every month, every customer is handled automatically.",
+			"Once the mandate is active, payments collect automatically without manual follow-up, ensuring every billing cycle is handled smoothly.",
 	},
 	{
 		icon: FiTrendingDown,
-		title: "Dramatic Reduction in Churn and Missed Payments",
+		title: "Fewer failed payments",
 		description:
-			"Voluntary churn happens when customers leave. Involuntary churn happens when payments fail silently. UPI Autopay's structured mandate system reduces payment failure rates by up to 60% compared to reminder-based collection.",
+			"Structured UPI mandates lower payment failures and reduce churn, making revenue more predictable.",
 	},
 	{
 		icon: FiDollarSign,
-		title: "Predictable, Reliable Cash Flow",
+		title: "Predictable cash flow",
 		description:
-			"Know exactly how much revenue will hit your account each settlement cycle. Forecast confidently, plan operations accurately, and stop guessing month-end numbers.",
+			"Know when money will arrive. Plan confidently with regular settlements and fewer surprises.",
 	},
 	{
 		icon: FiUsers,
-		title: "Reduce Operations Headcount",
+		title: "Lower operational load",
 		description:
-			"Manual payment teams spend hours chasing customers, reconciling payments, and updating records. With UPI payment gateway integration, this entire workflow is automated, freeing your team for higher-value work.",
+			"Remove repetitive collection work from your finance team and free them to focus on growth.",
 	},
 	{
 		icon: FiSmartphone,
-		title: "Frictionless Customer Experience",
+		title: "Modern customer experience",
 		description:
-			"Customers approve once and forget. No monthly login, no reminder anxiety, and no re-entering card details. A better payment experience means higher retention and stronger NPS scores.",
+			"Customers approve once and enjoy a frictionless payment journey on every cycle.",
 	},
 	{
 		icon: FiShield,
-		title: "Fully Secure and Compliant",
+		title: "Secure, compliant payments",
 		description:
-			"UPI Autopay operates on NPCI's secure infrastructure. Spay's gateway adds PCI-DSS compliance, AES-256 encryption, and RBI-regulated payment aggregator status, making it one of the most secure payment gateway options in India.",
+			"Built on NPCI infrastructure with strong encryption and Spay’s trusted compliance controls.",
 	},
 	{
 		icon: FiZap,
-		title: "Real-Time Payment Processing and Settlement",
+		title: "Real-time processing",
 		description:
-			"Debits happen at the scheduled time. Settlement notifications hit your system instantly via webhook. No waiting, no batch delays. True real-time payment processing for modern businesses.",
+			"Transactions move fast and settlement updates arrive quickly through instant notification flows.",
 	},
 	{
 		icon: FiFileText,
-		title: "Automatic Invoicing and GST-Ready Reports",
+		title: "GST-ready reporting",
 		description:
-			"Each successful debit auto-generates a payment receipt and updates your MIS. GST-ready reports export in one click, saving your finance team hours every month-end.",
+			"Receipts and reconciliations are generated automatically for cleaner finance workflows.",
 	},
 ];
 
 const Section3 = () => {
 	return (
-		<section className="relative overflow-hidden bg-[#f8fbff] py-16 sm:py-18 md:py-24">
-			<style>
-				{`
-					@keyframes b3Rise {
-						from {
-							opacity: 0;
-							transform: translateY(20px);
-						}
-						to {
-							opacity: 1;
-							transform: translateY(0);
-						}
-					}
+		<section className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] via-white to-[#f7fbff] py-16 md:py-24" style={{ fontFamily: "Poppins, sans-serif" }}>
+			<div className="absolute -left-12 top-12 h-44 w-44 rounded-full bg-[#2563eb]/15 blur-3xl pointer-events-none" />
+			<div className="absolute -right-12 bottom-8 h-44 w-44 rounded-full bg-[#60a5fa]/15 blur-3xl pointer-events-none" />
 
-					@keyframes b3Glow {
-						0%,
-						100% {
-							opacity: 0.2;
-							transform: scale(1);
-						}
-						50% {
-							opacity: 0.45;
-							transform: scale(1.05);
-						}
-					}
-
-					.b3-rise {
-						animation: b3Rise 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-					}
-
-					.b3-glow {
-						animation: b3Glow 6s ease-in-out infinite;
-					}
-
-					@media (prefers-reduced-motion: reduce) {
-						.b3-rise,
-						.b3-glow {
-							animation: none !important;
-						}
-					}
-				`}
-			</style>
-
-			<div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-[#1e40af]/12 blur-3xl b3-glow" />
-			<div className="pointer-events-none absolute -right-16 bottom-2 h-72 w-72 rounded-full bg-[#06b6d4]/12 blur-3xl b3-glow" style={{ animationDelay: "1.4s" }} />
-			<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#d8e4f5] to-transparent" />
-
-			<div className="relative mx-auto max-w-7xl px-6 md:px-10">
-				<div className="b3-rise mx-auto max-w-4xl text-center" style={{ animationDelay: "80ms" }}>
-					<span className="inline-flex rounded-full border border-[#dce7f6] bg-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#24508d] shadow-sm">
+			<div className="relative mx-auto max-w-6xl px-6 md:px-10">
+				<div className="max-w-3xl text-center mx-auto">
+					<span className="inline-flex items-center gap-2 rounded-full bg-[#eff6ff] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
 						Business Impact
 					</span>
 
-					<h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0f172a] sm:text-4xl md:text-[2.8rem] [font-family:Georgia,Times_New_Roman,serif]">
-						Benefits of UPI Autopay for Businesses
-						
-						
+					<h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-gray-900">
+						Built for Recurring Payments
 					</h2>
 
-					<p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-[#56657f] sm:text-base md:text-[1.05rem]">
-						If you manage a business with monthly subscribers, loan EMIs, insurance premiums, or any kind of scheduled payment, you already know the pain of manual follow-ups, missed payments, and awkward customer conversations. UPI Autopay for businesses eliminates that pain entirely. Here is what you gain:
+					<p className="mt-5 text-sm sm:text-base text-gray-600">
+						A clean payments experience that improves collections, lowers risk, and keeps your customers on schedule.
 					</p>
 				</div>
 
@@ -134,26 +89,13 @@ const Section3 = () => {
 						return (
 							<article
 								key={item.title}
-								className="b3-rise group relative overflow-hidden rounded-[1.35rem] border border-[#deebfa] bg-white p-5 shadow-[0_14px_34px_-28px_rgba(20,54,111,0.24)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cddff6] hover:shadow-[0_18px_36px_-28px_rgba(20,54,111,0.35)]"
-								style={{ animationDelay: `${140 + index * 80}ms` }}
+								className="rounded-[1.5rem] border border-slate-200 bg-[#f8fbff] p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
 							>
-								<div className="pointer-events-none absolute right-0 top-0 flex h-16 w-16 items-center justify-center rounded-bl-[1.1rem] bg-[#eff5ff]">
-									<span className="text-sm font-semibold text-[#2c568f]">
-										{String(index + 1).padStart(2, "0")}
-									</span>
-								</div>
-
-								<div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#d8e6fb] bg-[#eef5ff] text-[#1f4f95] transition-all duration-300 group-hover:scale-105 group-hover:bg-[#dfeeff]">
+								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#2563eb] shadow-sm">
 									<Icon size={20} />
 								</div>
-
-								<h3 className="text-[1.04rem] font-semibold leading-snug text-[#10233f]">
-									{item.title}
-								</h3>
-
-								<p className="mt-3 text-sm leading-relaxed text-[#586883]">
-									{item.description}
-								</p>
+								<h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+								<p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
 							</article>
 						);
 					})}

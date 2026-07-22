@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import faq_img from "../../assets/images/faq1.jpg";
+import faq_img from "../../assets/images/faq1.png";
 import faq_bg from "../../assets/images/bg_white1.png";
 
 const Faq_section = () => {
@@ -64,7 +64,7 @@ const Faq_section = () => {
             <img
               src={faq_img}
               alt="FAQ Illustration"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto object-contain"
+              className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto object-contain"
             />
           </div>
 
@@ -98,7 +98,7 @@ const Faq_section = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.1 }}
                       className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm sm:text-base text-gray-600"
                     >
                       {faq.answer}

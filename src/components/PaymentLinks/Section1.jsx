@@ -1,5 +1,5 @@
 import React from "react";
-import autopayVisual from "../../assets/images/payment-links-mumbai.png";
+import autopayVisual from "../../assets/images/create-link-11.png";
 
 const trustPoints = ["Instant mandate setup", "NPCI compliant", "24x7 recurring collections"];
 

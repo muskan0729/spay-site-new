@@ -69,9 +69,9 @@ const Section8 = () => {
 
 						<div className="mt-8 space-y-3">
 							{[
-								"Fast onboarding and guided setup",
-								"Secure checkout across all major payment modes",
-								"Real-time tracking and smooth settlements",
+								"Integrate Spay → Fast Merchant Onboarding",
+								"Accept Payments → Secure Payment Processing",
+								"Track & Settle → Real-Time Tracking & Settlements",
 							].map((item) => (
 								<div
 									key={item}

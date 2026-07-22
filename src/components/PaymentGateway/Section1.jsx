@@ -1,6 +1,6 @@
 import React from "react";
 import bgImage from "../../assets/images/bg4.webp";
-import paymentGateway from "../../assets/images/spay-gateway-3.png";
+import paymentGateway from "../../assets/images/spay-gateway-7.png";
 import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
 
 const Section1 = () => {
@@ -47,7 +47,7 @@ const Section1 = () => {
             </h1>
 
             <p className="hero-fade-up mx-auto mt-4 max-w-2xl text-sm sm:text-base text-gray-600 leading-relaxed lg:mx-0" style={{ animationDelay: "140ms" }}>
-              Spay helps startups, SMEs, and ecommerce brands across India collect payments faster, settle sooner, and spend less time worrying about checkout. One integration. Every payment method. Zero compromise on reliability.
+              Spay helps startups, SMEs, and e-commerce brands across India collect payments faster, settle sooner, and spend less time worrying about checkout. One integration. Every payment method. Zero compromise on reliability.
             </p>
 
             <div className="hero-fade-up mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3" style={{ animationDelay: "220ms" }}>

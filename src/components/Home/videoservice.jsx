@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import aboutVideo from "../../assets/images/spay-about-us.mp4";
 import { FaArrowRight, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import {
@@ -65,8 +65,9 @@ const services = [
 
 const VideoService = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
+    const videoRef = useRef(null);
 
     useEffect(() => {
         if (isPaused) return;
@@ -78,6 +79,13 @@ const VideoService = () => {
         return () => window.clearInterval(timer);
     }, [isPaused]);
 
+    useEffect(() => {
+        // Attempt to play on mount (will succeed if muted/autoplay allowed)
+        if (videoRef.current) {
+            videoRef.current.play().catch(() => {});
+        }
+    }, []);
+
     return (        <section
             className="relative w-full overflow-hidden bg-slate-950 text-white"
             style={{ fontFamily: "Poppins, sans-serif" }}
@@ -88,6 +96,7 @@ const VideoService = () => {
                 autoPlay
                 loop
                 muted={isMuted}
+                ref={videoRef}
                 playsInline
                 preload="auto"
                 className="absolute inset-0 h-full w-full object-cover"

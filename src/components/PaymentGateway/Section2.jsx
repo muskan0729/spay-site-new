@@ -108,7 +108,7 @@ const Section2 = () => {
                       <img
                         src={slide}
                         alt={slideLabels[index] || `Slide ${index + 1}`}
-                        className="h-[220px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                        className="h-[260px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                       />
                     </div>
                   </div>

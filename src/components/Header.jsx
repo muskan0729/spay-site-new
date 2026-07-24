@@ -171,7 +171,7 @@ const Header = () => {
           {/* Right - Auth Button (fixed right, no margins) */}
           <div className="auth-section desktop-only">
             {!user ? (
-              <Link to="/sign-up" className="auth-btn" onClick={closeAllMenus}>
+              <Link to="https://dashboard.spay.live/register" className="auth-btn" onClick={closeAllMenus}>
                 Sign up
               </Link>
             ) : (

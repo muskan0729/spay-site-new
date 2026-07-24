@@ -14,7 +14,7 @@ import {
 const Integration = () => {
 
   const handleRedirect = () => {
-    window.location.href = "https://uatdashboard.spay.live/";
+    window.location.href = "https://dashboard.spay.live/";
   };
 
   const fadeUp = {

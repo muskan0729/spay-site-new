@@ -443,7 +443,7 @@ const SignUp = () => {
             {/* Address Field - NEW */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Address <span className="text-blue-500">*</span>
+                Business Discription <span className="text-blue-500">*</span>
               </label>
               <textarea
                 name="address"
@@ -459,7 +459,7 @@ const SignUp = () => {
                     ? "border-blue-400 shadow-sm"
                     : "border-gray-200 hover:border-gray-300"
                 } focus:outline-none focus:ring-2 focus:ring-blue-100`}
-                placeholder="Enter your full address"
+                placeholder="Enter your business description"
               />
               {(touched.address && errors.address) && (
                 <p className="mt-1.5 text-sm text-red-500">{errors.address}</p>
@@ -470,9 +470,9 @@ const SignUp = () => {
             </div>
 
             {/* City, State, Pincode Row - NEW */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4"> */}
               {/* City */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   City <span className="text-blue-500">*</span>
                 </label>
@@ -498,10 +498,10 @@ const SignUp = () => {
                 {getFieldError('city') && (
                   <p className="mt-1.5 text-sm text-red-500">{getFieldError('city')}</p>
                 )}
-              </div>
+              </div> */}
 
               {/* State */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   State <span className="text-blue-500">*</span>
                 </label>
@@ -527,10 +527,10 @@ const SignUp = () => {
                 {getFieldError('state') && (
                   <p className="mt-1.5 text-sm text-red-500">{getFieldError('state')}</p>
                 )}
-              </div>
+              </div> */}
 
               {/* Pincode */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   Pincode <span className="text-blue-500">*</span>
                 </label>
@@ -558,7 +558,7 @@ const SignUp = () => {
                   <p className="mt-1.5 text-sm text-red-500">{getFieldError('pincode')}</p>
                 )}
               </div>
-            </div>
+            </div> */}
 
             {/* Password Field */}
             <div>
@@ -762,7 +762,7 @@ const SignUp = () => {
                   <span>Creating account...</span>
                 </div>
               ) : (
-                "Create Account"
+                "Sign Up"
               )}
             </button>
           </form>

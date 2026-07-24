@@ -44,10 +44,10 @@ const Services = () => {
     },
     {
       icon: "fa-file-invoice",
-      title: "One-Click Checkout",
+      title: "Payout Solutions",
       description:
-        "Our one-click checkout India solution helps businesses offer fast and seamless payments, improving customer experience and increasing successful transactions.",
-      path: "/one-click-checkout",
+        "Our payout solution helps businesses send funds instantly and securely to vendors, partners, employees, and customers. ",
+      path: "/payout",
     },
   ];
 

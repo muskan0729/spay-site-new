@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useGet } from "../hooks/useGet";
-
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.webp";
 
@@ -52,6 +52,16 @@ const AllBlogs = () => {
   return (
     <div className="min-h-screen bg-[#f5f7fb] overflow-hidden">
       {/* ================= HERO ================= */}
+
+      <Helmet>
+              <title>Spay Fintech | Fintech & Digital Payment Blog India 2026</title>
+              <link rel="canonical" href="https://spay.live/about-us" />
+              <meta  name="robots" content="index, follow, max-image-preview:large" />
+              <meta
+                name="description"
+                content="Read Spay Fintech's blog for the latest news on UPI payments, payment gateway integrations, AEPS, BBPS & digital payment innovations helping Indian startups."
+              />
+            </Helmet>
 
       <section className="relative px-6 pt-24 pb-16">
         {/* BG BLUR */}
@@ -280,7 +290,7 @@ const AllBlogs = () => {
               </div>
 
               <button
-                onClick={() => navigate(`/blogs/${featuredBlog.id}`)}
+                onClick={() => navigate(`/blogs/${featuredBlog.slug}`)}
                 className="
                   mt-10
                   h-14
@@ -390,7 +400,7 @@ const AllBlogs = () => {
               {paginatedBlogs.map((blog) => (
                 <div
                   key={blog.id}
-                  onClick={() => navigate(`/blogs/${blog.id}`)}
+                  onClick={() => navigate(`/blogs/${blog.slug}`)}
                   className="
                     group
                     bg-white

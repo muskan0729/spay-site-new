@@ -7,6 +7,7 @@ import PaymentGateway from "./Pages/PaymentGateway";
 import OneClick from "./Pages/OneClick";
 import About from "./Pages/About";
 import Upi from "./Pages/Upi";
+import Payout from "./Pages/Payout";
 import PaymentLinks from "./Pages/PaymentLinks";
 import Soundbox from "./Pages/Soundbox";
 import Login from "./Pages/Login";
@@ -49,13 +50,17 @@ function App() {
           <Route path="payment-gateway" element={<PaymentGateway />} />
           <Route path="one-click-checkout" element={<OneClick />} />
           <Route path="about-us" element={<About />} />
-          <Route path="Refund&Cancellation" element={<RefundandCancellation />} />
+          <Route
+            path="Refund&Cancellation"
+            element={<RefundandCancellation />}
+          />
           <Route path="upi-autopay" element={<Upi />} />
+          <Route path="payout" element={<Payout />} />
           <Route path="payment-links" element={<PaymentLinks />} />
           <Route path="sound-box" element={<Soundbox />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="blogs" element={<AllBlogs />} />
-          <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="integration" element={<Integration />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="login" element={<Login />} />

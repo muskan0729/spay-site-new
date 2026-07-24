@@ -8,6 +8,7 @@ import DynamicControlPanel from "../components/Home/DynamicControlPanel";
 import Services from "../components/Home/Services";
 import AboutSection from "../components/Home/aboutSection";
 import CardSliderNew from "../components/Home/CardSliderNew";
+import VideoService from "../components/Home/videoservice";
 import Faq_section from "../components/Home/Faq_section";
 
 const Home = () => {
@@ -18,13 +19,12 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Spay | Secure Payment Gateway for Businesses.</title>
+        <title>Spay | Online Payment Gateway in India | Secure & Instant</title>
         <link rel="canonical" href="https://spay.live/" />  
     <meta  name="robots" content="index, follow, max-image-preview:large" />
        <meta
           name="description"
-          content="Get a reliable payment gateway in Mumbai with Spay Fintech Pvt Ltd. Accept UPI, cards, and
-                  online payments with secure, fast, and easy integration."
+          content="Spay India's secure online payment gateway for businesses. Accept UPI, cards, AEPS, BBPS & net banking with instant settlements.Trusted fintech from Mumbai"
         />
        
       </Helmet>
@@ -55,6 +55,10 @@ const Home = () => {
 
           <section className="relative">
             <AboutSection />
+          </section>
+
+          <section className="relative">
+            <VideoService />
           </section>
 
 

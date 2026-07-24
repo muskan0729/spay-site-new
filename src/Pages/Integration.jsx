@@ -29,12 +29,12 @@ const Integration = () => {
   return (
     <div className="font-sans text-gray-900 overflow-x-hidden">
        <Helmet>
-              <title>Spay | Payment Gateway API Integration for Businesses.</title>
+              <title>Spay| Payment Gateway API Integration | REST & Sandbox</title>
               <link rel="canonical" href="https://spay.live/integration" />
               <meta  name="robots" content="index, follow, max-image-preview:large" />
               <meta
                 name="description"
-                content="Integrate Spay payment gateway API for secure and fast transactions. Accept UPI, cards, and online payments with easy developer-friendly setup."
+                content="Integrate Spay's payment gateway API with REST architecture - supports UPI, AEPS, BBPS & payouts. Fast onboarding & developer docs. Best payment API in Mumbai."
               />
             </Helmet>
 
@@ -141,7 +141,9 @@ const Integration = () => {
                            transition-all duration-300"
               >
                 <div>
-                  <card.icon className={`text-4xl mb-3 ${card.color}`} />
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100/90">
+                    <card.icon className={`text-2xl ${card.color}`} />
+                  </div>
                   <h3 className="text-lg font-semibold mb-2">
                     {card.title}
                   </h3>
@@ -209,7 +211,9 @@ const Integration = () => {
                            transition-all duration-300"
               >
                 <div>
-                  <card.icon className={`text-4xl mb-3 ${card.color}`} />
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100/90">
+                    <card.icon className={`text-2xl ${card.color}`} />
+                  </div>
                   <h3 className="text-lg font-semibold mb-2">
                     {card.title}
                   </h3>

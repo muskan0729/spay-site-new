@@ -72,11 +72,11 @@ const Section2 = () => {
 
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <h2 className="section2-fade-up mt-5 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl [font-family:Georgia,Times_New_Roman,serif]" style={{ animationDelay: "80ms" }}>
+          <h2 className="section2-fade-up text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10" style={{ animationDelay: "80ms" }}>
             Scale Your Business Across Multiple Sectors
           </h2>
 
-          <p className="section2-fade-up mt-4 text-sm leading-relaxed text-[#5a6f90] sm:text-base" style={{ animationDelay: "140ms" }}>
+          <p className="section2-fade-up text-gray-600 text-sm sm:text-base leading-relaxed" style={{ animationDelay: "140ms" }}>
             Industry-ready payment experiences designed for modern growth.
           </p>
         </div>
@@ -108,7 +108,7 @@ const Section2 = () => {
                       <img
                         src={slide}
                         alt={slideLabels[index] || `Slide ${index + 1}`}
-                        className="h-[220px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                        className="h-[260px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                       />
                     </div>
                   </div>

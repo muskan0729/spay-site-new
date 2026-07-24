@@ -1,190 +1,135 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 const faqItems = [
-	{
-		question: "What is Spay Fintech's UPI Autopay payment gateway in India?",
-		answer:
-			"Spay Fintech Private Limited offers a UPI Autopay payment gateway in India that enables businesses to collect recurring payments automatically using UPI mandates. It is designed for secure, reliable, and hassle-free subscription billing for modern businesses.",
-	},
-	{
-		question: "How does Spay's UPI Autopay payment gateway work?",
-		answer:
-			"Spay's UPI Autopay payment gateway allows customers to authorize a one-time mandate. After approval, payments are automatically processed on scheduled dates through our UPI payment gateway, ensuring seamless recurring payment collection.",
-	},
-	{
-		question:
-			"Is Spay a secure UPI payment gateway provider in Mumbai and Andheri?",
-		answer:
-			"Yes, Spay Fintech Private Limited is a trusted UPI payment gateway provider in Mumbai and Andheri, offering a secure payment gateway with advanced encryption, compliance standards, and reliable transaction processing for businesses across India.",
-	},
-	{
-		question:
-			"Which businesses can use Spay's UPI Autopay for recurring payments?",
-		answer:
-			"Spay's UPI Autopay for businesses is ideal for SaaS companies, subscription platforms, OTT services, loan providers, insurance companies, and any business that requires automated recurring billing.",
-	},
-	{
-		question: "How to integrate Spay UPI payment gateway with Autopay?",
-		answer:
-			"You can easily integrate Spay's UPI payment gateway integration using APIs. Our developer-friendly API payment gateway supports quick onboarding for websites and mobile apps with full UPI Autopay functionality.",
-	},
-	{
-		question:
-			"Why choose Spay Fintech as your UPI payment gateway provider in India?",
-		answer:
-			"Spay Fintech Private Limited stands out as a reliable UPI payment gateway provider in India with high success rates, secure infrastructure, real-time payment processing, and strong local support for businesses in Mumbai, Andheri, and across India.",
-	},
+{
+question: "What is Spay Fintech's UPI Autopay payment gateway in India?",
+answer:
+"Spay Fintech Private Limited offers a UPI Autopay payment gateway in India that enables businesses to collect recurring payments automatically using UPI mandates. It is designed for secure, reliable, and hassle-free subscription billing for modern businesses.",
+},
+{
+question: "How does Spay's UPI Autopay payment gateway work?",
+answer:
+"Spay's UPI Autopay payment gateway allows customers to authorize a one-time mandate. After approval, payments are automatically processed on scheduled dates through our UPI payment gateway, ensuring seamless recurring payment collection.",
+},
+{
+question:
+"Is Spay a secure UPI payment gateway provider in Mumbai and Andheri?",
+answer:
+"Yes, Spay Fintech Private Limited is a trusted UPI payment gateway provider in Mumbai and Andheri, offering a secure payment gateway with advanced encryption, compliance standards, and reliable transaction processing for businesses across India.",
+},
+{
+question:
+"Which businesses can use Spay's UPI Autopay for recurring payments?",
+answer:
+"Spay's UPI Autopay for businesses is ideal for SaaS companies, subscription platforms, OTT services, loan providers, insurance companies, and any business that requires automated recurring billing.",
+},
+{
+question: "How to integrate Spay UPI payment gateway with Autopay?",
+answer:
+"You can easily integrate Spay's UPI payment gateway integration using APIs. Our developer-friendly API payment gateway supports quick onboarding for websites and mobile apps with full UPI Autopay functionality.",
+},
+{
+question: "Why choose Spay Fintech as your UPI payment gateway provider in India?",
+answer:
+"Spay Fintech Private Limited stands out as a reliable UPI payment gateway provider in India with high success rates, secure infrastructure, real-time payment processing, and strong local support for businesses in Mumbai, Andheri, and across India.",
+},
 ];
 
 const Section4 = () => {
-	const [openIndex, setOpenIndex] = useState(0);
+const [openIndex, setOpenIndex] = useState(0);
 
-	const toggleItem = (index) => {
-		setOpenIndex((prev) => (prev === index ? -1 : index));
-	};
+const toggleItem = (index) => {
+setOpenIndex((prev) => (prev === index ? -1 : index));
+};
 
-	return (
-		<section className="relative overflow-hidden bg-[#f4f8ff] py-16 sm:py-18 md:py-24">
-			<style>
-				{`
-					@keyframes upiFaqRise {
-						from {
-							opacity: 0;
-							transform: translateY(14px) scale(0.985);
-						}
-						to {
-							opacity: 1;
-							transform: translateY(0) scale(1);
-						}
-					}
+return (
+<section className="relative overflow-hidden bg-gradient-to-b from-[#eff6ff] via-white to-[#f8fbff] py-16 md:py-24">
+<div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+<div className="absolute -left-12 top-12 h-44 w-44 rounded-full bg-[#2563eb]/10 blur-3xl pointer-events-none" />
+<div className="absolute -right-16 bottom-8 h-44 w-44 rounded-full bg-[#06b6d4]/10 blur-3xl pointer-events-none" />
 
-					@keyframes upiFaqOrb {
-						0%,
-						100% {
-							transform: translateY(0px);
-							opacity: 0.4;
-						}
-						50% {
-							transform: translateY(-12px);
-							opacity: 0.75;
-						}
-					}
+<div className="relative mx-auto max-w-6xl px-6 md:px-10">
+<div className="max-w-3xl text-center mx-auto">
+<span className="inline-flex items-center gap-2 rounded-full bg-[#eff6ff] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
+FAQs
+</span>
 
-					@keyframes upiFaqLine {
-						0% {
-							opacity: 0.3;
-						}
-						100% {
-							opacity: 0.9;
-						}
-					}
+<h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-slate-900">
+Clear answers to your UPI Autopay questions
+<span className="block text-[#2563eb]">built for modern businesses.</span>
+</h2>
 
-					.upi-faq-rise {
-						animation: upiFaqRise 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
-					}
+<p className="mt-5 text-sm sm:text-base text-slate-600">
+Everything you need to know about Spay UPI Autopay, integration, security, and recurring billing.
+</p>
+</div>
 
-					.upi-faq-orb {
-						animation: upiFaqOrb 6.2s ease-in-out infinite;
-					}
+<div className="mt-14 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+<div className="space-y-4">
+{faqItems.map((item, index) => {
+const isOpen = openIndex === index;
+return (
+<article
+key={item.question}
+className={`overflow-hidden rounded-[1.5rem] border bg-white shadow-sm transition-all duration-300 ${
+isOpen ? "border-[#cfe0fd] shadow-[0_22px_48px_-30px_rgba(29,78,216,0.2)]" : "border-[#e2e8f0] hover:border-[#cbd5e1] hover:shadow-[0_10px_24px_-18px_rgba(15,23,42,0.12)]"
+}`}
+>
+<button
+type="button"
+onClick={() => toggleItem(index)}
+aria-expanded={isOpen}
+className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left"
+>
+<div className="flex min-w-0 items-start gap-4">
+<span className={`mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-2xl border text-sm font-semibold ${
+isOpen ? "border-[#cfe0fd] bg-[#eff6ff] text-[#2563eb]" : "border-[#dbeafe] bg-[#f8fbff] text-[#1d4ed8]"
+}`}> 
+{index + 1}
+</span>
+<span className="text-base font-semibold leading-tight text-slate-900">{item.question}</span>
+</div>
+<span className={`flex h-9 w-9 items-center justify-center rounded-full text-white transition ${
+isOpen ? "bg-[#2563eb]" : "bg-[#e2e8f0] text-[#2563eb]"
+}`}>{isOpen ? <FaMinus className="text-sm" /> : <FaPlus className="text-sm" />}</span>
+</button>
 
-					.upi-faq-line {
-						animation: upiFaqLine 2.4s ease-in-out infinite alternate;
-					}
+<div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-screen" : "max-h-0"}`}>
+<div className="border-t border-[#e2e8f0] bg-[#f8fbff] px-6 py-5 text-sm leading-relaxed text-slate-600">
+{item.answer}
+</div>
+</div>
+</article>
+);
+})}
+</div>
 
-					@media (prefers-reduced-motion: reduce) {
-						.upi-faq-rise,
-						.upi-faq-orb,
-						.upi-faq-line {
-							animation: none !important;
-						}
-					}
-				`}
-			</style>
-
-			<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(122deg,rgba(255,255,255,0.7)_0%,rgba(240,247,255,0.96)_46%,rgba(232,243,255,0.95)_100%)]" />
-			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_16%,rgba(34,79,161,0.1),transparent_38%),radial-gradient(circle_at_88%_78%,rgba(14,165,208,0.13),transparent_42%)]" />
-			<div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#1e40af]/12 blur-3xl upi-faq-orb" />
-			<div className="pointer-events-none absolute -right-24 bottom-8 h-72 w-72 rounded-full bg-[#06b6d4]/14 blur-3xl upi-faq-orb" style={{ animationDelay: "1.8s" }} />
-
-			<div className="relative mx-auto max-w-7xl px-6 md:px-10">
-				<div className="upi-faq-rise mx-auto mb-10 max-w-4xl text-center" style={{ animationDelay: "80ms" }}>
-					<span className="inline-flex rounded-full border border-[#dce7f6] bg-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#24508d] shadow-sm">
-						 FAQs
-					</span>
-					<h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0f172a] sm:text-4xl md:text-[2.85rem] [font-family:Georgia,Times_New_Roman,serif]">
-						Frequently Asked Questions
-					</h2>
-					
-				</div>
-
-				<div className="upi-faq-rise mx-auto max-w-5xl rounded-[1.9rem] border border-[#d8e6f8] bg-white/80 p-4 shadow-[0_26px_62px_-42px_rgba(20,54,111,0.33)] backdrop-blur sm:p-5 md:p-6" style={{ animationDelay: "130ms" }}>
-					<div className="pointer-events-none mb-4 h-px w-full bg-gradient-to-r from-transparent via-[#98bce7] to-transparent upi-faq-line" />
-					<div className="relative space-y-3 sm:space-y-4">
-						{faqItems.map((item, index) => {
-							const isOpen = openIndex === index;
-							return (
-								<article
-									key={item.question}
-									className={`upi-faq-rise group relative overflow-hidden rounded-[1.25rem] border bg-white shadow-[0_18px_38px_-30px_rgba(20,54,111,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_-30px_rgba(20,54,111,0.38)] ${
-										isOpen ? "border-[#bfd5f3]" : "border-[#dbe8f9] hover:border-[#c7dbf6]"
-									}`}
-									style={{ animationDelay: `${170 + index * 85}ms` }}
-								>
-									<div className={`pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#87adde] to-transparent transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-									<button
-										type="button"
-										onClick={() => toggleItem(index)}
-										aria-expanded={isOpen}
-										className="flex w-full items-start justify-between gap-4 px-5 py-5 text-left sm:px-6"
-									>
-										<div className="flex min-w-0 items-start gap-3">
-											<span
-												className={`mt-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-md border text-xs font-bold tracking-[0.12em] ${
-													isOpen
-														? "border-[#c7daf5] bg-gradient-to-br from-[#edf4ff] to-[#e3eeff] text-[#1f4f95]"
-														: "border-[#dbe8f9] bg-[#f6f9ff] text-[#2f5f9f]"
-												}`}
-											>
-												{String(index + 1).padStart(2, "0")}
-											</span>
-											<span className="text-[1rem] font-semibold leading-snug text-[#10233f] sm:text-[1.05rem]">
-												{item.question}
-											</span>
-										</div>
-
-										<span
-											className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition ${
-												isOpen
-													? "bg-[#163f89] text-white"
-													: "bg-[#edf4ff] text-[#1f4f95]"
-											}`}
-										>
-											{isOpen ? <FaMinus className="text-sm" /> : <FaPlus className="text-sm" />}
-										</span>
-									</button>
-
-									<div
-										className={`grid transition-all duration-300 ${
-											isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-										}`}
-									>
-										<div className="min-h-0 overflow-hidden">
-											<div className="border-t border-[#e5eef9] bg-gradient-to-b from-[#f8fbff] via-white to-[#fafdff] px-5 pb-5 pt-4 sm:px-6">
-												<p className="text-sm leading-relaxed text-[#586883] sm:text-[0.98rem]">
-													{item.answer}
-												</p>
-											</div>
-										</div>
-									</div>
-								</article>
-							);
-						})}
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+<div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+<p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2563eb]">Need help faster?</p>
+<h3 className="mt-3 text-2xl font-semibold text-slate-900">Talk to our UPI payments team</h3>
+<p className="mt-4 text-sm leading-relaxed text-slate-600">
+Our experts can answer setup questions, share integration templates, and help you go live with UPI billing confidently.
+</p>
+<div className="mt-6 space-y-3 rounded-[1.5rem] bg-[#eff6ff] p-4">
+<p className="text-sm font-semibold text-slate-900">What we include</p>
+<ul className="space-y-2 text-sm text-slate-600">
+<li>• Rapid onboarding support</li>
+<li>• API integration guidance</li>
+<li>• Settlement and compliance advice</li>
+</ul>
+</div>
+<a
+href="/contact"
+className="inline-flex items-center justify-center rounded-full bg-[#2563eb] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1f4bb8]"
+>
+Contact Support
+</a>
+</div>
+</div>
+</div>
+</section>
+);
 };
 
 export default Section4;

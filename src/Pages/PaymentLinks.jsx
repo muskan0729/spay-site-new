@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Section1 from '../components/PaymentLinks/Section1'
+import Section2 from '../components/PaymentLinks/Section2'
 import lastbg from '../assets/images/upicta (2).webp';
 import upi from '../assets/images/upi.png';
 import rupay from '../assets/images/Rupay.png';
@@ -11,6 +13,8 @@ import pglink1 from '../assets/images/pg_link1.png';
 import bglink2webp from '../assets/images/bg_link_2.webp';
 
 // console.log('lastbg path:', lastbg); 
+
+
 
 const PaymentLinks = () => {
   const paymentMethods = [
@@ -24,27 +28,29 @@ const PaymentLinks = () => {
   return (
     <div className="font-sans overflow-x-hidden">
       <Helmet>
-        <title>Spay | Secure Payment Links for Easy Collections.</title>
+        <title>Spay | Share Payment Links & Get Paid Instantly in Mumbai.</title>
         <link rel="canonical" href="https://spay.live/payment-links" />
         <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
-          content="Create and share secure payment links with Spay to collect payments instantly via UPI, cards, net banking, and wallets across SMS, email, and chat."
+          content="Create instant payment links in mumbai. Share via WhatsApp, SMS collect online payments without a website. Free payment links for businesses & freelancers."
         />
       </Helmet>
 
+      <Section1 />
+
       {/* ----- SECTION 1: HERO ----- */}
-      <div 
+      {/* <div 
         className="relative bg-cover bg-top min-h-[350px] sm:min-h-[400px] md:min-h-[450px]"
-        style={{ backgroundImage: `url(${bglink2})` }}
-      >
+        style={{ backgroundImage: `url(${bglink2})` }} */}
+      {/* >
         <div className="absolute inset-0 bg-white/1"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 h-full">
           <div className="flex flex-col md:flex-row min-h-[350px] sm:min-h-[400px] md:min-h-[450px] items-center">
-            
+             */}
             {/* Left column: text content */}
-            <div className="w-full md:w-1/2 flex items-center justify-center py-6 sm:py-8 md:py-0">
+            {/* <div className="w-full md:w-1/2 flex items-center justify-center py-6 sm:py-8 md:py-0">
               <div className="w-full max-w-[95%] sm:max-w-[90%] mx-auto text-center md:text-left">
                 <h1 
                   className="mb-3 sm:mb-4" 
@@ -77,10 +83,10 @@ const PaymentLinks = () => {
                   Delays in payment can disrupt your cash flow, a common challenge for many businesses. With Spay, you can easily send payment links to your customers via SMS, messenger, email, chatbot, and more, facilitating instant payments.
                 </p>
               </div>
-            </div>
+            </div> */}
             
             {/* Right column: image */}
-            <div className="w-full md:w-1/2 flex items-center justify-center py-6 sm:py-8 md:py-0">
+            {/* <div className="w-full md:w-1/2 flex items-center justify-center py-6 sm:py-8 md:py-0">
               <div className="w-full max-w-[95%] sm:max-w-[90%] mx-auto text-center">
                 <img 
                   src={pglink1}
@@ -89,10 +95,10 @@ const PaymentLinks = () => {
                   loading="lazy"
                 />
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div>
         </div>
-      </div>
+      </div> */}
 
       {/* ----- LOGO SLIDER SECTION - FASTER SCROLLING (4s) ----- */}
       <div className="container mx-auto mt-8 sm:mt-12 md:mt-16 px-4 sm:px-6">
@@ -134,8 +140,11 @@ const PaymentLinks = () => {
           </div>
         </div>
       </div>
-
+      
+      <Section2 />
+      
       {/* ----- FEATURES SECTION WITH COMPLETE CONTENT ----- */}
+      {false && (
       <div 
         className="relative bg-cover bg-center py-12 sm:py-16 md:py-20 mt-8 sm:mt-10 md:mt-12"
         style={{ 
@@ -301,6 +310,7 @@ const PaymentLinks = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* ----- CTA SECTION ----- */}
       <div className="relative py-2 min-h-[80px] sm:min-h-[100px]">

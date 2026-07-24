@@ -10,33 +10,33 @@ import {
 const trustPoints = [
   {
     icon: FaShieldAlt,
-    title: "PCI-DSS Level 1 Certified",
+    title: "Secure Payment Processing",
     description:
-      "Spay meets the Payment Card Industry Data Security Standard at Level 1, the highest tier of certification available. Your customers' card data is handled under international security protocols at every step of the payment journey.",
+      "Spay follows industry-standard security practices to help protect transaction data during payment processing. Our systems are designed to support safe and reliable digital payments for businesses and their customers.",
   },
   {
     icon: FaBalanceScale,
-    title: "RBI Regulated and Compliant",
+    title: "Regulatory-Focused Operations",
     description:
-      "Spay Fintech operates under the regulatory framework established by the Reserve Bank of India for payment aggregators. Every transaction processed through our platform meets Indian financial regulations, giving you and your customers full legal protection.",
+      "Spay works within the evolving framework of India's digital payments ecosystem. We continuously align our processes with applicable industry and regulatory requirements to support responsible payment operations.",
   },
   {
     icon: FaClock,
-    title: "99.9% Uptime Service Level Agreement",
+    title: "Reliable Platform Performance",
     description:
-      "Our infrastructure runs on redundant, auto-scaling cloud architecture. We guarantee 99.9% uptime, which means your checkout is available when your customers are, including during high-traffic festive sales periods like Diwali and Independence Day.",
+      "A dependable payment experience is critical for business growth. Spay's infrastructure is designed to support consistent transaction processing and smooth payment acceptance across multiple payment methods.",
   },
   {
     icon: FaUserShield,
-    title: "Real-Time Fraud Detection",
+    title: "Risk Monitoring & Fraud Prevention",
     description:
-      "Every transaction is screened in real time by Spay's fraud detection engine. Suspicious patterns are flagged and blocked automatically, protecting your revenue without adding friction for legitimate customers.",
+      "Our platform incorporates transaction monitoring mechanisms to help identify unusual activity and reduce payment-related risks. This helps businesses maintain secure payment operations while providing a better customer experience.",
   },
   {
     icon: FaHeadset,
-    title: "24/7 Merchant Support",
+    title: "Dedicated Merchant Support",
     description:
-      "Payments do not keep business hours, and neither does our support team. Spay merchants have access to dedicated account managers and round-the-clock technical support, so any issue that arises is resolved quickly with minimal impact on your business.",
+      "Our support team is available to assist merchants with onboarding, payment-related queries, and operational guidance. We focus on providing timely assistance to help businesses keep their payment processes running smoothly.",
   },
 ];
 
@@ -113,23 +113,21 @@ const Section5 = () => {
           <span className="inline-flex rounded-full border border-[#dce8f7] bg-[#edf3ff] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1f56aa]">
             Trust & Security
           </span>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#0d2447] sm:text-4xl lg:text-[2.8rem] [font-family:Georgia,Times_New_Roman,serif]">
-            A Secure Payment Gateway You Can Build Your Business On
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
+           A Payment Infrastructure Businesses Can Rely On
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#5a6f90] sm:text-base">
-            Trust is the currency of payments. Every merchant who chooses Spay Fintech does so
-            knowing that the infrastructure beneath their checkout is compliant,
-            reliable, and built to protect both their business and their customers.
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+            Security, reliability, and compliance are essential for every online transaction.
           </p>
         </div>
 
-        <div className="trust-appear mt-8 flex flex-wrap items-center justify-center gap-2" style={{ animationDelay: "120ms" }}>
+        {/* <div className="trust-appear mt-8 flex flex-wrap items-center justify-center gap-2" style={{ animationDelay: "120ms" }}>
           <span className="rounded-full border border-[#dce7f6] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5d759b]">PCI-DSS Level 1</span>
           <span className="rounded-full border border-[#dce7f6] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5d759b]">RBI Compliant</span>
           <span className="rounded-full border border-[#dce7f6] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5d759b]">99.9% Uptime</span>
           <span className="rounded-full border border-[#dce7f6] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5d759b]">Real-time Fraud Shield</span>
           <span className="rounded-full border border-[#dce7f6] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5d759b]">24/7 Support</span>
-        </div>
+        </div> */}
 
         <div className="relative mt-10 space-y-4 lg:space-y-5">
           {trustPoints.map((point, index) => {
@@ -142,13 +140,13 @@ const Section5 = () => {
                 className={`trust-appear band-shimmer relative overflow-hidden rounded-[1.6rem] border border-[#dce7f6] bg-white p-5 shadow-[0_16px_36px_-32px_rgba(20,54,111,0.18)] transition-all duration-300 hover:border-[#c8daf5] hover:shadow-[0_20px_40px_-34px_rgba(16,63,136,0.18)] sm:p-6 ${shiftClass}`}
                 style={{ animationDelay: `${170 + index * 85}ms` }}
               >
-                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#163f89] to-[#1099d0]" />
+                <div className="absolute inset-y-0 left-0 w-1 bg-[#155DFC]" />
                 <div className="absolute right-4 top-3 text-[2.4rem] font-semibold leading-none text-[#dce7fb] [font-family:Georgia,Times_New_Roman,serif]">
-                  0{index + 1}
+                  {/* 0{index + 1} */}
                 </div>
 
                 <div className="relative z-10 flex items-start gap-4">
-                  <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#163f89] to-[#1099d0] text-white shadow-[0_14px_24px_-18px_rgba(22,63,137,0.55)] ring-1 ring-white/60">
+                  <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#155DFC] text-white shadow-[0_14px_24px_-18px_rgba(22,63,137,0.55)] ring-1 ring-white/60">
                     <Icon className="text-lg" />
                   </div>
 
@@ -156,10 +154,10 @@ const Section5 = () => {
                     <div className="mb-2 inline-flex rounded-full bg-[#eff5ff] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#2b5ca9]">
                       Trust layer
                     </div>
-                    <h3 className="text-[1.03rem] font-semibold leading-snug text-[#10294f] sm:text-[1.09rem]">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 leading-snug">
                       {point.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-[#5f7496] sm:text-[0.98rem]">
+                    <p className="mt-3 text-gray-600 text-sm leading-relaxed">
                       {point.description}
                     </p>
                   </div>

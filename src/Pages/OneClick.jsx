@@ -1,8 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import HeroSection from '../components/OneClickCheckout/herosection.jsx'
-import Section2 from '../components/OneClickCheckout/Section2.jsx'
-import Section3 from '../components/OneClickCheckout/Section3.jsx'
+// import Section2 from '../components/OneClickCheckout/Section2.jsx'
+// import Section3 from '../components/OneClickCheckout/Section3.jsx'
 import Section4 from '../components/OneClickCheckout/Section4.jsx'
 import Section5 from '../components/OneClickCheckout/Section5.jsx'
 import Faq from '../components/OneClickCheckout/Faq.jsx'
@@ -22,8 +22,8 @@ const OneClick = () => {
         />
       </Helmet>
       <HeroSection />
-      <Section2 />
-      <Section3 />
+      {/* <Section2 /> */}
+      {/* <Section3 /> */}
       <Section4 />
       <Section5 />
       <Faq />

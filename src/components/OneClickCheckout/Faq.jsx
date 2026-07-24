@@ -2,36 +2,36 @@ import React, { useState } from "react";
 
 const faqs = [
 	{
-		question: "What is a one click checkout payment gateway?",
+		question: "How do I choose the best payment gateway provider for my business in India?",
 		answer:
-			"A one click checkout payment gateway allows returning customers to complete a purchase with a single tap, without re-entering payment details, delivery address, or OTPs. Spay securely stores customer preferences after the first transaction and retrieves them instantly at checkout, dramatically reducing friction and cart abandonment for e-commerce businesses.",
+			"Choosing the right payment gateway provider depends on factors such as security, payment success rate, settlement speed, supported payment methods, and ease of integration. A reliable online payment gateway should support UPI, cards, net banking, and digital wallets while providing a secure checkout experience. Spay helps businesses across India accept payments with a scalable, secure payment gateway designed for startups, e-commerce brands, and enterprises.",
 	},
 	{
 		question:
-			"Which businesses can use the one click checkout payment gateway in India?",
+			"Which businesses can benefit from an online payment gateway?",
 		answer:
-			"Spay's one click checkout is designed for any e-commerce business operating in India, from D2C brands and fashion retailers to electronics stores, subscription services, and marketplace sellers. Whether you are a startup or an established merchant, Spay scales with your business.",
+			"An online payment gateway is suitable for e-commerce stores, service providers, educational institutions, healthcare businesses, travel companies, SaaS platforms, subscription-based businesses, freelancers, and retailers. Whether you're launching a startup or managing an established enterprise, Spay's payment gateway simplifies online payment collection and supports business growth with secure and reliable payment processing.",
 	},
 	{
-		question: "How long does one click checkout integration take?",
+		question: "How long does it take to integrate a payment gateway into a website or mobile app?",
 		answer:
-			"Most merchants are fully live within one business day. Shopify and WooCommerce plugin integrations typically take under 30 minutes. For custom API integrations, our comprehensive developer documentation and dedicated support team ensure a smooth, predictable process.",
+			"With Spay's API payment gateway, businesses can integrate online payments quickly using developer-friendly APIs, SDKs, and ready-to-use plugins. Depending on your platform and requirements, payment gateway integration can often be completed within a short timeframe, enabling you to start accepting UPI payments, cards, and other digital payment methods with minimal development effort.",
 	},
 	{
 		question:
-			"Is Spay's payment gateway available in Mumbai and Andheri specifically?",
+			"Why is payment success rate important when choosing a payment gateway?",
 		answer:
-			"Yes. Spay Fintech is headquartered in Andheri, Mumbai, and merchants in the Mumbai metropolitan area benefit from local onboarding support and hands-on account management from our Andheri office. We also serve e-commerce businesses across all of India with the same quality of service.",
+			"A high payment success rate means more successful transactions and fewer failed payments, directly impacting revenue and customer satisfaction. Spay's secure payment gateway is built to deliver reliable payment processing, intelligent routing, and a seamless checkout experience, helping businesses improve conversions and reduce transaction failures.",
 	},
 	{
-		question: "What payment modes does Spay support?",
+		question: "Does Spay support multiple payment methods through a single payment gateway integration?",
 		answer:
-			"Spay supports 50+ Indian payment methods including UPI (all major apps), credit and debit cards (Visa, Mastercard, RuPay, Amex), net banking across all major banks, digital wallets, BNPL providers, and EMI on select credit cards.",
+			"Yes. Spay offers a multi payment gateway solution that enables businesses to accept payments through UPI, credit cards, debit cards, net banking, digital wallets, payment links, and recurring payments—all through a single integration. This simplifies payment management while giving customers the flexibility to pay using their preferred payment method.",
 	},
 	{
-		question: "Is Spay's payment gateway secure?",
+		question: "Why do businesses across India choose Spay as their payment gateway provider?",
 		answer:
-			"Yes. Spay is PCI-DSS Level 1 certified, fully RBI-compliant, and uses end-to-end encryption on every transaction. Our platform also implements real-time fraud detection and 3D Secure authentication to protect both merchants and customers.",
+			"Businesses choose Spay because it combines secure payment processing, easy integration, multiple payment options, and reliable support in one platform. Our payment gateway in India is designed to help startups, SMEs, e-commerce brands, and enterprises accept online payments with confidence. With scalable technology, fast settlements, and developer-friendly APIs, Spay enables businesses to streamline collections and deliver a better payment experience. ",
 	},
 	{
 		question: "Does Spay help reduce cart abandonment?",
@@ -49,20 +49,21 @@ const Faq = () => {
 			<div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#163f89]/15 blur-3xl" />
 
 			<div className="mx-auto max-w-6xl px-4 md:px-8">
-				<div className="grid gap-8 lg:grid-cols-[0.95fr_1.45fr] lg:gap-10">
+				{/* <div className="grid gap-8 lg:grid-cols-[0.95fr_1.45fr] lg:gap-10"> */}
+				<div className="max-w-5xl mx-auto">
 					<div className="lg:sticky lg:top-24 lg:h-fit">
-						<div className="relative overflow-hidden rounded-[28px] border border-[#163f89]/15 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(22,63,137,0.65)] md:p-8">
+						{/* <div className="relative overflow-hidden rounded-[28px] border border-[#163f89]/15 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(22,63,137,0.65)] md:p-8">
 							<div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#1099d0]/20 blur-2xl" />
 							<div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[#163f89]/15 blur-2xl" />
 
 							<p className="relative mb-3 inline-flex rounded-full border border-[#163f89]/20 bg-[#f6faff] px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#163f89]">
 								One Click Checkout FAQs
 							</p>
-							<h2 className="relative text-2xl font-bold leading-tight text-[#102e6a] md:text-3xl">
+							<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
 								Frequently Asked Questions About Spay&apos;s One Click Checkout
 								Payment Gateway
 							</h2>
-							<p className="relative mt-4 text-sm leading-relaxed text-[#3a4c70] md:text-base">
+							<p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
 								Everything merchants ask before going live. Tap a question to view
 								the answer.
 							</p>
@@ -81,8 +82,8 @@ const Faq = () => {
 									<p className="mt-1 text-lg font-bold text-[#0e336f]">50+</p>
 								</div>
 								
-							</div>
-						</div>
+							</div> */}
+						{/* </div> */}
 					</div>
 
 					<div className="relative space-y-4">
@@ -100,7 +101,7 @@ const Faq = () => {
 									<span
 										className={`absolute left-0 top-5 hidden h-8 w-8 items-center justify-center rounded-full border text-xs font-bold tracking-[0.1em] md:flex ${
 											isOpen
-												? "border-[#163f89] bg-[#163f89] text-white"
+												? "bg-[#155DFC] text-white"
 												: "border-[#b7cff5] bg-white text-[#163f89]"
 										}`}
 									>
@@ -118,7 +119,7 @@ const Faq = () => {
 												<span className="mt-0.5 rounded-lg bg-[#eff5ff] px-2 py-1 text-[10px] font-bold tracking-[0.16em] text-[#163f89] md:hidden">
 													{serial}
 												</span>
-												<span className="text-base font-semibold leading-snug text-[#123778] md:text-lg">
+												<span className="text-xl font-semibold text-gray-900 leading-snug md:text-lg">
 													{item.question}
 												</span>
 											</span>
@@ -126,8 +127,8 @@ const Faq = () => {
 											<span
 												className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xl font-semibold transition ${
 													isOpen
-														? "bg-[#163f89] text-white"
-														: "bg-[#edf4ff] text-[#163f89]"
+														? "bg-[#155DFC] text-white"
+														: "bg-[#155DFC] text-white"
 												}`}
 												aria-hidden="true"
 											>
@@ -142,7 +143,7 @@ const Faq = () => {
 										>
 											<div className="min-h-0">
 												<div className="border-t border-[#e8f1ff] bg-gradient-to-r from-[#f9fcff] to-white px-5 pb-6 pt-4 md:px-7 md:pt-5">
-													<p className="text-sm leading-relaxed text-[#2f3d57] md:text-base">
+													<p className="text-gray-600 text-sm leading-relaxed md:text-base">
 														{item.answer}
 													</p>
 												</div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import HeroImg from "../assets/images/careerN.jpeg";
+import HeroImg from "../assets/images/career-1.jpg";
+import { Helmet } from "react-helmet";
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 
@@ -489,6 +490,17 @@ const Career = () => {
 
       
         <div className="min-h-screen bg-gray-50">
+
+           <Helmet>
+              <title>Careers at Spay Fintech | Fintech Jobs in Mumbai, India</title>
+              <link rel="canonical" href="https://spay.live/about-us" />
+              <meta  name="robots" content="index, follow, max-image-preview:large" />
+              <meta
+                name="description"
+                content="Join Spay Fintech - Mumbai's growing payment gateway company hiring for fintech, tech & sales roles. Be part of India's digital payment revolution. Apply now."
+              />
+            </Helmet>
+
       {/* Hero Section */}
 {/* Hero Section */}
 <div className="relative w-full">

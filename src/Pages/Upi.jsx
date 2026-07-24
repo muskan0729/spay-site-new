@@ -7,7 +7,7 @@ import herobgImage from "../assets/images/hero-bg.webp";
 import Section1 from "../components/upi/section1";
 import Section2 from "../components/upi/section2";
 import Section3 from "../components/upi/section3";
-import Section4 from "../components/upi/section4";
+// import Section4 from "../components/upi/section4";
 
 const Upi = () => {
   const [windowWidth, setWindowWidth] = useState(
@@ -25,12 +25,12 @@ const Upi = () => {
   return (
     <main className="font-['Inter','Poppins',system-ui,sans-serif] overflow-x-hidden">
       <Helmet>
-        <title>Spay Fintech | Best UPI Autopay Payment Gateway in Mumbai</title>
+        <title>Spay | UPI Payment Gateway in Mumbai | Autopay & Instant Pay.</title>
         <link rel="canonical" href="https://spay.live/upi-autopay" />
         <meta  name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="description"
-          content="Looking for a UPI payment gateway in India? Spay Fintech offers secure UPI Autopay, fast integration payment solutions for businesses in Mumbai & Andheri."
+          content="Integrate Spay's UPI payment gateway for instant UPI payments, UPI Autopay for subscriptions & server-to-server UPI processing. All UPI apps supported."
         />
       </Helmet>
 
@@ -44,7 +44,7 @@ const Upi = () => {
       <Section3 />
 
       {/* ================= FAQ ================= */}
-      <Section4 />
+      {/* <Section4 /> */}
 
       {/* ================= CARDS SECTION ================= */}
       {/* <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">

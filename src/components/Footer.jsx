@@ -22,7 +22,6 @@ const Footer = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/* TOP SECTION */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-14 md:gap-y-0">
-          
           {/* LEFT GRID */}
           <div className="md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-10">
             <FooterBlock title="Address">
@@ -32,7 +31,7 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Contact">
-              <p>022-46072193</p>
+              <p>+91 22-46072193</p>
               <p>+91 8450007614</p>
               <a href="mailto:inquiry@spay.live" className={linkClass}>
                 inquiry@spay.live
@@ -40,24 +39,30 @@ const Footer = () => {
             </FooterBlock>
 
             <FooterBlock title="Services">
-                <FooterLink to="https://dashboardbbps.spay.live/" target="_blank" rel="noopener noreferrer">BBPS</FooterLink>
+              <FooterLink to="https://dashboardbbps.spay.live/" target="_blank" rel="noopener noreferrer">BBPS</FooterLink>
               <FooterLink to="/payment-gateway">Payment Gateway</FooterLink>
               <FooterLink to="/payment-links">Payment Links</FooterLink>
               <FooterLink to="/upi-autopay">UPI AutoPay</FooterLink>
-              <FooterLink to="/one-click-checkout">One-Click Checkout</FooterLink>
+              <FooterLink to="/one-click-checkout">
+                One-Click Checkout
+              </FooterLink>
+              <FooterLink to="/payout">
+                Payout
+              </FooterLink>
             </FooterBlock>
 
             <FooterBlock title="Company">
               <FooterLink to="/about-us">About Us</FooterLink>
               <FooterLink to="/integration">Integration</FooterLink>
               <FooterLink to="/contact-us">Contact Us</FooterLink>
-              <FooterLink to="/Refund&Cancellation">Refund & Cancellation</FooterLink>
+              <FooterLink to="/Refund&Cancellation">
+                Refund & Cancellation
+              </FooterLink>
             </FooterBlock>
           </div>
 
           {/* RIGHT */}
           <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
-            
             <div>
               <p className="mb-3 text-xs uppercase tracking-widest text-white/70">
                 Get the app
@@ -73,7 +78,11 @@ const Footer = () => {
 
             <div className="flex items-center gap-6">
               <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
-              <img src={iso} alt="ISO Certified" className="h-[48px] opacity-90" />
+              <img
+                src={iso}
+                alt="ISO Certified"
+                className="h-[48px] opacity-90"
+              />
             </div>
           </div>
         </div>
@@ -83,7 +92,6 @@ const Footer = () => {
 
         {/* BOTTOM SECTION */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-
           {/* LEFT */}
           <p className="text-[15px] text-white/70 text-center md:text-left">
             © 2026 Spay Fintech Pvt. Ltd. All rights reserved.
@@ -91,21 +99,17 @@ const Footer = () => {
 
           {/* RIGHT SECTION */}
           <div className="flex flex-col md:flex-row items-center gap-6">
-
             {/* Policy Links (shifted slightly left) */}
-            <div className="flex items-center gap-6 mr-4"
-            style={{fontSize:"14px"}}>
-              <FooterLink to="/privacy-policy">
-                Privacy Policy
-              </FooterLink>
-              <FooterLink to="/terms-conditions">
-                Terms & Conditions
-              </FooterLink>
+            <div
+              className="flex items-center gap-6 mr-4"
+              style={{ fontSize: "14px" }}
+            >
+              <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
+              <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
             </div>
 
             {/* SOCIAL ICONS */}
             <div className="flex items-center gap-4 text-lg">
-
               <SocialIcon
                 href="https://www.facebook.com/people/SPAY-Fintech-Private-Limited/100083292313713/"
                 icon={<FaFacebookF />}
@@ -135,7 +139,6 @@ const Footer = () => {
                 icon={<FaYoutube />}
                 hoverColor="hover:text-red-500"
               />
-
             </div>
           </div>
         </div>

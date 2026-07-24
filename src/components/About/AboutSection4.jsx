@@ -1,78 +1,120 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  FaShoppingCart,
+  FaStore,
+  FaGraduationCap,
+  FaHeartbeat,
+  FaPlane,
+  FaRocket,
+  FaRedoAlt,
+} from "react-icons/fa";
 
-const directors = [
+const industries = [
   {
-    name: "Rajesh Kumar",
-    role: "Founder & CEO",
-    image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ8NDQ0NDQ0NDQ0NDQ8NDQ0NFhEWFhURFRUYHSggGBomGxUVITEhJSkrLjovFx83ODMtNygtLisBCgoKDg0OFRAQFS0eIB0vLSsrKy0rLS03KysrKystLS0rLS0tKysrLS0rLisrLS0tLS0tLysrNy0tKzAtKy0tL//AABEIAMIBAwMBIgACEQEDEQH/xAAcAAADAAMBAQEAAAAAAAAAAAAAAQIDBAUGBwj/xABBEAACAQICBgMMCAUFAAAAAAAAAQIDEQQSBQYhMUFRYXGxExQiMlJjcoGhssHRIyRCYoORkuEHMzRDcxUWJaLw/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAECBAMFBv/EACgRAQACAgECBQMFAAAAAAAAAAABAgMRIQQSIjFBUVITFHEyYYGR4f/aAAwDAQACEQMRAD8A8UAgMOowEADAQwAAAigYhgAAMKAAYCAYBdEAwAQDEE0BDABCGAQgAAAAEVDAQAMBAAwEMBCAAGAgAYCABjEMimAIYUDAdiLoh2HYLBdEBVgsF0kCrBYGk2FYqwWBpIirCCaSAxFZIQwCEAMRUMBAAwEADAQAIBAEMBAFMYhkDGhIYaMaEikRqICRSQkZaVKU3lhFyfKKuSZbiszxCLDsdGnoXEP7MY+lNX9ly/8AQq/m/wBT+R5/Ur7umOkzfCf6cywWOtHQGIe7uf6n8i1q5ifNfrfyH1K+59rl+MuNYLHa/wBuYnzX638iHq9iVwp+qTfwHfX3Ptcvxlx7CaOs9BV/N/qfyJloPEebfVN/IfUr7n2mb4S5TQjaxOCrUts4SS5+NH80azNxMT5PC+O1Z1aNJJZTEzTymEiGxMrMgQCCABAVDAQBDAQgABAAxkjCmMkpEUykSUiNQaKQkZKVNzlGEd8pRiutuyMzL1rXbe0Vo2WIld3jTi/Ckt7fkrpPU4fDQpxywioro49LfEvCYWNKnGnHdFWvzfF/mbdGhfa93acF8s3l+i6bBTBX9/WWGnRcurmbMKCXS+bNiMOCM8KHP8iQ1fM1VAtUZcjdULFKD5G9PCcrQ7hLl2Eyptb0zo9zfJicRojK5k6Se9XNephrbtvRxOvOin0dRgnSaMzD1pmchxOJpbQyadSirSW2VNbpdXJ9B6qtQvtW/tNRxMxeazuHpkpTNXVo/wAfPWSzr6xYNUqylFWjVTlblNeN2p+s5DO+lu6Il+dzYpx2ms+iWIbJZ6OeYJgDEVgCARUMBAEMBCAAJGAxkjAoaJGiNQpFIhFozL0rCkdTV2nmxVLozy9aizlo7Oqq+uQ9Cp7p45Z8Muzp48dfy9pSpXfRxN2MOAqNOy69ptUocT51X1smQqdO3WZoU7lQhc2KdNyajFXb2JLezprDkvdijBIuFKUvFjKXopy7D0GB0PCKUqtpy8n7C+Z1IxSVkklySsjqrgmfPh87J11YnVY28bLDVI74VEubhJLsMbjc9uauK0fSq+NFKXlxspfuWcHtLNOv58VXjpUuRilE62OwM6MrPbF+LJbn0dZo1IcTlvXT6GPLFoiYlzqlOxq4ijxXrOpOF0a0onPZ148jyOtlL6CMuMaq9qf7HkWe31whbDfiw7GeIZ1dNPgcXW85NpZLGyWdcPnWgmJjZLNPKQAgKyAEADAkYCAQBDGSMKpDRBSI1C0UiEUjEvWrIjt6oK+Npr7tT3Tho7+pSvj6foVfcZz5v0WduHiYfQ1E2YxIhHajYjE4KS6r2XCNkd7QmEUY91a8KWyPRH9zjRjfZz2HrKcVGKit0UkupH0emrud+z5fWZJisVj1UAAdr5gAAAxYmhGpBwluf5p8GjytWk4SlF74tpnrzg6bp2q38qKb61s+RzdRXjudvR5Ji0193FnGzNarHb1m9Via9aO4+ZeX2KWeU14j9UT87D4ngWfQtel9S/Hp9kj54zp6afC88/MpZLGyWdkOC5MljZLNw8ZFxXAVysGAgCGBIwJGTcLgUArhcCkUmY7lXJLUSyIpMxJlpmJe1ZZUeh1H/r6f+Ot7jPORZ6LUZ/8AIUvQq+6c2filvw7McvptNbUbEVtRhSPM62a0Kjmw2Gl9Luq1V/a+7HnLp4de752GJvOoeuS8RzLPrVrL3HNhsNL6bdVqxf8AK+7F+X08Ovd6XUXXKONisNiWo4uK8GW6OIilvX3rb1610fGlUKhXlFqUZOMotSjKLalGS3NNbmfXxx2eThy1jJHL9KgeJ1C12jjksLimo4yK8GWxRxMV9pLcpLivWuKXtjpidvnWrNZ1IADR01pahgaE8RiJZYR2JLbKc+EIri2VmI2NMaVoYKhLEYiWWEdiS2ynLhCK4tnymprziKmMdeqr4eVod7x/t01ezi/L27Xx6NluNrLrHX0lXdWr4MI3VGineNKHxlzfwOO5nhee7j0d+HHFOZ832CliKdaEKtKSnCavGS4/J9BNVHzXV/T88FU4zoTa7rTv/wB4/eXt9q+j0MTTrwhVpSU6c45oyX/tj6D5XUUmn4l34rxLzWvq+o/j0uyR84kfSP4gf0K/z0+yR81kz26Sd0/lcsk2Q2Nshs74cV5DE2JsVzcPCZMQrgVkxCC4QwEAQgEFyh3C4rhcCrjuRcdyKtMpMx3HczL0rLKpHo9Q3fSNNebre4eYzGzgMdUoTc6Usk3CdPMvGipKza5O3E58uOb0mseropk7eX0LW3WruWbC4WX03i1qsX/K5xi/L58uvd4NTNbOGc1hwVxV7YeV8s3nctrugnUNbOS6h7aTubcMRKEozhJxlGSlGUXaUZJ3TT4M+zfw718hpBRwmLlGGNivBlsjHFRS3r7/ADj61xS+FyqCpVZqcZU5ShOMlKE4txlCSeySa3NCOGbxFo5fqLTemMPgKE8RiZZYR2JKznUlwhBcWz4TrPrLX0nX7rV8GEbqjQTvClH4yfF/A0dOaxYzSEqcsXV7o6UFCCSyQWzbPL5T3t9i2HMzlmdsY6xXls90JczXzizk09O5nczr6u6w1MDU4zoTf0tLj6ceUu3s4DmJzM3pF4mtoIvMTuH0XXjFU6+jY1qUlOnOtScZLd9rZ0O/A+cORl79qKjOgpPuU5wnKD2rPG9pLk9vZyNXMc+HB9KJrvfLotm742tslsVxXOmHPaRcVwuK5t5ydxXFcAydwuIChgK4ASMkAigJGFO47kgBVwuSFzLUSq4sxDZLkZ03EtnMGY1o1ODLzG3nPDK5kuZjcib3Btd23ZGxTtFbPW+ZhjZDzDR3M+cM5gzBmBtmzhnMOYMwNsuYWYxZiZ1LdYTbJOYsxgUi0zD03qGS4XITHc1DMyq4riuBWTAQiihCAIYyQAQCABgIAGMkAKEITIobMcmUzHIaXaZMSqtdQpGNjSbZ++FyGsTFcH7DVYio3O+lyfsH3yuT9hpXHcI3O+VyfsDvlcn7DTuFwNvvpcn7A76XJ+w07jQVsvEN7tntJUjEi4kWJZostMxRMiJo2yJjJQyhjJAqGAgAYCAB3AVwAQCABgAgGAgAYgACWRItksDHJGNozNENBGFoVjK4k5QIsBeULAQFi7BYCbAkXYaQEpFxQJFpAOJaJSLQVSGhIAGACAYCABgIAGACAAEAQwEADC4gAdwEAAJjEBLRLRdhWAhoVjJYVgMdgymSwWAx5QsZLBYCMo7FWHYCUhpDsOwAhoBoAHcQAMBAAwEADAQAO4CAAAAAAAAAAAAAAAAAAEAAAgAAAQwABDAABAAAMAABgAAAAAAAAAAAAAAAAABX/9k=",
+    icon: <FaShoppingCart />,
+    title: "E-commerce",
+    description:
+      "Power your online store with a payment gateway built for high-volume retail transactions and seamless customer checkouts.",
+    note: "Retail-ready",
   },
   {
-    name: "Anita Sharma",
-    role: "COO",
-    image: "data:image/jpeg;base64,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",
+    icon: <FaStore />,
+    title: "Retail",
+    description:
+      "Whether you're running a physical store, a hybrid model, or moving online, SPay makes accepting digital payments effortless.",
+    note: "Omnichannel",
   },
   {
-    name: "Vikram Singh",
-    role: "CTO",
-    image: "data:image/jpeg;base64,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",
+    icon: <FaGraduationCap />,
+    title: "Education",
+    description:
+      "Accept fees, course payments, and subscriptions without complexity for schools, edtech platforms, and coaching businesses alike.",
+    note: "Recurring billing",
+  },
+  {
+    icon: <FaHeartbeat />,
+    title: "Healthcare",
+    description:
+      "Provide patients and clients with a secure, straightforward way to pay for services, consultations, and products online.",
+    note: "Secure checkout",
+  },
+  {
+    icon: <FaPlane />,
+    title: "Travel & Hospitality",
+    description:
+      "Handle bookings, deposits, and cancellations with a payment solution that keeps up with the pace of the travel industry.",
+    note: "Fast reservations",
+  },
+  {
+    icon: <FaRocket />,
+    title: "Startups & SMEs",
+    description:
+      "Built with growing businesses in mind. Affordable, scalable, and easy to get started with no enterprise contracts required.",
+    note: "Scalable growth",
   },
 ];
 
 const AboutSection4 = () => {
   return (
-    <section className="py-20 px-6 bg-white relative">
-      
-      <div className="max-w-7xl mx-auto text-center">
-        
-        {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Our Directors
-        </h2>
-        <p className="text-gray-500 mb-14 max-w-2xl mx-auto">
-          Meet the leadership driving innovation and trust in digital payments.
-        </p>
+    <section className="relative overflow-hidden bg-white py-12 sm:py-14 md:py-16">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+      <div className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-blue-100/60 blur-3xl"></div>
+      <div className="absolute -bottom-24 left-0 h-56 w-56 rounded-full bg-cyan-100/70 blur-3xl"></div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {directors.map((director, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -10 }}
-              className="group relative bg-white rounded-2xl p-6 
-              shadow-[0_10px_40px_rgba(0,0,0,0.08)] 
-              hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] 
-              transition duration-300 border border-gray-100"
-            >
-              
-              {/* Top subtle gradient line */}
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-blue-500 to-cyan-400 rounded-t-2xl opacity-80"></div>
+      <div className="relative mx-auto max-w-6xl px-6">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
+           
+          </span>
+          <h2 className="mt-3 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            Industries We Serve
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+            SPay fits naturally into sectors where payment reliability affects revenue, customer trust, and daily operations.
+          </p>
+        </motion.div>
 
-              {/* Image */}
-              <div className="relative w-28 h-28 mx-auto mb-5">
-                <img
-                  src={director.image}
-                  alt={director.name}
-                  className="w-full h-full object-cover rounded-full 
-                  border-4 border-gray-100 
-                  group-hover:scale-105 transition duration-300"
-                />
-              </div>
+        <div className="mt-10 mx-auto grid max-w-4xl gap-4 grid-cols-1 md:grid-cols-2">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={industry.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.04, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                className="h-full"
+              >
+                <div className="flex h-full min-h-[210px] flex-col rounded-3xl border border-gray-100 bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(15,23,42,0.08)]">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(37,99,235,0.08)] text-[#2563EB] text-xl shrink-0">
+                      {industry.icon}
+                    </div>
+                    <span className="rounded-full border border-gray-100 bg-gray-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-500">
+                      {industry.note}
+                    </span>
+                  </div>
 
-              {/* Info */}
-              <h3 className="text-xl font-semibold text-gray-900">
-                {director.name}
-              </h3>
-              <p className="text-blue-600 mb-3">
-                {director.role}
-              </p>
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                    {industry.title}
+                  </h3>
 
-              {/* Divider */}
-              <div className="w-8 group-hover:w-14 h-[2px] bg-gray-300 mx-auto transition-all duration-300"></div>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600 flex-1">
+                    {industry.description}
+                  </p>
 
-            </motion.div>
-          ))}
-        </div>
+                  <div className="mt-5 h-px w-full bg-gray-100"></div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
       </div>
     </section>
   );

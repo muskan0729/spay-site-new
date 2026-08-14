@@ -122,7 +122,7 @@ const Header = () => {
                 {productsOpen && (
                   <Dropdown>
                     <DropItem
-                      to="https://dashboardbbps.spay.live/"
+                      to="https://services.spay.live/"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={closeAllMenus}

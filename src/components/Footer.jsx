@@ -12,6 +12,7 @@ import {
 import pci from "../assets/images/pci-dss-1 (1).png";
 import iso from "../assets/images/iso-cer.png";
 import appStore from "../assets/images/download-on-the-app-store-flat-badge-logo-png_seeklogo-268334 (1).png";
+import googlePlay from "../assets/images/png-clipart-app-store-google-play-apple-apple-text-logo1.png";
 
 const Footer = () => {
   return (
@@ -62,7 +63,7 @@ const Footer = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-10 mt-10 md:mt-0">
+          <div className="md:col-span-3 flex flex-col md:items-end justify-between gap-6 mt-6 md:mt-0">
             <div>
               <p className="mb-3 text-xs uppercase tracking-widest text-white/70">
                 Get the app
@@ -73,6 +74,19 @@ const Footer = () => {
                 rel="noreferrer"
               >
                 <img src={appStore} alt="App Store" className="h-[44px]" />
+              </a>
+            </div>
+
+            <div>
+              {/* <p className="mb-3 text-xs uppercase tracking-widest text-white/70">
+                Get the app
+              </p> */}
+              <a
+                href="https://play.google.com/store/apps/details?id=live.spay.services"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={googlePlay} alt="Google Play" className="h-[44px]" />
               </a>
             </div>
 

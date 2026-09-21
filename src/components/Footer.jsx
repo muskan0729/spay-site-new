@@ -91,7 +91,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center gap-6">
-              <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" />
+              {/* <img src={pci} alt="PCI DSS" className="h-[48px] opacity-90" /> */}
               <img
                 src={iso}
                 alt="ISO Certified"

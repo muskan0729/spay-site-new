@@ -63,7 +63,7 @@ function App() {
           <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="integration" element={<Integration />} />
           <Route path="sign-up" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
+          <Route path="abc" element={<Login />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="careers" element={<Career />} />

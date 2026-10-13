@@ -185,6 +185,154 @@ const PrivacyPolicyPage = () => {
             </AnimatePresence>
           </div>
 
+          {/* SECTION 3 */}
+          {/* <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-200 overflow-hidden">
+            <button
+              onClick={() => toggleSection("collection")}
+              className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-blue-50 transition"
+            >
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
+                3. Grievance Redressal
+              </h2>
+
+              <motion.span
+                animate={{ rotate: openSection === "collection" ? 45 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-2xl font-bold text-blue-600"
+              >
+                +
+              </motion.span>
+            </button>
+
+            <AnimatePresence>
+              {openSection === "collection" && (
+                <motion.div
+                  variants={accordionVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="px-6 pb-6 text-gray-700 leading-relaxed overflow-hidden"
+                >
+
+                  <p>
+                    If you have any concerns, complaints, or grievances regarding this Privacy Policy or the processing of your personal information, you may contact our Grievance Officer using the details provided below:
+
+                  </p>
+
+                  <h4 className="font-medium mt-4 mb-2">Personal Data</h4>
+                  <ul className="list-disc pl-6 space-y-2 mb-4">
+                    <li>Email address</li>
+                    <li>First and last name</li>
+                    <li>Phone number : +91 22-46072193</li>
+                  </ul>
+
+                  <h4 className="font-medium mt-4 mb-2">Usage Data</h4>
+                  <p>
+                    Usage Data is collected automatically and may include
+                    details such as IP address, browser type, pages visited,
+                    and time spent on pages.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div> */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-200 overflow-hidden">
+              <button
+                onClick={() => toggleSection("Grievance")}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-blue-50 transition"
+              >
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
+                  3. Grievance Redressal
+                </h2>
+
+                <motion.span
+                  animate={{ rotate: openSection === "Grievance" ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-2xl font-bold text-blue-600"
+                >
+                  +
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {openSection === "Grievance" && (
+                  <motion.div
+                    variants={accordionVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="px-6 pb-6 text-gray-700 leading-relaxed overflow-hidden"
+                  >
+                    <p className="mb-4">
+                      If you have any concerns, complaints, or grievances regarding this
+                      Privacy Policy or the processing of your personal information, you
+                      may contact our Grievance Officer using the details provided below:
+                    </p>
+
+                    <div className="space-y-2 mb-5">
+
+                      {/* <p>
+                        <span className="font-semibold text-gray-800">
+                          Grievance Officer:
+                        </span>{" "}
+                          Saira Sangar
+                      </p> */}
+
+                        {/* <p>
+                        <span className="font-semibold text-gray-800">
+                          Designation:
+                        </span>{" "}
+                          Grievance Officer
+                      </p> */}
+
+                      <p>
+                        <span className="font-semibold text-gray-800">
+                          Company:
+                        </span>{" "}
+                        SPAY Fintech Private Limited
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-gray-800">
+                          Email:
+                        </span>{" "}
+                        compliance@spay.live
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-gray-800">
+                          Contact Number:
+                        </span>{" "}
+                        +91 7977322599
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-gray-800">
+                          Address:
+                        </span>{" "}
+                        Office-316, Floor 3, 316 Laxmi Plaza, Andheri West, Mumbai, Maharashtra 400053.
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-gray-800">
+                          Working Hours:
+                        </span>{" "}
+                        Monday to Saturday, 10:00 AM to 7:00 PM (IST), excluding the 2nd and 4th
+                        Saturdays and bank holidays.
+                      </p>
+                    </div>
+
+                    <p>
+                      You may submit your grievance by providing relevant details,
+                      including your name, contact information, and a description of the
+                      concern. We will review and address your grievance in accordance
+                      with applicable laws and regulations.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
           {/* CONTACT */}
           <div className="bg-white rounded-xl shadow-md p-8 border border-gray-200">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">

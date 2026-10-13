@@ -127,7 +127,16 @@ const Header = () => {
                       rel="noopener noreferrer"
                       onClick={closeAllMenus}
                     >
-                      BBPS
+                       Sign In
+                    </DropItem>
+
+                    <DropItem
+                      to="https://services.spay.live/register"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeAllMenus}
+                    >
+                       Sign Up
                     </DropItem>
 
                     <DropItem to="/upi-autopay" onClick={closeAllMenus}>

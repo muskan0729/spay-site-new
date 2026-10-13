@@ -271,19 +271,19 @@ const PrivacyPolicyPage = () => {
 
                     <div className="space-y-2 mb-5">
 
-                        <p>
+                      {/* <p>
                         <span className="font-semibold text-gray-800">
                           Grievance Officer:
                         </span>{" "}
                           Saira Sangar
-                      </p>
+                      </p> */}
 
-                        <p>
+                        {/* <p>
                         <span className="font-semibold text-gray-800">
                           Designation:
                         </span>{" "}
                           Grievance Officer
-                      </p>
+                      </p> */}
 
                       <p>
                         <span className="font-semibold text-gray-800">

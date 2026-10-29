@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useGet } from "../hooks/useGet";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.webp";
 

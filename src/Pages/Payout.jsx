@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Section1 from "../components/Payout/Section1";
 import Section2 from "../components/Payout/Section2";
 import Section3 from "../components/Payout/Section3";

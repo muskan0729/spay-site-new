@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HeroImg from "../assets/images/career-1.jpg";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 

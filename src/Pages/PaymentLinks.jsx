@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import Section1 from '../components/PaymentLinks/Section1'
 import Section2 from '../components/PaymentLinks/Section2'
 import lastbg from '../assets/images/upicta (2).webp';

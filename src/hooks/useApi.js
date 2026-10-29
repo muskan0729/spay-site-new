@@ -1,44 +1,48 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios';
 
-// Create axios instance with default config
+import { useState, useCallback } from "react";
+import axios from "axios";
+
+const isDevelopment = import.meta.env.DEV;
+
+const API_BASE_URL = isDevelopment
+  ? "/api-proxy/api"
+  : (import.meta.env.VITE_API_URL || "/api");
+
 export const apiClient = axios.create({
-  // Use import.meta.env for Vite instead of process.env
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+  baseURL: API_BASE_URL,
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
-// Request interceptor to add auth token
+// Add authentication token
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor for error handling
+// Handle API errors
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Handle session expiration
     if (error.response?.status === 401) {
-      localStorage.removeItem('authToken');
-      window.location.href = '/login';
+      localStorage.removeItem("authToken");
+      window.location.href = "/login";
     }
+
     return Promise.reject(error);
   }
 );
 
-// Generic API hook factory
 export const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -47,13 +51,20 @@ export const useApi = () => {
   const execute = useCallback(async (apiCall) => {
     setLoading(true);
     setError(null);
+
     try {
       const response = await apiCall();
       setData(response.data);
+
       return { success: true, data: response.data };
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message || 'An error occurred';
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
+        "An error occurred";
+
       setError(errorMessage);
+
       return { success: false, error: errorMessage };
     } finally {
       setLoading(false);
@@ -66,30 +77,35 @@ export const useApi = () => {
     setLoading(false);
   }, []);
 
-  // GET method
-  const get = useCallback(async (url, params = {}, config = {}) => {
-    return execute(() => apiClient.get(url, { params, ...config }));
-  }, [execute]);
+  const get = useCallback(
+    (url, params = {}, config = {}) =>
+      execute(() => apiClient.get(url, { ...config, params })),
+    [execute]
+  );
 
-  // POST method
-  const post = useCallback(async (url, data = {}, config = {}) => {
-    return execute(() => apiClient.post(url, data, config));
-  }, [execute]);
+  const post = useCallback(
+    (url, body = {}, config = {}) =>
+      execute(() => apiClient.post(url, body, config)),
+    [execute]
+  );
 
-  // PUT method
-  const put = useCallback(async (url, data = {}, config = {}) => {
-    return execute(() => apiClient.put(url, data, config));
-  }, [execute]);
+  const put = useCallback(
+    (url, body = {}, config = {}) =>
+      execute(() => apiClient.put(url, body, config)),
+    [execute]
+  );
 
-  // PATCH method
-  const patch = useCallback(async (url, data = {}, config = {}) => {
-    return execute(() => apiClient.patch(url, data, config));
-  }, [execute]);
+  const patch = useCallback(
+    (url, body = {}, config = {}) =>
+      execute(() => apiClient.patch(url, body, config)),
+    [execute]
+  );
 
-  // DELETE method
-  const del = useCallback(async (url, config = {}) => {
-    return execute(() => apiClient.delete(url, config));
-  }, [execute]);
+  const del = useCallback(
+    (url, config = {}) =>
+      execute(() => apiClient.delete(url, config)),
+    [execute]
+  );
 
   return {
     loading,

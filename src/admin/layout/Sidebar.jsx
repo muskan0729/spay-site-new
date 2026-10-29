@@ -7,6 +7,7 @@ import {
   UserCheck,
   FileText,
   LogOut,
+  ChartNoAxesCombined,
 } from "lucide-react";
 
 import logo from "../../assets/images/logo.webp";
@@ -37,6 +38,16 @@ const menuItems = [
     path: "/admin/blogs",
     icon: FileText,
   },
+  {
+  name: "Analytics",
+  path: "/admin/analytics",
+  icon: ChartNoAxesCombined,
+},
+{
+  name: "Visitors",
+  path: "/admin/visitors",
+  icon: Users, // 👈 Icon
+},
 ];
 
 const Sidebar = () => {

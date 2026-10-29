@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Carousel from "../components/Home/Carousel";
 import CardSlider from "../components/Home/CardSlider";
 import CounterSection from "../components/Home/CounterSection";

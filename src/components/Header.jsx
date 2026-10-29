@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-
 const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -316,7 +315,7 @@ const Header = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .header-sticky {
           position: sticky;
           top: 0;

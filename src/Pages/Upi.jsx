@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { FaQrcode, FaSyncAlt, FaCreditCard } from "react-icons/fa";
 import qrFlyerVideo from "../assets/images/White Red Modern Scan The QR Code Flyer (2).mp4";
 import autopayImage from "../assets/images/autopay7 (1).webp";

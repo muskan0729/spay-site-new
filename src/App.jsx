@@ -33,6 +33,12 @@ import Users from "./admin/pages/Users";
 import Positions from "./admin/pages/Positions";
 import Candidates from "./admin/pages/Candidates";
 import Blogs from "./admin/pages/Blogs";
+import Analytics from "./admin/pages/Analytics";
+import AnalyticsRouteTracker from "./components/AnalyticsRouteTracker"
+import BehaviourTracker from "./components/BehaviourTracker";
+import ReplayRecorder from "./components/ReplayRecorder";
+import Visitors from "./admin/pages/Visitors"; // 👈 Import karein
+import VitalsTracker from "./components/VitalsTracker";
 
 /* ---------- ROUTE PROTECTION ---------- */
 import AdminRoute from "./routes/AdminRoute";
@@ -40,6 +46,11 @@ import AdminRoute from "./routes/AdminRoute";
 function App() {
   return (
     <>
+          <BehaviourTracker /> {/* 👈 Add this line */}
+          <AnalyticsRouteTracker /> {/* 👈 Add this line */}
+                <ReplayRecorder /> {/* 👈 Mount Replay Recorder */}
+                <VitalsTracker /> {/* 👈 Add this */}
+
       <ScrollTop />
       <ToastContainer position="top-right" autoClose={3000} />
 
@@ -84,6 +95,10 @@ function App() {
           <Route path="positions" element={<Positions />} />
           <Route path="candidates" element={<Candidates />} />
           <Route path="blogs" element={<Blogs />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="visitors" element={<Visitors />} />
+
+
         </Route>
       </Routes>
     </>
